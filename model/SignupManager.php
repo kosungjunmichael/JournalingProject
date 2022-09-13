@@ -3,5 +3,7 @@
 require_once('Manager.php');
 
 class SignupManager extends Manager{
-  public function 
+  public function signupFunction(){
+    
+  }
 }
