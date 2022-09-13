@@ -11,20 +11,38 @@ class UserManager extends Manager{
     $req = $db->query('SELECT * FROM users');
   }
 
-    public function createUser($data){
+    public function createUser($data, $type){
         $db = $this->dbConnect();
 
-        if ($data['sign-p'] != $data['sign-cp']){
-            header('location: index.php');
-        }
-        $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+        // creating Google User
+        if ($type === 'google') {
 
-        // We create a new user
-        $req = $db->prepare('INSERT INTO users (username, email, password) VALUES (:login, :email, :pass)');
-        $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
-        $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
-        $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
-        $req->execute();
-        header ('location: ../index.php?action=signin?type=registered');
+            // convert from  to array
+            $credentials = json_decode(json_encode($data), true);
+            // create a new user into users database table
+            $req = $db->prepare('INSERT INTO users (username, email) VALUES (:login, :email)');
+            $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
+            $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
+            $req->execute();
+//            echo $credentials['email'];
+            // redirect
+            header ('location: ../index.php?action=signin?type=registered');
+        } else if ($type === 'regular') {
+            // creating normal regular user
+            if ($data['sign-p'] != $data['sign-cp']){
+                // redirect
+                header('location: index.php');
+            }
+            $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+
+            // We create a new user
+            $req = $db->prepare('INSERT INTO users (username, email, password) VALUES (:login, :email, :pass)');
+            $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
+            $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
+            $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
+            $req->execute();
+            // redirect
+            header ('location: ../index.php?action=signin?type=registered');
+        }
     }
 }

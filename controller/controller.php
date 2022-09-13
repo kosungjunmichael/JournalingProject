@@ -5,7 +5,7 @@
  require_once('./model/UserManager.php');
 //require_once('./model/SignupManager.php');
 
-function signUp($data){
+function signUp($data, $type){
   $userManager = new UserManager();
-  $userManager->createUser($data);
+  $userManager->createUser($data, $type);
 }
