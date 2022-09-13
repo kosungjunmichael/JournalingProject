@@ -10,5 +10,7 @@
     <script defer src="../public/js/script.js"></script>
     <title><?=$title?></title>
 </head>
-<body><?=$content?></body>
+<body>
+    <?=$content?>
+</body>
 </html>
