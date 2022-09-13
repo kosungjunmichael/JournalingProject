@@ -1,16 +1,30 @@
 // This is js stuff
   function handleCredentialResponse(response) {
-     // decodeJwtResponse() is a custom function defined by you
-     // to decode the credential response.
-    //  const responsePayload = decodeJwtResponse(response.credential);
+    try {
+      const data = JSON.parse(atob(response.credential.split('.')[1]));
+      const credentials = {
+        aud: data.aud,
+        email: data.email,
+        picture: data.picture
+      }
 
-    //  console.log("ID: " + responsePayload.sub);
-    //  console.log('Full Name: ' + responsePayload.name);
-    //  console.log('Given Name: ' + responsePayload.given_name);
-    //  console.log('Family Name: ' + responsePayload.family_name);
-    //  console.log("Image URL: " + responsePayload.picture);
-    //  console.log("Email: " + responsePayload.email);
-    console.log(JSON.parse(atob(response.credential.split('.')[1])))
+      let req = new XMLHttpRequest();
+      req.open('POST', `message_view.php?pagination=${paginationVal}`);
+      req.addEventListener('readystatechange', () => {
+        if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+          console.log(JSON.parse(req.responseText))
+          const res = JSON.parse(req.responseText);
+          displayMessages(res);
+        } else if (req.readyState === XMLHttpRequest.DONE && req.status !== 200) {
+          console.log(req.statusText);
+        }
+      });
+      req.send(null);
+
+    } catch (err) {
+      throw new Error(err);
+    }
+
 
   }
   
