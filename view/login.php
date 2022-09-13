@@ -6,7 +6,7 @@
         <div class="shape3"></div>
         <div class="shape4"></div>
     </div>  
-    <form method="POST" action="testEntry.php" class="signin">
+    <form method="POST" action="signin.php" class="signin">
         <h3>Login</h3>
         <input name="username" type="text" placeholder="Username" id="username" required>
         <input name="password" type="password" placeholder="Password" id="password" required>
