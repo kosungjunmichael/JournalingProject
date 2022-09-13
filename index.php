@@ -5,7 +5,7 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
     switch ($action){
-        case "signup" :
+        case "signup":
             // google signup
             if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
                 $response = $_REQUEST['credential'];
@@ -14,10 +14,12 @@ try {
                 signUp($credentials, $type);
             }
             // regular signup
-//            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
-//                signUp($_REQUEST);
-//            }
-//            signUp($_REQUEST, 'regular');
+            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+                signUp($_REQUEST, $_REQUEST['type']);
+            }
+            break;
+        case "timeline":
+            require("./view/timeline.php");
             break;
         default:
             // show login as default
