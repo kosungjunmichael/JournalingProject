@@ -1,12 +1,12 @@
 <!-- this is the controller -->
 <?php
 
-require_once('model/EntryManager.php');
-require_once('model/UserManager.php');
+// require_once('model/EntryManager.php');
+// require_once('model/UserManager.php');
+require_once('./model/SignupManager.php');
 
-function signUp(){
+function signUp($data){
   $userManager = new SignupManager();
-  $users = 
-  $userManager->signupFunction();
-  
+  $userManager->createUser($data);
+
 }
