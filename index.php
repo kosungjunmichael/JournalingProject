@@ -14,12 +14,15 @@ try {
                 signUp($credentials, $type);
             }
             // regular signup
-//            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
-//                signUp($_REQUEST);
-//            }
-//            signUp($_REQUEST, 'regular');
+           else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+               signUp($_REQUEST, $_REQUEST['type']);
+           }
+            break;
+        case "signin" :
+            signIn($_REQUEST);
             break;
         default:
+            require("./view/login.php");
             // show login as default
             break;
     }

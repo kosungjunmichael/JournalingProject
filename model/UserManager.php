@@ -4,12 +4,25 @@
 require_once('Manager.php');
 
 class UserManager extends Manager{
-  public function getUsers(){
-    $db = $this->dbConnect();
+    public function confirmUser($data){
+        $db = $this->dbConnect();
 
-    // retrieve the user
-    $req = $db->query('SELECT * FROM users');
-  }
+        $inputUser = $data['log-u'];
+
+        // retrieve the user
+        $req = $db->prepare('SELECT * FROM users WHERE username = ?');
+        $req->bindParam(1,$inputUser,PDO::PARAM_STR);
+        $req->execute();
+        $users = $req->fetchAll(PDO::FETCH_ASSOC);
+
+        if ($data['log-u'] != $users['username'] OR $data['log-u'] != $users['email'] ){
+            header ('location: ./index.php?error=0');
+        } else if (!password_verify($data['log-p'], $users['password'])){
+            header ('location: ./index.php?error=0');
+        }
+
+
+    }
 
     public function createUser($data, $type){
         $db = $this->dbConnect();
@@ -24,7 +37,7 @@ class UserManager extends Manager{
             $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
             $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
             $req->execute();
-//            echo $credentials['email'];
+    //            echo $credentials['email'];
             // redirect
             header ('location: ../index.php?action=signin?type=registered');
         } else if ($type === 'regular') {

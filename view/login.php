@@ -6,19 +6,20 @@
     <label for="darkMode">
 <!-- login -->
     <div class="box">
-        <form method="POST" action="signin.php" class="signin">
+        <form method="POST" action="../index.php?action=signin" class="signin">
             <span class="text-center">Login</span>
         <div class="input-container">
-            <input type="text" required=""/>
+            <input type="text" name="log-u"/>
             <label>Username</label>		
         </div>
         <div class="input-container">		
-            <input type="mail" required=""/>
+            <input type="mail" name="log-p"/>
             <label>Password</label>
         </div>
             <button type="button" class="btn">Log In</button>
 <!-- signup button -->
             <a href="signup.php" class="btn">Sign Up</a>
+            <input type="submit" value="Submit">
         </form>	
     </div>
 <!--    <div id="g_id_onload"-->

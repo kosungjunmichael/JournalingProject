@@ -9,3 +9,8 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $userManager->createUser($data, $type);
 }
+
+function signIn($data){
+  $userManager = new UserManager();
+  $userManager->confirmUser($data);
+}
