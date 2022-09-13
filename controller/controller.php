@@ -2,11 +2,10 @@
 <?php
 
 // require_once('model/EntryManager.php');
-// require_once('model/UserManager.php');
-require_once('./model/SignupManager.php');
+ require_once('./model/UserManager.php');
+//require_once('./model/SignupManager.php');
 
 function signUp($data){
-  $userManager = new SignupManager();
+  $userManager = new UserManager();
   $userManager->createUser($data);
-
 }
