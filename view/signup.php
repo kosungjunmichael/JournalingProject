@@ -24,8 +24,24 @@
     <!-- signup button -->
             <a href="login.php" class="btn">Sign Up</a>
             <input type="submit" value="Submit">
-        </form>	
+        </form>
+        <div id="g_id_onload"
+             data-client_id="1065030075784-mk1j1m4oqq553ih7dppecedpg1ir59nl.apps.googleusercontent.com"
+             data-context="signup"
+             data-ux_mode="popup"
+             data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&type=google"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signup_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
     </div>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>
 
