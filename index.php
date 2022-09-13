@@ -5,7 +5,7 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
     switch ($action){
-        case "signup" :
+        case "signup":
             // google signup
             if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
                 $response = $_REQUEST['credential'];
@@ -20,6 +20,9 @@ try {
             break;
         case "signin" :
             signIn($_REQUEST);
+            break;
+        case "timeline":
+            require("./view/timeline.php");
             break;
         default:
             require("./view/login.php");
