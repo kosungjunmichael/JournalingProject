@@ -1,1 +1,10 @@
 /* Css Stuff */
+*{
+    margin:0;
+    padding:0;
+}
+
+#container{
+    background-color:aquamarine;
+}
+
