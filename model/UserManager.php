@@ -4,29 +4,47 @@
 require_once('Manager.php');
 
 class UserManager extends Manager{
-  public function getUsers(){
-    $db = $this->dbConnect();
+    public function getUsers(){
+        $db = $this->dbConnect();
 
-    // retrieve the user
-    $req = $db->query('SELECT * FROM users');
-  }
+        // retrieve the user
+        $req = $db->query('SELECT * FROM users');
+    }
+
+    public function confirmUser($credentials, $type) {
+        $db = $this->dbConnect();
+
+        if (type === 'signup') {
+            // check if user exists
+            $query = $db->prepare('SELECT email from users WHERE email = :email');
+            $query->bindParam('email', $credentials['email'], PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll();
+        } else if (type === 'login') {
+            // add login user check code
+
+        }
+    }
 
     public function createUser($data, $type){
         $db = $this->dbConnect();
 
         // creating Google User
         if ($type === 'google') {
-
             // convert from  to array
             $credentials = json_decode(json_encode($data), true);
-            // create a new user into users database table
-            $req = $db->prepare('INSERT INTO users (username, email) VALUES (:login, :email)');
-            $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
-            $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
-            $req->execute();
-//            echo $credentials['email'];
+            $existingUser = $this->confirmUser($credentials, 'signup');
+
+            // if user doesn't exist, create user in database
+            if (count($existingUser) == 0) {
+                // create a new user into users database table
+                $req = $db->prepare('INSERT INTO users (username, email) VALUES (:login, :email)');
+                $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
+                $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
+                $req->execute();
+            }
             // redirect
-            header ('location: ../index.php?action=signin?type=registered');
+//            header ('location: ./index.php?action=timeline&type=registered');
         } else if ($type === 'regular') {
             // creating normal regular user
             if ($data['sign-p'] != $data['sign-cp']){
@@ -42,7 +60,7 @@ class UserManager extends Manager{
             $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
             $req->execute();
             // redirect
-            header ('location: ../index.php?action=signin?type=registered');
+            header ('location: ./index.php?action=timeline&type=registered');
         }
     }
 }
