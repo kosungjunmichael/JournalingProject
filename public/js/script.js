@@ -11,6 +11,6 @@
     //  console.log("Image URL: " + responsePayload.picture);
     //  console.log("Email: " + responsePayload.email);
     console.log(JSON.parse(atob(response.credential.split('.')[1])))
-
+    
   }
   
