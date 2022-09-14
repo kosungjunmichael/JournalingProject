@@ -19,13 +19,24 @@ try {
                 signUp($credentials, $type);
             }
             // regular signup
-           else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
-               signUp($_REQUEST, $_REQUEST['type']);
-           }
+            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+                $type = $_REQUEST['type'];
+                signUp($_REQUEST, $type);
+            }
             break;
-           // regular signin
-        case "signin" :
-            signIn($_REQUEST, "login");
+        case "login":
+            // google login
+            if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
+                $response = $_REQUEST['credential'];
+                $type = $_REQUEST['type'];
+                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
+//                login($credentials, $type);
+            }
+            // regular login
+            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+                $type = $_REQUEST['type'];
+                login($_REQUEST, $type);
+            }
             break;
             // to the entries
         case "timeline":

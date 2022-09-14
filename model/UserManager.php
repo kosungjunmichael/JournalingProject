@@ -9,7 +9,8 @@ class UserManager extends Manager{
         $db = $this->dbConnect();
 
         if ($type === 'signup') {
-            // check if user exists
+            // check if user already exists
+            // fetch matching user email field
             $query = $db->prepare('SELECT email from users WHERE email = :email');
             $query->bindParam('email', $credentials['email'], PDO::PARAM_STR);
             $query->execute();
@@ -17,7 +18,7 @@ class UserManager extends Manager{
         } else if ($type === 'login') {
             // add login user check code
 
-            $inputUser = $credentials['log-u'];
+            $inputUser = $credentials['login-ue'];
 
             // retrieve the user
             $req = $db->prepare('SELECT * FROM users WHERE username = ?');
@@ -25,9 +26,9 @@ class UserManager extends Manager{
             $req->execute();
             $users = $req->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($credentials['log-u'] != $users['username'] OR $credentials['log-u'] != $users['email'] ){
+            if ($credentials['login-ue'] != $users['username'] OR $credentials['login-ue'] != $users['email'] ){
                 header ('location: ./index.php?error=1');
-            } else if (!password_verify($credentials['log-p'], $users['password'])){
+            } else if (!password_verify($credentials['login-p'], $users['password'])){
                 header ('location: ./index.php?error=2');
             } else if ($users['is_active'] != 1){
                 header ('location: ./index.php?error=3');
@@ -45,36 +46,47 @@ class UserManager extends Manager{
 
         // creating Google User
         if ($type === 'google') {
-            // convert from  to array
+            // convert to array with encode/decode
             $credentials = json_decode(json_encode($data), true);
-            $existingUser = $this->confirmUser($credentials, 'signup');
 
             // if user doesn't exist, create user in database
+            $existingUser = $this->confirmUser($credentials, 'signup');
             if (count($existingUser) == 0) {
                 // create a new user into users database table
                 $req = $db->prepare('INSERT INTO users (username, email) VALUES (:login, :email)');
                 $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
                 $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
                 $req->execute();
+                // redirect to index with registered type
+                header ('location: ./index.php?action=timeline&type=registered');
+            } else {
+                // user already exists, cannot be created
+                echo "User with that email already exists. Please try again";
             }
-            // redirect
-//            header ('location: ./index.php?action=timeline&type=registered');
         } else if ($type === 'regular') {
             // creating normal regular user
             if ($data['sign-p'] != $data['sign-cp']){
                 // redirect
                 header('location: index.php');
             }
-            $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
-            // We create a new user
-            $req = $db->prepare('INSERT INTO users (username, email, password) VALUES (:login, :email, :pass)');
-            $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
-            $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
-            $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
-            $req->execute();
-            // redirect
-            header ('location: ./index.php?action=timeline&type=registered');
+            // if user doesn't exist, create user in database
+            $existingUser = $this->confirmUser($data, 'signup');
+            if (count($existingUser) == 0) {
+                $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+
+                // create a new user into users database table
+                $req = $db->prepare('INSERT INTO users (username, email, password) VALUES (:login, :email, :pass)');
+                $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
+                $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
+                $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
+                $req->execute();
+                // redirect to index with registered type
+                header ('location: ./index.php?action=timeline&type=registered');
+            } else {
+                // user already exists, cannot be created
+                echo "User with that email already exists. Please try again";
+            }
         }
     }
 }
