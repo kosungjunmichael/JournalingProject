@@ -1,25 +1,47 @@
 <?php
-
-require("./controller/controller.php");
-
+require('./controller/controller.php');
 
 try {
-  $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
-  switch($action){
-      case "":
-          break;
-      case "":
-          if(isset($_REQUEST[''])){
-              
-          }else{
-              throw new Exception("Article not found");
-          }
-          break;
-      default :
-      
-          break;
-  }
-} catch (Exception $e) { //if we catch an exception
+    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
+
+    switch ($action){
+        case "signup":
+            // google signup
+            if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
+                $response = $_REQUEST['credential'];
+                $type = $_REQUEST['type'];
+                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
+                signUp($credentials, $type);
+            }
+            // regular signup
+            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+                $type = $_REQUEST['type'];
+                signUp($_REQUEST, $type);
+            }
+            break;
+        case "login":
+            // google login
+            if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
+                $response = $_REQUEST['credential'];
+                $type = $_REQUEST['type'];
+                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
+//                login($credentials, $type);
+            }
+            // regular login
+            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
+                $type = $_REQUEST['type'];
+                login($_REQUEST, $type);
+            }
+            break;
+        case "timeline":
+            require("./view/timeline.php");
+            break;
+        default:
+            // show login as default
+            break;
+    }
+
+} catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require("view/errorView.php");
 }
