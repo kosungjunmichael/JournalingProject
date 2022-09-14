@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Router</title>
-</head>
-<body>
-  
-</body>
-</html>
+<?php
+
+require("./controller/controller.php");
+
+
+try {
+  $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
+  switch($action){
+      case "":
+          break;
+      case "":
+          if(isset($_REQUEST[''])){
+              
+          }else{
+              throw new Exception("Article not found");
+          }
+          break;
+      default :
+      
+          break;
+  }
+} catch (Exception $e) { //if we catch an exception
+    $errorMessage = $e->getMessage();
+    require("view/errorView.php");
+}
