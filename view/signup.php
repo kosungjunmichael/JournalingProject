@@ -2,7 +2,7 @@
 <?php $style = "signup" ?>
 <?php ob_start();?>
     <div class="box">
-        <form method="POST" action="../index.php?action=signup" class="signup">
+        <form method="POST" action="../index.php?action=signup&type=regular" class="signup">
             <span class="text-center">Sign Up</span>
         <div class="input-container">
             <input type="text" name="sign-u"/>
@@ -21,9 +21,7 @@
             <label>Confirm Password</label>
         </div>
             <button type="button" class="btn">Log In</button>
-    <!-- signup button -->
-            <a href="login.php" class="btn">Sign Up</a>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Sign Up">
         </form>
         <div id="g_id_onload"
              data-client_id="<?=$_SERVER['CLIENT_ID']?>"
