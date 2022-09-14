@@ -10,7 +10,7 @@ function signUp($data, $type){
   $userManager->createUser($data, $type);
 }
 
-function signIn($data){
+function signIn($data, $type){
   $userManager = new UserManager();
-  $userManager->confirmUser($data);
+  $userManager->confirmUser($data, $type);
 }

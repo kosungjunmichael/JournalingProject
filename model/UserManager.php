@@ -4,38 +4,39 @@
 require_once('Manager.php');
 
 class UserManager extends Manager{
-    public function confirmUser($data){
-        $db = $this->dbConnect();
-
-        $inputUser = $data['log-u'];
-
-        // retrieve the user
-        $req = $db->prepare('SELECT * FROM users WHERE username = ?');
-        $req->bindParam(1,$inputUser,PDO::PARAM_STR);
-        $req->execute();
-        $users = $req->fetchAll(PDO::FETCH_ASSOC);
-
-        if ($data['log-u'] != $users['username'] OR $data['log-u'] != $users['email'] ){
-            header ('location: ./index.php?error=0');
-        } else if (!password_verify($data['log-p'], $users['password'])){
-            header ('location: ./index.php?error=0');
-        }
-
-
-    }
 
     public function confirmUser($credentials, $type) {
         $db = $this->dbConnect();
 
-        if (type === 'signup') {
+        if ($type === 'signup') {
             // check if user exists
             $query = $db->prepare('SELECT email from users WHERE email = :email');
             $query->bindParam('email', $credentials['email'], PDO::PARAM_STR);
             $query->execute();
             return $query->fetchAll();
-        } else if (type === 'login') {
+        } else if ($type === 'login') {
             // add login user check code
 
+            $inputUser = $credentials['log-u'];
+
+            // retrieve the user
+            $req = $db->prepare('SELECT * FROM users WHERE username = ?');
+            $req->bindParam(1,$inputUser,PDO::PARAM_STR);
+            $req->execute();
+            $users = $req->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($credentials['log-u'] != $users['username'] OR $credentials['log-u'] != $users['email'] ){
+                header ('location: ./index.php?error=1');
+            } else if (!password_verify($credentials['log-p'], $users['password'])){
+                header ('location: ./index.php?error=2');
+            } else if ($users['is_active'] != 1){
+                header ('location: ./index.php?error=3');
+            }
+        
+        // $update = $db->prepare("UPDATE users SET last_logged_in = NOW() WHERE username = ?");
+        // $update->execute(array($inputUser));
+
+        header ('location: ./index.php?action=timeline&type=registered');
         }
     }
 
