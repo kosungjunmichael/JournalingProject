@@ -65,7 +65,8 @@ class UserManager extends Manager{
         do {
             $uid = $this->uidCreate();
             $existingUID = $this->checkUniqueIDExist($uid);
-        } while (count($existingUID) == 0);
+        } while (count($existingUID) > 0);
+
         // creating Google User
         if ($type === 'google') {
             // convert to array with encode/decode
@@ -75,7 +76,7 @@ class UserManager extends Manager{
             $existingUser = $this->checkUserNotExist($credentials, 'signup');
             if (count($existingUser) == 0) {
                 // create a new user into users database table
-                $req = $db->prepare('INSERT INTO users (username, u_id, email) VALUES (:login, :email, :u_id)');
+                $req = $db->prepare('INSERT INTO users (username, u_id, email) VALUES (:login, :u_id, :email)');
                 $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
                 $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
                 $req->bindParam('u_id', $uid, PDO::PARAM_STR);

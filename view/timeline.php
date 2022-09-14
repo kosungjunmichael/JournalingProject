@@ -6,7 +6,7 @@
         if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
             echo "<p>You have been registered. Welcome!</p>";
         } else {
-            print_r($_SESSION);
+//            print_r($_SESSION);
         }
     ?>
 
