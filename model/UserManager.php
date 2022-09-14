@@ -26,7 +26,7 @@ class UserManager extends Manager{
         } else if ($user['is_active'] != 1){
             header ('location: ./index.php?error=3');
         }
-        
+
         // create session variable for user login/signup
         if ($type === 'regular'){
             session_start();
@@ -65,7 +65,10 @@ class UserManager extends Manager{
         do {
             $uid = $this->uidCreate();
             $existingUID = $this->checkUniqueIDExist($uid);
-        } while (count($existingUID) == 0);
+        } while (count($existingUID) > 0);
+
+
+
         // creating Google User
         if ($type === 'google') {
             // convert to array with encode/decode
@@ -75,7 +78,7 @@ class UserManager extends Manager{
             $existingUser = $this->checkUserNotExist($credentials, 'signup');
             if (count($existingUser) == 0) {
                 // create a new user into users database table
-                $req = $db->prepare('INSERT INTO users (username, u_id, email) VALUES (:login, :email, :u_id)');
+                $req = $db->prepare('INSERT INTO users (username, email, u_id) VALUES (:login, :email, :u_id)');
                 $req->bindParam('login', $credentials['email'], PDO::PARAM_STR);
                 $req->bindParam('email', $credentials['email'], PDO::PARAM_STR);
                 $req->bindParam('u_id', $uid, PDO::PARAM_STR);
@@ -110,11 +113,11 @@ class UserManager extends Manager{
                 $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
                 $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
                 $req->execute();
-                
+
                 // create session variable for user login/signup
                 session_start();
                 $_SESSION['user'] = $data['sign-e'];
-                
+
                 // redirect to index with registered type
                 header ('location: ./index.php?action=timeline&type=registered');
             } else {

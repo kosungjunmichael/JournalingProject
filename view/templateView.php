@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?=$title; ?></title>
+    <link rel="stylesheet" href="../public/css/style-copy.css">
     <link rel="stylesheet" href="../public/css/<?= $style?>.css">
+    <!-- Boxicons Link -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <script defer src="../public/js/script.js"></script>
-    <title><?=$title?></title>
+    <link rel="icon" href="../public/images/logo.png">
 </head>
-<body>
-    <?=$content?>
-</body>
+<body><?=$content; ?></body>
 </html>
