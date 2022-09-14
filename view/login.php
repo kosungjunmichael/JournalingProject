@@ -8,21 +8,21 @@
     <div class="box">
         <form method="POST" action="signin.php" class="signin">
             <span class="text-center">Login</span>
-        <div class="input-container">
-            <input type="text" required=""/>
-            <label>Username</label>		
-        </div>
-        <div class="input-container">		
-            <input type="mail" required=""/>
-            <label>Password</label>
-        </div>
-            <button type="button" class="btn">Log In</button>
-<!-- signup button -->
+            <div class="input-container">
+                <input type="text" required name="login-ue"/>
+                <label>Username / Email</label>
+            </div>
+            <div class="input-container">
+                <input type="password" required name="login-p"/>
+                <label>Password</label>
+            </div>
+            <button type="submit" class="btn">Log In</button>
+            <!-- signup button -->
             <a href="signup.php" class="btn">Sign Up</a>
         </form>	
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-            data-login_uri="http://localhost/sites/JournalingProject/view/login.php"
+            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
             data-auto_prompt="false">
         </div>
         <div class="g_id_signin"

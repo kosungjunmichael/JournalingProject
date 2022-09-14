@@ -18,6 +18,8 @@ try {
                 signUp($_REQUEST, $_REQUEST['type']);
             }
             break;
+        case "login":
+            // login user
         case "timeline":
             require("./view/timeline.php");
             break;
