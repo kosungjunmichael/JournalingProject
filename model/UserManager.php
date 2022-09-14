@@ -26,7 +26,7 @@ class UserManager extends Manager{
         } else if ($user['is_active'] != 1){
             header ('location: ./index.php?error=3');
         }
-        
+
         // create session variable for user login/signup
         if ($type === 'regular'){
             session_start();
@@ -110,11 +110,11 @@ class UserManager extends Manager{
                 $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
                 $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
                 $req->execute();
-                
+
                 // create session variable for user login/signup
                 session_start();
                 $_SESSION['user'] = $data['sign-e'];
-                
+
                 // redirect to index with registered type
                 header ('location: ./index.php?action=timeline&type=registered');
             } else {
