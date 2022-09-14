@@ -6,7 +6,7 @@
     <label for="darkMode">
 <!-- login -->
     <div class="box">
-        <form method="POST" action="signin.php" class="signin">
+        <form method="POST" action="../index.php?action=login&type=regular" class="signin">
             <span class="text-center">Login</span>
             <div class="input-container">
                 <input type="text" required name="login-ue"/>
@@ -19,6 +19,7 @@
             <button type="submit" class="btn">Log In</button>
             <!-- signup button -->
             <a href="signup.php" class="btn">Sign Up</a>
+            <input type="submit" value="Submit">
         </form>	
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"

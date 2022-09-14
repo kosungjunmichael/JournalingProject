@@ -4,6 +4,11 @@ require('./controller/controller.php');
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
+    // start session
+    // check if the session exists
+    // for Session => username
+    // update the last active column in users db
+
     switch ($action){
         case "signup":
             // google signup
@@ -33,10 +38,12 @@ try {
                 login($_REQUEST, $type);
             }
             break;
+            // to the entries
         case "timeline":
             require("./view/timeline.php");
             break;
         default:
+            require("./view/login.php");
             // show login as default
             break;
     }
