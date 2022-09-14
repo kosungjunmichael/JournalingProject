@@ -58,10 +58,10 @@ try {
             break;
             // to the entries
         case "timeline":
-            require("./view/timeline.php");
+            require("./view/timelineView.php");
             break;
         default:
-            require("./view/login.php");
+            require("./view/loginView.php");
             // show login as default
             break;
     }

@@ -36,9 +36,9 @@
         </div>
         <div id="form-bottom">
             <p>Don't have an account yet?</p>
-            <a id="sign-up-link" href="signup.php">Sign Up</a>
+            <a id="sign-up-link" href="signupView.php">Sign Up</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require('templateView.php'); ?>
