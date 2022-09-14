@@ -19,22 +19,24 @@
     color: white;
     background: rgb(66, 66, 66);
 }
+
 body{
     display: flex;
     justify-content: center;
     /*background: linear-gradient(45deg, #7F00FF,#000000);*/
 }
 
-
 /* LOG in  */
-.text-center{
+#header-text {
 	color:#fff;	
 	text-transform:uppercase;
+    font-weight: bolder;
     font-size: 23px;
-    margin: -50px 0 80px 0;
+    margin: 0 0 30px 0;
     display: block;
     text-align: center;
 }
+
 .box{
 	position:absolute;
 	left:50%;
@@ -43,7 +45,8 @@ body{
     /*background-color: rgba(0, 0, 0, 0.89);*/
     background-color: #2f2f2f;
 	border-radius: 15px;
-	padding: 70px 100px;
+	padding: 30px;
+    min-width: 300px;
 }
 
 form {
@@ -57,6 +60,7 @@ form {
 	position:relative;
 	margin-bottom:25px;
 }
+
 .input-container label{
 	position:absolute;
 	top:0px;
@@ -66,6 +70,7 @@ form {
     /* pointer-event:none; */
 	transition: all 0.5s ease-in-out;
 }
+
 .input-container input{ 
     border:0;
     border-bottom:1px solid #555;  
@@ -75,11 +80,20 @@ form {
     font-size:16px;
     color:#fff;
 }
+
 .input-container input:focus{ 
     border:none;	
     outline:none;
     border-bottom:1px solid rgb(123, 0, 255);	
 }
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+    top:-12px;
+    font-size:11px;
+    color: lightgrey;
+}
+
 #login-btn{
     width: 100%;
 	color:#fff;
@@ -95,13 +109,6 @@ form {
 	position:relative;
 }
 
-.input-container input:focus ~ label,
-.input-container input:valid ~ label{
-	top:-12px;
-	font-size:12px;
-	
-}
-
 #or-separator {
     margin-bottom: 10px;
     display: flex;
@@ -110,19 +117,24 @@ form {
     color: white;
 }
 
-#sign-up {
+.g_id_signin {
+    display: flex;
+    justify-content: center;
+}
+
+#form-bottom {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 30px 0 20px 0;
+    margin: 30px 0 0 0;
 }
 
-#sign-up > p {
+#form-bottom > p {
     color: white;
 }
 
-#sign-up-link {
+#form-bottom > #sign-up-link{
     font-weight: 600;
     margin: 10px 20px;
     color: #7F00FF;

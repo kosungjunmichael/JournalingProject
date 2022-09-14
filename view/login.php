@@ -7,7 +7,7 @@
     <!-- login -->
     <div class="box">
         <form method="POST" action="../index.php?action=login&type=regular" class="signin">
-            <span class="text-center">Login</span>
+            <span id="header-text">Login</span>
             <div class="input-container">
                 <input id="login-ue" type="text" required name="login-ue"/>
                 <label for="login-ue" >Username / Email</label>
@@ -34,7 +34,7 @@
             data-shape="rectangular"
             data-logo_alignment="left">
         </div>
-        <div id="sign-up">
+        <div id="form-bottom">
             <p>Don't have an account yet?</p>
             <a id="sign-up-link" href="signup.php">Sign Up</a>
         </div>
