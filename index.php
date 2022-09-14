@@ -48,7 +48,7 @@ try {
                 $response = $_REQUEST['credential'];
                 $type = $_REQUEST['type'];
                 $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-//                login($credentials, $type);
+                login($credentials, $type);
             }
             // regular login
             else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
