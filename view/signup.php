@@ -26,7 +26,7 @@
             <input type="submit" value="Submit">
         </form>
         <div id="g_id_onload"
-             data-client_id="1065030075784-mk1j1m4oqq553ih7dppecedpg1ir59nl.apps.googleusercontent.com"
+             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
              data-context="signup"
              data-ux_mode="popup"
              data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&type=google"
