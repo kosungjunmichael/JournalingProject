@@ -1,5 +1,7 @@
-*{
-    font-family: "Avenir Next";
+@import url('../css/main.css');
+
+* {
+    font-family: Raleway;
 }
 
 .darkMode {
