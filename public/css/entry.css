@@ -34,13 +34,13 @@ body{
     margin-bottom: 15px;
 }
 
-.entry-title input{
+.entry-title > #title-input{
     color:white;
     background: transparent;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .entry-writing textarea{

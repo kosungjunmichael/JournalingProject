@@ -39,7 +39,7 @@ class UserManager extends Manager{
         header ('location: ./index.php?action=timeline');
     }
 
-    protected function checkUserNotExist($credentials, $type){
+    protected function checkUserNotExist($credentials){
         $db = $this->dbConnect();
         // check if user already exists
         // fetch matching user email field
