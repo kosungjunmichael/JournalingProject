@@ -6,6 +6,7 @@
 
 <div class="entry-box">
     <form action="" method="post" class="form-container">
+        <h2>CREATE A NEW ENTRY</h2>
         <div class="entry-title">
             <input type="text" id="title" name="title" placeholder="Entry Title"/>
         </div>
