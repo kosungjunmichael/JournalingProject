@@ -12,5 +12,5 @@ function signUp($data, $type){
 
 function login($data, $type){
     $userManager = new UserManager();
-    $userManager->loginUser($data, $type);
+    $userManager->confirmUser($data, $type);
 }
