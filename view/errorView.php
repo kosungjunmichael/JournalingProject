@@ -6,4 +6,4 @@
   <img src="../public/images/sadcat.png" alt="sadcat" width='300px' height='auto'>
 </div>
 <? $content = ob_get_clean(); ?>
-<?php require("template.php"); ?>
+<?php require("templateView.php"); ?>
