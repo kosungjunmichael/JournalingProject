@@ -3,26 +3,44 @@
 <?php ob_start();?>
 
 <div class="entry-box">
-    <h1><strong>CREATE A NEW ENTRY</strong></h1>
-    <label for="title">Entry Title</label>
-    <input type="text" id="title" name="title">
-    <div class="calendar">
+    <form action="" method="post" class="form-container">
+        <h1><strong>CREATE A NEW ENTRY</strong></h1>
+        <div class="entry-title">
+            <input type="text" id="title" name="title" placeholder="Entry Title">
+        </div>
 
-    </div>
-    <div class="location">
+        <div class="entry-date">
+            <i class='bx bx-calendar'></i>
+            <input type="date">
+        </div>
 
-    </div>
-    <div class="weather">
+        <div class="entry-location">
+            <i class='bx bx-current-location' ></i>
+            <input type="" placeholder="location">
+        </div>
 
-    </div>
-    <div class="entry-container">
-        <label for="entry">Start Writing...</label>
-        <input type="text" id="entry" name="entry">
-    </div>
+        <div class="entry-weather">
+            <input type="" placeholder="weather">
+        </div>
+
+        <div class="entry-writing">
+            <input type="text" id="entry" name="entry" placeholder="Start Writing...">
+        </div>
+
+        <div class="entry-upload-photo">
+        </div>
+        
+        <div class="entry-bottom">
+            <div class="entry-photo">
+                <input type="file" id="file" accept="image/*"/>
+                <label for="file"><p>+</p>Add photo</label>
+            </div>
+            <div class="entry-submit">
+                <input type="submit">
+            </div>
+        </div>
+    </form>
 </div>
-
-
-
 
 
 
