@@ -1,22 +1,12 @@
 <?php
+require('./controller/controller.php');
 
 session_start();
-function dbConnect(){
-    return new PDO('mysql:host=localhost;dbname=journal_project;charset=utf8', 'root', '');
-}
 
-// if user session exists, update last_active in database table users
 if (isset($_SESSION['uid'])){
-    $db = dbConnect();
-    $user = $_SESSION['uid'];
-    $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE u_id = :uid");
-    $update->execute(array(
-        'uid' => $user,
-        )
-    );
+    updateLastActive($_SESSION['uid']);
 }
 
-require('./controller/controller.php');
 
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
@@ -68,7 +58,7 @@ try {
             break;
         default:
             // show login as default
-            if (isset($_SESSION['user'])){
+            if (isset($_SESSION['usr'])){
                 header('Location: ./view/timelineView.php');
             } else {
                 header('Location: ./view/loginView.php');

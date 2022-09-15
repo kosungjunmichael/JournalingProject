@@ -31,7 +31,6 @@ class Manager {
     for ($i=0; $i < 10; $i++) { //LENGTH OF THE UID
         $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max-1)];
     }
-
     return $token;
   }
 }

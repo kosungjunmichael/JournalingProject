@@ -1,4 +1,3 @@
-<!-- this is the controller -->
 <?php
 
 require_once('./model/EntryManager.php');
@@ -13,6 +12,11 @@ function signUp($data, $type){
 function login($data, $type){
   $userManager = new UserManager();
   $userManager->confirmUser($data, $type);
+}
+
+function updateLastActive($uid){
+  $userManager = new UserManager();
+  $userManager->updateLastActive($uid);
 }
 
 function newEntry($data){
