@@ -108,6 +108,10 @@ form {
 	border-radius:25px;
 	cursor:pointer;
 	position:relative;
+    height: 39px;
+}
+#container{
+    margin-top: 8px;
 }
 
 #or-separator {

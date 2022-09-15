@@ -53,7 +53,7 @@ try {
             break;
             // to the entries
         case "timeline":
-            require("./view/timelineView.php");
+            require("./view/timelineView.php"); // move to controller
             break;
         default:
             // show login as default
