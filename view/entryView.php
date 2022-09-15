@@ -4,7 +4,7 @@
 
 <div class="entry-container">
     <h1 id="entry-header-text">CREATE A NEW ENTRY</h1>
-    <form action="" method="post" class="form-container">
+    <form action="../index.php?action=entries" method="post" class="form-container">
         <div class="entry-title">
             <input type="text" id="title-input" name="title" placeholder="Entry Title"/>
         </div>
