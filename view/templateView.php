@@ -10,9 +10,9 @@
     <!-- Boxicons Link -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <script defer src="../public/js/script.js"></script>
-    <script src="https://kit.fontawesome.com/04e3b8115d.js" c````rossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
     <title><?=$title?></title>
     <link rel="icon" href="../public/images/logo.png">
 </head>
-<body><?=$content; ?></body>
+<body><?=$content;?></body>
 </html>
