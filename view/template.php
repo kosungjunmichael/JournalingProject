@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="../public/css/<?= $style?>.css">
     <script defer src="../public/js/script.js"></script>
+    <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
     <title><?=$title?></title>
 </head>
 <body>
