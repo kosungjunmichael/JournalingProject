@@ -1,5 +1,5 @@
-<?php $title = "Entry";?>
-<?php $style = "entry";?>
+<?php $title = "Create New Entry";?>
+<?php $style = "createEntry";?>
 <?php ob_start();?>
 
 <?php include("sidebarView.php");?>
