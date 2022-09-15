@@ -61,7 +61,19 @@ try {
             require("./view/timelineView.php");
             break;
         default:
-            require("./view/loginView.php");
+            if (isset($_SESSION['user'])){
+                $db = dbConnect();
+                $user = $_SESSION['user'];
+                $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE email = :email OR username = :username");
+                $update->execute(array(
+                    'email' => $user,
+                    'username' => $user
+                    )
+                );
+                header ('location: ./index.php?action=timeline&type=registered');
+            }
+            header ('location: ./view/loginView.php');
+
             // show login as default
             break;
     }

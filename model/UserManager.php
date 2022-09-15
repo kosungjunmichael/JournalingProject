@@ -36,7 +36,8 @@ class UserManager extends Manager{
             $_SESSION['user'] = $credentials['email'];
         }
 
-        header ('location: ./index.php?action=timeline');
+        // if done head to the registered page
+        header ('location: ./index.php?action=timeline&type=registered');
     }
 
     protected function checkUserNotExist($credentials, $type){
