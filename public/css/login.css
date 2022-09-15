@@ -44,7 +44,6 @@ body{
 	left:50%;
 	top:50%;
 	transform: translate(-50%,-50%);
-    /*background-color: rgba(0, 0, 0, 0.89);*/
     background-color: #2f2f2f;
 	border-radius: 15px;
 	padding: 30px;

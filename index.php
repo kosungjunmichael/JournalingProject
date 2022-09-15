@@ -21,11 +21,6 @@ require('./controller/controller.php');
 
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
-    
-    // start session
-    // check if the session exists
-    // for Session => username
-    // update the last active column in users db
 
     switch ($action){
         case "signup":
@@ -48,12 +43,12 @@ try {
                 $response = $_REQUEST['credential'];
                 $type = $_REQUEST['type'];
                 $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-                login($credentials, $type);
+                login($credentials, 'google');
             }
             // regular login
             else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
                 $type = $_REQUEST['type'];
-                login($_REQUEST, $type);
+                login($_REQUEST, 'regular');
             }
             break;
             // to the entries
@@ -61,8 +56,12 @@ try {
             require("./view/timelineView.php");
             break;
         default:
-            require("./view/loginView.php");
             // show login as default
+            if (isset($_SESSION['user'])){
+                header('Location: ./view/timelineView.php');
+            } else {
+                header('Location: ./view/loginView.php');
+            }
             break;
     }
 
