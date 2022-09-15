@@ -14,13 +14,6 @@ body{
     box-sizing: border-box;
 }
 
-.entry-box h1{
-    /* position: absolute;
-    top:-5px; */
-}
-
-
-
 .form-container{
     padding: 34px 50px;
     position: absolute;
@@ -34,7 +27,7 @@ body{
     margin-bottom: 15px;
 }
 
-.entry-title > #title-input{
+.entry-title > input{
     color:white;
     background: transparent;
     border: none;
