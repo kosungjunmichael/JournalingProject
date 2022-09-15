@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
     <title><?=$title?></title>
     <link rel="icon" href="../public/images/logo.png">
+    <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
 <body><?=$content;?></body>
 </html>
