@@ -1,12 +1,13 @@
 <?php $title = "Entry";?>
-<?php $style = "entry" ?>
+<?php $style = "entry";?>
 <?php ob_start();?>
 
-<div class="entry-container">
-    <h1 id="entry-header-text">CREATE A NEW ENTRY</h1>
+<?php include("sidebarView.php");?>
+
+<div class="entry-box">
     <form action="" method="post" class="form-container">
         <div class="entry-title">
-            <input type="text" id="title-input" name="title" placeholder="Entry Title"/>
+            <input type="text" id="title" name="title" placeholder="Entry Title"/>
         </div>
 
         <div class="entry-date">
@@ -24,7 +25,7 @@
         </div>
 
         <div class="entry-writing">
-            <textarea id="entry" name="entry" placeholder="Start Writing..."></textarea>
+            <textarea type="text" id="entry" name="entry" placeholder="Start Writing..."></textarea>
         </div>
 
         <div class="entry-upload-photo">

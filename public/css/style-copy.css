@@ -6,9 +6,11 @@
 
 body{
     position: relative;
+    height: 100vh;
     min-height:100vh;
     width:100%;
     overflow: hidden;
+    display: flex;
 }
 
 .logo_img{
@@ -102,13 +104,14 @@ input:checked + label:after{
 
 
 #sidebar-container{
-    position:fixed;
+    /* position:fixed;
     top:0;
-    left:0;
+    left:0; */
     height: 100%;
     width:240px;
     background-color: #2F2F2F;
     padding: 5px 15px;
+    box-sizing: border-box;
 }
 
 #sidebar-container #logo-container #logo{
