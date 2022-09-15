@@ -1,3 +1,4 @@
+<?php $usrID = $_GET['usr']?>
 <?php $title = "Create New Entry";?>
 <?php $style = "createEntry";?>
 <?php ob_start();?>
@@ -5,7 +6,7 @@
 <?php include("sidebarView.php");?>
 
 <div class="entry-box">
-    <form action="" method="post" class="form-container">
+    <form action="../index.php?action=entries&usr=<?= $usrID?>" method="post" class="form-container">
         <h2>CREATE A NEW ENTRY</h2>
         <div class="entry-title">
             <input type="text" id="title" name="title" placeholder="Entry Title"/>
