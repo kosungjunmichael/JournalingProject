@@ -1,5 +1,7 @@
+@import url('../css/main.css');
+
 * {
-	font-family: "Avenir Next";
+	font-family: Raleway;
 }
 
 body{

@@ -2,29 +2,29 @@
 <?php $style = "entry" ?>
 <?php ob_start();?>
 
-<div class="entry-box">
-    <form action="../index.php?action=entry" method="post" class="form-container">
-        <h1><strong>CREATE A NEW ENTRY</strong></h1>
+<div class="entry-container">
+    <h1 id="entry-header-text">CREATE A NEW ENTRY</h1>
+    <form action="" method="post" class="form-container">
         <div class="entry-title">
-            <input type="text" id="title" name="title" placeholder="Entry Title">
+            <input type="text" id="title-input" name="title" placeholder="Entry Title"/>
         </div>
 
         <div class="entry-date">
             <i class='bx bx-calendar'></i>
-            <input type="date">
+            <input type="date"/>
         </div>
 
         <div class="entry-location">
             <i class='bx bx-current-location' ></i>
-            <input type="" placeholder="location">
+            <input type="" placeholder="location"/>
         </div>
 
         <div class="entry-weather">
-            <input type="" placeholder="weather">
+            <input type="" placeholder="weather"/>
         </div>
 
         <div class="entry-writing">
-            <input type="text" id="entry" name="entry" placeholder="Start Writing...">
+            <textarea id="entry" name="entry" placeholder="Start Writing..."></textarea>
         </div>
 
         <div class="entry-upload-photo">
@@ -36,7 +36,7 @@
                 <label for="file"><p>+</p>Add photo</label>
             </div>
             <div class="entry-submit">
-                <input type="submit">
+                <input type="submit"/>
             </div>
         </div>
     </form>
