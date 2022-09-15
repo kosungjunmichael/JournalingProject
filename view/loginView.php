@@ -1,5 +1,7 @@
 <?php $title = "Log In";?>
 <?php $style = "login" ?>
+<?php session_start(); 
+print_r($_SESSION)?>
 <?php ob_start();?>
 <!-- dark mode -->
 <!--    <div type="checkbox" id="darkMode" class="darkMode">Toggle</div>-->

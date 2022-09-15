@@ -6,13 +6,12 @@ function dbConnect(){
 }
 
 // if user session exists, update last_active in database table users
-if (isset($_SESSION['user'])){
+if (isset($_SESSION['uid'])){
     $db = dbConnect();
-    $user = $_SESSION['user'];
-    $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE email = :email OR username = :username");
+    $user = $_SESSION['uid'];
+    $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE u_id = :uid");
     $update->execute(array(
-        'email' => $user,
-        'username' => $user
+        'uid' => $user,
         )
     );
 }
@@ -52,6 +51,18 @@ try {
             }
             break;
             // to the entries
+        case "entries":
+            // creating entries
+            if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
+                $entryContent = (object)array();
+                $entryContent->title = $_REQUEST['title'];
+                $entryContent->entry = $_REQUEST['entry'];
+                $entryContent->userID = $_REQUEST['usr'];
+                newEntry($entryContent);
+            } else {
+                header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+            }
+            break;
         case "timeline":
             require("./view/timelineView.php"); // move to controller
             break;
@@ -68,4 +79,5 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require("view/errorView.php");
+
 }

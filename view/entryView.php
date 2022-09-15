@@ -1,17 +1,12 @@
 <?php $title = "Entry";?>
 <?php $style = "entry";?>
+<?php $usrID = $_GET['usr']?>
 <?php ob_start();?>
 
-<<<<<<< HEAD
-<div class="entry-container">
-    <h1 id="entry-header-text">CREATE A NEW ENTRY</h1>
-    <form action="../index.php?action=entries" method="post" class="form-container">
-=======
 <?php include("sidebarView.php");?>
 
 <div class="entry-box">
-    <form action="" method="post" class="form-container">
->>>>>>> main
+    <form action="../index.php?action=entries&usr=<?= $usrID?>" method="post" class="form-container">
         <div class="entry-title">
             <input type="text" id="title" name="title" placeholder="Entry Title"/>
         </div>

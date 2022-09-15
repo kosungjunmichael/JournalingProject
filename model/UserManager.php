@@ -1,4 +1,3 @@
-<!-- this is the model -->
 <?php
 
 require_once('Manager.php');
@@ -26,14 +25,15 @@ class UserManager extends Manager{
         } else if ($user['is_active'] != 1){
             header ('location: ./index.php?error=3');
         }
+        $uid = $user['u_id'];
 
         // create session variable for user login/signup
         if ($type === 'regular'){
             session_start();
-            $_SESSION['user'] = $credentials['login-ue'];
+            $_SESSION['uid'] = $uid;
         } else if ($type === 'google'){
             session_start();
-            $_SESSION['user'] = $credentials['email'];
+            $_SESSION['uid'] = $uid;
         }
 
         // if done head to the registered page
@@ -85,7 +85,7 @@ class UserManager extends Manager{
 
                 // create session variable for user login/signup
                 session_start();
-                $_SESSION['user'] = $credentials['email'];
+                $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
                 header ('location: ./index.php?action=timeline&type=registered');
@@ -115,7 +115,7 @@ class UserManager extends Manager{
 
                 // create session variable for user login/signup
                 session_start();
-                $_SESSION['user'] = $data['sign-e'];
+                $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
                 header ('location: ./index.php?action=timeline&type=registered');
