@@ -32,7 +32,8 @@ class EntryManager extends Manager{
         $req->execute();
 
         // Direct the user to the timeline
-        header ('location: ./index.php?action=timeline&type=registered');
+        return;
+        // header ('location: ./index.php?action=timeline&type=registered');
     }
 
     public function newEntryFailed(){

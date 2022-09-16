@@ -13,20 +13,20 @@ function login($data, $type){
   $check = $userManager->confirmUser($data, $type);
   switch ($check){
     case 1:
-      // user does not exist
-      header ('location: ./view/loginView.php?error=1');
+      $error = "user doesn't exist";
+      require(ROOT . '/view/loginView.php');
       break;
     case 2:
-      // password was incorrect
-      header ('location: ./view/loginView.php?error=2');
+      $error = "password was incorrect";
+      require(ROOT . '/view/loginView.php');
       break;
     case 3:
-      // user is not active
-      header ('location: ./view/loginView.php?error=3');
+      $error = "user is not active";
+      require(ROOT . '/view/loginView.php');
       break;
     default:
       // head to the user's timeline
-      header ('location: ./view/timelineView.php?type=registered');
+      require(ROOT . '/view/timelineView.php');
       break;
   }
 }
@@ -38,12 +38,44 @@ function updateLastActive($uid){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $entryManager->createEntry($data);
+  if ($entryManager->createEntry($data)){
+    require(ROOT . '/view/timelineView.php');
+  };
 }
 
 function newEntryFailed(){
-  $entryManager = new EntryManager();
-  $entryManager->newEntryFailed();
+  $error = "Not a valid entry";
+  require(ROOT . '/view/createEntryView.php');
+}
+
+function viewEntry($entryId){
+  require(ROOT . '/view/viewEntryView.php?id=' . $entryId);
+}
+
+function showLoginView() {
+  require(ROOT . '/view/loginView.php');
+}
+function showTimelineView() {
+  require(ROOT . '/view/timelineView.php');
+}
+
+function goToLink($page){
+  switch ($page){
+    case "createEntry":
+      require(ROOT . '/view/createEntryView.php');
+      break;
+    case "toSignUp":
+      require(ROOT . '/view/signupView.php');
+      break;
+    case "toLogin":
+      require(ROOT . '/view/loginView.php');
+      break;
+    case "toTemplate":
+      require(ROOT . '/view/TemplateView.php');
+      break;
+    default:
+    break;
+  }
 }
 
 function viewEntry($entryId){

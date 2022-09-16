@@ -47,6 +47,22 @@ try {
             }
             break;
             // to the entries
+        case "linkTo":
+            $page = $_REQUEST['page'];
+            switch($page){
+                case "createEntry":
+                    goToLink("createEntry");
+                    break;
+                break;
+                case "toSignUp":
+                    goToLink("toSignUp");
+                    break;
+                break;
+                case "toLogin":
+                    goToLink("toLogin");
+                    break;
+                break;
+            }
         case "entries":
             if (isset($_REQUEST['type'])) {
                 $type = $_REQUEST['type'];
@@ -59,7 +75,10 @@ try {
                             $entryContent->userID = $_REQUEST['usr'];
                             newEntry($entryContent);
                         } else {
+<<<<<<< HEAD
                             // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+=======
+>>>>>>> main
                             newEntryFailed();
                         }
                         break;
@@ -67,6 +86,11 @@ try {
                         if (isset($_REQUEST['id'])) {
                             $entryId = $_REQUEST['id'];
                             viewEntry($entryId);
+<<<<<<< HEAD
+=======
+                        } else {
+                            throw new Exception('Error, no entry ID');
+>>>>>>> main
                         }
                         break;
                     default:
@@ -84,9 +108,9 @@ try {
         default:
             // show login as default
             if (isset($_SESSION['usr'])){
-                header('Location: ./view/timelineView.php');
+                goToLink('showlogin');
             } else {
-                header('Location: ./view/loginView.php');
+                goToLink('toLogin');
             }
             break;
     }
