@@ -48,19 +48,11 @@ function newEntryFailed(){
   require(ROOT . '/view/createEntryView.php');
 }
 
-function viewEntry($entryId){
-  require(ROOT . '/view/viewEntryView.php?id=' . $entryId);
-}
-
-function showLoginView() {
-  require(ROOT . '/view/loginView.php');
-}
-function showTimelineView() {
-  require(ROOT . '/view/timelineView.php');
-}
-
 function goToLink($page){
   switch ($page){
+    case "toTimeline":
+      require(ROOT . '/view/timelineView.php');
+      break;
     case "createEntry":
       require(ROOT . '/view/createEntryView.php');
       break;
@@ -74,6 +66,12 @@ function goToLink($page){
       require(ROOT . '/view/TemplateView.php');
       break;
     default:
-    break;
+      break;
   }
+}
+
+function viewEntry($entryId){
+    $entryManager = new EntryManager();
+    $entryContent = $entryManager->getEntry($entryId);
+    require(ROOT . '/view/viewEntryView.php');
 }

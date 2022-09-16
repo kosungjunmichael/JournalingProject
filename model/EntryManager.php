@@ -41,6 +41,18 @@ class EntryManager extends Manager{
         header("Location: ./view/createEntryView.php");
     }
 
+    public function getEntry($entryId){
+        $db = $this->dbConnect();
+
+        $req = $db->prepare('SELECT * FROM entries WHERE u_id = :entryId');
+        $req->execute(array(
+            'entryId' => $entryId,
+        ));
+        $entryContent = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $entryContent;
+    }
+
     public function getEntries(){
         $db = $this->dbConnect();
 
