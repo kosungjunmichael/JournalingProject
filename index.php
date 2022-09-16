@@ -1,6 +1,13 @@
 <?php
 require('./controller/controller.php');
 
+// use in PHP
+define('ROOT', dirname(__FILE__));
+
+// use in HTML
+$httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
+define('BASE', $httpProtocol.'://'.$_SERVER['HTTP_HOST'].'/sites/JournalingProject');
+
 session_start();
 
 if (isset($_SESSION['uid'])){
@@ -41,16 +48,34 @@ try {
             break;
             // to the entries
         case "entries":
-            // creating entries
-            if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
-                $entryContent = (object)array();
-                $entryContent->title = $_REQUEST['title'];
-                $entryContent->entry = $_REQUEST['entry'];
-                $entryContent->userID = $_REQUEST['usr'];
-                newEntry($entryContent);
-            } else {
-                // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
-                newEntryFailed();
+            if (isset($_REQUEST['type'])) {
+                $type = $_REQUEST['type'];
+                switch ($type) {
+                    case "create":
+                        if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
+                            $entryContent = (object)array();
+                            $entryContent->title = $_REQUEST['title'];
+                            $entryContent->entry = $_REQUEST['entry'];
+                            $entryContent->userID = $_REQUEST['usr'];
+                            newEntry($entryContent);
+                        } else {
+                            // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+                            newEntryFailed();
+                        }
+                        break;
+                    case "view":
+                        if (isset($_REQUEST['id'])) {
+                            $entryId = $_REQUEST['id'];
+                            viewEntry($entryId);
+                        }
+                        break;
+                    default:
+                        // default
+                        break;
+                }
+            } else if (!isset($_REQUEST['type'])) {
+                // handle routing error
+                // redirect to error page
             }
             break;
         case "timeline":
@@ -69,5 +94,4 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require("view/errorView.php");
-
 }

@@ -11,7 +11,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     overflow-y: scroll;
 }
 
@@ -102,7 +102,8 @@
 }
 
 #view-entry-text-content {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     background-color: #2F2F2F;
     border-radius: 15px;
+    white-space: pre-line;
 }

@@ -45,3 +45,9 @@ function newEntryFailed(){
   $entryManager = new EntryManager();
   $entryManager->newEntryFailed();
 }
+
+function viewEntry($entryId){
+    $entryManager = new EntryManager();
+    $entryContent = $entryManager->getEntry($entryId);
+    require(ROOT . '/view/viewEntryView.php');
+}
