@@ -71,11 +71,21 @@ class UserManager extends Manager{
         return $query->fetchAll();
     }
 
-    // protected function checkRegularUserExist(){
-    //     $db = $this->dbConnect();
-
-
-    // }
+    protected function checkRegularUserExist($value, $type){
+        if ($type === "username"){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT username FROM users WHERE username = ?');
+            $query->bindParam(1,$value, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_OBJ);
+        } else if ($type === "email"){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT email FROM users WHERE email = ?');
+            $query->bindParam(1,$value, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+    }
 
     protected function checkUniqueIDExist($uid){
         $db = $this->dbConnect();
@@ -123,24 +133,29 @@ class UserManager extends Manager{
             }
         } else if ($type === 'regular') {
             // creating normal regular user
-            if ($data['sign-p'] != $data['sign-cp']){
-                // redirect
-                header('location: index.php');
-            }
+            
+            $checkUser = $this->checkRegularUserExist($data['sign-u'], 'username');
+            $checkEmail = $this->checkRegularUserExist($data['sign-e'], 'email');
 
-            // if user doesn't exist, create user in database
-            $existingUser = $this->checkUserNotExist($data, 'signup');
-            if (count($existingUser) == 0) {
-                $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
-
-                if (empty($data['sign-u']) OR 
+            if (empty($data['sign-u']) OR 
                 empty($data['sign-e']) OR
                 empty($data['sign-p']) OR 
                 empty($data['sign-cp'])){
-                    return "Fill in all parameters";
-                } else if (){
-                    return "Fill in all parameters";
-                }
+                return "Fill in all parameters";
+            } else if (count($checkUser) > 0){
+                return "Username already exists";
+                
+            } else if (count($checkEmail) > 0){
+                return "Email already exists";
+                
+            } else if ($data['sign-p'] != $data['sign-cp']){
+                return "Passwords do not match";
+            } 
+
+            // if user doesn't exist, create user in database
+   
+                $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+
 
                 // create a new user into users database table
                 $req = $db->prepare('INSERT INTO users (username, u_id, email, password) VALUES (:login, :u_id, :email, :pass)');
@@ -156,7 +171,7 @@ class UserManager extends Manager{
 
                 // redirect to index with registered type
                 return false;
-            }
+            
         }
     }
 }
