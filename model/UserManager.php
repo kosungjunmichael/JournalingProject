@@ -71,11 +71,11 @@ class UserManager extends Manager{
         return $query->fetchAll();
     }
 
-    protected function checkRegularUserExist(){
-        $db = $this->dbConnect();
+    // protected function checkRegularUserExist(){
+    //     $db = $this->dbConnect();
 
-        
-    }
+
+    // }
 
     protected function checkUniqueIDExist($uid){
         $db = $this->dbConnect();
