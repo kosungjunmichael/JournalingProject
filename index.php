@@ -50,18 +50,20 @@ try {
         case "linkTo":
             $page = $_REQUEST['page'];
             switch($page){
+                case "toTimeline":
+                    goToLink("toTimeline");
+                    break;
                 case "createEntry":
                     goToLink("createEntry");
                     break;
-                break;
                 case "toSignUp":
                     goToLink("toSignUp");
                     break;
-                break;
                 case "toLogin":
                     goToLink("toLogin");
                     break;
-                break;
+                default:
+                    break;
             }
         case "entries":
             if (isset($_REQUEST['type'])) {
@@ -75,10 +77,6 @@ try {
                             $entryContent->userID = $_REQUEST['usr'];
                             newEntry($entryContent);
                         } else {
-<<<<<<< HEAD
-                            // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
-=======
->>>>>>> main
                             newEntryFailed();
                         }
                         break;
@@ -86,11 +84,8 @@ try {
                         if (isset($_REQUEST['id'])) {
                             $entryId = $_REQUEST['id'];
                             viewEntry($entryId);
-<<<<<<< HEAD
-=======
                         } else {
                             throw new Exception('Error, no entry ID');
->>>>>>> main
                         }
                         break;
                     default:
@@ -101,9 +96,6 @@ try {
                 // handle routing error
                 // redirect to error page
             }
-            break;
-        case "timeline":
-            header('Location: ./view/timelineView.php'); // move to controller
             break;
         default:
             // show login as default
