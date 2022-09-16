@@ -1,11 +1,12 @@
 <?php $title = "Journey"; ?>
+<?php $style = "indexView";?>
 
 <?php ob_start(); ?>
-    <div class="container">
-        <?php
-            include('sidebarView.php');
-        ?>
-    </div>
-<?php $content = ob_get_clean(); ?>
 
+
+
+<?php $content = ob_get_clean(); ?>
 <?php require("template.php"); ?>
+
+
+
