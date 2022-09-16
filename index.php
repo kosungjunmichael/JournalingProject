@@ -1,23 +1,11 @@
 <?php
+require('./controller/controller.php');
 
 session_start();
-function dbConnect(){
-    return new PDO('mysql:host=localhost;dbname=journal_project;charset=utf8', 'root', '');
-}
 
-// if user session exists, update last_active in database table users
-if (isset($_SESSION['user'])){
-    $db = dbConnect();
-    $user = $_SESSION['user'];
-    $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE email = :email OR username = :username");
-    $update->execute(array(
-        'email' => $user,
-        'username' => $user
-        )
-    );
+if (isset($_SESSION['uid'])){
+    updateLastActive($_SESSION['uid']);
 }
-
-require('./controller/controller.php');
 
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
@@ -29,12 +17,12 @@ try {
                 $response = $_REQUEST['credential'];
                 $type = $_REQUEST['type'];
                 $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-                signUp($credentials, $type);
+                signUp($credentials, 'google');
             }
             // regular signup
             else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
                 $type = $_REQUEST['type'];
-                signUp($_REQUEST, $type);
+                signUp($_REQUEST, 'regular');
             }
             break;
         case "login":
@@ -52,12 +40,25 @@ try {
             }
             break;
             // to the entries
+        case "entries":
+            // creating entries
+            if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
+                $entryContent = (object)array();
+                $entryContent->title = $_REQUEST['title'];
+                $entryContent->entry = $_REQUEST['entry'];
+                $entryContent->userID = $_REQUEST['usr'];
+                newEntry($entryContent);
+            } else {
+                // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+                newEntryFailed();
+            }
+            break;
         case "timeline":
             require("./view/timelineView.php"); // move to controller
             break;
         default:
             // show login as default
-            if (isset($_SESSION['user'])){
+            if (isset($_SESSION['usr'])){
                 header('Location: ./view/timelineView.php');
             } else {
                 header('Location: ./view/loginView.php');
@@ -68,4 +69,5 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require("view/errorView.php");
+
 }
