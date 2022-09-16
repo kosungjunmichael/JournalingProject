@@ -5,29 +5,26 @@ require_once('./model/UserManager.php');
 
 function signUp($data, $type){
   $userManager = new UserManager();
-  $userManager->createUser($data, $type);
+  $check = $userManager->createUser($data, $type);
+  switch($check){
+    case false:
+      require(ROOT . '/view/timelineView.php');
+      break;
+    case "existingEmail":
+      $error = "User with that email already exists. Please try again";
+      require(ROOT . '/view/signupView.php');
+      break;
+  }
 }
 
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
-  switch ($check){
-    case 1:
-      $error = "user doesn't exist";
-      require(ROOT . '/view/loginView.php');
-      break;
-    case 2:
-      $error = "password was incorrect";
-      require(ROOT . '/view/loginView.php');
-      break;
-    case 3:
-      $error = "user is not active";
-      require(ROOT . '/view/loginView.php');
-      break;
-    default:
-      // head to the user's timeline
-      require(ROOT . '/view/timelineView.php');
-      break;
+  if ($check === false){
+    require(ROOT . '/view/timelineView.php');
+  } else {
+    $error = $check;
+    require(ROOT . '/view/loginView.php');
   }
 }
 
