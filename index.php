@@ -54,7 +54,7 @@ try {
             }
             break;
         case "timeline":
-            require("./view/timelineView.php"); // move to controller
+            header('Location: ./view/timelineView.php'); // move to controller
             break;
         default:
             // show login as default

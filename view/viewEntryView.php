@@ -13,21 +13,22 @@
                     <div class="tag">summer</div>
                 </div>
                 <div id="entry-created">
-<!--                    <img id="entry-created-icon"/>-->
+                    <i class="ph-calendar-blank"></i>
                     August 25, 2022
                 </div>
                 <div id="entry-location">
-<!--                    <img id="entry-location-icon"/>-->
+                    <i class="ph-map-pin"></i>
                     New York
                 </div>
                 <div id="entry-weather">
-<!--                    <img id="entry-weather-icon"/>-->
+                    <i class="ph-sun-dim"></i>
                     Sunny
                 </div>
             </div>
         </div>
         <div id="view-entry-edit">
             <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
+                <i class="ph-pen"></i>
                 Edit Entry
             </a>
             <span id="view-entry-edited">
