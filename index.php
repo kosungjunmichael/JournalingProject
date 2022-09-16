@@ -7,7 +7,6 @@ if (isset($_SESSION['uid'])){
     updateLastActive($_SESSION['uid']);
 }
 
-
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
@@ -50,7 +49,8 @@ try {
                 $entryContent->userID = $_REQUEST['usr'];
                 newEntry($entryContent);
             } else {
-                header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+                // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
+                newEntryFailed();
             }
             break;
         case "timeline":
