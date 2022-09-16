@@ -1,4 +1,10 @@
-<?php $usrID = $_GET['usr']?>
+<?php 
+session_start();
+
+if (isset($_SESSION['uid'])){
+    $usrID = $_SESSION['uid'];
+}
+?>
 <?php $title = "Create New Entry";?>
 <?php $style = "createEntry";?>
 <?php ob_start();?>
