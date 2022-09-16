@@ -50,18 +50,20 @@ try {
         case "linkTo":
             $page = $_REQUEST['page'];
             switch($page){
+                case "toTimeline":
+                    goToLink("toTimeline");
+                    break;
                 case "createEntry":
                     goToLink("createEntry");
                     break;
-                break;
                 case "toSignUp":
                     goToLink("toSignUp");
                     break;
-                break;
                 case "toLogin":
                     goToLink("toLogin");
                     break;
-                break;
+                default:
+                    break;
             }
         case "entries":
             if (isset($_REQUEST['type'])) {
@@ -94,9 +96,6 @@ try {
                 // handle routing error
                 // redirect to error page
             }
-            break;
-        case "timeline":
-            require("./view/timelineView.php"); // move to controller
             break;
         default:
             // show login as default

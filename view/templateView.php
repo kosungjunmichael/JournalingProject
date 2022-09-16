@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?=$title; ?></title>
-    <!-- <link rel="stylesheet" href="../public/css/style-copy.css"> -->
     <link rel="stylesheet" href=" <?= BASE . "/public/css/style-copy.css"; ?> ">
     <link rel="stylesheet" href=" <?= BASE . "/public/css/$style.css"; ?> ">
     <!-- Boxicons Link -->
@@ -14,6 +13,7 @@
     <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
     <title><?=$title?></title>
     <link rel="icon" href="../public/images/logo.png">
+    <!--    Phosphor Icons Link -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
 <body><?=$content;?></body>
