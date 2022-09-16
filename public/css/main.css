@@ -3,12 +3,19 @@
 :root {
     /*-----COLORS-----*/
     --light-primary: #FFF;
-    --light-secondary: #FFF;
+    --light-secondary: rgb(224, 224, 224);
     --dark-primary: #000;
-    --dark-secondary: #000;
-    --grey-primary: #f2f2f2;
-    --grey-light: #f2f2f2;
-    --grey-dark: #f2f2f2;
+    --dark-secondary: rgb(33, 33, 33);
+    --grey-primary: rgb(66, 66, 66);
+    --grey-light: rgb(103, 103, 103);
+    --grey-dark: rgb(55, 55, 55);
+    --purple-primary: #7F00FF;
+    --purple-secondary:#9b40f6;
+    /* -------------- */
+    --border-radius:15px;
+    --text-color: #FFF;
+    --bg-light: #FFF;
+    --bg-dark: #1c1a19;
 }
 
 @font-face {
@@ -123,9 +130,6 @@ input:checked + label:after{
 
 
 #sidebar-container{
-    /* position:fixed;
-    top:0;
-    left:0; */
     height: 100%;
     width:240px;
     background-color: #2F2F2F;
@@ -209,8 +213,6 @@ input:checked + label:after{
     gap:5px;
 }
 
-
-
 .darkmode-toggle {
     appearance: none;
     width: 60px;
@@ -226,5 +228,5 @@ input:checked + label:after{
 
 .dark {
     color: white;
-    background: rgb(66, 66, 66);
+    background: var(--bg-dark);
 }

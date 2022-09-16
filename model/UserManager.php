@@ -33,7 +33,7 @@ class UserManager extends Manager{
             } else if ($user['is_active'] != 1){
                 return 3;
             }
-            session_start();
+            // session_start();
             $_SESSION['uid'] = $user['u_id'];
     
             // if correct, head to the timelineView
