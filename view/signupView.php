@@ -26,19 +26,19 @@
             OR
         </div>
         <div id="g_id_onload"
-             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-             data-context="signup"
-             data-ux_mode="popup"
-             data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&type=google"
-             data-auto_prompt="false">
+            data-client_id="<?=$_SERVER['CLIENT_ID']?>"
+            data-context="signup"
+            data-ux_mode="popup"
+            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&type=google"
+            data-auto_prompt="false">
         </div>
         <div class="g_id_signin"
-             data-type="standard"
-             data-shape="rectangular"
-             data-theme="outline"
-             data-text="signup_with"
-             data-size="large"
-             data-logo_alignment="left">
+            data-type="standard"
+            data-shape="rectangular"
+            data-theme="outline"
+            data-text="signup_with"
+            data-size="large"
+            data-logo_alignment="left">
         </div>
         <div id="form-bottom">
             <p>Already have an account?</p>
