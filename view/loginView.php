@@ -6,7 +6,7 @@
 <!--    <label for="darkMode">-->
     <!-- login -->
     <div class="box">
-        <form method="POST" action="../index.php?action=login&type=regular" class="signin">
+        <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
             <span id="header-text">Login</span>
             <div class="input-container">
                 <input id="login-ue" type="text" required name="login-ue"/>
@@ -36,7 +36,7 @@
         </div>
         <div id="form-bottom">
             <p>Don't have an account yet?</p>
-            <a id="sign-up-link" href="signupView.php">Sign Up</a>
+            <a id="sign-up-link" href="<?=BASE. "/index.php?action=linkTo&page=toSignUp"?>">Sign Up</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

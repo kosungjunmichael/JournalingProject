@@ -1,6 +1,13 @@
 <?php
 require('./controller/controller.php');
 
+// use in PHP
+define('ROOT', dirname(__FILE__));
+
+// use in HTML
+$httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
+define('BASE', $httpProtocol.'://'.$_SERVER['HTTP_HOST'].'/sites/JournalingProject');
+
 session_start();
 
 if (isset($_SESSION['uid'])){
@@ -40,17 +47,52 @@ try {
             }
             break;
             // to the entries
+        case "linkTo":
+            $page = $_REQUEST['page'];
+            switch($page){
+                case "createEntry":
+                    goToLink("createEntry");
+                    break;
+                break;
+                case "toSignUp":
+                    goToLink("toSignUp");
+                    break;
+                break;
+                case "toLogin":
+                    goToLink("toLogin");
+                    break;
+                break;
+            }
         case "entries":
-            // creating entries
-            if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
-                $entryContent = (object)array();
-                $entryContent->title = $_REQUEST['title'];
-                $entryContent->entry = $_REQUEST['entry'];
-                $entryContent->userID = $_REQUEST['usr'];
-                newEntry($entryContent);
-            } else {
-                // header("Location: ./view/entryView.php?usr=".$_REQUEST['usr']);
-                newEntryFailed();
+            if (isset($_REQUEST['type'])) {
+                $type = $_REQUEST['type'];
+                switch ($type) {
+                    case "create":
+                        if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
+                            $entryContent = (object)array();
+                            $entryContent->title = $_REQUEST['title'];
+                            $entryContent->entry = $_REQUEST['entry'];
+                            $entryContent->userID = $_REQUEST['usr'];
+                            newEntry($entryContent);
+                        } else {
+                            newEntryFailed();
+                        }
+                        break;
+                    case "view":
+                        if (isset($_REQUEST['id'])) {
+                            $entryId = $_REQUEST['id'];
+                            viewEntry($entryId);
+                        } else {
+                            throw new Exception('Error, no entry ID');
+                        }
+                        break;
+                    default:
+                        // default
+                        break;
+                }
+            } else if (!isset($_REQUEST['type'])) {
+                // handle routing error
+                // redirect to error page
             }
             break;
         case "timeline":
@@ -59,9 +101,9 @@ try {
         default:
             // show login as default
             if (isset($_SESSION['usr'])){
-                header('Location: ./view/timelineView.php');
+                goToLink('showlogin');
             } else {
-                header('Location: ./view/loginView.php');
+                goToLink('toLogin');
             }
             break;
     }
@@ -69,5 +111,4 @@ try {
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();
     require("view/errorView.php");
-
 }
