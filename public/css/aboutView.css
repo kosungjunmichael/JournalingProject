@@ -1,0 +1,17 @@
+@import url('../css/main.css');
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: azure;
+    font-size: x-large;
+    overflow-x:hidden; 
+    overflow-y:auto;
+}
+h1{
+    color: blueviolet;
+}
+#basicInfo{
+    width: 500px;
+}
