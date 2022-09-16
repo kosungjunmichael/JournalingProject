@@ -31,7 +31,13 @@ class EntryManager extends Manager{
         $req->bindParam('uid', $uid, PDO::PARAM_STR);
         $req->execute();
 
+        // Direct the user to the timeline
         header ('location: ./index.php?action=timeline&type=registered');
+    }
+
+    public function newEntryFailed(){
+        // Redirect the user back to the createNewEntry page
+        header("Location: ./view/createEntryView.php");
     }
 
     public function getEntries(){
