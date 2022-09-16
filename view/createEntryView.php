@@ -1,8 +1,8 @@
 <?php 
 session_start();
 
-if (isset($_SESSION['uid'])){
-    $usrID = $_SESSION['uid'];
+if (!isset($_SESSION['uid'])){
+    throw new Exception("401 - Unauthorized");
 }
 ?>
 <?php $title = "Create New Entry";?>
@@ -12,7 +12,7 @@ if (isset($_SESSION['uid'])){
 <?php include("sidebarView.php");?>
 
 <div class="entry-box">
-    <form action="../index.php?action=entries&usr=<?= $usrID?>" method="post" class="form-container">
+    <form action="<?=BASE . "/index.php?action=entries&type=create"?>" method="post" class="form-container">
         <h2>CREATE A NEW ENTRY</h2>
         <div class="entry-title">
             <input type="text" id="title" name="title" placeholder="Entry Title"/>

@@ -3,7 +3,7 @@
     <div id="nav-top">
         <div id="logo-container">
             <div id="logo">
-                <img src="../public/images/logo.png" alt="logo" width="200px" class="logo_img">
+                <img src="<?=BASE."/public/images/logo.png"?>" alt="logo" width="200px" class="logo_img">
                 <div class="logo_name">
                     Dear Diary
                 </div>
@@ -37,7 +37,7 @@
                 </li>
             </ul>
             <div>
-                <button class="create_entry_btn" onclick="">Create Entry</button>
+                <a class="create_entry_btn" href="<?=BASE."/index.php?action=linkTo&page=createEntry"?>">Create Entry</a>
             </div>
         </div>
     </div>

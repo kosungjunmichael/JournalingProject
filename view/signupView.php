@@ -2,7 +2,7 @@
 <?php $style = "signup" ?>
 <?php ob_start();?>
     <div class="box">
-        <form method="POST" action="../index.php?action=signup&type=regular" class="signup">
+        <form method="POST" action="<?=BASE. "/index.php?action=signup&page=regular"?>" class="signup">
             <span id="header-text">Sign Up</span>
             <div class="input-container">
                 <input id="sign-u" type="text" required name="sign-u"/>
@@ -42,7 +42,7 @@
         </div>
         <div id="form-bottom">
             <p>Already have an account?</p>
-            <a id="login-link" href="./loginView.php">Login</a>
+            <a id="login-link" href="<?=BASE. "/index.php?action=linkTo&page=toLogin"?>">Login</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

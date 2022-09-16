@@ -7,8 +7,26 @@ class UserManager extends Manager{
     public function confirmUser($credentials, $type) {
         $db = $this->dbConnect();
         
+        // google login
+        if ($type === "google"){
+
+            $inputUser = $credentials->email;
+            
+            $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
+            $req->bindParam(1,$inputUser,PDO::PARAM_STR);
+            $req->execute();
+            $user = $req->fetch(PDO::FETCH_ASSOC);
+            
+            $_SESSION['uid'] = $user['u_id'];
+
+            if ($user['is_active'] === 1){
+                // if correct, head to the timelineView
+                return false;
+            } else {
+                return "user doesn't exist";
+            }
         // regular login
-        if ($type === "regular"){
+        } else if ($type === "regular"){
             // add login user check code
     
             $inputUser = $credentials['login-ue'];
@@ -21,54 +39,29 @@ class UserManager extends Manager{
     
             // catch login errors
             if ($credentials['login-ue'] != $user['username'] AND $credentials['login-ue'] != $user['email']){
-                // echo "<pre>";
-                // print_r($credentials);
-                // echo "<pre>";
-                // echo "<pre>";
-                // print_r($user);
-                // echo "<pre>";
-                return 1;
+                return "user doesn't exist";
             } else if (!password_verify($credentials['login-p'], $user['password'])){
-                return 2;
+                return "password was incorrect";
             } else if ($user['is_active'] != 1){
-                return 3;
+                return "user is not active";
             }
-            session_start();
+            // session_start();
             $_SESSION['uid'] = $user['u_id'];
-    
+            
             // if correct, head to the timelineView
-            return;
-
-        // google login
-        } else if ($type === "google"){
-            // echo "<pre>";
-            // print_r($credentials);
-            // echo "<pre>";
-
-            $inputUser = $credentials->email;
-
-            $req = $db->prepare('SELECT is_active FROM users WHERE email = ?');
-            $req->bindParam(1,$inputUser,PDO::PARAM_STR);
-            $req->execute();
-            $user = $req->fetch(PDO::FETCH_ASSOC);
-
-            if ($user['is_active'] === 1){
-                // if correct, head to the timelineView
-                return;
-            } else {
-                return 1;
-            }
+            return false;
         }
     }
 
     public function updateLastActive($uid){
         $db = $this->dbConnect();
         
+        // update the last active for the user
         $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE u_id = :uid");
         $update->execute(array('uid' => $uid));
     }
 
-    protected function checkUserNotExist($credentials){
+    protected function checkGoogleUserExist($credentials){
         $db = $this->dbConnect();
         // check if user already exists
         // fetch matching user email field
@@ -76,6 +69,12 @@ class UserManager extends Manager{
         $query->bindParam('email', $credentials['email'], PDO::PARAM_STR);
         $query->execute();
         return $query->fetchAll();
+    }
+
+    protected function checkRegularUserExist(){
+        $db = $this->dbConnect();
+
+        
     }
 
     protected function checkUniqueIDExist($uid){
@@ -102,7 +101,7 @@ class UserManager extends Manager{
             $credentials = json_decode(json_encode($data), true);
 
             // if user doesn't exist, create user in database
-            $existingUser = $this->checkUserNotExist($credentials, 'signup');
+            $existingUser = $this->checkGoogleUserExist($credentials, 'signup');
             if (count($existingUser) == 0) {
                 // create a new user into users database table
                 $req = $db->prepare('INSERT INTO users (username, u_id, email) VALUES (:login, :u_id, :email)');
@@ -116,10 +115,11 @@ class UserManager extends Manager{
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
-                header ('location: ./index.php?action=timeline&type=registered');
+                // header ('location: ./index.php?action=timeline&type=registered');
+                return false;
             } else {
                 // user already exists, cannot be created
-                echo "User with that email already exists. Please try again";
+                return "existingEmail";
             }
         } else if ($type === 'regular') {
             // creating normal regular user
@@ -132,6 +132,15 @@ class UserManager extends Manager{
             $existingUser = $this->checkUserNotExist($data, 'signup');
             if (count($existingUser) == 0) {
                 $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+
+                if (empty($data['sign-u']) OR 
+                empty($data['sign-e']) OR
+                empty($data['sign-p']) OR 
+                empty($data['sign-cp'])){
+                    return "Fill in all parameters";
+                } else if (){
+                    return "Fill in all parameters";
+                }
 
                 // create a new user into users database table
                 $req = $db->prepare('INSERT INTO users (username, u_id, email, password) VALUES (:login, :u_id, :email, :pass)');
@@ -146,10 +155,7 @@ class UserManager extends Manager{
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
-                header ('location: ./index.php?action=timeline&type=registered');
-            } else {
-                // user already exists, cannot be created
-                echo "User with that email already exists. Please try again";
+                return false;
             }
         }
     }
