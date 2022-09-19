@@ -50,6 +50,12 @@ try {
         case "linkTo":
             $page = $_REQUEST['page'];
             switch($page){
+                case "toLanding":
+                    goToLink("toLanding");
+                    break;
+                case "toAbout":
+                    goToLink("toAbout");
+                    break;
                 case "toTimeline":
                     goToLink("toTimeline");
                     break;
@@ -61,9 +67,6 @@ try {
                     break;
                 case "toLogin":
                     goToLink("toLogin");
-                    break;
-                case "toCoverPage":
-                    goToLink("toCoverPage");
                     break;
                 default:
                     break;

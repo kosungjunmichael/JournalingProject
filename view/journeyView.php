@@ -172,14 +172,14 @@
             </h1>
             <h4>
                 In our age when cloud services can shut down,
-                 get bought, or change privacy policy any day,
-                  the last thing you want is proprietary format
-                   and data lock-in.
+                get bought, or change privacy policy any day,
+                the last thing you want is proprietary format
+                and data lock-in.
             </h4>
             <h4>
                 With Dear Diary, your data sits in a local folder.
-                 Never leave your life's work held hostage
-                  in the cloud again.
+                Never leave your life's work held hostage
+                in the cloud again.
             </h4>
         </div>
     </section>

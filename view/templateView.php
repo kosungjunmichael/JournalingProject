@@ -16,5 +16,5 @@
     <!--    Phosphor Icons Link -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
-<body><?=$content;?></body>
+<body> <?= $content;?> </body>
 </html>
