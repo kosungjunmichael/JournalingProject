@@ -119,11 +119,142 @@ nav ul li a:hover{
     background-color: #3B3D3E;
  }
 
+
+/* ---------- */
+/* Second page */
+/* ---------- */
+
 .feature-container{
-    width:100%;
-    padding: 12px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 100px;
     line-height: 1.5;
     font-size: 16px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-content{
+    font-size: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-container h3{
+    font-size: 30px;
+    text-align: center;
+}
+
+.list-item-avatar img{
+    height: 30px;
+    min-width: 30px;
+    width:30px;
+    border-radius: 50%;
+}
+
+.feature-text-container{
+    display: flex;
+}
+.jr-text-container{
+    height:350px;
+    width: 50%;
+    padding: 25px 30px;
+    margin: 0px -75px 0px 75px;
+}
+.jr-feature-container{
+    width:50%;
+    height:350px;
+}
+
+.jr-feature-container{
+    width: 650px;
+    margin-left: 115px;
+}
+
+.list-item{
+    display: flex;
+    gap:20px;
+    margin-top: 20px;
+}
+
+
+
+/* ------ */
+/* ------ */
+/* footer */
+/* ------ */
+/* ------ */
+
+footer{
+    background-color: #272727;
+    text-align: center;
+}
+
+.col{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+footer i{
+    color:white;
+    font-size: 25px;
+    margin-top: 20px;;
+}
+
+footer hr{
+    text-align: center;
+    width: 60%;
+    border-top: 0.3px solid #bbb;
+    margin-left: 290px;
+    margin-top: 20px;
+}
+
+
+.footer-main{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+}
+
+.footer-menu{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap:70px;
+}
+
+.footer-main a{
+    color:white;
+}
+
+footer ul li{
+    list-style: none;
+}
+footer a{
+    text-decoration: none;
+}
+
+.menu-item{
+    line-height: 2rem;
+}
+
+.menu-item-title{
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.sub-menu-item a{
+    color:#bababa;
+    font-size:15px;
+}
+
+.footer-card{
+    margin-top: 60px;
+    color: #9b40f6;
+    width: 100%;
+    height:100px;
 }
