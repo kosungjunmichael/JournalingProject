@@ -23,7 +23,10 @@ class UserManager extends Manager{
                 // if correct, head to the timelineView
                 return false;
             } else {
-                return "Error with Login";
+                return array(
+                    "error" => "User with those credentials does not exist. Please try again.",
+                    "username" => ""
+                );
             }
         // regular login
         } else if ($type === "regular"){
@@ -41,14 +44,14 @@ class UserManager extends Manager{
             // echo "USER:", $user;
     
             // catch login errors
-            if (!$user) {
-                return "Error with Login";
-            } else if ($credentials['login-ue'] !== $user['username'] AND $credentials['login-ue'] !== $user['email']){
-                return "Error with Login";
-            } else if (!password_verify($credentials['login-p'], $user['password'])){
-                return "Error with Login";
-            } else if ($user['is_active'] != 1){
-                return "Error with Login";
+            if (!$user
+                OR ($credentials['login-ue'] !== $user['username'] AND $credentials['login-ue'] !== $user['email'])
+                OR (!password_verify($credentials['login-p'], $user['password']))
+                OR $user['is_active'] === 0) {
+                    return array(
+                        "error" => "User with those credentials does not exist. Please try again.",
+                        "username" => ""
+                    );
             }
             // session_start();
             $_SESSION['uid'] = $user['u_id'];
