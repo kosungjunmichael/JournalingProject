@@ -83,8 +83,8 @@
                 <p>
                 We're more than just a journal, or a diary; 
                 we're your own motivational coach and happiness
-                 trainer. Let's embark on a fabulous journey
-                  of self-improvement today.
+                trainer. Let's embark on a fabulous journey
+                of self-improvement today.
                 </p>
             </div>
 
