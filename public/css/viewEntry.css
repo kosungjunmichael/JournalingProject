@@ -11,7 +11,8 @@
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    overflow-y: scroll;
 }
 
 #view-entry-top {
@@ -40,6 +41,14 @@
     gap: 10px;
 }
 
+#view-entry-details > #details-row > #entry-created,
+#view-entry-details > #details-row > #entry-location,
+#view-entry-details > #details-row > #entry-weather {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
 .tag {
     padding: 6px 10px;
     background-color: #C2C2C2;
@@ -64,6 +73,9 @@
     color: white;
     text-decoration: none;
     font-weight: 500;
+    display: flex;
+    gap: 5px;
+    align-items: center;
 }
 
 #view-entry-edit > #view-entry-edited {
@@ -90,7 +102,8 @@
 }
 
 #view-entry-text-content {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     background-color: #2F2F2F;
     border-radius: 15px;
+    white-space: pre-line;
 }

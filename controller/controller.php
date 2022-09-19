@@ -5,29 +5,26 @@ require_once('./model/UserManager.php');
 
 function signUp($data, $type){
   $userManager = new UserManager();
-  $userManager->createUser($data, $type);
+  $check = $userManager->createUser($data, $type);
+  switch($check){
+    case false:
+      require(ROOT . '/view/timelineView.php');
+      break;
+    case "existingEmail":
+      $error = "User with that email already exists. Please try again";
+      require(ROOT . '/view/signupView.php');
+      break;
+  }
 }
 
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
-  switch ($check){
-    case 1:
-      // user does not exist
-      header ('location: ./view/loginView.php?error=1');
-      break;
-    case 2:
-      // password was incorrect
-      header ('location: ./view/loginView.php?error=2');
-      break;
-    case 3:
-      // user is not active
-      header ('location: ./view/loginView.php?error=3');
-      break;
-    default:
-      // head to the user's timeline
-      header ('location: ./view/timelineView.php?type=registered');
-      break;
+  if ($check === false){
+    require(ROOT . '/view/timelineView.php');
+  } else {
+    $error = $check;
+    require(ROOT . '/view/loginView.php');
   }
 }
 
@@ -38,10 +35,40 @@ function updateLastActive($uid){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $entryManager->createEntry($data);
+  if ($entryManager->createEntry($data)){
+    require(ROOT . '/view/timelineView.php');
+  };
 }
 
 function newEntryFailed(){
-  $entryManager = new EntryManager();
-  $entryManager->newEntryFailed();
+  $error = "Not a valid entry";
+  require(ROOT . '/view/createEntryView.php');
+}
+
+function goToLink($page){
+  switch ($page){
+    case "toTimeline":
+      require(ROOT . '/view/timelineView.php');
+      break;
+    case "createEntry":
+      require(ROOT . '/view/createEntryView.php');
+      break;
+    case "toSignUp":
+      require(ROOT . '/view/signupView.php');
+      break;
+    case "toLogin":
+      require(ROOT . '/view/loginView.php');
+      break;
+    case "toTemplate":
+      require(ROOT . '/view/TemplateView.php');
+      break;
+    default:
+      break;
+  }
+}
+
+function viewEntry($entryId){
+    $entryManager = new EntryManager();
+    $entryContent = $entryManager->getEntry($entryId);
+    require(ROOT . '/view/viewEntryView.php');
 }
