@@ -3,14 +3,14 @@
 body{
     display: flex;
     justify-content: center;
-    background-color: black;
-    color: azure;
+    background-color: #000;
+    color: #fff;
     font-size: x-large;
     overflow-x:hidden; 
     overflow-y:auto;
 }
 h1{
-    color: blueviolet;
+    color: #9b40f6;
 }
 #basicInfo{
     width: 500px;

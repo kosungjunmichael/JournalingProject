@@ -2,6 +2,16 @@
 <?php $style = "aboutView";?>
 
 <?php ob_start(); ?>
+    <header>    
+        <h2><a href="#">Logo</a></h2>
+        <div class="navbar">
+            <a href="#">About us</a>
+            <a href="#">Features</a>
+            <a href="#">Pricing</a>
+        </div>
+    </header>
+
+
 <div id="basicInfo">
     <div class="about">
         <h1>About</h1>

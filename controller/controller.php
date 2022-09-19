@@ -47,6 +47,12 @@ function newEntryFailed(){
 
 function goToLink($page){
   switch ($page){
+    case "toLanding":
+      require(ROOT . '/view/indexView.php');
+      break;
+    case "toAbout":
+      require(ROOT . '/view/aboutView.php');
+      break;
     case "toTimeline":
       require(ROOT . '/view/timelineView.php');
       break;
