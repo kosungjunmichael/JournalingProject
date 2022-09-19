@@ -68,6 +68,9 @@ try {
                 case "toLogin":
                     goToLink("toLogin");
                     break;
+                case "toCoverPage":
+                    goToLink("toCoverPage");
+                    break;
                 default:
                     break;
             }

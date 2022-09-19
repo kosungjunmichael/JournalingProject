@@ -3,10 +3,12 @@
     <div id="nav-top">
         <div id="logo-container">
             <div id="logo">
+                <a href="index.php?action=linkTo&page=toCoverPage">
                 <img src="<?=BASE."/public/images/logo.png"?>" alt="logo" width="200px" class="logo_img">
-                <div class="logo_name">
-                    Dear Diary
-                </div>
+                    <div class="logo_name">
+                        Dear Diary
+                    </div>
+                </a>
             </div>
         </div>
         <div id="nav-mid">
