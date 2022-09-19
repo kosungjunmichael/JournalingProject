@@ -5,6 +5,10 @@
 <!--    <div type="checkbox" id="darkMode" class="darkMode">Toggle</div>-->
 <!--    <label for="darkMode">-->
     <!-- login -->
+    <?php if(isset($error)){
+        echo $error;
+    }?>
+
     <div class="box">
         <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
             <span id="header-text">Login</span>
