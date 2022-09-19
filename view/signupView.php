@@ -1,8 +1,11 @@
 <?php $title = "SignUp";?>
 <?php $style = "signup" ?>
 <?php ob_start();?>
+<?php if(isset($error)){
+        echo $error;
+    }?>
     <div class="box">
-        <form method="POST" action="<?=BASE. "/index.php?action=signup&page=regular"?>" class="signup">
+        <form method="POST" action="<?=BASE. "/index.php?action=signup&type=regular"?>" class="signup">
             <span id="header-text">Sign Up</span>
             <div class="input-container">
                 <input id="sign-u" type="text" required name="sign-u"/>

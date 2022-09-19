@@ -6,14 +6,11 @@ require_once('./model/UserManager.php');
 function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
-  switch($check){
-    case false:
-      require(ROOT . '/view/timelineView.php');
-      break;
-    case "existingEmail":
-      $error = "User with that email already exists. Please try again";
-      require(ROOT . '/view/signupView.php');
-      break;
+  if ($check === false){
+    require(ROOT . '/view/timelineView.php');
+  } else {
+    $error = $check;
+    require(ROOT . '/view/signupView.php');
   }
 }
 
