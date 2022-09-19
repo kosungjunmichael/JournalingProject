@@ -1,0 +1,129 @@
+@import url('../css/main.css');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.hero{
+    height:100vh;
+    width:100%;
+    background-color: #3B3D3E;
+}
+
+nav{
+    background-color: rgba(22,22,22,0.7);
+    width:100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:fixed;
+}
+
+.logo{
+    color:#7d7f80;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 25px;
+}
+
+nav ul li a{
+    color:#7d7f80;
+    text-decoration: none;
+    font-weight:500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+}
+
+nav ul li a:hover{
+    color:#9b40f6;
+}
+
+.hero .content{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    background-color:#3B3D3E ;
+    color: #bababa;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.content h2{
+    color:white;
+    font-size: 70px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+.content h2 span{
+    color:#9b40f6;
+    font-size: 65px;
+    font-weight: 600;
+}
+
+.content p span{
+    color:#9b40f6;
+    font-weight: 600;
+}
+
+.content p{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+} 
+
+.comment-container{
+    display:flex;
+    padding: 10px 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.text-container{
+    padding:25px 30px;
+    margin: 10px 20px 20px 20px;
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 700px;
+    color:#bababa;
+}
+
+.text-person{
+    margin-top: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    color:#dadada;
+}
+
+ section{
+    background-color: #3B3D3E;
+ }
+
+.feature-container{
+    width:100%;
+    padding: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    font-size: 16px;
+}
