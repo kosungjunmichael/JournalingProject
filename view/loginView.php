@@ -1,19 +1,15 @@
 <?php $title = "Log In";?>
 <?php $style = "login" ?>
 <?php ob_start();?>
-<!-- dark mode -->
-<!--    <div type="checkbox" id="darkMode" class="darkMode">Toggle</div>-->
-<!--    <label for="darkMode">-->
+
     <!-- login -->
-    <?php if(isset($error)){
-        echo $error;
-    }?>
 
     <div class="box">
+        <?php if ($error){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
         <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
             <span id="header-text">Login</span>
             <div class="input-container">
-                <input id="login-ue" type="text" required name="login-ue"/>
+                <input id="login-ue" type="text" required name="login-ue" <?php if($username) {echo "value='" . $username . "'";}?> />
                 <label for="login-ue" >Username / Email</label>
             </div>
             <div class="input-container">
