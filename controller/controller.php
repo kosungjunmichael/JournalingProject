@@ -9,8 +9,11 @@ function signUp($data, $type){
   if ($check === false){
     require(ROOT . '/view/timelineView.php');
   } else {
-    $error = $check;
-    require(ROOT . '/view/signupView.php');
+    $error = $check['error'];
+    if (isset($check['username'])) {
+        $username = $check['username'];
+    };
+    require(ROOT . '/view/loginView.php');
   }
 }
 
@@ -20,7 +23,8 @@ function login($data, $type){
   if ($check === false){
     require(ROOT . '/view/timelineView.php');
   } else {
-    $error = $check;
+    $error = $check['error'];
+    $username = $check['username'];
     require(ROOT . '/view/loginView.php');
   }
 }

@@ -1,7 +1,10 @@
 // This is js stuff
 
-let darkToggle = document.querySelector('#darkmode-toggle');
+let themeToggle = document.querySelector('#theme-toggle-pill');
 
-darkToggle.addEventListener('click', ()=> {
-    document.body.classList.toggle('dark');
-})
+themeToggle.addEventListener('click', () => {
+    // move (translate) theme-toggle-inner
+    document.querySelector('#theme-toggle-inner').classList.toggle('toggle-to-left');
+});
+
+console.log('js working')

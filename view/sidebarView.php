@@ -1,60 +1,47 @@
 
 <div id="sidebar-container">
-    <div id="nav-top">
+    <div id="sidebar-top">
         <div id="logo-container">
-            <div id="logo">
-                <a href="index.php?action=linkTo&page=toLanding">
-                <img src="<?=BASE."/public/images/logo.png"?>" alt="logo" width="200px" class="logo_img">
-                    <div class="logo_name">
-                        Dear Diary
-                    </div>
+            <img id="logo-img" src="<?=BASE."/public/images/DearDiaryLogoDark.png"?>" alt="logo">
+            <div id="logo-title">
+                Dear Diary
+            </div>
+        </div>
+        <ul id="sidebar-navlinks">
+            <li>
+                <a class="sidebar-link" href="./index.php?action=linkTo&page=toTimeline">
+                    <i class='bx bx-time' ></i>
+                    <span>Timeline</span>
                 </a>
-            </div>
-        </div>
-        <div id="nav-mid">
-            <ul id="nav_list">
-                <li>
-                    <a href="#">
-                        <i class='bx bx-time' ></i>
-                        <span class="timeline">Timeline</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bx-photo-album' ></i>
-                        <span class="album">Album</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bx-calendar' ></i>
-                        <span class="calendar">Calendar</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bx-map' ></i>
-                        <span class="map">Map</span>
-                    </a>
-                </li>
-            </ul>
-            <div>
-                <a class="create_entry_btn" href="<?=BASE."/index.php?action=linkTo&page=createEntry"?>">Create Entry</a>
-            </div>
-        </div>
+            </li>
+            <li>
+                <a class="sidebar-link" href="#">
+                    <i class='bx bx-photo-album' ></i>
+                    <span>Album</span>
+                </a>
+            </li>
+            <li>
+                <a class="sidebar-link" href="#">
+                    <i class='bx bx-calendar' ></i>
+                    <span>Calendar</span>
+                </a>
+            </li>
+            <li>
+                <a class="sidebar-link" href="#">
+                    <i class='bx bx-map' ></i>
+                    <span>Map</span>
+                </a>
+            </li>
+        </ul>
+        <a id="create-entry-btn" href="<?=BASE."/index.php?action=linkTo&page=createEntry"?>">Create Entry</a>
     </div>
-    <div class="nav_footer">
-        <div class="toggle">
-            <i class='bx bx-sun' ></i>
-            <input type="checkbox" id="darkmode-toggle">
-            <label for="darkmode-toggle"></label>
+    <div id="sidebar-bottom">
+        <div id="theme-toggle">
+            <i class='bx bx-sun'></i>
+            <div id="theme-toggle-pill">
+                <span id="theme-toggle-inner"></span>
+            </div>
             <i class='bx bx-moon' ></i>
-        </div>
-        <div class="setting">
-            <a href="#">
-                <i class='bx bx-cog'></i>
-                <span>Settings</span>
-            </a>
         </div>
     </div>
 </div>
