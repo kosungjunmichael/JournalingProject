@@ -45,7 +45,7 @@ function newEntryFailed(){
 function goToLink($page){
   switch ($page){
     case "toLanding":
-      require(ROOT . '/view/indexView.php');
+      require(ROOT . '/view/JourneyView.php');
       break;
     case "toAbout":
       require(ROOT . '/view/aboutView.php');
@@ -64,9 +64,6 @@ function goToLink($page){
       break;
     case "toTemplate":
       require(ROOT . '/view/templateView.php');
-      break;
-    case "toCoverPage":
-      require(ROOT . '/view/JourneyView.php');
       break;
     default:
       break;

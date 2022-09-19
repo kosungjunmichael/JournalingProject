@@ -3,7 +3,7 @@
     <div id="nav-top">
         <div id="logo-container">
             <div id="logo">
-                <a href="index.php?action=linkTo&page=toCoverPage">
+                <a href="index.php?action=linkTo&page=toLanding">
                 <img src="<?=BASE."/public/images/logo.png"?>" alt="logo" width="200px" class="logo_img">
                     <div class="logo_name">
                         Dear Diary
