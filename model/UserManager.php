@@ -133,14 +133,14 @@ class UserManager extends Manager{
             if (count($existingUser) == 0) {
                 $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
-                if (empty($data['sign-u']) OR 
-                empty($data['sign-e']) OR
-                empty($data['sign-p']) OR 
-                empty($data['sign-cp'])){
-                    return "Fill in all parameters";
-                } else if (){
-                    return "Fill in all parameters";
-                }
+//                if (empty($data['sign-u']) OR
+//                empty($data['sign-e']) OR
+//                empty($data['sign-p']) OR
+//                empty($data['sign-cp'])){
+//                    return "Fill in all parameters";
+//                } else if (){
+//                    return "Fill in all parameters";
+//                }
 
                 // create a new user into users database table
                 $req = $db->prepare('INSERT INTO users (username, u_id, email, password) VALUES (:login, :u_id, :email, :pass)');
