@@ -23,7 +23,7 @@ class UserManager extends Manager{
                 // if correct, head to the timelineView
                 return false;
             } else {
-                return "user doesn't exist";
+                return "Error with Login";
             }
         // regular login
         } else if ($type === "regular"){
@@ -36,14 +36,19 @@ class UserManager extends Manager{
             $req->bindParam(1,$inputUser,PDO::PARAM_STR);
             $req->execute();
             $user = $req->fetch(PDO::FETCH_ASSOC);
+
+            // print_r($credentials);
+            // echo "USER:", $user;
     
             // catch login errors
-            if ($credentials['login-ue'] != $user['username'] AND $credentials['login-ue'] != $user['email']){
-                return "user doesn't exist";
+            if (!$user) {
+                return "Error with Login";
+            } else if ($credentials['login-ue'] !== $user['username'] AND $credentials['login-ue'] !== $user['email']){
+                return "Error with Login";
             } else if (!password_verify($credentials['login-p'], $user['password'])){
-                return "password was incorrect";
+                return "Error with Login";
             } else if ($user['is_active'] != 1){
-                return "user is not active";
+                return "Error with Login";
             }
             // session_start();
             $_SESSION['uid'] = $user['u_id'];
@@ -61,6 +66,10 @@ class UserManager extends Manager{
         $update->execute(array('uid' => $uid));
     }
 
+    protected function checkRegularLogin(){
+
+    }
+
     protected function checkGoogleUserExist($credentials){
         $db = $this->dbConnect();
         // check if user already exists
@@ -71,10 +80,20 @@ class UserManager extends Manager{
         return $query->fetchAll();
     }
 
-    protected function checkRegularUserExist(){
-        $db = $this->dbConnect();
-
-        
+    protected function checkRegularUserExist($value, $type){
+        if ($type === "username"){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT username FROM users WHERE username = ?');
+            $query->bindParam(1,$value, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll();
+        } else if ($type === "email"){
+            $db = $this->dbConnect();
+            $query = $db->prepare('SELECT email FROM users WHERE email = ?');
+            $query->bindParam(1,$value, PDO::PARAM_STR);
+            $query->execute();
+            return $query->fetchAll();
+        }
     }
 
     protected function checkUniqueIDExist($uid){
@@ -123,10 +142,9 @@ class UserManager extends Manager{
             }
         } else if ($type === 'regular') {
             // creating normal regular user
-            if ($data['sign-p'] != $data['sign-cp']){
-                // redirect
-                header('location: index.php');
-            }
+            
+            $checkUser = $this->checkRegularUserExist($data['sign-u'], 'username');
+            $checkEmail = $this->checkRegularUserExist($data['sign-e'], 'email');
 
             // if user doesn't exist, create user in database
             $existingUser = $this->checkUserNotExist($data, 'signup');
@@ -142,21 +160,25 @@ class UserManager extends Manager{
 //                    return "Fill in all parameters";
 //                }
 
-                // create a new user into users database table
-                $req = $db->prepare('INSERT INTO users (username, u_id, email, password) VALUES (:login, :u_id, :email, :pass)');
-                $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
-                $req->bindParam('u_id', $uid, PDO::PARAM_STR);
-                $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
-                $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
-                $req->execute();
+            // if conditions met, create user in database
+   
+            $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
-                // create session variable for user login/signup
-                session_start();
-                $_SESSION['uid'] = $uid;
+            // create a new user into users database table
+            $req = $db->prepare('INSERT INTO users (username, u_id, email, password) VALUES (:login, :u_id, :email, :pass)');
+            $req->bindParam('login', $data['sign-u'], PDO::PARAM_STR);
+            $req->bindParam('u_id', $uid, PDO::PARAM_STR);
+            $req->bindParam('email', $data['sign-e'], PDO::PARAM_STR);
+            $req->bindParam('pass', $hashpass, PDO::PARAM_STR);
+            $req->execute();
 
-                // redirect to index with registered type
-                return false;
-            }
+            // create session variable for user login/signup
+            session_start();
+            $_SESSION['uid'] = $uid;
+
+            // redirect to index with registered type
+            return false;
+            
         }
     }
 }
