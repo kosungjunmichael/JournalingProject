@@ -9,8 +9,9 @@ function signUp($data, $type){
   if ($check === false){
     require(ROOT . '/view/timelineView.php');
   } else {
-    $error = $check;
-    require(ROOT . '/view/signupView.php');
+    $error = $check['error'];
+    $username = $check['username'];
+    require(ROOT . '/view/loginView.php');
   }
 }
 
