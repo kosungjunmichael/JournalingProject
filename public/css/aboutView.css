@@ -13,5 +13,42 @@ h1{
     color: #9b40f6;
 }
 #basicInfo{
-    width: 500px;
+    width: 700px;
+    margin-top: 180px;
+}
+
+nav{
+    background-color: rgba(22,22,22,0.7);
+    width:100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:fixed;
+}
+
+.logo{
+    color:#7d7f80;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px 25px;
+}
+
+nav ul li a{
+    color:#7d7f80;
+    text-decoration: none;
+    font-weight:500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+}
+
+nav ul li a:hover{
+    color:#9b40f6;
 }

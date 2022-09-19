@@ -63,7 +63,7 @@ function goToLink($page){
       require(ROOT . '/view/loginView.php');
       break;
     case "toTemplate":
-      require(ROOT . '/view/TemplateView.php');
+      require(ROOT . '/view/templateView.php');
       break;
     case "toCoverPage":
       require(ROOT . '/view/JourneyView.php');

@@ -2,14 +2,15 @@
 <?php $style = "aboutView";?>
 
 <?php ob_start(); ?>
-    <header>    
-        <h2><a href="#">Logo</a></h2>
-        <div class="navbar">
-            <a href="#">About us</a>
-            <a href="#">Features</a>
-            <a href="#">Pricing</a>
-        </div>
-    </header>
+    <nav>
+        <h2><a href="#" class="logo">Dear Diary</a></h2>
+        <ul class="navbar">
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Signup</a></li>
+        </ul>
+    </nav>
+
 
 
 <div id="basicInfo">
