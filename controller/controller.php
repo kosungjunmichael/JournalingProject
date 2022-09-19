@@ -64,7 +64,7 @@ function goToLink($page){
       require(ROOT . '/view/TemplateView.php');
       break;
     case "toCoverPage":
-      require(ROOT . '/view/JourneyView.php');
+      require(ROOT . '/view/journeyView.php');
       break;
     default:
       break;
