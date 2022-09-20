@@ -7,7 +7,7 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
   if ($check === false){
-    require(ROOT . '/view/timelineView.php');
+    toTimeline($_SESSION['uid']);
   } else {
     $error = $check;
     require(ROOT . '/view/signupView.php');
@@ -18,7 +18,7 @@ function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
   if ($check === false){
-    require(ROOT . '/view/timelineView.php');
+    toTimeline($_SESSION['uid']);
   } else {
     $error = $check;
     require(ROOT . '/view/loginView.php');
@@ -30,45 +30,42 @@ function updateLastActive($uid){
   $userManager->updateLastActive($uid);
 }
 
-function newEntry($data){
-  $entryManager = new EntryManager();
-  if ($entryManager->createEntry($data)){
-    require(ROOT . '/view/timelineView.php');
-  };
-}
-
-function newEntryFailed(){
-  $error = "Not a valid entry";
+function createNewEntry(){
   require(ROOT . '/view/createEntryView.php');
 }
 
-function goToLink($page){
-  switch ($page){
-    case "toTimeline":
-      require(ROOT . '/view/timelineView.php');
-      break;
-    case "createEntry":
-      require(ROOT . '/view/createEntryView.php');
-      break;
-    case "toSignUp":
-      require(ROOT . '/view/signupView.php');
-      break;
-    case "toLogin":
-      require(ROOT . '/view/loginView.php');
-      break;
-    case "toTemplate":
-      require(ROOT . '/view/TemplateView.php');
-      break;
-    case "toCoverPage":
-      require(ROOT . '/view/JourneyView.php');
-      break;
-    default:
-      break;
+function newEntry($data){
+  $entryManager = new EntryManager();
+  $check = $entryManager->createEntry($data);
+  if ($check){
+    $error = "Entry Submitted!";
+    toTimeline($check);
+  } else {
+    $error = "Not a valid Entry";
+    require(ROOT . '/view/createEntryView.php');
   }
+}
+
+function toTimeline($Unique_id){
+$entryManager = new EntryManager();
+$entries = $entryManager->getEntries($Unique_id);
+require(ROOT . '/view/timelineView.php');
+}
+
+function toSignup(){
+  require(ROOT . '/view/signupView.php');
+}
+
+function toLogin(){
+  require(ROOT . '/view/loginView.php');
+}
+
+function toLanding(){
+  require(ROOT . '/view/journeyView.php');
 }
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntry($entryId);
+    $entryContent = $entryManager->getEntries($entryId);
     require(ROOT . '/view/viewEntryView.php');
 }

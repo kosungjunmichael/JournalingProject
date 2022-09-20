@@ -1,5 +1,7 @@
 <?php $title = "SignUp";?>
 <?php $style = "signup" ?>
+<?php $script = "script";?>
+
 <?php ob_start();?>
 <?php if(isset($error)){
         echo $error;
@@ -45,7 +47,7 @@
         </div>
         <div id="form-bottom">
             <p>Already have an account?</p>
-            <a id="login-link" href="<?=BASE. "/index.php?action=linkTo&page=toLogin"?>">Login</a>
+            <a id="login-link" href="<?=BASE. "/index.php?action=toLogin"?>">Login</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

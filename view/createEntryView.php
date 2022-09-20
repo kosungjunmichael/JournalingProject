@@ -7,6 +7,8 @@ if (!isset($_SESSION['uid'])){
 ?>
 <?php $title = "Create New Entry";?>
 <?php $style = "createEntry";?>
+<?php $script = "script";?>
+
 <?php ob_start();?>
 
 <?php include("sidebarView.php");?>

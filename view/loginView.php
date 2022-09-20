@@ -1,5 +1,7 @@
 <?php $title = "Log In";?>
 <?php $style = "login" ?>
+<?php $script = "script";?>
+
 <?php ob_start();?>
 <!-- dark mode -->
 <!--    <div type="checkbox" id="darkMode" class="darkMode">Toggle</div>-->
@@ -40,7 +42,7 @@
         </div>
         <div id="form-bottom">
             <p>Don't have an account yet?</p>
-            <a id="sign-up-link" href="<?=BASE. "/index.php?action=linkTo&page=toSignUp"?>">Sign Up</a>
+            <a id="sign-up-link" href="<?=BASE. "/index.php?action=toSignup"?>">Sign Up</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

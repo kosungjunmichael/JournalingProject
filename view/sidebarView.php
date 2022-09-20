@@ -3,7 +3,7 @@
     <div id="nav-top">
         <div id="logo-container">
             <div id="logo">
-                <a href="index.php?action=linkTo&page=toCoverPage">
+                <a href="index.php?action=toLanding">
                 <img src="<?=BASE."/public/images/logo.png"?>" alt="logo" width="200px" class="logo_img">
                     <div class="logo_name">
                         Dear Diary
@@ -39,7 +39,7 @@
                 </li>
             </ul>
             <div>
-                <a class="create_entry_btn" href="<?=BASE."/index.php?action=linkTo&page=createEntry"?>">Create Entry</a>
+                <a class="create_entry_btn" href="<?=BASE."/index.php?action=createEntry"?>">Create Entry</a>
             </div>
         </div>
     </div>

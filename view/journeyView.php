@@ -1,5 +1,7 @@
 <?php $title = "Journey"; ?>
 <?php $style = "journey" ?>
+<?php $script = "script";?>
+
 
 <?php ob_start(); ?>
 <div class="container">

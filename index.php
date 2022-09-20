@@ -47,41 +47,33 @@ try {
             }
             break;
             // to the entries
-        case "linkTo":
-            $page = $_REQUEST['page'];
-            switch($page){
-                case "toTimeline":
-                    goToLink("toTimeline");
-                    break;
-                case "createEntry":
-                    goToLink("createEntry");
-                    break;
-                case "toSignUp":
-                    goToLink("toSignUp");
-                    break;
-                case "toLogin":
-                    goToLink("toLogin");
-                    break;
-                case "toCoverPage":
-                    goToLink("toCoverPage");
-                    break;
-                default:
-                    break;
-            }
+        case "toSignup":
+            toSignup();
+            break;
+
+        case "toLogin":
+            toLogin();
+            break;
+
+        case "toLanding":
+            toLanding();
+            break;
+
+        case "createEntry":
+            createNewEntry();
+            break;
+
         case "entries":
             if (isset($_REQUEST['type'])) {
                 $type = $_REQUEST['type'];
                 switch ($type) {
                     case "create":
-                        if (!empty($_REQUEST['title']) AND !empty($_REQUEST['entry'])){
-                            $entryContent = (object)array();
-                            $entryContent->title = $_REQUEST['title'];
-                            $entryContent->entry = $_REQUEST['entry'];
-                            $entryContent->userID = $_REQUEST['usr'];
-                            newEntry($entryContent);
-                        } else {
-                            newEntryFailed();
-                        }
+                        $entryContent = (object)array();
+                        $entryContent->title = $_REQUEST['title'];
+                        $entryContent->entry = $_REQUEST['entry'];
+                        $entryContent->userID = $_SESSION['uid'];
+                        // print_r($entryContent);
+                        newEntry($entryContent);
                         break;
                     case "view":
                         if (isset($_REQUEST['id'])) {
@@ -103,10 +95,9 @@ try {
         default:
             // show login as default
             if (isset($_SESSION['usr'])){
-                goToLink('showlogin');
-            } else {
-                goToLink('toLogin');
+                toTimeline($_SESSION['usr']);
             }
+            toLogin();
             break;
     }
 
