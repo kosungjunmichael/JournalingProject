@@ -173,13 +173,13 @@
                 grandchildren
             </h1>
             <h4>
-                In our age when cloud services can shut down,
-                get bought, or change privacy policy any day,
+                In our age when cloud services can <span>shut down,
+                get bought,</span> or <span>change privacy policy</span> any day,
                 the last thing you want is proprietary format
                 and data lock-in.
             </h4>
             <h4>
-                With Dear Diary, your data sits in a local folder.
+                With Dear Diary, <b>your data sits in a local folder</b>.
                 Never leave your life's work held hostage
                 in the cloud again.
             </h4>
