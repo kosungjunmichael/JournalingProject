@@ -1,5 +1,7 @@
 <?php $title = "Album";?>
 <?php $style = "album";?>
+<?php $script = "script";?>
+
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
 

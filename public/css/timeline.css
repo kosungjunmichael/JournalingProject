@@ -9,25 +9,33 @@ body{
 #timeline{
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     align-items: center;
-    align-content: center;
-    justify-content: space-around;
+    /* justify-content: center; */
     width: calc(100% - 240px);
+    overflow: scroll;
 }
 
-.month1, .month2, .month3{
+.monthContainer{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.month{
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0px 10px;
-    box-sizing: border-box;
+    width: 100%; */
+    padding: 15px;
+    /* box-sizing: border-box; */
 }
 
 
 .container{
-    width: 500px;
+    width: 400px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;

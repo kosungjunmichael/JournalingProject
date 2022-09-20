@@ -1,12 +1,14 @@
 
 <div id="sidebar-container">
     <div id="sidebar-top">
-        <div id="logo-container">
-            <img id="logo-img" src="<?=BASE."/public/images/DearDiaryLogoDark.png"?>" alt="logo">
-            <div id="logo-title">
-                Dear Diary
+        <a href="<?=BASE."/index.php?action=toLanding"?>">
+            <div id="logo-container">
+                <img id="logo-img" src="<?=BASE."/public/images/DearDiaryLogoDark.png"?>" alt="logo">
+                <div id="logo-title">
+                    Dear Diary
+                </div>
             </div>
-        </div>
+        </a>
         <ul id="sidebar-navlinks">
             <li>
                 <a class="sidebar-link" href="./index.php?action=linkTo&page=toTimeline">
