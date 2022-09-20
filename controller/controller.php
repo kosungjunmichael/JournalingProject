@@ -7,6 +7,7 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
   if ($check === false){
+    // session_start();
     toTimeline($_SESSION['uid']);
   } else {
     $error = $check['error'];
@@ -27,6 +28,12 @@ function login($data, $type){
     $username = $check['username'];
     require(ROOT . '/view/loginView.php');
   }
+}
+
+function toTimeline($Unique_id){
+$entryManager = new EntryManager();
+$entries = $entryManager->getEntries($Unique_id);
+require(ROOT . '/view/timelineView.php');
 }
 
 function updateLastActive($uid){
@@ -50,11 +57,6 @@ function newEntry($data){
   }
 }
 
-function toTimeline($Unique_id){
-$entryManager = new EntryManager();
-$entries = $entryManager->getEntries($Unique_id);
-require(ROOT . '/view/timelineView.php');
-}
 
 function toSignup(){
   require(ROOT . '/view/signupView.php');

@@ -16,11 +16,14 @@ class UserManager extends Manager{
             $req->bindParam(1,$inputUser,PDO::PARAM_STR);
             $req->execute();
             $user = $req->fetch(PDO::FETCH_ASSOC);
+            // echo "<pre>";
+            // print_r($credentials);
+            // echo "<pre>";
             
-            $_SESSION['uid'] = $user['u_id'];
-
+            
             if ($user['is_active'] === 1){
                 // if correct, head to the timelineView
+                $_SESSION['uid'] = $user['u_id'];
                 return false;
             } else {
                 return array(
@@ -48,13 +51,13 @@ class UserManager extends Manager{
                 OR ($credentials['login-ue'] !== $user['username'] AND $credentials['login-ue'] !== $user['email'])
                 OR (!password_verify($credentials['login-p'], $user['password']))
                 OR $user['is_active'] === 0) {
+                    $_SESSION['uid'] = $user['u_id'];
                     return array(
                         "error" => "User with those credentials does not exist. Please try again.",
                         "username" => ""
                     );
             }
             // session_start();
-            $_SESSION['uid'] = $user['u_id'];
             
             // if correct, head to the timelineView
             return false;
