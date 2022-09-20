@@ -35,7 +35,7 @@
                 </a>
             </li>
         </ul>
-        <a id="create-entry-btn" href="<?=BASE."/index.php?action=linkTo&page=createEntry"?>">Create Entry</a>
+        <a id="create-entry-btn" href="<?=BASE."/index.php?action=createEntry"?>">Create Entry</a>
     </div>
     <div id="sidebar-bottom">
         <div id="theme-toggle">
