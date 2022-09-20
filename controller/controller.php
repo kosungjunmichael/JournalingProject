@@ -40,9 +40,9 @@ function displayMonths($numOfMonths = 5){
 }
 
 function toTimeline($Unique_id){
-$entryManager = new EntryManager();
-$entries = $entryManager->getEntries($Unique_id);
-require(ROOT . '/view/timelineView.php');
+  $entryManager = new EntryManager();
+  $entries = $entryManager->getEntries($Unique_id);
+  require(ROOT . '/view/timelineView.php');
 }
 
 function updateLastActive($uid){
@@ -59,7 +59,9 @@ function newEntry($data){
   $check = $entryManager->createEntry($data);
   if ($check){
     $error = "Entry Submitted!";
-    toTimeline($check);
+    // require(ROOT . '/index.php?action=sidebarTimeline');
+    // toTimeline($check);
+    header("Location: index.php?action=toTimeline");
   } else {
     $error = "Not a valid Entry";
     require(ROOT . '/view/createEntryView.php');

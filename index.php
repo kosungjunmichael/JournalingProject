@@ -55,7 +55,7 @@ try {
             toLogin();
             break;
 
-        case "sidebarTimeline":
+        case "toTimeline":
             toTimeline($_SESSION['uid']);
             break;
 
@@ -71,40 +71,28 @@ try {
             toLanding();
             break;
 
-        case "entries":
-            if (isset($_REQUEST['type'])) {
-                $type = $_REQUEST['type'];
-                switch ($type) {
-                    case "create":
-                        $entryContent = (object)array();
-                        $entryContent->title = $_REQUEST['title'];
-                        $entryContent->entry = $_REQUEST['entry'];
-                        $entryContent->userID = $_SESSION['uid'];
-                        // print_r($entryContent);
-                        newEntry($entryContent);
-                        break;
-                    case "view":
-                        if (isset($_REQUEST['id'])) {
-                            $entryId = $_REQUEST['id'];
-                            viewEntry($entryId);
-                        } else {
-                            throw new Exception('Error, no entry ID');
-                        }
-                        break;
-                    default:
-                        // default
-                        break;
-                }
-            } else if (!isset($_REQUEST['type'])) {
-                // handle routing error
-                // redirect to error page
+        case "addNewEntry":
+            $entryContent = (object)array();
+            $entryContent->title = $_REQUEST['title'];
+            $entryContent->entry = $_REQUEST['entry'];
+            $entryContent->userID = $_SESSION['uid'];
+            // print_r($entryContent);
+            newEntry($entryContent);
+            break;
+
+        case "viewEntry":
+            if (isset($_REQUEST['id'])) {
+                $entryId = $_REQUEST['id'];
+                viewEntry($entryId);
+            } else {
+                throw new Exception('Error, no entry ID');
             }
             break;
 
         default:
             // show login as default
-            if (isset($_SESSION['usr'])){
-                toTimeline($_SESSION['usr']);
+            if (isset($_SESSION['uid'])){
+                toTimeline($_SESSION['uid']);
             }
             toLogin();
             break;

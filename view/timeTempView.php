@@ -1,9 +1,9 @@
-    <a href="<?= BASE . "/index.php?action=entries&type=view&id=". htmlspecialchars($entry['u_id'])?>">
+    <a href="<?= BASE . "/index.php?action=viewEntry&id=". htmlspecialchars($entry['u_id'])?>">
         <div class="entryContainer">
-            <h3><?= htmlspecialchars($entry['title']) ?></h3>
-            <p><?= htmlspecialchars($entry['text_content']) ?></p>
-            <h5>hashtags</h5>
-            <h5> <?= htmlspecialchars($entry['month']), " ",htmlspecialchars($entry['day']), ", ", htmlspecialchars($entry['year'])?> </h5>
+            <div class="entryTitle" ><?= htmlspecialchars($entry['title']) ?></div>
+            <div class="entryContent"><?= htmlspecialchars($entry['text_content']) ?></div>
+            <div class="entryTags">hashtags</div>
+            <div class="entryDate"> <?= htmlspecialchars($entry['month']), " ",htmlspecialchars($entry['day']), ", ", htmlspecialchars($entry['year'])?> </div>
         </div>
     </a>
 

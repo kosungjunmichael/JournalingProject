@@ -20,7 +20,7 @@
         </a>
         <ul id="sidebar-navlinks">
             <li>
-                <a class="sidebar-link" href="./index.php?action=sidebarTimeline">
+                <a class="sidebar-link" href="./index.php?action=toTimeline">
                     <i class='bx bx-time' ></i>
                     <span>Timeline</span>
                 </a>
