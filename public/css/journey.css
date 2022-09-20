@@ -275,11 +275,146 @@ footer a{
     color:white;
     font-size: 65px;
 }
-.note-container h4{
+.note-container p{
     margin-top: 40px;
     width:65%;
     font-size: 22px;
     line-height: 34px;
     color:#bababa;
     text-align: left;
+}
+.note-container p b{
+    color:#9b40f6;
+}
+.note-container p span{
+    text-decoration: underline;
+}
+
+.subfeature-boxes{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.subfeature{
+    padding: 25px 50px;
+    margin: 10px 20px 40px 20px;
+    border-radius: 10px;
+    background-color: #242424;
+    box-shadow: 0 1px 1px 1px rgb(0 0 0 / 50%);
+    border: 1px solid #363636;
+    cursor: default;
+    color:#bababa;
+    transition: all 100ms ease-in-out;
+    width:700px;
+}
+
+.subfeature-title{
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color:#dadada;
+    line-height: 1.5;
+}
+.subfeature-title i{
+    color:#9b40f6;
+}
+.subfeature-description{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin: 14px 0;
+    line-height: 29px;
+}
+.subfeature-description p{
+    font-size: 18px;
+}
+
+
+/* ============= */
+/* ============= */
+/* tweet section */
+/* ============= */
+/* ============= */
+
+.twitter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.twitter-container h2, .twitter-container p{
+    color: white;
+}
+.twitter-container h2{
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.5em;
+}
+.twitter-container p{
+    margin: 0 0 1.5em;
+    font-size: 20px;
+}
+.twitter-container a{
+    text-decoration: none;
+    color:#9b40f6;
+}
+
+.tweets-container{
+    display:flex;
+    gap:2em;
+}
+.twitter-block{
+    background-color: white;
+    color:black;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-height: 228px;
+}
+.tweet-column{
+    display: flex;
+    flex-direction: column;
+    gap:2em;
+}
+.twitter-profile .author-name{
+    color:black;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 4px;
+}
+.twitter-profile .author-avatar img{
+    width: 48px;
+    height: 48px;
+    float: left;
+    overflow: hidden;
+    border: none;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+.twitter-profile .author-screenname{
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: gray;
+}
+.author-box{
+    display: block;
+    min-height: 48px;
+    margin-top: 10px;
+    position:relative;
+}
+.twitter-logo{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #1b95e0;
+    line-height: 0;
+}
+.twitter-content{
+    margin-top: 12px;
 }
