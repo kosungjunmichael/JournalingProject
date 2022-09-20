@@ -9,10 +9,27 @@
         <h2><a href="#" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
             <li><a href="#">About us</a></li>
-            <li><a href="#">Login</a></li>
+            <!-- <li><a href="#">Login</a></li> -->
+            <li><a href="#" data-target="#login" data-toggle="modal" onclick="login();" class="btn" >Login</a></li>
             <li><a href="#">Signup</a></li>
         </ul>
     </nav>
+    <div id="login" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- <button data-close="modal" class="close" onclick="document.getElementById('login').style.display = 'none';">&times;</button> -->
+                    <button data-close="modal" class="close"> <p>X</p></button>
+                    <form>
+                    <input type="text" name="username" class="username form-control" placeholder="Username"/>
+                    <input type="password" name="password" class="password form-control" placeholder="Password"/>
+                    <input class="btn login" type="submit" value="Login" />
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="blur"></div>
     <div class="hero">
         <div class="content">
             <h2>
@@ -224,7 +241,7 @@
             </div>
             <hr role="separator">
             <div class="footer-main">
-               <ul class="footer-menu">
+                <ul class="footer-menu">
                     <li class="menu-item">
                         <a href="" class="menu-item-title">
                             GET THE APP
@@ -385,6 +402,28 @@
         </div>
     </footer>
 </div>
+
+<script>
+// function login() {
+// }    
+document.querySelector(".close").addEventListener('click', () => {
+    document.getElementById('login').style.display = 'none';
+    document.querySelector(".blur").style.display = "none";
+})
+
+document.querySelector(".btn").addEventListener('click', () =>{
+    document.getElementById("login").style.display = "block";
+    document.querySelector(".blur").style.display = "block";
+})
+</script>
 <?php $content = ob_get_clean(); ?>
 <?php require("templateView.php"); ?>
-``
+
+
+
+
+
+
+
+
+
