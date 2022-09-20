@@ -38,13 +38,20 @@ class EntryManager extends Manager{
         } else {
             return false;
         }
-
     }
 
     public function getEntries($userId){
         $db = $this->dbConnect();
 
-        $req = $db->prepare('SELECT u_id, title, text_content, last_edited, MONTHNAME(last_edited) as month FROM entries WHERE user_id = :userId GROUP BY last_edited');
+        $req = $db->prepare('SELECT 
+        u_id
+        , title
+        , text_content
+        , last_edited
+        , DAY(last_edited) as day
+        , MONTHNAME(last_edited) as month
+        , YEAR(last_edited) as year
+        FROM entries WHERE user_id = :userId GROUP BY last_edited');
         $req->execute(array(
             'userId' => $userId,
         ));
@@ -56,28 +63,34 @@ class EntryManager extends Manager{
                     $monthEntries[$entryContent['month']] = array();
                     array_push($monthEntries[$entryContent['month']], $entryContent);
                 }
-            // if ($entryContent['month']==="September"){
-                //     array_push($monthEntries, $entryContent);
-                //     print_r($monthEntries->key);
-                // }
             }
-            // echo "<pre>";
-            // print_r($monthEntries);
-            // echo "<pre>";
         return $monthEntries;
         $req->closeCursor();
     }
-
-    public function getEntry($entryId){
+    
+    public function getEntry($entryId, $userId){
         $db = $this->dbConnect();
-
-        $req = $db->prepare('SELECT * FROM entries WHERE u_id = :entryId');
+        $req = $db->prepare('SELECT title
+        , text_content
+        , location
+        , weather
+        , last_edited
+        , date_created 
+        , DAY(last_edited) as day
+        , MONTHNAME(last_edited) as month
+        , YEAR(last_edited) as year
+        , TIME_FORMAT(last_edited, "%h:%i %p") as time
+        FROM entries
+        WHERE user_id = :userId AND u_id = :entryId AND is_active = :active');
         $req->execute(array(
+            'userId' => $userId,
             'entryId' => $entryId,
+            'active' => 1
         ));
         $entryContent = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
+           
         return $entryContent;
+        $req->closeCursor();
     }
 }
 

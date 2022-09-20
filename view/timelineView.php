@@ -10,89 +10,35 @@
         // this should be turn into a little notification modal thing
         echo "<p>You have been registered. Welcome!</p>";
     }
-    print_r($_SESSION['uid']);
+    // print_r($_SESSION['uid']);
 ?>
 
 <div id="timeline">
 
-    <h1>Timeline</h1>
+    <div class="title">Timeline</div>
     
-    <h2>Month</h2>
-    <div class="monthContainer">
+    <div class="entryMonths">
         <?php
-        
-
-            print_r($entries);
-            // foreach($entries as $entry){
-            //         include "timeTempView.php";
-            //     }
-
-        
+        // number of months from the current month to display
+        $numOfMonths = 5;
+        $monthsToDisplay = displayMonths($numOfMonths);
+        foreach($monthsToDisplay as $month){
+            // check if there are entries from that month
+            if (array_key_exists($month, $entries)){
+                echo "<div class='month'>";
+                echo "<h3>$month</h3>";
+                echo "<div class='monthContainer'>";
+                foreach($entries["$month"] as $entry){
+                    include "timeTempView.php";
+                }
+                echo "</div>";
+                echo "</div>";
+            }
+        }
         ?>
     </div>
-    <!-- <div class="month1">
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-    </div>
-
-    <h2>Month</h2>
-    <div class="month2">
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-    </div>
     
-    <h2>Month</h2>
-    <div class="month3">
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5></div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-        <div class="container">
-            <h3>title of the entry</h3>
-            <p>content of the entry</p>
-            <h5>hashtangs</h5>
-            <h5>date</h5>
-        </div>
-    </div> -->
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>
