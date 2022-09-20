@@ -45,13 +45,13 @@ class UserManager extends Manager{
 
             // print_r($credentials);
             // echo "USER:", $user;
+            $_SESSION['uid'] = $user['u_id'];
     
             // catch login errors
             if (!$user
                 OR ($credentials['login-ue'] !== $user['username'] AND $credentials['login-ue'] !== $user['email'])
                 OR (!password_verify($credentials['login-p'], $user['password']))
                 OR $user['is_active'] === 0) {
-                    $_SESSION['uid'] = $user['u_id'];
                     return array(
                         "error" => "User with those credentials does not exist. Please try again.",
                         "username" => ""
