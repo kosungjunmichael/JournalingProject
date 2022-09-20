@@ -1,4 +1,6 @@
 <?php $title = "error" ;?>
+<?php $script = "script";?>
+
 <?php ob_start(); ?>
 <div>
   <h2>ERROR:</h2>

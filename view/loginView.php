@@ -1,15 +1,17 @@
 <?php $title = "Log In";?>
 <?php $style = "login" ?>
+<?php $script = "script";?>
+
 <?php ob_start();?>
 
     <!-- login -->
 
     <div class="box">
-        <?php if ($error){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
+        <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
         <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
             <span id="header-text">Login</span>
             <div class="input-container">
-                <input id="login-ue" type="text" required name="login-ue" <?php if($username) {echo "value='" . $username . "'";}?> />
+                <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
                 <label for="login-ue" >Username / Email</label>
             </div>
             <div class="input-container">
@@ -36,7 +38,7 @@
         </div>
         <div id="form-bottom">
             <p>Don't have an account yet?</p>
-            <a id="sign-up-link" href="<?=BASE. "/index.php?action=linkTo&page=toSignUp"?>">Sign Up</a>
+            <a id="sign-up-link" href="<?=BASE. "/index.php?action=toSignup"?>">Sign Up</a>
         </div>
     </div>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

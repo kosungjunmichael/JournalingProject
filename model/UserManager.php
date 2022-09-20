@@ -9,7 +9,7 @@ class UserManager extends Manager{
         
         // google login
         if ($type === "google"){
-
+            $credentials = json_decode(json_encode($credentials), true);
             $inputUser = $credentials['email'];
             
             $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
