@@ -7,6 +7,7 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
   if ($check === false){
+    // session_start();
     toTimeline($_SESSION['uid']);
   } else {
     $error = $check['error'];
@@ -27,6 +28,21 @@ function login($data, $type){
     $username = $check['username'];
     require(ROOT . '/view/loginView.php');
   }
+}
+
+function displayMonths($numOfMonths = 5){
+  $months = array();
+  array_push($months,date('F'));
+  For ($i=1;$i<$numOfMonths;$i++){
+      array_push($months, Date('F', strtotime("-$i month")));
+  }
+  return $months;
+}
+
+function toTimeline($Unique_id){
+$entryManager = new EntryManager();
+$entries = $entryManager->getEntries($Unique_id);
+require(ROOT . '/view/timelineView.php');
 }
 
 function updateLastActive($uid){
@@ -50,12 +66,6 @@ function newEntry($data){
   }
 }
 
-function toTimeline($Unique_id){
-$entryManager = new EntryManager();
-$entries = $entryManager->getEntries($Unique_id);
-require(ROOT . '/view/timelineView.php');
-}
-
 function toSignup(){
   require(ROOT . '/view/signupView.php');
 }
@@ -70,6 +80,6 @@ function toLanding(){
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntries($entryId);
+    $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
     require(ROOT . '/view/viewEntryView.php');
 }
