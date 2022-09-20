@@ -7,8 +7,7 @@
 
 #view-entry-container {
     padding: 30px;
-    background-color: #1c1a19;
-    color: white;
+    color: var(--text-color-secondary);
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -28,12 +27,15 @@
 
 #view-entry-details > #entry-title {
     font-size: 32px;
+    color: var(--text-color-primary);
 }
 
 #view-entry-details > #details-row {
     display: flex;
     gap: 10px;
     align-items: center;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 #view-entry-details > #details-row > #entry-tags {
@@ -51,7 +53,7 @@
 
 .tag {
     padding: 6px 10px;
-    background-color: #C2C2C2;
+    background-color: var(--tag-bg);
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -79,7 +81,9 @@
 }
 
 #view-entry-edit > #view-entry-edited {
-    color: #EFEFEF;
+    color: var(--text-color-secondary);
+    font-size: 14px;
+    font-weight: 500;
 }
 
 #view-entry-photos {
@@ -103,7 +107,8 @@
 
 #view-entry-text-content {
     padding: 0 20px 20px 20px;
-    background-color: #2F2F2F;
+    background-color: var(--bg-secondary);
     border-radius: 15px;
     white-space: pre-line;
+    font-size: 15px;
 }

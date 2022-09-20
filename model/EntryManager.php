@@ -68,16 +68,16 @@ class EntryManager extends Manager{
         $req->closeCursor();
     }
 
-    // public function getEntries($usr_id){
-    //     $db = $this->dbConnect();
+    public function getEntry($entryId){
+        $db = $this->dbConnect();
 
-    //     $req = $db->prepare('SELECT title, text_content, last_edited, MONTH(last_edited) as month FROM entries e JOIN users u WHERE user_id = :usr_id ');
-    //     $req->execute(array(
-    //         'usr_id' => $usr_id
-    //     ));
-    //     $entries = $req->fetchAll(PDO::FETCH_ASSOC);
-    //     $req->closeCursor();
-    //     return $entries;
-    // }
+        $req = $db->prepare('SELECT * FROM entries WHERE u_id = :entryId');
+        $req->execute(array(
+            'entryId' => $entryId,
+        ));
+        $entryContent = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $entryContent;
+    }
 }
 

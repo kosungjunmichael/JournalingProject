@@ -72,6 +72,6 @@ function toLanding(){
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntries($entryId);
+    $entryContent = $entryManager->getEntry($entryId);
     require(ROOT . '/view/viewEntryView.php');
 }

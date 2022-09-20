@@ -1,10 +1,34 @@
-// This is js stuff
-
+// theme toggle event listener
 let themeToggle = document.querySelector('#theme-toggle-pill');
+let themeInner = document.querySelector('#theme-toggle-inner');
+let themeInput = document.querySelector('#theme-toggle-input');
 
-themeToggle.addEventListener('click', () => {
+// get and set theme
+const theme = localStorage.getItem("dear_diary_theme");
+console.log(theme);
+if (theme === null) {
+    // set data-theme to light as default
+    document.body.setAttribute('data-theme', 'light');
+} else if (theme !== null) {
+    document.body.setAttribute('data-theme', theme);
+    // move toggle if checked
+    if (themeInput.getAttribute('checked')) {
+        themeInner.classList.toggle('toggle-to-right');
+    }
+}
+
+const themeToggleListener = () => {
     // move (translate) theme-toggle-inner
-    document.querySelector('#theme-toggle-inner').classList.toggle('toggle-to-left');
-});
+    themeInner.classList.toggle('toggle-to-right');
+    const currentTheme = document.body.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        localStorage.setItem("dear_diary_theme", 'dark')
+        document.body.setAttribute('data-theme', 'dark');
 
-console.log('js working')
+    } else if (currentTheme === 'dark') {
+        localStorage.setItem("dear_diary_theme", 'light')
+        document.body.setAttribute('data-theme', 'light');
+    }
+}
+
+themeToggle.addEventListener('click', themeToggleListener);
