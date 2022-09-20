@@ -1,49 +1,60 @@
 @import url('../css/main.css');
 
 body{
-
     box-sizing: border-box;
     width: 100%;
+    text-decoration:none;
+    font-family:'Raleway';
+}
+
+.title{
+    font-size: 35px;
+    padding: 20px;
+    font-family:'Galey';
 }
 
 #timeline{
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
-    align-items: center;
-    /* justify-content: center; */
+    /* align-items: center; */
     width: calc(100% - 240px);
     overflow: scroll;
 }
 
-.monthContainer{
+.entryMonths{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    /* align-items: center; */
+    flex-direction: column;
 }
 
 .month{
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; */
     padding: 15px;
-    /* box-sizing: border-box; */
+    /* width: 100%; */
 }
 
+.monthContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
 
-.container{
-    width: 400px;
+.monthContainer a{
+    color: black;
+    text-decoration: none;
+}
+
+.entryContainer{
+    width: 330px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
     /* background-color: #2f2f2f; */
-    margin: 0px 10px;
+    margin: 10px;
 }
 
 
 h3, h5 ,p{
     margin: 4px 10px;
+    font-family: 'Galey';
 }
