@@ -15,19 +15,19 @@
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="./index.php?action=linkTo&page=toAlbum">
                     <i class='bx bx-photo-album' ></i>
                     <span>Album</span>
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="./index.php?action=linkTo&page=toCalendar">
                     <i class='bx bx-calendar' ></i>
                     <span>Calendar</span>
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="./index.php?action=linkTo&page=toMap">
                     <i class='bx bx-map' ></i>
                     <span>Map</span>
                 </a>
