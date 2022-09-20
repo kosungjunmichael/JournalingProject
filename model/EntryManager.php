@@ -61,9 +61,9 @@ class EntryManager extends Manager{
                 //     print_r($monthEntries->key);
                 // }
             }
-            echo "<pre>";
-            print_r($monthEntries);
-            echo "<pre>";
+            // echo "<pre>";
+            // print_r($monthEntries);
+            // echo "<pre>";
         return $monthEntries;
         $req->closeCursor();
     }

@@ -62,7 +62,10 @@ try {
         case "createEntry":
             createNewEntry();
             break;
-
+        
+        case "tolanding":
+            toLanding();
+            break;
         case "entries":
             if (isset($_REQUEST['type'])) {
                 $type = $_REQUEST['type'];
