@@ -11,7 +11,7 @@
         </a>
         <ul id="sidebar-navlinks">
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toTimeline">
+                <a class="sidebar-link" href="./index.php?action=sidebarTimeline">
                     <i class='bx bx-time' ></i>
                     <span>Timeline</span>
                 </a>

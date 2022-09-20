@@ -55,6 +55,10 @@ try {
             toLogin();
             break;
 
+        case "sidebarTimeline":
+            toTimeline($_SESSION['uid']);
+            break;
+
         case "toLanding":
             toLanding();
             break;
@@ -66,6 +70,7 @@ try {
         case "tolanding":
             toLanding();
             break;
+
         case "entries":
             if (isset($_REQUEST['type'])) {
                 $type = $_REQUEST['type'];
@@ -95,6 +100,7 @@ try {
                 // redirect to error page
             }
             break;
+
         default:
             // show login as default
             if (isset($_SESSION['usr'])){
