@@ -12,15 +12,19 @@ if (theme === null) {
 } else if (theme !== null) {
     document.body.setAttribute('data-theme', theme);
     // move toggle if checked
-    if (themeInput.getAttribute('checked')) {
+    // if (themeInput.getAttribute('checked')) {
+    if (theme === 'dark') {
+        themeInput.setAttribute('checked', true);
         themeInner.classList.toggle('toggle-to-right');
     }
 }
 
-const themeToggleListener = () => {
+const themeChangeListener = () => {
     // move (translate) theme-toggle-inner
     themeInner.classList.toggle('toggle-to-right');
     const currentTheme = document.body.getAttribute('data-theme');
+    // set theme in localStorage
+    // set data-theme attribute of HTML body element
     if (currentTheme === 'light') {
         localStorage.setItem("dear_diary_theme", 'dark')
         document.body.setAttribute('data-theme', 'dark');
@@ -31,4 +35,4 @@ const themeToggleListener = () => {
     }
 }
 
-themeToggle.addEventListener('click', themeToggleListener);
+themeInput.addEventListener('change', themeChangeListener);

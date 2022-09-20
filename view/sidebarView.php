@@ -50,9 +50,9 @@
         <div id="theme-toggle">
             <i class='bx bx-sun'></i>
             <input id="theme-toggle-input" type="checkbox">
-            <div id="theme-toggle-pill">
+            <label id="theme-toggle-pill" for="theme-toggle-input">
                 <span id="theme-toggle-inner"></span>
-            </div>
+            </label>
             <i class='bx bx-moon' ></i>
         </div>
     </div>
