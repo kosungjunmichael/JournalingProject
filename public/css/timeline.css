@@ -10,6 +10,7 @@ body{
 .title{
     font-size: 35px;
     padding: 20px;
+    font-weight: 900;
     font-family:'Galey';
 }
 
@@ -32,6 +33,13 @@ body{
     /* width: 100%; */
 }
 
+.monthName {
+    font-family: 'Galey';
+    font-weight: 700;
+    font-size: 30px;
+    margin: 10px;
+}
+
 .monthContainer{
     display: flex;
     width: 100%;
@@ -45,7 +53,7 @@ body{
 }
 
 .entryContainer{
-    width: 330px;
+    width: 450px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
@@ -53,6 +61,38 @@ body{
     margin: 10px;
 }
 
+.entryTitle {
+    font-size: 30px;
+    margin: 8px;
+    font-family:'Galey';
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.entryContent{
+    margin: 8px;
+    overflow:hidden;
+    line-height: 1.2rem;
+    max-height: 4.8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+    height: 4.8rem;
+}
+
+.entryTags{
+    margin: 5px 8px;
+    font-weight:700;
+}
+
+.entryDate{
+    margin: 5px 8px;
+    font-weight:700;
+}
 
 h3, h5 ,p{
     margin: 4px 10px;

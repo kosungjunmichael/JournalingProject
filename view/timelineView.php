@@ -17,27 +17,30 @@
 
     <div class="title">Timeline</div>
     
-    <div class="entryMonths">
-        <?php
-        // number of months from the current month to display
-        $numOfMonths = 5;
-        $monthsToDisplay = displayMonths($numOfMonths);
-        foreach($monthsToDisplay as $month){
-            // check if there are entries from that month
-            if (array_key_exists($month, $entries)){
-                echo "<div class='month'>";
-                echo "<h3>$month</h3>";
-                echo "<div class='monthContainer'>";
-                foreach($entries["$month"] as $entry){
-                    include "timeTempView.php";
+        <div class="entryMonths">
+            <?php
+            // number of months from the current month to display
+            $numOfMonths = 5;
+            $monthsToDisplay = displayMonths($numOfMonths);
+            foreach($monthsToDisplay as $month){
+                // check if there are entries from that month
+                if (array_key_exists($month, $entries)){
+            ?>
+                    <div class="month">
+                        <div class="monthName"><?=$month." ".$entries["$month"][0]['year']?></div>
+                        <div class="monthContainer">
+                            <?php
+                            foreach($entries["$month"] as $entry){
+                                include "timeTempView.php";
+                            }
+                            ?>
+                        </div>
+                    </div>
+            <?php
                 }
-                echo "</div>";
-                echo "</div>";
             }
-        }
-        ?>
-    </div>
-    
+            ?>
+        </div>
     </div>
 </div>
 
