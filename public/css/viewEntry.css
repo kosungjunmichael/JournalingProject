@@ -78,6 +78,15 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    transition: background-color 0.3s;
+}
+
+#view-entry-edit > #edit-btn:hover{
+    background-color: var(--primary-light);
+}
+
+#view-entry-edit > #edit-btn:active {
+    background-color: var(--primary-dark);
 }
 
 #view-entry-edit > #view-entry-edited {

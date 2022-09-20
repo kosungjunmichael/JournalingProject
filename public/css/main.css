@@ -2,31 +2,16 @@
 
 :root {
     /*-----COLORS-----*/
-    --light-primary: #FFF;
-    --light-secondary: rgb(224, 224, 224);
-    --dark-primary: #000;
-    --dark-secondary: rgb(33, 33, 33);
-    --grey-primary: rgb(66, 66, 66);
-    --grey-light: rgb(103, 103, 103);
-    --grey-dark: rgb(55, 55, 55);
-    --purple-primary: #7F00FF;
-    --purple-secondary:#9b40f6;
-    /* -------------- */
-    --border-radius:15px;
-    --text-color: #FFF;
-    --bg-light: #FFF;
-    --bg-dark: #1c1a19;
-}
-
-body[data-theme='dark'] {
-    --bg-primary: #161819;
-    --bg-secondary: #2F2F2F;
-    --text-color-primary: #FFFFFF;
-    --text-color-secondary: #F6F6F6;
-    --sidebar-logo-title: #FFFFFF;
-    --sidebar-link: #FFFFFF;
-    --theme-toggle-pill: #3B3D3E;
-    --tag-bg: #F6F6F6;
+    --primary: #9673F5;
+    --primary-light: #CDBCFC;
+    --primary-dark: #7643FF;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey-superdark: #161819;
+    --grey-dark: #484848;
+    --grey: #3B3D3E;
+    --grey-light: #868686;
+    --grey-superlight: #F6F6F6;
 }
 
 body[data-theme='light'] {
@@ -37,6 +22,17 @@ body[data-theme='light'] {
     --sidebar-logo-title: #9673F5;
     --sidebar-link: #868686;
     --theme-toggle-pill: #FFF;
+    --tag-bg: #F6F6F6;
+}
+
+body[data-theme='dark'] {
+    --bg-primary: #161819;
+    --bg-secondary: #2F2F2F;
+    --text-color-primary: #FFFFFF;
+    --text-color-secondary: #F6F6F6;
+    --sidebar-logo-title: #FFFFFF;
+    --sidebar-link: #FFFFFF;
+    --theme-toggle-pill: #3B3D3E;
     --tag-bg: #F6F6F6;
 }
 
@@ -156,11 +152,15 @@ body{
     border-radius: 50px;
     padding: 10px;
     font-weight: 600;
-    transition: filter 0.3s;
+    transition: background-color 0.3s;
 }
 
 #create-entry-btn:hover {
-    filter: brightness(0.9);
+    background-color: var(--primary-light);
+}
+
+#create-entry-btn:active {
+    background-color: var(--primary-dark);
 }
 
 #sidebar-bottom {
@@ -191,6 +191,7 @@ body{
     margin: 0 10px;
     display: flex;
     justify-content: flex-start;
+    cursor: pointer;
 }
 
 #theme-toggle-pill > #theme-toggle-inner {
