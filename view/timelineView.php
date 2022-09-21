@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<?php $script = "timeline";?>
+<?php $script = "script";?>
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
@@ -16,27 +16,77 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
+    <div class="switchToggle">
+        <?php 
+            if ($view === "weekly") {
+                ?>
+                <div class="group">Weekly</div>
+                <a href="index.php?action=toggleView&view=month">
+                    <div class="group">Monthly</div>
+                </a>
+                <?php
+            } else if ($view === "monthly") {
+                ?>
+                <a href="index.php?action=toggleView&view=week">
+                    <div class="group">Weekly</div>
+                </a>
+                <div class="group">Monthly</div>
+                <?php
+
+            }
+        ?>
+    </div>
     
         <div class="entryMonths">
             <?php
-            // number of months from the current month to display
-            $numOfMonths = 5;
-            $monthsToDisplay = displayMonths($numOfMonths);
-            foreach($monthsToDisplay as $month){
-                // check if there are entries from that month
-                if (array_key_exists($month, $entries)){
+            // echo "<pre>";
+            // print_r($entries);
+            // echo "<pre>";
+            if ($view === "monthly") {
+                // number of months from the current month to display
+                $numOfMonths = 5;
+                $monthsToDisplay = displayMonths($numOfMonths);
+                foreach($monthsToDisplay as $month){
+                    // check if there are entries from that month
+                    if (array_key_exists($month, $entries)){
             ?>
-                    <div class="month">
-                        <div class="monthName"><?=$month." ".$entries["$month"][0]['year']?></div>
-                        <div class="monthContainer">
-                            <?php
-                            foreach($entries["$month"] as $entry){
-                                include "timeTempView.php";
-                            }
-                            ?>
+                        <div class="month">
+                            <div class="monthName"><?=$month." ".$entries["$month"][0]['year']?></div>
+                            <div class="monthContainer">
+                                <?php
+                                foreach($entries["$month"] as $entry){
+                                    include "timeTempView.php";
+                                }
+                                ?>
+                            </div>
                         </div>
-                    </div>
             <?php
+                    }
+                }
+            } else if ($view === "weekly") {
+                $weeksToDisplay = displayDaysInWeek();
+                foreach($weeksToDisplay as $weekDay){
+                    // check if there are entries from that month
+                    if (array_key_exists($weekDay, $entries)){
+            ?>
+                        <div class="month">
+                            <div class="monthName"><?=$weekDay?></div>
+                            <div class="monthContainer">
+                                <?php
+                                foreach($entries["$weekDay"] as $entry){
+                                    include "timeTempView.php";
+                                }
+                                ?>
+                            </div>
+                        </div>
+            <?php
+                    } else {
+            ?>
+                        <div class="month">
+                            <div class="monthName"><?=$weekDay?></div>
+                        </div>
+            <?php
+                    }
                 }
             }
             ?>

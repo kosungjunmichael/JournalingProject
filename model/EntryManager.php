@@ -48,17 +48,16 @@ class EntryManager extends Manager{
         $thisMonth = date('F');
         // current week number for the year
         $thisWeek = date('W');
-        $req = $db->prepare('SELECT 
-            u_id
-            , title
-            , text_content
-            , last_edited
-            , DAYNAME(last_edited) as dayname
-            , WEEK(last_edited) as week
-            , DAY(last_edited) as day
-            , MONTHNAME(last_edited) as month
-            , YEAR(last_edited) as year
-            , location
+        $req = $db->prepare('SELECT
+        u_id
+        , title
+        , text_content
+        , last_edited
+        , DAYNAME(last_edited) as dayname
+        , WEEK(last_edited) as week
+        , DAY(last_edited) as day
+        , MONTHNAME(last_edited) as month
+        , YEAR(last_edited) as year
         FROM entries WHERE user_id = :userId GROUP BY last_edited');
         $req->execute(array(
             'userId' => $userId,
