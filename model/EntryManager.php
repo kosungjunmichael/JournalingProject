@@ -57,12 +57,17 @@ class EntryManager extends Manager{
         ));
         $monthEntries = array();
         while($entryContent = $req->fetch(PDO::FETCH_ASSOC)){
-            if (array_key_exists($entryContent['month'], $monthEntries)){
-                array_push($monthEntries[$entryContent['month']], $entryContent);
-                } else {
-                    $monthEntries[$entryContent['month']] = array();
-                    array_push($monthEntries[$entryContent['month']], $entryContent);
-                }
+                // if ($entryGroup === "months"){
+                    if (array_key_exists($entryContent['month'], $monthEntries)){
+                        array_push($monthEntries[$entryContent['month']], $entryContent);
+                        } else {
+                            $monthEntries[$entryContent['month']] = array();
+                            array_push($monthEntries[$entryContent['month']], $entryContent);
+                        }
+
+                // } else if (){
+
+                // }
             }
         return $monthEntries;
         $req->closeCursor();

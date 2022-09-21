@@ -16,6 +16,8 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
+
+    <div class="group" onclick="">Monthly</div>
     
         <div class="entryMonths">
             <?php
