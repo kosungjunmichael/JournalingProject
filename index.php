@@ -14,6 +14,9 @@ if (isset($_SESSION['uid'])){
     updateLastActive($_SESSION['uid']);
 }
 
+// for the weekly / monthly toggle
+$counter = 1;
+
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
@@ -55,8 +58,17 @@ try {
             toLogin();
             break;
 
+        case "toggleView":
+            $counter++;
+            if ($_GET['view'] === "week"){
+                toTimeline($_SESSION['uid'], "weekly");
+            } else if ($_GET['view'] === "month") {
+                toTimeline($_SESSION['uid'], "monthly");
+            }
+            break;
+
         case "toTimeline":
-            toTimeline($_SESSION['uid']);
+            toTimeline($_SESSION['uid'], "monthly");
             break;
 
         case "toLanding":
@@ -92,7 +104,7 @@ try {
         default:
             // show login as default
             if (isset($_SESSION['uid'])){
-                toTimeline($_SESSION['uid']);
+                toTimeline($_SESSION['uid'], "monthly");
             } else {
                 toLogin();
             }
