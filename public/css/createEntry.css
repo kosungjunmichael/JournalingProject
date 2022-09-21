@@ -136,18 +136,51 @@ body{
 input[type="file"]{
     display: none;
 }
-
-.entry-photo{
-    text-align: center;
+.plus-sign{
+    left: 31%;
+    font-size: 65;
+    position: absolute;
+    top: -64px;
 }
 
-.entry-photo p{
-    font-size: 40px;
+.add-photo{
+    position: absolute;
+    top: 54px;
+    left: 18px;
 }
 
+
 .entry-photo{
+    position: relative;
     width:100px;
-    height:90px;
+    height:100px;
+    text-align: center;
     border:3px dashed white;
     border-radius: 7px;
+    background-image: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.entry-upload-photo{
+    max-width: 100vw;
+    flex-wrap: wrap;
+    display: flex;
+    gap:20px;
+}
+.entry-upload-photo img{
+    width:100px;
+    height:100px;
+}
+
+.chosenImg {
+    width:100px;
+    height:100px;
+    text-align: center;
+    /* border:3px dashed white; */
+    border-radius: 7px;
+    background-image: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
