@@ -42,6 +42,9 @@
             // echo "<pre>";
             // print_r($entries);
             // echo "<pre>";
+            if ($entries === null){
+                $entries = array();
+            }
             if ($view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;

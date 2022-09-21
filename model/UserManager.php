@@ -129,7 +129,6 @@ class UserManager extends Manager{
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
-                // header ('location: ./index.php?action=timeline&type=registered');
                 return false;
             } else {
                 // user already exists, sign in with google credentials, will return false
@@ -141,7 +140,6 @@ class UserManager extends Manager{
             // if user doesn't exist, create user in database
             $existingUser = $this->checkRegularUserExist($data);
             if (count($existingUser) == 0) {
-                $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
 //                if (empty($data['sign-u']) OR
 //                empty($data['sign-e']) OR
@@ -165,7 +163,6 @@ class UserManager extends Manager{
                 $req->execute();
 
                 // create session variable for user login/signup
-                session_start();
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type

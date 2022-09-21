@@ -90,7 +90,7 @@ try {
             $entryContent->entry = $_REQUEST['entry'];
             $entryContent->userID = $_SESSION['uid'];
             // print_r($entryContent);
-            // newEntry($entryContent);
+            newEntry($entryContent);
             // echo "<pre>";
             // print_r($_FILES);
             // echo "</pre>";
