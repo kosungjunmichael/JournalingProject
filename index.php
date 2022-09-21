@@ -93,8 +93,9 @@ try {
             // show login as default
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid']);
+            } else {
+                toLogin();
             }
-            toLogin();
             break;
     }
 

@@ -74,14 +74,20 @@ body{
     margin: 8px;
     overflow:hidden;
     line-height: 1.2rem;
-    max-height: 4.8rem;
+    max-height: 6rem;
     -webkit-box-orient: vertical;
     display: block;
     display: -webkit-box;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
-    height: 4.8rem;
+    -webkit-line-clamp: 5;
+    height: 6rem;
+}
+
+.entryInfo {
+    display: flex;
+    padding:5px;
+    justify-content: space-between;
 }
 
 .entryTags{
