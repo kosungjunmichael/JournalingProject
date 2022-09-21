@@ -62,7 +62,6 @@ class EntryManager extends Manager{
         $req->execute(array(
             'userId' => $userId,
         ));
-        while($entryContent = $req->fetch(PDO::FETCH_ASSOC)){
             if ($entryGroup === 'all') {
                 return $req->fetchAll(PDO::FETCH_ASSOC);
             } else {
@@ -100,7 +99,6 @@ class EntryManager extends Manager{
                 }
                 return $entriesDisplay;
             }
-        }
         $req->closeCursor();
     }
     
