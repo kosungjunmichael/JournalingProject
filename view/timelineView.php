@@ -37,7 +37,7 @@
         ?>
     </div>
     
-        <div class="entryMonths">
+        <div class="entryDisplay">
             <?php
             // echo "<pre>";
             // print_r($entries);
@@ -66,12 +66,12 @@
             } else if ($view === "weekly") {
                 $weeksToDisplay = displayDaysInWeek();
                 foreach($weeksToDisplay as $weekDay){
-                    // check if there are entries from that month
+                    // check if there are days in that week
                     if (array_key_exists($weekDay, $entries)){
             ?>
-                        <div class="month">
-                            <div class="monthName"><?=$weekDay?></div>
-                            <div class="monthContainer">
+                        <div class="week">
+                            <div class="weekName"><?=$weekDay?></div>
+                            <div class="weekContainer">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
                                     include "timeTempView.php";
@@ -82,8 +82,8 @@
             <?php
                     } else {
             ?>
-                        <div class="month">
-                            <div class="monthName"><?=$weekDay?></div>
+                        <div class="week">
+                            <div class="weekName"><?=$weekDay?></div>
                         </div>
             <?php
                     }

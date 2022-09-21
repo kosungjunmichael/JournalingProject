@@ -62,22 +62,31 @@ class EntryManager extends Manager{
         $req->execute(array(
             'userId' => $userId,
         ));
+        // empty array to store the return content
         $entriesDisplay = array();
         while($entryContent = $req->fetch(PDO::FETCH_ASSOC)){
+            // if Monthly
             if ($entryGroup === "monthly"){
+                // for this year
                 if ($entryContent['year'] == $thisYear){
+                    // if the keyname exists in the $entriesDisplay
                     if (array_key_exists($entryContent['month'], $entriesDisplay)){
+                        // push the entryContent into the key
                         array_push($entriesDisplay[$entryContent['month']], $entryContent);
                     } else {
+                        // create the array in the key & push the entryContent into the key
                         $entriesDisplay[$entryContent['month']] = array();
                         array_push($entriesDisplay[$entryContent['month']], $entryContent);
                     }
                 }
             } else if ($entryGroup === "weekly"){
+                // for this year & month
                 if ($entryContent['year'] == $thisYear AND $entryContent['month'] == $thisMonth AND $entryContent['week'] == $thisWeek){
                     if (array_key_exists($entryContent['dayname'], $entriesDisplay)){
+                        // push the entryContent into the key
                         array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
                     } else {
+                        // create the array in the key & push the entryContent into the key
                         $entriesDisplay[$entryContent['dayname']] = array();
                         array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
                     }
