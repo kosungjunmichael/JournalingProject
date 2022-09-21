@@ -75,7 +75,6 @@ class EntryManager extends Manager{
     
     public function getEntry($entryId, $userId){
         $db = $this->dbConnect();
-
         $req = $db->prepare('SELECT title
         , text_content
         , location
