@@ -67,9 +67,9 @@ class EntryManager extends Manager{
         while($entryContent = $req->fetch(PDO::FETCH_ASSOC)){
             // if Monthly
             if ($entryGroup === "monthly"){
-                // for this year
+                // for current year
                 if ($entryContent['year'] == $thisYear){
-                    // if the keyname exists in the $entriesDisplay
+                    // check if the keyname exists in the $entriesDisplay
                     if (array_key_exists($entryContent['month'], $entriesDisplay)){
                         // push the entryContent into the key
                         array_push($entriesDisplay[$entryContent['month']], $entryContent);
@@ -80,8 +80,9 @@ class EntryManager extends Manager{
                     }
                 }
             } else if ($entryGroup === "weekly"){
-                // for this year & month
+                // for current year & month
                 if ($entryContent['year'] == $thisYear AND $entryContent['month'] == $thisMonth AND $entryContent['week'] == $thisWeek){
+                    // check if the keyname exists in the $entriesDisplay
                     if (array_key_exists($entryContent['dayname'], $entriesDisplay)){
                         // push the entryContent into the key
                         array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
