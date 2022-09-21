@@ -48,7 +48,7 @@ class EntryManager extends Manager{
         $thisMonth = date('F');
         // current week number for the year
         $thisWeek = date('W');
-        $req = $db->prepare('SELECT 
+        $req = $db->prepare('SELECT
         u_id
         , title
         , text_content
@@ -62,29 +62,35 @@ class EntryManager extends Manager{
         $req->execute(array(
             'userId' => $userId,
         ));
-        $entriesDisplay = array();
-        while($entryContent = $req->fetch(PDO::FETCH_ASSOC)){
-            if ($entryGroup === "monthly"){
-                if ($entryContent['year'] == $thisYear){
-                    if (array_key_exists($entryContent['month'], $entriesDisplay)){
-                        array_push($entriesDisplay[$entryContent['month']], $entryContent);
-                    } else {
-                        $entriesDisplay[$entryContent['month']] = array();
-                        array_push($entriesDisplay[$entryContent['month']], $entryContent);
+
+        if ($entryGroup === 'all') {
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $entriesDisplay = array();
+            while ($entryContent = $req->fetch(PDO::FETCH_ASSOC)) {
+                if ($entryGroup === "monthly") {
+                    if ($entryContent['year'] == $thisYear) {
+                        if (array_key_exists($entryContent['month'], $entriesDisplay)) {
+                            array_push($entriesDisplay[$entryContent['month']], $entryContent);
+                        } else {
+                            $entriesDisplay[$entryContent['month']] = array();
+                            array_push($entriesDisplay[$entryContent['month']], $entryContent);
+                        }
                     }
-                }
-            } else if ($entryGroup === "weekly"){
-                if ($entryContent['year'] == $thisYear AND $entryContent['month'] == $thisMonth AND $entryContent['week'] == $thisWeek){
-                    if (array_key_exists($entryContent['dayname'], $entriesDisplay)){
-                        array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
-                    } else {
-                        $entriesDisplay[$entryContent['dayname']] = array();
-                        array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
+                } else if ($entryGroup === "weekly") {
+                    if ($entryContent['year'] == $thisYear and $entryContent['month'] == $thisMonth and $entryContent['week'] == $thisWeek) {
+                        if (array_key_exists($entryContent['dayname'], $entriesDisplay)) {
+                            array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
+                        } else {
+                            $entriesDisplay[$entryContent['dayname']] = array();
+                            array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
+                        }
                     }
                 }
             }
+            return $entriesDisplay;
         }
-        return $entriesDisplay;
+
         $req->closeCursor();
     }
     

@@ -71,6 +71,10 @@ try {
             toTimeline($_SESSION['uid'], "monthly");
             break;
 
+        case "toMap":
+            toMap($_SESSION['uid']);
+            break;
+
         case "toLanding":
             toLanding();
             break;

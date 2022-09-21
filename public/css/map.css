@@ -1,0 +1,14 @@
+@import url('../css/main.css');
+
+#map-view-container {
+    height: calc(100vh - 41px);
+    width: 100%;
+    padding: 20px;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 20px;
+}
