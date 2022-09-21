@@ -1,6 +1,5 @@
 <?php $title = "Entry Title";?>
 <?php $style = "viewEntry";?>
-<?php $script = "script";?>
 
 <?php //echo "<pre>"?>
 <?php //print_r($entryContent)?>

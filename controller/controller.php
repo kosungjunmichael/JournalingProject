@@ -59,6 +59,10 @@ function toTimeline($Unique_id, $entryGroup){
   require(ROOT . '/view/timelineView.php');
 }
 
+function toMap($uid){
+    require(ROOT . '/view/mapView.php');
+}
+
 function updateLastActive($uid){
   $userManager = new UserManager();
   $userManager->updateLastActive($uid);
@@ -67,6 +71,8 @@ function updateLastActive($uid){
 function createNewEntry(){
   require(ROOT . '/view/createEntryView.php');
 }
+
+
 
 function newEntry($data){
   $entryManager = new EntryManager();
