@@ -30,10 +30,19 @@ function login($data, $type){
   }
 }
 
+function displayMonths($numOfMonths = 5){
+  $months = array();
+  array_push($months,date('F'));
+  For ($i=1;$i<$numOfMonths;$i++){
+      array_push($months, Date('F', strtotime("-$i month")));
+  }
+  return $months;
+}
+
 function toTimeline($Unique_id){
-$entryManager = new EntryManager();
-$entries = $entryManager->getEntries($Unique_id);
-require(ROOT . '/view/timelineView.php');
+  $entryManager = new EntryManager();
+  $entries = $entryManager->getEntries($Unique_id);
+  require(ROOT . '/view/timelineView.php');
 }
 
 function updateLastActive($uid){
@@ -50,13 +59,14 @@ function newEntry($data){
   $check = $entryManager->createEntry($data);
   if ($check){
     $error = "Entry Submitted!";
-    toTimeline($check);
+    // require(ROOT . '/index.php?action=sidebarTimeline');
+    // toTimeline($check);
+    header("Location: index.php?action=toTimeline");
   } else {
     $error = "Not a valid Entry";
     require(ROOT . '/view/createEntryView.php');
   }
 }
-
 
 function toSignup(){
   require(ROOT . '/view/signupView.php');
@@ -72,6 +82,6 @@ function toLanding(){
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntries($entryId);
+    $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
     require(ROOT . '/view/viewEntryView.php');
 }

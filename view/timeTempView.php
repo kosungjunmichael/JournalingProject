@@ -1,12 +1,12 @@
-
-
-
-    <div class="month <?=$entry['month']?>">
-        <div class="container">
-            <h3><?= htmlspecialchars($entry['title']) ?></h3>
-            <p><?= htmlspecialchars($entry['text_content']) ?></p>
-            <h5>hashtags</h5>
-            <h5> <?= htmlspecialchars($entry['last_edited']) ?> </h5>
+    <a href="<?= BASE . "/index.php?action=viewEntry&id=". htmlspecialchars($entry['u_id'])?>">
+        <div class="entryContainer">
+            <div class="entryTitle" ><?= htmlspecialchars($entry['title']) ?></div>
+            <div class="entryContent"><?= htmlspecialchars($entry['text_content']) ?></div>
+            <div class="entryInfo">
+                <div class="entryTags">hashtags</div>
+                <div class="entryDate"> <?= htmlspecialchars($entry['month']), " ",htmlspecialchars($entry['day']), ", ", htmlspecialchars($entry['year'])?> </div>
+            </div>
         </div>
-    </div>
+    </a>
+
 
