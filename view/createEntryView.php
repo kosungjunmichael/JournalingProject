@@ -14,7 +14,7 @@ if (!isset($_SESSION['uid'])){
 <?php include("sidebarView.php");?>
 
 <div class="entry-box">
-    <form action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post" class="form-container">
+    <form action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post" class="form-container" enctype="multipart/form-data">
         <h2>CREATE A NEW ENTRY</h2>
         <div class="entry-title">
             <input type="text" id="title" name="title" placeholder="Entry Title"/>
@@ -38,16 +38,12 @@ if (!isset($_SESSION['uid'])){
             <textarea type="text" id="entry" name="entry" placeholder="Start Writing..."></textarea>
         </div>
 
-        <div class="entry-upload-photo">
-        </div>
-        
         <div class="entry-bottom">
-            <div class="entry-photo">
-                <input type="file" id="file" accept="image/*"/>
-                <label for="file"><p>+</p>Add photo</label>
+            <div class="entry-upload-photo">
             </div>
+            <?php include("uploadImageView.php");?>
             <div class="entry-submit">
-                <input type="submit"/>
+                <input type="submit" name="submit"/>
             </div>
         </div>
     </form>

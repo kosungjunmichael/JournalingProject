@@ -54,6 +54,8 @@ function createNewEntry(){
   require(ROOT . '/view/createEntryView.php');
 }
 
+
+
 function newEntry($data){
   $entryManager = new EntryManager();
   $check = $entryManager->createEntry($data);
