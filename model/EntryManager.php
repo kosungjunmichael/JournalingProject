@@ -83,7 +83,7 @@ class EntryManager extends Manager{
                             }
                         }
                     } else if ($entryGroup === "weekly") {
-                        // for current year & month    
+                        // for current year & month & weeknumber
                         if ($entryContent['year'] == $thisYear and $entryContent['month'] == $thisMonth and $entryContent['week'] == $thisWeek) {
                             // check if the keyname exists in the $entriesDisplay
                             if (array_key_exists($entryContent['dayname'], $entriesDisplay)) {
@@ -97,7 +97,7 @@ class EntryManager extends Manager{
                         }
                     }
                 }
-                return $entriesDisplay;
+            return $entriesDisplay;
             }
         $req->closeCursor();
     }

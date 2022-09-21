@@ -39,6 +39,7 @@
     
         <div class="entryDisplay">
             <?php
+            // TODO: if problem uncomment the bottom code
             // echo "<pre>";
             // print_r($entries);
             // echo "<pre>";
