@@ -45,6 +45,10 @@ function toTimeline($Unique_id){
   require(ROOT . '/view/timelineView.php');
 }
 
+function toMap($uid){
+    require(ROOT . '/view/mapView.php');
+}
+
 function updateLastActive($uid){
   $userManager = new UserManager();
   $userManager->updateLastActive($uid);
