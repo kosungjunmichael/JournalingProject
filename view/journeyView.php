@@ -95,7 +95,7 @@
                     <div class="jr-feature-container">
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/playstore_icon.png" 
+                                <img src="./public/images/static/playstore_icon.png" 
                                 alt="playstore icon">
                             </div>
                             <div class="list-item-content">
@@ -106,7 +106,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/apple_icon.png" 
+                                <img src="./public/images/static/apple_icon.png" 
                                     alt="apple icon">
                             </div>
                             <div class="list-item-content">
@@ -117,7 +117,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/trophy_icon.png" 
+                                <img src="./public/images/static/trophy_icon.png" 
                                     alt="trophy icon">
                             </div> 
                             <div class="list-item-content">
@@ -128,7 +128,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/android_icon.png" 
+                                <img src="./public/images/static/android_icon.png" 
                                     alt="android icon">
                             </div>
                             <div class="list-item-content">
@@ -139,7 +139,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/ios_icon.png" 
+                                <img src="./public/images/static/ios_icon.png" 
                                     alt="ios icon">
                             </div> 
                             <div class="list-item-content">
@@ -150,7 +150,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/feature_icon.png" 
+                                <img src="./public/images/static/feature_icon.png" 
                                     alt="feature icon">
                             </div>
                             <div class="list-item-content">
@@ -272,10 +272,11 @@
                             </div>
                         </div>
                         <div class="twitter-content">
-                            <p>
+                            <p class="tweet-content">
                                 <a href="#">
                                     @deardiaryapp
                                 </a>
+                                2 years to the day since downloading Dear<br> Diary. 730 entries & no days missed!
                             </p>
                         </div>
                     </div>
@@ -297,7 +298,13 @@
                             </div>
                         </div>
                         <div class="twitter-content">
-                            <p>
+                            <p class="tweet-content">
+                                <a href="#">
+                                    @deardiaryapp
+                                </a>
+                                New to Journaling! Would love some ideas for<br> what topics and templates
+                                 you all have created, what tags do<br> you all find useful? Just looking
+                                  for ideas to build my journal!<br> Thanks
                             </p>
                         </div>
                     </div>
@@ -321,7 +328,9 @@
                             </div>
                         </div>
                         <div class="twitter-content">
-                            <p>
+                            <p class="tweet-content">
+                                With 20 minutes left in the day, I kept my <a href="#">@deardiaryapp</a><br>
+                                writing streak alive. 1,422 days and counting.
                             </p>
                         </div>
                     </div>
@@ -343,7 +352,8 @@
                             </div>
                         </div>
                         <div class="twitter-content">
-                            <p>
+                            <p class="tweet-content">
+                                Damn <a href="#">@deardiaryapp</a> that text feature is amazing!
                             </p>
                         </div>
                     </div>

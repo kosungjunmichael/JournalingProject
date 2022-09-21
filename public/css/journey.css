@@ -418,3 +418,6 @@ footer a{
 .twitter-content{
     margin-top: 12px;
 }
+.twitter-content p{
+    color:black;
+}

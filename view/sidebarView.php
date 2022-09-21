@@ -3,7 +3,7 @@
     <div id="sidebar-top">
         <a href="<?=BASE."/index.php?action=toLanding"?>">
             <div id="logo-container">
-                <img id="logo-img" src="<?=BASE."/public/images/DearDiaryLogoDark.png"?>" alt="logo">
+                <img id="logo-img" src="<?=BASE."/public/images/static/DearDiaryLogoDark.png"?>" alt="logo">
                 <div id="logo-title">
                     Dear Diary
                 </div>

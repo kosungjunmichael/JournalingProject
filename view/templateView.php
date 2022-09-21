@@ -12,7 +12,7 @@
     <script defer src=" <?= BASE . "/public/js/$script.js"; ?> "></script>
     <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
     <title><?=$title?></title>
-    <link rel="icon" href="../public/images/logo.png">
+    <link rel="icon" href="../public/images/static/logo.png">
     <!--    Phosphor Icons Link -->
     <script src="https://unpkg.com/phosphor-icons"></script>
 </head>
