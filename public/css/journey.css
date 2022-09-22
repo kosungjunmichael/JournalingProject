@@ -263,6 +263,149 @@ footer a{
 /* 3rd page */
 /* -------- */
 
+
+
+
+
+/* LOGIN */
+
+#header-text {
+	color:#fff;	
+	text-transform:uppercase;
+    font-weight: bolder;
+    font-size: 23px;
+    margin: 0 0 30px 0;
+    display: block;
+    text-align: center;
+}
+#login-error {
+    display: inline-block;
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.box{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+    background-color: #2f2f2f;
+	border-radius: 15px;
+	padding: 30px;
+    min-width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-container{
+    width: 100%;
+	position:relative;
+	margin-bottom:25px;
+}
+
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#fff;	
+    /* pointer-event:none; */
+	transition: all 0.5s ease-in-out;
+}
+
+.input-container input{ 
+    border:0;
+    border-bottom:1px solid #555;  
+    background:transparent;
+    width:100%;
+    padding:8px 0 5px 0;
+    font-size:16px;
+    color:#fff;
+}
+
+.input-container input:focus{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid rgb(123, 0, 255);	
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+    top:-12px;
+    font-size:11px;
+    color: lightgrey;
+}
+
+#login-btn{
+    width: 100%;
+	color:#fff;
+	background-color:#7F00FF;
+	outline: none;
+    border: 0;
+    color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	margin: 20px 0 10px 0;
+	border-radius:25px;
+	cursor:pointer;
+	position:relative;
+    height: 39px;
+}
+#container{
+    margin-top: 8px;
+}
+
+#or-separator {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.g_id_signin {
+    display: flex;
+    justify-content: center;
+}
+
+#form-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+#form-bottom > p {
+    color: white;
+}
+
+#form-bottom > #sign-up-link{
+    font-weight: 600;
+    margin: 10px 20px;
+    color: #7F00FF;
+    text-decoration: none;
+}
+
+
+
+
+/* =============== */
+
+.close {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.username, .password,
 .note-container{
     display: flex;
     flex-direction: column;
@@ -395,6 +538,42 @@ footer a{
     border-radius: 25px;
     margin-right: 5px;
 }
+
+.login, .signup {
+    padding: 6px 20px;
+    border-radius: 20px;
+    background: none;
+    border: 2px solid #fcfcfc;
+    color: #ffffff;
+    font-weight: bold;
+    transition: all 0.5s;
+    margin-top: 1em;
+    width: 100px;
+}
+.login:hover {
+    background: #af00fa;
+    color: #fff;
+}
+
+#login, #signup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 315px;
+    z-index: 1000;
+}
+.blur{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* z-index: -1; */
+    backdrop-filter: blur(8px);
+}
 .twitter-profile .author-screenname{
     text-decoration: none;
     display: block;
@@ -409,11 +588,32 @@ footer a{
     position:relative;
 }
 .twitter-logo{
+    font-size:25px;
     position: absolute;
     top: 0;
     right: 0;
     color: #1b95e0;
     line-height: 0;
+}
+
+
+.close{
+    align-items: center;
+    background-color: transparent;
+    border-width: 0px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    height: 18px;
+    width: 5px;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 10px;
+}
+
+.signup{
+    display: none;
 }
 .twitter-content{
     margin-top: 12px;

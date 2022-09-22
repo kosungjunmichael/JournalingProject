@@ -9,16 +9,15 @@ if (isset($_SESSION['uid'])){
     require_once('../../model/EntryManager.php');
     $entryManager = new EntryManager();
     $entries = $entryManager->getEntries($uid, 'all');
-//    print_r($entries);
-    $locations = array();
 
-    foreach ($entries as $entry) {
-        $locations[] = array(
-            'u_id' => $entry['u_id'],
-            'location' => $entry['location']
-        );
-    }
+//    $locations = array();
 
+//    foreach ($entries as $entry) {
+//        $locations[] = array(
+//            'u_id' => $entry['u_id'],
+//            'location' => $entry['location']
+//        );
+//    }
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($locations);
+    echo json_encode($entries);
 }

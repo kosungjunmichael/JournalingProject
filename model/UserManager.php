@@ -10,6 +10,8 @@ class UserManager extends Manager{
         // google login
         if ($type === "google"){
             $credentials = json_decode(json_encode($credentials), true);
+
+            // google login will use the email in the json to confirm
             $inputUser = $credentials['email'];
             
             $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
@@ -35,6 +37,7 @@ class UserManager extends Manager{
         } else if ($type === "regular"){
             // add login user check code
     
+            // regular login will use the login name from the form to confirm
             $inputUser = $credentials['login-ue'];
     
             // retrieve the user
@@ -43,7 +46,6 @@ class UserManager extends Manager{
             $req->execute();
             $user = $req->fetch(PDO::FETCH_ASSOC);
 
-            // print_r($credentials);
             // echo "USER:", $user;
             $_SESSION['uid'] = $user['u_id'];
     
@@ -57,7 +59,6 @@ class UserManager extends Manager{
                         "username" => ""
                     );
             }
-            // session_start();
             
             // if correct, head to the timelineView
             return false;
@@ -71,10 +72,6 @@ class UserManager extends Manager{
         $update = $db->prepare("UPDATE users SET last_active = NOW() WHERE u_id = :uid");
         $update->execute(array('uid' => $uid));
     }
-
-//    protected function checkRegularLogin(){
-//
-//    }
 
     protected function checkGoogleUserExist($credentials){
         $db = $this->dbConnect();
@@ -132,7 +129,6 @@ class UserManager extends Manager{
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type
-                // header ('location: ./index.php?action=timeline&type=registered');
                 return false;
             } else {
                 // user already exists, sign in with google credentials, will return false
@@ -141,13 +137,9 @@ class UserManager extends Manager{
         } else if ($type === 'regular') {
             // creating normal regular user
             
-//            $checkUser = $this->checkRegularUserExist($data['sign-u'], 'username');
-//            $checkEmail = $this->checkRegularUserExist($data['sign-e'], 'email');
-
             // if user doesn't exist, create user in database
             $existingUser = $this->checkRegularUserExist($data);
             if (count($existingUser) == 0) {
-                $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
 //                if (empty($data['sign-u']) OR
 //                empty($data['sign-e']) OR
@@ -171,7 +163,6 @@ class UserManager extends Manager{
                 $req->execute();
 
                 // create session variable for user login/signup
-                session_start();
                 $_SESSION['uid'] = $uid;
 
                 // redirect to index with registered type

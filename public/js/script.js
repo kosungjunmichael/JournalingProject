@@ -2,6 +2,7 @@
 let themeToggle = document.querySelector('#theme-toggle-pill');
 let themeInner = document.querySelector('#theme-toggle-inner');
 let themeInput = document.querySelector('#theme-toggle-input');
+let img_count = 0;
 
 // get and set theme
 const theme = localStorage.getItem("dear_diary_theme");
@@ -36,3 +37,43 @@ const themeChangeListener = () => {
 }
 
 themeInput.addEventListener('change', themeChangeListener);
+
+// display the selected image
+
+function handleImageSelect() {
+    const reader = new FileReader();
+    reader.addEventListener('load',()=>{
+        console.log('reader');
+        const uploaded_image = reader.result;
+
+        const img = document.createElement('div');
+        img_container.appendChild(img);
+        img.className = "chosenImg";
+        img.style.backgroundImage = `url(${uploaded_image})`;
+
+        img_count++;
+        const new_name = "imgUpload" + img_count;
+        const clone_input = image_input.cloneNode(true);
+        clone_input.value = "";
+        clone_input.id = new_name;
+        clone_input.setAttribute("name",new_name);
+        clone_input.addEventListener("change", handleImageSelect);
+        image_label.appendChild(clone_input);
+        // image_label.setAttribute("onclick",`document.getElementById(${new_name}).click();`);
+        image_label.onclick = function() {
+            document.getElementById(new_name).click();
+        }
+        // document.querySelector('.entry-photo')
+
+    });
+    reader.readAsDataURL(this.files[0]);
+}
+
+const img_container = document.querySelector(".entry-upload-photo");
+const image_input = document.querySelector("#imgUpload");
+const image_label = document.querySelector(".entry-photo");
+image_input.addEventListener("change", handleImageSelect);
+
+
+
+

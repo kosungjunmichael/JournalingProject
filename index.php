@@ -14,9 +14,6 @@ if (isset($_SESSION['uid'])){
     updateLastActive($_SESSION['uid']);
 }
 
-// for the weekly / monthly toggle
-$counter = 1;
-
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
@@ -59,7 +56,6 @@ try {
             break;
 
         case "toggleView":
-            $counter++;
             if ($_GET['view'] === "week"){
                 toTimeline($_SESSION['uid'], "weekly");
             } else if ($_GET['view'] === "month") {
@@ -88,12 +84,16 @@ try {
             break;
 
         case "addNewEntry":
+            // TODO: uncomment this
             $entryContent = (object)array();
             $entryContent->title = $_REQUEST['title'];
             $entryContent->entry = $_REQUEST['entry'];
             $entryContent->userID = $_SESSION['uid'];
             // print_r($entryContent);
             newEntry($entryContent);
+            // echo "<pre>";
+            // print_r($_FILES);
+            // echo "</pre>";
             break;
 
         case "viewEntry":
