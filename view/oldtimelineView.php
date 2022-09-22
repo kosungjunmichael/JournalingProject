@@ -27,9 +27,9 @@
                 <?php
             } else if ($view === "monthly") {
                 ?>
-                <!-- <a href="index.php?action=toggleView&view=week">
+                <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
-                </a> -->
+                </a>
                 <div class="group">Monthly</div>
                 <?php
             }
@@ -38,13 +38,13 @@
     <?php
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
-    ?>
-         <div class="entryDisplay">
-    <?php
+        ?>
+        <div class="entryDisplay">
+            <?php
     } else if ($view === 'monthly'){
         ?>
-         <div class="entryDisplay monthlyView">
-    <?php
+        <div class="entryDisplay monthlyView">
+        <?php
     }
     ?>
             <?php
@@ -99,8 +99,7 @@
             ?>
                         <div class="week">
                             <div class="weekName">
-                                <!-- <?=$weekDay?> -->
-                            </div>
+                                <?=$weekDay?></div>
                         </div>
             <?php
                     }
