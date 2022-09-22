@@ -47,6 +47,7 @@
         <a id="create-entry-btn" href="<?=BASE."/index.php?action=createEntry"?>">Create Entry</a>
     </div>
     <div id="sidebar-bottom">
+        <a id="logout-btn" href="<?=BASE."/index.php?action=toLogout"?>">Logout</a>
         <div id="theme-toggle">
             <i class='bx bx-sun'></i>
             <input id="theme-toggle-input" type="checkbox">

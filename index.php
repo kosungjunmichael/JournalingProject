@@ -105,6 +105,9 @@ try {
             }
             break;
 
+        case "toLogout":
+            toLogout();
+            break;
         default:
             // show login as default
             if (isset($_SESSION['uid'])){
