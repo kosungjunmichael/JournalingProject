@@ -1,4 +1,4 @@
-@import url('main.css');
+@import url('../css/main.css');
 
 * {
     margin: 0;
@@ -10,6 +10,7 @@
 body{
     width: 100%;
     text-decoration:none;
+    color: var(--text-color-primary);
 }
 
 .title{
@@ -29,18 +30,19 @@ body{
     width: calc(100% - 240px);
     justify-content: center;
     border-radius:var(--border-radius);
-    background-color: var(--purple-secondary);
 }
 
 .switchToggle a{
     width: fit-content;
-    background-color: var(--purple-secondary);
 }
 
 .group{
-    background-color: var(--purple-secondary);
+    background-color: var(--primary);
+    color: var(--text-color-primary);
+    border-radius:var(--border-radius-medium);
     font-family:'Galey';
     margin: 10px;
+    padding: 15px;
 }
 
 #timeline{
@@ -107,7 +109,7 @@ body{
 
 .monthContainer a
 ,.weekContainer a{
-    color: black;
+    color: var(--text-color-primary);
     text-decoration: none;
 }
 
@@ -118,6 +120,8 @@ body{
     border-radius: 10px;
     /* background-color: #2f2f2f; */
     margin: 10px;
+    background-color: var(--bg-secondary);
+    border:none;
 }
 
 /*      === Weekly ===      */
@@ -127,7 +131,6 @@ body{
     max-width: 180px;
     height: 180px;
     margin: 10px 0px;
-    background-color: #46464615;
     border:none;
 }
 

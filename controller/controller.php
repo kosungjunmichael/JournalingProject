@@ -88,6 +88,11 @@ function newEntry($data){
   }
 }
 
+function toLogout(){
+  session_destroy();
+  header("Location: index.php");
+}
+
 function toSignup(){
   require(ROOT . '/view/signupView.php');
 }
