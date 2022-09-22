@@ -41,7 +41,7 @@ if (!isset($_SESSION['uid'])){
             </div>
 
             <div id="create-entry-text-content">
-                <textarea type="text" id="text-content-textarea" name="entry" placeholder="Start Writing..."></textarea>
+                <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
             </div>
 
             <div id="create-entry-upload-photo">
