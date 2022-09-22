@@ -7,7 +7,7 @@
 
 <?php
     if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
-        // this should be turn into a little notification modal thing
+        // TODO:this should be turn into a little notification modal thing
         echo "<p>You have been registered. Welcome!</p>";
     }
     // print_r($_SESSION['uid']);
@@ -40,9 +40,9 @@
         <div class="entryDisplay">
             <?php
             // TODO: if problem uncomment the bottom code
-            // echo "<pre>";
-            // print_r($entries);
-            // echo "<pre>";
+                // echo "<pre>";
+                // print_r($entries);
+                // echo "<pre>";
             if ($entries === null){
                 $entries = array();
             }
