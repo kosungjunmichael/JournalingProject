@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<?php $script = "script";?>
+<?php $script = "timeline";?>
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
@@ -32,12 +32,21 @@
                 </a>
                 <div class="group">Monthly</div>
                 <?php
-
             }
         ?>
     </div>
-    
+    <?php
+    // TODO: change the code depending on the way we're formatting the weekly & monthly
+    if ($view === 'weekly'){
+        ?>
         <div class="entryDisplay">
+            <?php
+    } else if ($view === 'monthly'){
+        ?>
+        <div class="entryDisplay monthlyView">
+        <?php
+    }
+    ?>
             <?php
             // TODO: if problem uncomment the bottom code
                 // echo "<pre>";

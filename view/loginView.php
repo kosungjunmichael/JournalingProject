@@ -8,7 +8,7 @@
 
     <div class="box">
         <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-        <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
+        <form method="POST" action="<?=BASE. "/index.php?action=regularLogin"?>" class="signin">
             <span id="header-text">Login</span>
             <div class="input-container">
                 <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
@@ -25,7 +25,7 @@
         </div>
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
+            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin"
             data-auto_prompt="false">
         </div>
         <div class="g_id_signin"

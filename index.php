@@ -18,35 +18,30 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
     switch ($action){
-        case "signup":
+        case "googleSignup":
             // google signup
-            if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
-                $response = $_REQUEST['credential'];
-                $type = $_REQUEST['type'];
-                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-                signUp($credentials, 'google');
-            }
+            $response = $_REQUEST['credential'];
+            $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
+            signUp($credentials, 'google');
+            break;
+
             // regular signup
-            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
-                $type = $_REQUEST['type'];
-                signUp($_REQUEST, 'regular');
-            }
+        case "regularSignup":
+            signUp($_REQUEST, 'regular');
             break;
-        case "login":
+
+        case "googleLogin":
             // google login
-            if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'google') {
-                $response = $_REQUEST['credential'];
-                $type = $_REQUEST['type'];
-                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-                login($credentials, 'google');
-            }
-            // regular login
-            else if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'regular'){
-                $type = $_REQUEST['type'];
-                login($_REQUEST, 'regular');
-            }
+            $response = $_REQUEST['credential'];
+            $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
+            login($credentials, 'google');
             break;
-            // to the entries
+            
+            // regular login
+        case "regularLogin":
+            login($_REQUEST, 'regular');
+            break;
+
         case "toSignup":
             toSignup();
             break;
@@ -108,6 +103,7 @@ try {
         case "toLogout":
             toLogout();
             break;
+            
         default:
             // show login as default
             if (isset($_SESSION['uid'])){

@@ -7,7 +7,7 @@
         echo $error;
     }?>
     <div class="box">
-        <form method="POST" action="<?=BASE. "/index.php?action=signup&type=regular"?>" class="signup">
+        <form method="POST" action="<?=BASE. "/index.php?action=regularSignup"?>" class="signup">
             <span id="header-text">Sign Up</span>
             <div class="input-container">
                 <input id="sign-u" type="text" required name="sign-u"/>
@@ -43,7 +43,7 @@
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
             data-context="signup"
             data-ux_mode="popup"
-            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&type=google"
+            data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
             data-auto_prompt="false">
         </div>
         <div class="g_id_signin"

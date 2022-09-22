@@ -15,7 +15,7 @@
         <div class="box">
             <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
             <button data-close="modal" id="close" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
+            <form method="POST" action="<?=BASE. "/index.php?action=regularlogin"?>" class="signin">
                 <span id="header-text">Login</span>
                 <div class="input-container">
                     <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
@@ -32,7 +32,7 @@
             </div>
             <div id="g_id_onload"
                 data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
+                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin"
                 data-auto_prompt="false">
             </div>
             <div class="g_id_signin"
@@ -56,7 +56,7 @@
         <div class="box">
             <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
             <button data-close="modal" id="close1" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=signup&type=regular"?>" class="signin">
+            <form method="POST" action="<?=BASE. "/index.php?action=regularSignup"?>" class="signin">
                 <span id="header-text">Sign Up</span>
                 <div class="input-container">
                     <input id="login-ue" type="text" required name="sign-u" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
@@ -81,7 +81,7 @@
             </div>
             <div id="g_id_onload"
                 data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
+                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
                 data-auto_prompt="false">
             </div>
             <div class="g_id_signin"
