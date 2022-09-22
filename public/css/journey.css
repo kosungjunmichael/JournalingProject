@@ -558,13 +558,21 @@ form {
 #login, #signup {
     display: none;
     position: absolute;
-    top: 325px;
-    right: 527px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 315px;
     z-index: 1000;
 }
 .blur{
     display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* z-index: -1; */
+    backdrop-filter: blur(8px);
 }
 .twitter-profile .author-screenname{
     text-decoration: none;
