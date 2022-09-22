@@ -12,7 +12,7 @@ if (!isset($_SESSION['uid'])){
 <?php include("sidebarView.php");?>
 
     <div id="create-entry-container">
-        <form id="create-entry-form" action="<?=BASE . "/index.php?action=entries&type=create"?>" method="post">
+        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post">
             <h2 id="create-entry-header-text">CREATE A NEW ENTRY</h2>
             <div id="create-entry-title">
                 <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title"/>
@@ -21,7 +21,9 @@ if (!isset($_SESSION['uid'])){
             <div id="create-entry-date">
                 <i class='bx bx-calendar'></i>
                 <!--  Default date to today  -->
-                <input id="create-entry-date-input" type="date" value="<?php echo date('Y-m-d'); ?>"/>
+                <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
+                <!-- <?php echo date('Y-m-d'); ?> -->
+                <!-- "/> -->
             </div>
 
             <div id="create-entry-location">
@@ -39,7 +41,7 @@ if (!isset($_SESSION['uid'])){
             </div>
 
             <div id="create-entry-text-content">
-                <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
+                <textarea type="text" id="text-content-textarea" name="entry" placeholder="Start Writing..."></textarea>
             </div>
 
             <div id="create-entry-upload-photo">
