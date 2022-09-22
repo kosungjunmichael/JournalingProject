@@ -8,7 +8,7 @@ function signUp($data, $type){
   $check = $userManager->createUser($data, $type);
   if ($check === false){
     // session_start();
-    toTimeline($_SESSION['uid']);
+    toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error = $check['error'];
     if (isset($check['username'])) {
@@ -22,7 +22,7 @@ function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
   if ($check === false){
-    toTimeline($_SESSION['uid']);
+    toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error = $check['error'];
     $username = $check['username'];
@@ -39,9 +39,23 @@ function displayMonths($numOfMonths = 5){
   return $months;
 }
 
-function toTimeline($Unique_id){
+function displayDaysInWeek(){
+  $week = array(
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  );
+  return $week;
+}
+
+function toTimeline($Unique_id, $entryGroup){
   $entryManager = new EntryManager();
-  $entries = $entryManager->getEntries($Unique_id);
+  $entries = $entryManager->getEntries($Unique_id, $entryGroup);
+  $view = $entryGroup;
   require(ROOT . '/view/timelineView.php');
 }
 
