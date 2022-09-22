@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toMap">
+                <a class="sidebar-link" href="./index.php?action=toMap">
                     <i class='bx bx-map' ></i>
                     <span>Map</span>
                 </a>

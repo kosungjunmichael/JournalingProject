@@ -17,7 +17,7 @@ async function geocode(locationStr, lang) {
         return await fetch(`https://eu1.locationiq.com/v1/search?key=pk.7f480f72d5ac6f8dc279ae25b500bf8a&q=${locationStr}&format=json`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data[0].lat)
+                console.log(data[0].lat)
                 const coordObj = {
                     lat: data[0].lat,
                     lon: data[0].lon
@@ -32,7 +32,7 @@ async function getLocations() {
     return await fetch('http://localhost/sites/JournalingProject/controller/api/getLocations.php')
         .then(res => res.json())
         .then(data => {
-            // console.log(data);
+            console.log(data);
             return data;
         })
         .catch(err => console.log(err));

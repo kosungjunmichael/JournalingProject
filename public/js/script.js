@@ -5,7 +5,7 @@ let themeInput = document.querySelector('#theme-toggle-input');
 
 // get and set theme
 const theme = localStorage.getItem("dear_diary_theme");
-console.log(theme);
+// console.log(theme);
 if (theme === null) {
     // set data-theme to light as default
     document.body.setAttribute('data-theme', 'light');
