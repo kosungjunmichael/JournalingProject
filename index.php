@@ -87,7 +87,7 @@ try {
             // TODO: uncomment this
             $entryContent = (object)array();
             $entryContent->title = $_REQUEST['title'];
-            $entryContent->entry = $_REQUEST['entry'];
+            $entryContent->entry = $_REQUEST['textContent'];
             $entryContent->userID = $_SESSION['uid'];
             // print_r($entryContent);
             newEntry($entryContent);
@@ -105,6 +105,9 @@ try {
             }
             break;
 
+        case "toLogout":
+            toLogout();
+            break;
         default:
             // show login as default
             if (isset($_SESSION['uid'])){

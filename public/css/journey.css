@@ -592,6 +592,7 @@ form {
     position:relative;
 }
 .twitter-logo{
+    font-size:25px;
     position: absolute;
     top: 0;
     right: 0;

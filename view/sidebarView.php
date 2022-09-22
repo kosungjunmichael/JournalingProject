@@ -38,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toMap">
+                <a class="sidebar-link" href="./index.php?action=toMap">
                     <i class='bx bx-map' ></i>
                     <span>Map</span>
                 </a>
@@ -47,6 +47,7 @@
         <a id="create-entry-btn" href="<?=BASE."/index.php?action=createEntry"?>">Create Entry</a>
     </div>
     <div id="sidebar-bottom">
+        <a id="logout-btn" href="<?=BASE."/index.php?action=toLogout"?>">Logout</a>
         <div id="theme-toggle">
             <i class='bx bx-sun'></i>
             <input id="theme-toggle-input" type="checkbox">

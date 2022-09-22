@@ -21,10 +21,10 @@ class EntryManager extends Manager{
 
             // create unique ID, check if it's actually unique
             do {
-            $uid = $this->uidCreate();
-            $existingUID = $this->checkUniqueIDExist($uid);
+                $uid = $this->uidCreate();
+                $existingUID = $this->checkUniqueIDExist($uid);
             } while (count($existingUID) > 0);
-    
+
             // Inserting the entry into the 'entries' table
             $req = $db->prepare('INSERT INTO entries (title, text_content, user_id, u_id) VALUES (:title, :entry, :user_id, :uid)');
             $req->bindParam('title', $data->title, PDO::PARAM_STR);
@@ -32,7 +32,7 @@ class EntryManager extends Manager{
             $req->bindParam('user_id', $data->userID, PDO::PARAM_STR);
             $req->bindParam('uid', $uid, PDO::PARAM_STR);
             $req->execute();
-    
+
             // Direct the user to the timeline
             return $data->userID;
         } else {
@@ -58,50 +58,52 @@ class EntryManager extends Manager{
         , DAY(last_edited) as day
         , MONTHNAME(last_edited) as month
         , YEAR(last_edited) as year
-        FROM entries WHERE user_id = :userId GROUP BY last_edited');
+        , date_created
+        , location
+        FROM entries WHERE user_id = :userId GROUP BY last_edited DESC');
         $req->execute(array(
             'userId' => $userId,
         ));
-            if ($entryGroup === 'all') {
-                return $req->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                // empty array to store the return content
-                $entriesDisplay = array();
-                while ($entryContent = $req->fetch(PDO::FETCH_ASSOC)) {
-                    // if Monthly
-                    if ($entryGroup === "monthly") {
-                        // for current year
-                        if ($entryContent['year'] == $thisYear) {
-                            // check if the keyname exists in the $entriesDisplay
-                            if (array_key_exists($entryContent['month'], $entriesDisplay)) {
-                                // push the entryContent into the key
-                                array_push($entriesDisplay[$entryContent['month']], $entryContent);
-                            } else {
-                                // create the array in the key & push the entryContent into the key
-                                $entriesDisplay[$entryContent['month']] = array();
-                                array_push($entriesDisplay[$entryContent['month']], $entryContent);
-                            }
+        if ($entryGroup === 'all') {
+            return $req->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // empty array to store the return content
+            $entriesDisplay = array();
+            while ($entryContent = $req->fetch(PDO::FETCH_ASSOC)) {
+                // if Monthly
+                if ($entryGroup === "monthly") {
+                    // for current year
+                    if ($entryContent['year'] == $thisYear) {
+                        // check if the keyname exists in the $entriesDisplay
+                        if (array_key_exists($entryContent['month'], $entriesDisplay)) {
+                            // push the entryContent into the key
+                            array_push($entriesDisplay[$entryContent['month']], $entryContent);
+                        } else {
+                            // create the array in the key & push the entryContent into the key
+                            $entriesDisplay[$entryContent['month']] = array();
+                            array_push($entriesDisplay[$entryContent['month']], $entryContent);
                         }
-                    } else if ($entryGroup === "weekly") {
-                        // for current year & month & weeknumber
-                        if ($entryContent['year'] == $thisYear and $entryContent['month'] == $thisMonth and $entryContent['week'] == $thisWeek) {
-                            // check if the keyname exists in the $entriesDisplay
-                            if (array_key_exists($entryContent['dayname'], $entriesDisplay)) {
-                                // push the entryContent into the key
-                                array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
-                            } else {
-                                // create the array in the key & push the entryContent into the key
-                                $entriesDisplay[$entryContent['dayname']] = array();
-                                array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
-                            }
+                    }
+                } else if ($entryGroup === "weekly") {
+                    // for current year & month & weeknumber
+                    if ($entryContent['year'] == $thisYear and $entryContent['month'] == $thisMonth and $entryContent['week'] == $thisWeek) {
+                        // check if the keyname exists in the $entriesDisplay
+                        if (array_key_exists($entryContent['dayname'], $entriesDisplay)) {
+                            // push the entryContent into the key
+                            array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
+                        } else {
+                            // create the array in the key & push the entryContent into the key
+                            $entriesDisplay[$entryContent['dayname']] = array();
+                            array_push($entriesDisplay[$entryContent['dayname']], $entryContent);
                         }
                     }
                 }
-            return $entriesDisplay;
             }
+            return $entriesDisplay;
+        }
         $req->closeCursor();
     }
-    
+
     public function getEntry($entryId, $userId){
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT title
@@ -122,7 +124,7 @@ class EntryManager extends Manager{
             'active' => 1
         ));
         $entryContent = $req->fetch(PDO::FETCH_ASSOC);
-           
+
         return $entryContent;
         $req->closeCursor();
     }
