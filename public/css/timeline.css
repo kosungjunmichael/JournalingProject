@@ -29,7 +29,6 @@ body{
     width: calc(100% - 240px);
     justify-content: center;
     border-radius:var(--border-radius);
-    background-color: var(--purple-secondary);
 }
 
 .switchToggle a{
@@ -38,6 +37,7 @@ body{
 }
 
 .group{
+    /* background-color: #891da4; */
     background-color: var(--purple-secondary);
     font-family:'Galey';
     margin: 10px;
@@ -118,6 +118,8 @@ body{
     border-radius: 10px;
     /* background-color: #2f2f2f; */
     margin: 10px;
+    background-color: #46464615;
+    border:none;
 }
 
 /*      === Weekly ===      */
