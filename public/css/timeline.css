@@ -26,33 +26,38 @@ body{
     padding: 20px;
     font-weight: 900;
     font-family:'Galey';
-    width: fit-content;
-    margin-left: 20px;
-    border-radius:var(--border-radius)
+    width: calc(100% - 240px);
+    justify-content: center;
+    border-radius:var(--border-radius);
+    background-color: var(--purple-secondary);
 }
 
-/* .switchToggle a{
-} */
+.switchToggle a{
+    width: fit-content;
+    background-color: var(--purple-secondary);
+}
 
 .group{
+    background-color: var(--purple-secondary);
     font-family:'Galey';
     margin: 10px;
-    background-color: var(--purple-secondary);
 }
 
 #timeline{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     width: calc(100% - 240px);
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
-.entryMonths{
+.entryDisplay{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: row;
+    margin-left: 15px;
 }
+
+/*          === Monthly View ===          */
 
 .month{
     padding: 15px;
@@ -74,13 +79,40 @@ body{
 
 /*          === Weekly View ===          */
 
-.monthContainer a{
+.week{
+    padding: 10px;
+    min-width: 200px;
+    max-width: 200px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weekName {
+    font-family: 'Galey';
+    font-weight: 700;
+    font-size: 30px;
+    margin: 0px;
+}
+
+.weekContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap:wrap;
+    min-height:min-content;
+}
+
+/*          === Entries ===          */
+
+.monthContainer a
+,.weekContainer a{
     color: black;
     text-decoration: none;
 }
 
 .entryContainer{
-    width: 450px;
+    width: 430px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
@@ -88,9 +120,37 @@ body{
     margin: 10px;
 }
 
+/*      === Weekly ===      */
+
+.weekContainer .entryContainer{
+    min-width: 180px;
+    max-width: 180px;
+    height: 180px;
+    margin: 10px 0px;
+    background-color: #46464615;
+    border:none;
+}
+
+.weekContainer .entryTitle{
+    font-size: 20px;
+}
+
+.weekContainer .entryContent{
+    max-height: 3.6rem;
+    -webkit-line-clamp: 3;
+    height: 3.6rem;
+}
+
+.weekContainer .entryInfo{
+    flex-direction: column;
+    padding: 4px;
+}
+
+/*      === Monthly ===      */
+
 .entryTitle {
     font-size: 30px;
-    margin: 8px;
+    padding: 10px 8px;
     font-family:'Galey';
     white-space:nowrap;
     overflow:hidden;

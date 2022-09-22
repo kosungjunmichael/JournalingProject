@@ -56,23 +56,23 @@
         <div class="box">
             <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
             <button data-close="modal" id="close1" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
+            <form method="POST" action="<?=BASE. "/index.php?action=signup&type=regular"?>" class="signin">
                 <span id="header-text">Sign Up</span>
                 <div class="input-container">
-                    <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="login-ue">Username</label>
+                    <input id="login-ue" type="text" required name="sign-u" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
+                    <label for="sign-u">Username</label>
                 </div>
                 <div class="input-container">
-                    <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="login-ue">Email</label>
+                    <input id="login-ue" type="text" required name="sign-e" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
+                    <label for="sign-e">Email</label>
                 </div>
                 <div class="input-container">
-                    <input id="login-p" type="password" required name="login-p"/>
-                    <label for="login-p">Password</label>
+                    <input id="login-p" type="password" required name="sign-p"/>
+                    <label for="sign-p">Password</label>
                 </div>
                 <div class="input-container">
-                    <input id="login-p" type="password" required name="login-p"/>
-                    <label for="login-p">Confirm Password</label>
+                    <input id="login-p" type="password" required name="sign-cp"/>
+                    <label for="sign-cp">Confirm Password</label>
                 </div>
                 <button type="submit" id="login-btn">Sign Up</button>
             </form>
