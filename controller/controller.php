@@ -100,6 +100,10 @@ function toLanding(){
   require(ROOT . '/view/journeyView.php');
 }
 
+function toAboutUs(){
+  require(ROOT . '/view/aboutView.php');
+}
+
 function viewEntry($entryId){
     $entryManager = new EntryManager();
     $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);

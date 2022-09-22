@@ -3,99 +3,7 @@
 
 <?php ob_start(); ?>
 <div class="container">
-    <nav>
-        <h2><a href="#" class="logo">Dear Diary</a></h2>
-        <ul class="navbar">
-            <li><a href="aboutView.php">About us</a></li>
-            <li><a href="#" data-target="#login" data-toggle="modal" class="btn" >Login</a></li>
-            <li><a href="#"data-target="#signup" data-toggle="modal" class="btn1" >Signup</a></li>
-        </ul>
-    </nav>
-    <div id="login" class="modal fade" role="dialog">
-        <div class="box">
-            <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-            <button data-close="modal" id="close" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=login&type=regular"?>" class="signin">
-                <span id="header-text">Login</span>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="login-ue" >Username / Email</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="login-p"/>
-                    <label for="login-p">Password</label>
-                </div>
-                <button type="submit" id="login-btn">Log In</button>
-            </form>
-            <div id="or-separator">
-                OR
-            </div>
-            <div id="g_id_onload"
-                data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-            <div id="form-bottom">
-                <p>Don't have an account yet?</p>
-                <a id="sign-up-link">Sign Up</a>
-            </div>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </div>
-
-
-    <div id="signup" class="modal fade" role="dialog">
-        <div class="box">
-            <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-            <button data-close="modal" id="close1" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=signup&type=regular"?>" class="signin">
-                <span id="header-text">Sign Up</span>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="sign-u" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="sign-u">Username</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="sign-e" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="sign-e">Email</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="sign-p"/>
-                    <label for="sign-p">Password</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="sign-cp"/>
-                    <label for="sign-cp">Confirm Password</label>
-                </div>
-                <button type="submit" id="login-btn">Sign Up</button>
-            </form>
-            <div id="or-separator">
-                OR
-            </div>
-            <div id="g_id_onload"
-                data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=login&type=google"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </div>
-    <div class="blur"></div>
+    <?php include "headerView.php"; ?>
     <div class="hero">
         <div class="content">
             <h2>
@@ -644,52 +552,8 @@
         </div>
     </footer>
 </div>
-
-<script>
-// function login() {
-    // }    
-let blur = document.querySelector(".blur");
-
-function openLogin() {
-    document.getElementById("login").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeLogin);
-
-}
-
-function openSignup() {
-    document.getElementById ("signup").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeSignup);
-
-}
-
-function closeLogin() {
-    document.getElementById('login').style.display = 'none';
-    document.querySelector(".blur").style.display = "none";
-    blur.removeEventListener('click', closeLogin);
-
-}
-
-function closeSignup() {
-    document.querySelector(".blur").style.display = "none";
-    document.getElementById("signup").style.display = "none";
-    blur.removeEventListener('click', closeSignup);
-
-}
-
-document.querySelector("#close").addEventListener('click', closeLogin)
-document.querySelector("#close1").addEventListener('click', closeSignup)
-document.querySelector(".btn").addEventListener('click', openLogin)
-document.querySelector(".btn1").addEventListener('click', openSignup)
-
-document.getElementById("sign-up-link").addEventListener('click', () => {
-    closeLogin();
-    openSignup();
-})
-</script>
 <?php $content = ob_get_clean(); ?>
-<?php require("templateView.php"); ?>
+<?php require("journeyTemplate.php"); ?>
 
 
 
