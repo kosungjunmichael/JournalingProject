@@ -3,7 +3,6 @@
 
 <?php ob_start(); ?>
 <div class="container">
-<<<<<<< HEAD
     <nav>
         <h2><a href="#" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
@@ -97,9 +96,6 @@
         <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
     <div class="blur"></div>
-=======
-    <?php include "headerView.php"; ?>
->>>>>>> main
     <div class="hero">
         <div class="content">
             <h2>
