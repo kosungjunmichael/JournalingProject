@@ -6,26 +6,34 @@ if (!isset($_SESSION['uid'])){
 ?>
 <?php $title = "Create New Entry";?>
 <?php $style = "createEntry";?>
+<?php $script = "createEntry";?>
 
 <?php ob_start();?>
 
 <?php include("sidebarView.php");?>
 
     <div id="create-entry-container">
-        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post">
+        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post" enctype="multipart/form-data">
             <h2 id="create-entry-header-text">CREATE A NEW ENTRY</h2>
             <div id="create-entry-title">
                 <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title"/>
             </div>
 
-            <div id="create-entry-date">
-                <i class='bx bx-calendar'></i>
+            <div id="create-entry-tag">
+                <div id="create-entry-tag-btn">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Add a Tag">
+                <!-- <i class='bx bx-calendar'></i> -->
                 <!--  Default date to today  -->
                 <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
                 <!-- <?php echo date('Y-m-d'); ?> -->
                 <!-- "/> -->
             </div>
-
+            <div id="entry-tag-cont">
+                <input type="text" name="tagNames" class="entry-tag-input" hidden>
+            </div>
+        
             <div id="create-entry-location">
                 <i class='bx bx-current-location'></i>
                 <input id="create-entry-location-input" type="text" placeholder="Location"/>
@@ -44,17 +52,11 @@ if (!isset($_SESSION['uid'])){
                 <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
             </div>
 
-            <div id="create-entry-upload-photo">
+            <div id="entry-upload-photo">
             </div>
 
             <div id="create-entry-bottom">
-                <div id="create-entry-photo">
-                    <input hidden type="file" id="file-input" accept="image/*"/>
-                    <label id="create-entry-photo-label" for="file-input">
-                        <i id='upload-icon' class='bx bx-cloud-upload bx-md'></i>
-                        Add photo
-                    </label>
-                </div>
+                <?php require('uploadImageView.php'); ?>
                 <div id="create-entry-submit">
                     <input type="submit"/>
                 </div>

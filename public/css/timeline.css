@@ -58,6 +58,9 @@ body{
     flex-direction: row;
     margin-left: 15px;
 }
+.monthlyView{
+    flex-direction: column;
+}
 
 /*          === Monthly View ===          */
 

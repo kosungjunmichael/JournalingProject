@@ -25,7 +25,9 @@ class UserManager extends Manager{
             
             if ($user['is_active'] === 1){
                 // if correct, head to the timelineView
-                $_SESSION['uid'] = $user['u_id'];
+                if (isset($user['u_id'])){
+                    $_SESSION['uid'] = $user['u_id'];
+                }
                 return false;
             } else {
                 return array(
@@ -41,13 +43,15 @@ class UserManager extends Manager{
             $inputUser = $credentials['login-ue'];
     
             // retrieve the user
-            $req = $db->prepare('SELECT username, email, password, u_id, is_active FROM users WHERE username = ?');
+            $req = $db->prepare('SELECT username, email, password, u_id, is_active FROM users WHERE ? IN(username,email)');
             $req->bindParam(1,$inputUser,PDO::PARAM_STR);
             $req->execute();
             $user = $req->fetch(PDO::FETCH_ASSOC);
 
             // echo "USER:", $user;
-            $_SESSION['uid'] = $user['u_id'];
+            if (isset($user['u_id'])){
+                $_SESSION['uid'] = $user['u_id'];
+            }
     
             // catch login errors
             if (!$user
@@ -126,7 +130,9 @@ class UserManager extends Manager{
 
                 // create session variable for user login/signup
                 session_start();
-                $_SESSION['uid'] = $uid;
+                if (isset($user['u_id'])){
+                    $_SESSION['uid'] = $user['u_id'];
+                }
 
                 // redirect to index with registered type
                 return false;
@@ -163,7 +169,9 @@ class UserManager extends Manager{
                 $req->execute();
 
                 // create session variable for user login/signup
-                $_SESSION['uid'] = $uid;
+                if (isset($user['u_id'])){
+                    $_SESSION['uid'] = $user['u_id'];
+                }
 
                 // redirect to index with registered type
                 return false;
