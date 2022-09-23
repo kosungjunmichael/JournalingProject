@@ -6,6 +6,7 @@ if (!isset($_SESSION['uid'])){
 ?>
 <?php $title = "Create New Entry";?>
 <?php $style = "createEntry";?>
+<?php $script = "createEntry";?>
 
 <?php ob_start();?>
 
@@ -18,14 +19,21 @@ if (!isset($_SESSION['uid'])){
                 <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title"/>
             </div>
 
-            <div id="create-entry-date">
-                <i class='bx bx-calendar'></i>
+            <div id="create-entry-tag">
+                <div id="create-entry-tag-btn">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Add a Tag">
+                <!-- <i class='bx bx-calendar'></i> -->
                 <!--  Default date to today  -->
                 <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
                 <!-- <?php echo date('Y-m-d'); ?> -->
                 <!-- "/> -->
             </div>
-
+            <div id="entry-tag-cont">
+                <input type="text" name="tagNames" class="entry-tag-input" hidden>
+            </div>
+        
             <div id="create-entry-location">
                 <i class='bx bx-current-location'></i>
                 <input id="create-entry-location-input" type="text" placeholder="Location"/>

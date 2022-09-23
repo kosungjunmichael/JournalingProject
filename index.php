@@ -83,6 +83,7 @@ try {
             $entryContent = (object)array();
             $entryContent->title = $_REQUEST['title'];
             $entryContent->entry = $_REQUEST['textContent'];
+            $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->userID = $_SESSION['uid'];
             // print_r($entryContent);
             newEntry($entryContent);
