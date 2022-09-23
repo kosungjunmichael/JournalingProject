@@ -100,7 +100,7 @@ class EntryManager extends Manager{
         , YEAR(last_edited) as year
         , date_created
         , location
-        FROM entries WHERE user_id = :userId GROUP BY last_edited DESC');
+        FROM entries WHERE user_uid = :userId GROUP BY last_edited DESC');
         $req->execute(array(
             'userId' => $userId,
         ));
