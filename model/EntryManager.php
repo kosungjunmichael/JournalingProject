@@ -12,31 +12,36 @@ class EntryManager extends Manager{
         }
       }
 
-    private function uploadImage($file, $entry_id) {
-        $hash = hash_file("md5", $file['tmp_name']);
-        $first = substr($hash, 0, 2);
-        $second = substr($hash, 2, 2);
-
-        $this->create_directory("./public/images/uploaded/$first");
-        $this->create_directory("./public/images/uploaded/$first/$second");
-
-        $type = explode("/",$file['type'])[1];
-        $filename = substr($hash, 4) . "." . $type;
-        $newpath = "./public/images/uploaded/$first/$second/$filename";
-        move_uploaded_file($file['tmp_name'], $newpath);
-
-        // TODO: add image path to DB
-        $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO entry_images (entry_uid, path) VALUES (:entry_id, :path)');
-        $req->bindParam('entry_id', $entry_id, PDO::PARAM_INT);
-        $req->bindParam('path', $newpath, PDO::PARAM_STR);
-        $req->execute();
+    private function uploadImage($file, $entry_uid) {
+        echo "EntryManager-uploadImage-ENTRY_ID:  ", $entry_uid, "<br>";
+        try {
+            $hash = hash_file("md5", $file['tmp_name']);
+            $first = substr($hash, 0, 2);
+            $second = substr($hash, 2, 2);
+    
+            $this->create_directory("./public/images/uploaded/$first");
+            $this->create_directory("./public/images/uploaded/$first/$second");
+    
+            $type = explode("/",$file['type'])[1];
+            $filename = substr($hash, 4) . "." . $type;
+            $newpath = "./public/images/uploaded/$first/$second/$filename";
+            move_uploaded_file($file['tmp_name'], $newpath);
+    
+            // TODO: add image path to DB
+            $db = $this->dbConnect();
+            $req = $db->prepare('INSERT INTO entry_images (entry_uid, path) VALUES (:entry_uid, :path)');
+            $req->bindParam('entry_uid', $entry_uid, PDO::PARAM_STR);
+            $req->bindParam('path', $newpath, PDO::PARAM_STR);
+            $req->execute();
+        } catch (Exception $e) {
+            throw new Exception('Error, something went wrong when uploading image - EntryManager.php: uploadImage()');
+        }
     }
 
-    public function uploadImages($entry_id) {
+    public function uploadImages($entry_uid) {
         foreach($_FILES as $file){
             if ($file['error']===0) {
-                $this->uploadImage($file, $entry_id);
+                $this->uploadImage($file, $entry_uid);
             }
         }
     }
