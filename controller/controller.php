@@ -7,7 +7,6 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
   if ($check === false){
-    // session_start();
     toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error = $check['error'];

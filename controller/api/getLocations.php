@@ -1,6 +1,5 @@
 <?php
 // API endpoint to get entry locations
-session_start();
 // set uid from session variable
 if (isset($_SESSION['uid'])){
     $uid = $_SESSION['uid'];
