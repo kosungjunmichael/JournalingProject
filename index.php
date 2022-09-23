@@ -84,18 +84,14 @@ try {
             $entryContent->title = $_REQUEST['title'];
             $entryContent->entry = $_REQUEST['textContent'];
             $entryContent->tags = $_REQUEST['tagNames'];
-            $entryContent->userID = $_SESSION['uid'];
+            $entryContent->userUID = $_SESSION['uid'];
             // print_r($entryContent);
             newEntry($entryContent);
-            // echo "<pre>";
-            // print_r($_FILES);
-            // echo "</pre>";
             break;
 
         case "viewEntry":
             if (isset($_REQUEST['id'])) {
-                $entryId = $_REQUEST['id'];
-                viewEntry($entryId);
+                viewEntry($_REQUEST['id']);
             } else {
                 throw new Exception('Error, no entry ID');
             }

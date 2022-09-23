@@ -4,6 +4,43 @@ require_once('Manager.php');
 
 class EntryManager extends Manager{
 
+    private function create_directory($path) {
+        if(file_exists($path)) {
+          return true;
+        } else {
+          return mkdir($path, 0777, true);
+        }
+      }
+
+    private function uploadImage($file, $entry_id) {
+        $hash = hash_file("md5", $file['tmp_name']);
+        $first = substr($hash, 0, 2);
+        $second = substr($hash, 2, 2);
+
+        $this->create_directory("./public/images/uploaded/$first");
+        $this->create_directory("./public/images/uploaded/$first/$second");
+
+        $type = explode("/",$file['type'])[1];
+        $filename = substr($hash, 4) . "." . $type;
+        $newpath = "./public/images/uploaded/$first/$second/$filename";
+        move_uploaded_file($file['tmp_name'], $newpath);
+
+        // TODO: add image path to DB
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO entry_images (entry_uid, path) VALUES (:entry_id, :path)');
+        $req->bindParam('entry_id', $entry_id, PDO::PARAM_INT);
+        $req->bindParam('path', $newpath, PDO::PARAM_STR);
+        $req->execute();
+    }
+
+    public function uploadImages($entry_id) {
+        foreach($_FILES as $file){
+            if ($file['error']===0) {
+                $this->uploadImage($file, $entry_id);
+            }
+        }
+    }
+
     protected function checkUniqueIDExist($uid){
         $db = $this->dbConnect();
         // check if UID already exists
@@ -26,15 +63,18 @@ class EntryManager extends Manager{
             } while (count($existingUID) > 0);
 
             // Inserting the entry into the 'entries' table
-            $req = $db->prepare('INSERT INTO entries (title, text_content, user_id, u_id) VALUES (:title, :entry, :user_id, :uid)');
+            $req = $db->prepare('INSERT INTO entries (title, text_content, user_uid, u_id) VALUES (:title, :entry, :user_uid, :uid)');
             $req->bindParam('title', $data->title, PDO::PARAM_STR);
             $req->bindParam('entry', $data->entry, PDO::PARAM_STR);
-            $req->bindParam('user_id', $data->userID, PDO::PARAM_STR);
+            $req->bindParam('user_uid', $data->userUID, PDO::PARAM_STR);
             $req->bindParam('uid', $uid, PDO::PARAM_STR);
             $req->execute();
 
+            $req2 = $db->query('SELECT u_id FROM entries ORDER BY id DESC LIMIT 1');
+            $entry_id = $req2->fetch(PDO::FETCH_OBJ);
+    
             // Direct the user to the timeline
-            return $data->userID;
+            return $entry_id->u_id;
         } else {
             return false;
         }
@@ -117,7 +157,7 @@ class EntryManager extends Manager{
         , YEAR(last_edited) as year
         , TIME_FORMAT(last_edited, "%h:%i %p") as time
         FROM entries
-        WHERE user_id = :userId AND u_id = :entryId AND is_active = :active');
+        WHERE user_uid = :userId AND u_id = :entryId AND is_active = :active');
         $req->execute(array(
             'userId' => $userId,
             'entryId' => $entryId,
@@ -125,6 +165,11 @@ class EntryManager extends Manager{
         ));
         $entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
+        $imagesReq = $db->prepare('SELECT path FROM entry_images WHERE entry_uid = ?');
+        $imagesReq->execute(array($entryId));
+        $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
+        $entryContent['images'] = $images;
+           
         return $entryContent;
         $req->closeCursor();
     }

@@ -13,7 +13,7 @@ if (!isset($_SESSION['uid'])){
 <?php include("sidebarView.php");?>
 
     <div id="create-entry-container">
-        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post">
+        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post" enctype="multipart/form-data">
             <h2 id="create-entry-header-text">CREATE A NEW ENTRY</h2>
             <div id="create-entry-title">
                 <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title"/>
@@ -52,17 +52,11 @@ if (!isset($_SESSION['uid'])){
                 <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
             </div>
 
-            <div id="create-entry-upload-photo">
+            <div id="entry-upload-photo">
             </div>
 
             <div id="create-entry-bottom">
-                <div id="create-entry-photo">
-                    <input hidden type="file" id="file-input" accept="image/*"/>
-                    <label id="create-entry-photo-label" for="file-input">
-                        <i id='upload-icon' class='bx bx-cloud-upload bx-md'></i>
-                        Add photo
-                    </label>
-                </div>
+                <?php require('uploadImageView.php'); ?>
                 <div id="create-entry-submit">
                     <input type="submit"/>
                 </div>
