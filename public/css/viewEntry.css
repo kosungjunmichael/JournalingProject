@@ -12,6 +12,7 @@
     flex-direction: column;
     gap: 30px;
     overflow-y: scroll;
+    width: 100%;
 }
 
 #view-entry-top {
