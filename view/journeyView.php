@@ -3,6 +3,7 @@
 
 <?php ob_start(); ?>
 <div class="container">
+<<<<<<< HEAD
     <nav>
         <h2><a href="#" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
@@ -96,6 +97,9 @@
         <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
     <div class="blur"></div>
+=======
+    <?php include "headerView.php"; ?>
+>>>>>>> main
     <div class="hero">
         <div class="content">
             <h2>
@@ -644,52 +648,8 @@
         </div>
     </footer>
 </div>
-
-<script>
-// function login() {
-    // }    
-let blur = document.querySelector(".blur");
-
-function openLogin() {
-    document.getElementById("login").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeLogin);
-
-}
-
-function openSignup() {
-    document.getElementById ("signup").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeSignup);
-
-}
-
-function closeLogin() {
-    document.getElementById('login').style.display = 'none';
-    document.querySelector(".blur").style.display = "none";
-    blur.removeEventListener('click', closeLogin);
-
-}
-
-function closeSignup() {
-    document.querySelector(".blur").style.display = "none";
-    document.getElementById("signup").style.display = "none";
-    blur.removeEventListener('click', closeSignup);
-
-}
-
-document.querySelector("#close").addEventListener('click', closeLogin)
-document.querySelector("#close1").addEventListener('click', closeSignup)
-document.querySelector(".btn").addEventListener('click', openLogin)
-document.querySelector(".btn1").addEventListener('click', openSignup)
-
-document.getElementById("sign-up-link").addEventListener('click', () => {
-    closeLogin();
-    openSignup();
-})
-</script>
 <?php $content = ob_get_clean(); ?>
-<?php require("templateView.php"); ?>
+<?php require("journeyTemplate.php"); ?>
 
 
 

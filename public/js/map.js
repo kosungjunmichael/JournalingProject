@@ -17,7 +17,7 @@ async function geocode(locationStr, lang) {
         return await fetch(`https://eu1.locationiq.com/v1/search?key=pk.7f480f72d5ac6f8dc279ae25b500bf8a&q=${locationStr}&format=json`)
             .then(res => res.json())
             .then(data => {
-                // console.log(data[0].lat)
+                console.log(data[0].lat)
                 const coordObj = {
                     lat: data[0].lat,
                     lon: data[0].lon
@@ -32,52 +32,117 @@ async function getLocations() {
     return await fetch('http://localhost/sites/JournalingProject/controller/api/getLocations.php')
         .then(res => res.json())
         .then(data => {
-            // console.log(data);
+            console.log(data);
             return data;
         })
         .catch(err => console.log(err));
 }
 
-async function getEntriesCoordinates() {
-    const coordinates = [];
-    const entryLocations = await getLocations();
-    console.log(entryLocations);
-    for (let eL of entryLocations) {
+async function getEntries() {
+    const entriesArr = [];
+    const entriesData = await getLocations();
+    // console.log(entryLocations);
+    for (let entry of entriesData) {
         // console.log(location)
-        const latLon = await geocode(eL.location, 'en');
-        const coordObj = {
-            u_id: eL.u_id,
-            lat: parseFloat(latLon.lat),
-            lon: parseFloat(latLon.lon)
+        const latLon = await geocode(entry.location, 'en');
+        let textContent = entry.text_content;
+        if (entry.text_content.split('').length > 500){
+            textContent = entry.text_content.split('').slice(0, 500).join('') + '...';
         }
-        coordinates.push(coordObj);
+
+        const entryObj = {
+            uId: entry.u_id,
+            title: entry.title,
+            textContent: textContent,
+            location: entry.location,
+            lat: parseFloat(latLon.lat),
+            lon: parseFloat(latLon.lon),
+            date: `${entry.month} ${entry.day}, ${entry.year}`
+        }
+        entriesArr.push(entryObj);
     }
     // console.log(coordinates);
-    return coordinates;
+    return entriesArr;
+}
+
+function closeEntryCard() {
+    console.log('closing');
+    const entryCardToClose = document.querySelector('.map-view-card-visible');
+    entryCardToClose.classList.remove('map-view-card-visible');
 }
 
 async function renderMap() {
-    const mapDiv = document.getElementById('map');
+    const mapDiv = document.getElementById('map-view-map');
     const options = {
         center: new kakao.maps.LatLng(37.5665, 126.9780),
         level: 9
     };
     const map = new kakao.maps.Map(mapDiv, options);
 
-    const markerCoordinates = await getEntriesCoordinates();
-    console.log(markerCoordinates);
-    for (let mC of markerCoordinates) {
-        // 마커가 표시될 위치입니다
-        const markerPosition  = new kakao.maps.LatLng(mC.lat, mC.lon);
+    const entries = await getEntries();
 
-        // 마커를 생성합니다
+    for (let entry of entries) {
+        // 마커가 표시될 위치입니다
+        const markerPosition  = new kakao.maps.LatLng(entry.lat, entry.lon);
+
+        // 마커 이미지의 이미지 크기 입니다
+        const imageSize = new kakao.maps.Size(25, 37.41);
+        const imageSrc = 'http://localhost/sites/JournalingProject/public/images/static/marker.png';
+        // 마커 이미지를 생성합니다
+        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
         const marker = new kakao.maps.Marker({
             map: map,
-            position: markerPosition
+            position: markerPosition,
+            image: markerImage
         });
-        //
-        // // 마커가 지도 위에 표시되도록 설정합니다
-        // marker.setMap(map);
+
+        const entryCard = document.createElement('div');
+        entryCard.classList.add('map-view-entry-card');
+
+        const entryCardInnerHTML = `
+<!--            <div id="map-view-entry-card">-->
+                <svg class="map-view-entry-close" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                    <rect width="256" height="256" fill="none"></rect>
+                    <circle class="close-svg-circle" cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="16"></circle>
+                    <line class="close-svg-line" x1="160" y1="96" x2="96" y2="160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                    <line class="close-svg-line" x1="160" y1="160" x2="96" y2="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                </svg>
+                <h2 class="map-view-entry-card-title">${entry.title}</h2>
+                <div class="map-view-entry-card-textContent"><p>${entry.textContent}</p></div>
+                <div class="map-view-entry-card-bottom">
+                    <span class="map-view-entry-card-location">
+                        <i class="ph-map-pin"></i>
+                        ${entry.location}
+                    </span>
+                    <span class="map-view-entry-card-date">
+                        <i class='bx bx-calendar'></i>
+                        ${entry.date}
+                    </span>
+                </div>
+                <a class="map-view-entry-card-link" href="./index.php?action=viewEntry&id=${entry.uId}">View Entry</a>
+<!--            </div>-->
+        `
+
+        entryCard.innerHTML = entryCardInnerHTML;
+
+        mapDiv.appendChild(entryCard);
+
+        kakao.maps.event.addListener(marker, 'click', function() {
+            console.log('marker clicked!');
+            // remove other entry cards if already opened
+            const entryCardToClose = document.querySelector('.map-view-card-visible');
+            if (entryCardToClose) {
+                entryCardToClose.classList.remove('map-view-card-visible');
+            }
+
+            // show entry card
+            entryCard.classList.add('map-view-card-visible');
+            const closeBtn = document.querySelector('.map-view-card-visible > .map-view-entry-close');
+            // add close event listener
+            closeBtn.addEventListener('click', closeEntryCard);
+        });
+
     }
 }
 

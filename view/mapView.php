@@ -7,7 +7,7 @@
 
     <div id="map-view-container">
         <h2 class="page-header-text">MAP VIEW</h2>
-        <div id="map"></div>
+        <div id="map-view-map"></div>
     </div>
 
     <!-- Kakao Maps script -->
