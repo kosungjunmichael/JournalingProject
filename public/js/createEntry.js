@@ -35,6 +35,8 @@ function createTags() {
   
     entryTagContainer.appendChild(tagDisplay);
   }
+  // format of the hidden input value
+  //      seoul,delicious food,nice day
   tagInput.value = addedTags.join(",");
 }
 
@@ -53,16 +55,11 @@ function handleAddTag() {
 entryTagBtn.addEventListener('click',()=>{
   handleAddTag();
 })
-
 // TODO: add eventListener for Enter key "13" on the text input
+entryTagBtn.addEventListener('keydown',()=>{
+  handleAddTag();
+})
 
-// format of the hidden input value
-//      seoul,delicious food,nice day
 
 
-// for (desTag of destroyTags){
-//   desTag.addEventListener('click',()=>{
-//     console.log('delete');
-//     // let allTags = document.querySelectorAll('.entry-tag');
-//   })
-// }
+
