@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<?php $script = "script";?>
+<?php $script = "timeline";?>
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
@@ -27,17 +27,26 @@
                 <?php
             } else if ($view === "monthly") {
                 ?>
-                <a href="index.php?action=toggleView&view=week">
+                <!-- <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
-                </a>
+                </a> -->
                 <div class="group">Monthly</div>
                 <?php
-
             }
         ?>
     </div>
-    
-        <div class="entryDisplay">
+    <?php
+    // TODO: change the code depending on the way we're formatting the weekly & monthly
+    if ($view === 'weekly'){
+    ?>
+         <div class="entryDisplay">
+    <?php
+    } else if ($view === 'monthly'){
+        ?>
+         <div class="entryDisplay monthlyView">
+    <?php
+    }
+    ?>
             <?php
             // TODO: if problem uncomment the bottom code
                 // echo "<pre>";
@@ -74,7 +83,9 @@
                     if (array_key_exists($weekDay, $entries)){
             ?>
                         <div class="week">
-                            <div class="weekName"><?=$weekDay?></div>
+                            <div class="weekName">
+                                <?=$weekDay?>
+                            </div>
                             <div class="weekContainer">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
@@ -87,7 +98,9 @@
                     } else {
             ?>
                         <div class="week">
-                            <div class="weekName"><?=$weekDay?></div>
+                            <div class="weekName">
+                                <!-- <?=$weekDay?> -->
+                            </div>
                         </div>
             <?php
                     }

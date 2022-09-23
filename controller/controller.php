@@ -47,7 +47,7 @@ function displayDaysInWeek(){
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
+    "Sunday"
   );
   return $week;
 }
