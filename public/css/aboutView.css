@@ -3,11 +3,16 @@
 body{
     display: flex;
     justify-content: center;
-    background-color: #000;
+    align-items: center;
+    background-color: #3B3D3E;
     color: #fff;
     font-size: x-large;
     overflow-x:hidden; 
     overflow-y:auto;
+    display: flow-root;
+}
+nav > h2,li{
+    color: #dddddd;
 }
 h1{
     color: #9b40f6;
@@ -51,4 +56,80 @@ nav ul li a{
 
 nav ul li a:hover{
     color:#9b40f6;
+}
+
+
+
+/* footer */
+
+footer{
+    background-color: #272727;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.col{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+footer i{
+    color:white;
+    font-size: 25px;
+    margin-top: 20px;;
+}
+
+footer hr{
+    text-align: center;
+    width: 60%;
+    border-top: 0.3px solid #bbb;
+    margin-left: 290px;
+    margin-top: 20px;
+}
+
+
+.footer-main{
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 18px;
+}
+
+.footer-menu{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap:70px;
+}
+
+.footer-main a{
+    color:white;
+}
+
+footer ul li{
+    list-style: none;
+}
+footer a{
+    text-decoration: none;
+}
+
+.menu-item{
+    line-height: 2rem;
+}
+
+.menu-item-title{
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.sub-menu-item a{
+    color:#bababa;
+    font-size:15px;
+}
+
+.footer-card{
+    margin-top: 60px;
+    color: #9b40f6;
+    width: 100%;
+    height:100px;
 }

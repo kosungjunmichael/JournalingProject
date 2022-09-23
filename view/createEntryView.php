@@ -21,7 +21,9 @@ if (!isset($_SESSION['uid'])){
             <div id="create-entry-date">
                 <i class='bx bx-calendar'></i>
                 <!--  Default date to today  -->
-                <input id="create-entry-date-input" type="date" value="<?php echo date('Y-m-d'); ?>"/>
+                <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
+                <!-- <?php echo date('Y-m-d'); ?> -->
+                <!-- "/> -->
             </div>
 
             <div id="create-entry-location">

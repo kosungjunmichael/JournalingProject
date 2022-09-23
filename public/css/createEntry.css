@@ -1,4 +1,4 @@
-@import url('./main.css');
+@import url('../css/main.css');
 
 #create-entry-container {
     display: flex;

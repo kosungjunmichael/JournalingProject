@@ -4,11 +4,120 @@
     height: calc(100vh - 41px);
     width: 100%;
     padding: 20px;
+    position: relative;
 }
 
-#map {
+#map-view-map {
     height: 100%;
     width: 100%;
     border-radius: 10px;
     margin-top: 20px;
+}
+
+.map-view-entry-card {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 325px;
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    color: var(--text-color-secondary);
+    z-index: 10;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    visibility: hidden;
+    opacity: 0.5;
+    transform: translateX(20px);
+}
+
+.map-view-card-visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    transition: visibility 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+.map-view-entry-close {
+    height: 30px;
+    width: 30px;
+    align-self: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.close-svg-circle {
+    fill: var(--text-color-secondary);
+    stroke: var(--text-color-secondary);
+    transition: fill 0.3s;
+}
+
+.close-svg-line {
+    stroke: var(--bg-secondary);
+    transition: stroke 0.3s;
+}
+
+.map-view-entry-close:hover > .close-svg-circle {
+    fill: var(--bg-secondary);
+}
+
+.map-view-entry-close:hover > .close-svg-line {
+    stroke: var(--text-color-secondary);
+}
+
+.map-view-entry-card-title {
+    color: var(--text-color-primary);
+    font-size: 20px;
+    font-weight: 500;
+    max-width: 240px;
+    /*overflow: hidden;*/
+    /*white-space: nowrap;*/
+    /*text-overflow: ellipsis;*/
+}
+
+.map-view-entry-card-textContent {
+    color: var(--text-color-secondary);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.map-view-entry-card-bottom {
+    color: var(--text-color-primary);
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.map-view-entry-card-location,
+.map-view-entry-card-date {
+    width: 50%;
+}
+
+.map-view-entry-card-date {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.map-view-entry-card-link {
+    display: inline-block;
+    width: fit-content;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 15px;
+    align-self: flex-end;
+    transition: color 0.3s;
+}
+
+.map-view-entry-card-link:hover {
+    color: var(--primary-light);
+}
+
+.map-view-entry-card-link:active {
+    color: var(--primary-dark);
 }

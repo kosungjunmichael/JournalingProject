@@ -75,14 +75,14 @@ try {
             toLanding();
             break;
 
+        case "toAboutUs":
+            toAboutUs();
+            break;
+
         case "createEntry":
             createNewEntry();
             break;
         
-        case "tolanding":
-            toLanding();
-            break;
-
         case "addNewEntry":
             // TODO: uncomment this
             $entryContent = (object)array();
@@ -101,6 +101,9 @@ try {
             }
             break;
 
+        case "toLogout":
+            toLogout();
+            break;
         default:
             // show login as default
             if (isset($_SESSION['uid'])){
