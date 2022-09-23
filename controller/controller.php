@@ -7,7 +7,6 @@ function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
   if ($check === false){
-    // session_start();
     toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error = $check['error'];
@@ -76,16 +75,20 @@ function createNewEntry(){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $entry_id = $entryManager->createEntry($data);
-  if ($entry_id){
+  $entry_uid = $entryManager->createEntry($data);
+  // echo "controller-newEntry-ENTRY_ID:  ", $entry_uid, "<br>";
+  if ($entry_uid){
     if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_id);
+      $checkImgs = $entryManager->uploadImages($entry_uid);
+    } else if (count($_FILES) > 1 AND $_FILES['imgUpload']['error'] === 4) {
+      throw new Exception('Error, image error status 4 - controller.php: newEntry()');
     }
     $error = "Entry Submitted!";
     // require(ROOT . '/index.php?action=sidebarTimeline');
     // toTimeline($check);
     header("Location: index.php?action=toTimeline");
   } else {
+    throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
     $error = "Not a valid Entry";
     require(ROOT . '/view/createEntryView.php');
   }

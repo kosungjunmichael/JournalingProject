@@ -1,7 +1,7 @@
 // theme toggle event listener
-let themeToggle = document.querySelector('#theme-toggle-pill');
-let themeInner = document.querySelector('#theme-toggle-inner');
-let themeInput = document.querySelector('#theme-toggle-input');
+let themeToggle = document.querySelector("#theme-toggle-pill");
+let themeInner = document.querySelector("#theme-toggle-inner");
+let themeInput = document.querySelector("#theme-toggle-input");
 let img_count = 0;
 
 // get and set theme
@@ -9,79 +9,30 @@ const theme = localStorage.getItem("dear_diary_theme");
 // console.log(theme);
 if (theme === null) {
     // set data-theme to light as default
-    document.body.setAttribute('data-theme', 'light');
+    document.body.setAttribute("data-theme", "light");
 } else if (theme !== null) {
-    document.body.setAttribute('data-theme', theme);
+    document.body.setAttribute("data-theme", theme);
     // move toggle if checked
     // if (themeInput.getAttribute('checked')) {
-    if (theme === 'dark') {
-        themeInput.setAttribute('checked', true);
-        themeInner.classList.toggle('toggle-to-right');
+    if (theme === "dark") {
+        themeInput.setAttribute("checked", true);
+        themeInner.classList.toggle("toggle-to-right");
     }
 }
 
 const themeChangeListener = () => {
     // move (translate) theme-toggle-inner
-    themeInner.classList.toggle('toggle-to-right');
-    const currentTheme = document.body.getAttribute('data-theme');
+    themeInner.classList.toggle("toggle-to-right");
+    const currentTheme = document.body.getAttribute("data-theme");
     // set theme in localStorage
     // set data-theme attribute of HTML body element
-    if (currentTheme === 'light') {
-        localStorage.setItem("dear_diary_theme", 'dark')
-        document.body.setAttribute('data-theme', 'dark');
-
-    } else if (currentTheme === 'dark') {
-        localStorage.setItem("dear_diary_theme", 'light')
-        document.body.setAttribute('data-theme', 'light');
+    if (currentTheme === "light") {
+        localStorage.setItem("dear_diary_theme", "dark");
+        document.body.setAttribute("data-theme", "dark");
+    } else if (currentTheme === "dark") {
+        localStorage.setItem("dear_diary_theme", "light");
+        document.body.setAttribute("data-theme", "light");
     }
-}
+};
 
-themeInput.addEventListener('change', themeChangeListener);
-
-// display the selected image
-
-
-const img_container = document.querySelector("#entry-upload-photo");
-const image_input = document.querySelector("#imgUpload");
-const image_label = document.querySelector(".entry-photo");
-
-function handleImageSelect() {
-    const reader = new FileReader();
-    reader.addEventListener('load',()=>{
-        console.log('reader');
-        const uploaded_image = reader.result;
-        
-        
-        img_count++;
-        if (img_count === 5) {
-            image_label.remove();
-        } 
-        if (img_count <= 5) {
-            const img = document.createElement('div');
-            img_container.appendChild(img);
-            img.className = "chosenImg";
-            img.style.backgroundImage = `url(${uploaded_image})`;
-            const new_name = "imgUpload" + img_count;
-            const clone_input = image_input.cloneNode(true);
-            clone_input.value = "";
-            clone_input.id = new_name;
-            clone_input.setAttribute("name",new_name);
-            clone_input.addEventListener("change", handleImageSelect);
-            image_label.appendChild(clone_input);
-            image_label.onclick = function() {
-                document.getElementById(new_name).click();
-            }  
-        } else {
-            alert("reached max");
-            return;
-        }   
-    });
-    reader.readAsDataURL(this.files[0]);
-}
-
-image_input.addEventListener("change", handleImageSelect);
-
-
-
-
-
+themeInput.addEventListener("change", themeChangeListener);

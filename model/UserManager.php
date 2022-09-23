@@ -23,7 +23,7 @@ class UserManager extends Manager{
             // echo "<pre>";
             
             
-            if ($user['is_active'] === 1){
+            if ($user AND $user['is_active'] === 1){
                 // if correct, head to the timelineView
                 if (isset($user['u_id'])){
                     $_SESSION['uid'] = $user['u_id'];
@@ -129,7 +129,6 @@ class UserManager extends Manager{
                 $req->execute();
 
                 // create session variable for user login/signup
-                session_start();
                 if (isset($user['u_id'])){
                     $_SESSION['uid'] = $user['u_id'];
                 }

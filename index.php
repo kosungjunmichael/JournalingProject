@@ -106,7 +106,7 @@ try {
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid'], "monthly");
             } else {
-                toLogin();
+                toLanding();
             }
             break;
     }
