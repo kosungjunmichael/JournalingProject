@@ -60,18 +60,12 @@
         </div>
     </div>
     <div id="view-entry-photos">
-        <div class="img-container">
-            <img src="https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2VudHJhbCUyMHBhcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"/>
-        </div>
-        <div class="img-container">
-            <img src="https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2VudHJhbCUyMHBhcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"/>
-        </div>
-        <div class="img-container">
-            <img src="https://images.unsplash.com/photo-1575372587186-5012f8886b4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2VudHJhbCUyMHBhcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"/>
-        </div>
-        <div class="img-container">
-            <img src="https://images.unsplash.com/photo-1623593419606-7f9c8c22d736?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2VudHJhbCUyMHBhcmt8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"/>
-        </div>
+        <?php 
+            foreach($entryContent['images'] as $image){
+                $img_source = $image['path'];
+                include "entryImageCard.php";
+            }
+        ?>
     </div>
     <div id="view-entry-text-content">
         <?= $entryContent['text_content'] ?>

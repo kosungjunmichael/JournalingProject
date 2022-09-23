@@ -76,8 +76,11 @@ function createNewEntry(){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $check = $entryManager->createEntry($data);
-  if ($check){
+  $entry_id = $entryManager->createEntry($data);
+  if ($entry_id){
+    if ($_FILES['imgUpload']['error'] !== 4) {
+      $checkImgs = $entryManager->uploadImages($entry_id);
+    }
     $error = "Entry Submitted!";
     // require(ROOT . '/index.php?action=sidebarTimeline');
     // toTimeline($check);
@@ -112,5 +115,8 @@ function toAboutUs(){
 function viewEntry($entryId){
     $entryManager = new EntryManager();
     $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
+    // echo "<pre>";
+    // print_r($entryContent);
+    // echo "</pre>";
     require(ROOT . '/view/viewEntryView.php');
 }
