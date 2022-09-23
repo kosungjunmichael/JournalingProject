@@ -13,7 +13,7 @@ class EntryManager extends Manager{
       }
 
     private function uploadImage($file, $entry_uid) {
-        echo "EntryManager-uploadImage-ENTRY_ID:  ", $entry_uid, "<br>";
+        // echo "EntryManager-uploadImage-ENTRY_ID:  ", $entry_uid, "<br>";
         try {
             $hash = hash_file("md5", $file['tmp_name']);
             $first = substr($hash, 0, 2);
