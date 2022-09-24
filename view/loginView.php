@@ -33,7 +33,7 @@
             data-size="large"
             data-theme="outline"
             data-text="sign_in_with"
-            data-shape="rectangular"
+            data-shape="pill"
             data-logo_alignment="left">
         </div>
         <div id="form-bottom">

@@ -48,7 +48,7 @@
         </div>
         <div class="g_id_signin"
             data-type="standard"
-            data-shape="rectangular"
+            data-shape="pill"
             data-theme="outline"
             data-text="signup_with"
             data-size="large"
@@ -121,7 +121,7 @@
 </script>
 
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <?php $content = ob_get_clean(); ?>
 <?php require('templateView.php'); ?>
 

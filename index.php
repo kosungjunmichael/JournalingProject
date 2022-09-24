@@ -42,13 +42,13 @@ try {
             login($_REQUEST, 'regular');
             break;
 
-        case "toSignup":
-            toSignup();
-            break;
+        // case "toSignup":
+        //     toSignup();
+        //     break;
 
-        case "toLogin":
-            toLogin();
-            break;
+        // case "toLogin":
+        //     toLogin();
+        //     break;
 
         case "toggleView":
             if ($_GET['view'] === "week"){
@@ -106,7 +106,7 @@ try {
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid'], "monthly");
             } else {
-                toLogin();
+                toLanding();
             }
             break;
     }

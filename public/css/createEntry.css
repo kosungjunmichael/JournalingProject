@@ -194,8 +194,8 @@
     width: 100px;
     height:30px;
     border-radius: 15px;
-    background-color: #9673F5;
-    color:white;
+    background-color: var(--primary);
+    color: var(--white);
     border: 0px solid;
     font-size: 15px;
     font-weight: 800;

@@ -1,10 +1,5 @@
 @import url('../css/main.css');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('../css/footer.css');
 
 .container{
     overflow-y: scroll;
@@ -14,12 +9,12 @@
 .hero{
     height:100vh;
     width:100%;
-    background-color: #3B3D3E;
+    background-color: var(--grey);
 }
 
 nav{
     background-color: rgba(22,22,22,0.7);
-    color: #dddddd;
+    color: var(--grey-superlight);
     width:100%;
     padding: 30px 100px;
     display: flex;
@@ -29,7 +24,7 @@ nav{
 }
 
 .logo{
-    color:#7d7f80;
+    color:var(--grey-light);
     font-size: 30px;
     text-decoration: none;
     font-weight: 800;
@@ -43,7 +38,7 @@ nav ul li{
 }
 
 nav ul li a{
-    color:#7d7f80;
+    color:var(--grey-light);
     text-decoration: none;
     font-weight:500;
     letter-spacing: 1px;
@@ -51,7 +46,7 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    color:#9b40f6;
+    color:var(--primary);
 }
 
 .hero .content{
@@ -60,14 +55,14 @@ nav ul li a:hover{
     width:100%;
     justify-content: center;
     align-items: center;
-    background-color:#3B3D3E ;
+    background-color:var(--grey) ;
     color: #bababa;
     text-align: center;
     padding-top: 150px;
 }
 
 .content h2{
-    color:white;
+    color: var(--white);
     font-size: 70px;
     text-transform: uppercase;
     font-weight: 800;
@@ -77,13 +72,13 @@ nav ul li a:hover{
 }
 
 .content h2 span{
-    color:#9b40f6;
+    color:var(--primary);
     font-size: 65px;
     font-weight: 600;
 }
 
 .content p span{
-    color:#9b40f6;
+    color:var(--primary);
     font-weight: 600;
 }
 
@@ -117,7 +112,7 @@ nav ul li a:hover{
 }
 
  section{
-    background-color: #3B3D3E;
+    background-color: var(--grey);
  }
 
 
@@ -129,7 +124,7 @@ nav ul li a:hover{
     padding: 100px;
     line-height: 1.5;
     font-size: 16px;
-    color:white;
+    color: var(--white);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -182,96 +177,14 @@ nav ul li a:hover{
 }
 
 
-
-/* ------ */
-/* ------ */
-/* footer */
-/* ------ */
-/* ------ */
-
-footer{
-    background-color: #272727;
-    text-align: center;
-}
-
-.col{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-footer i{
-    color:white;
-    font-size: 25px;
-    margin-top: 20px;;
-}
-
-footer hr{
-    text-align: center;
-    width: 60%;
-    border-top: 0.3px solid #bbb;
-    margin-left: 290px;
-    margin-top: 20px;
-}
-
-
-.footer-main{
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 18px;
-}
-
-.footer-menu{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap:70px;
-}
-
-.footer-main a{
-    color:white;
-}
-
-footer ul li{
-    list-style: none;
-}
-footer a{
-    text-decoration: none;
-}
-
-.menu-item{
-    line-height: 2rem;
-}
-
-.menu-item-title{
-    font-weight: 800;
-    letter-spacing: 0.05em;
-}
-
-.sub-menu-item a{
-    color:#bababa;
-    font-size:15px;
-}
-
-.footer-card{
-    margin-top: 60px;
-    color: #9b40f6;
-    width: 100%;
-    height:100px;
-}
-
 /* -------- */
 /* 3rd page */
 /* -------- */
 
-
-
-
-
 /* LOGIN */
 
 #header-text {
-	color:#fff;	
+	color: var(--white);	
 	text-transform:uppercase;
     font-weight: bolder;
     font-size: 23px;
@@ -282,25 +195,23 @@ footer a{
 #login-error {
     display: inline-block;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: var(--white);
     padding: 4px 10px;
     border-radius: 15px;
     font-weight: 500;
     font-size: 13px;
 }
 
-.box{
+.box {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: #2f2f2f;
+    background-color: var(--grey-dark);
     border-radius: 15px;
     padding: 30px;
     min-width: 447px;
-
 }
-
 
 form {
     display: flex;
@@ -310,8 +221,8 @@ form {
 
 .input-container{
     width: 100%;
-	position:relative;
-	margin-bottom:25px;
+	position: relative;
+	margin-bottom: 25px;
 }
 
 .input-container label{
@@ -319,41 +230,41 @@ form {
 	top:0px;
 	left:0px;
 	font-size:16px;
-	color:#fff;	
+	color: var(--white);	
     /* pointer-event:none; */
 	transition: all 0.5s ease-in-out;
 }
 
 .input-container input{ 
     border:0;
-    border-bottom:1px solid #555;  
+    border-bottom:1px solid var(--grey);  
     background:transparent;
     width:100%;
     padding:8px 0 5px 0;
     font-size:16px;
-    color:#fff;
+    color: var(--white);
 }
 
 .input-container input:focus{ 
     border:none;	
     outline:none;
-    border-bottom:1px solid rgb(123, 0, 255);	
+    border-bottom:1px solid var(--primary-dark);	
 }
 
 .input-container input:focus ~ label,
 .input-container input:valid ~ label{
     top:-12px;
     font-size:11px;
-    color: lightgrey;
+    color: var(--grey-superlight);
 }
 
 #login-btn{
     width: 100%;
-	color:#fff;
-	background-color:#7F00FF;
+	color: var(--white);
+	background-color:var(--primary);
 	outline: none;
     border: 0;
-    color: #fff;
+    color: var(--white);
 	padding:10px 20px;
 	text-transform:uppercase;
 	margin: 20px 0 10px 0;
@@ -371,7 +282,7 @@ form {
     display: flex;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: var(--white);
 }
 
 .g_id_signin {
@@ -388,24 +299,21 @@ form {
 }
 
 #form-bottom > p {
-    color: white;
+    color: var(--white);
     font-size: large;
 }
 
 #form-bottom > #sign-up-link{
     font-weight: 600;
     margin: 10px 20px;
-    color: #7F00FF;
+    color: var(--primary);
     text-decoration: none;
 }
-
-
-
 
 /* =============== */
 
 .close {
-    color: #fff;
+    color: var(--white);
     transform: scale(1.2);
 }
 
@@ -419,7 +327,7 @@ form {
 }
 
 .note-container h1{
-    color:white;
+    color: var(--white);
     font-size: 65px;
 }
 .note-container p{
@@ -431,7 +339,7 @@ form {
     text-align: left;
 }
 .note-container p b{
-    color:#9b40f6;
+    color:var(--primary);
 }
 .note-container p span{
     text-decoration: underline;
@@ -464,7 +372,7 @@ form {
     line-height: 1.5;
 }
 .subfeature-title i{
-    color:#9b40f6;
+    color:var(--primary);
 }
 .subfeature-description{
     display:flex;
@@ -493,7 +401,7 @@ form {
     align-items: center;
 }
 .twitter-container h2, .twitter-container p{
-    color: white;
+    color: var(--white);
 }
 .twitter-container h2{
     font-size: 2rem;
@@ -507,7 +415,7 @@ form {
 }
 .twitter-container a{
     text-decoration: none;
-    color:#9b40f6;
+    color:var(--primary);
 }
 
 .tweets-container{
@@ -515,7 +423,7 @@ form {
     gap:2em;
 }
 .twitter-block{
-    background-color: white;
+    background-color: var(--white);
     color:black;
     padding: 10px 20px;
     border: 1px solid #ccc;
@@ -548,7 +456,7 @@ form {
     border-radius: 20px;
     background: none;
     /* border: 2px solid #fcfcfc; */
-    color: #ffffff;
+    color: var(--white)fff;
     font-weight: bold;
     transition: all 0.5s;
     margin-top: 1em;
@@ -556,7 +464,7 @@ form {
 }
 .login:hover {
     background: #af00fa;
-    color: #fff;
+    color: var(--white);
 }
 
 #login, #signup {
@@ -605,7 +513,7 @@ form {
     align-items: center;
     background-color: transparent;
     border-width: 0px;
-    color: #ffffff;
+    color: var(--white)fff;
     cursor: pointer;
     display: inline-flex;
     height: 18px;
@@ -629,7 +537,7 @@ form {
 ============================================ */
 
 #header-text {
-	color:#fff;
+	color: var(--white);
 	text-transform:uppercase;
 	font-weight: bolder;
 	font-size: 23px;
@@ -643,7 +551,7 @@ form {
 	left:50%;
 	top:50%;
 	transform: translate(-50%,-50%);
-	background-color: #2f2f2f;
+	background-color: var(--grey-dark);
 	border-radius: 15px;
 	padding: 30px;
 	min-width: 300px;
@@ -660,41 +568,41 @@ form {
 	top:0px;
 	left:0px;
 	font-size:16px;
-	color:#fff;
+	color: var(--white);
 	/* pointer-event:none; */
 	transition: all 0.5s ease-in-out;
 }
 
-.input-container input{
+.input-container input {
 	border:0;
-	border-bottom:1px solid #555;
+	border-bottom:1px solid var(--grey);
 	background:transparent;
 	width:100%;
 	padding:8px 0 5px 0;
 	font-size:16px;
-	color:#fff;
+	color: var(--white);
 }
 
-.input-container input:focus{
+.input-container input:focus {
 	border:none;
 	outline:none;
-	border-bottom:1px solid rgb(123, 0, 255);
+	border-bottom:1px solid var(--primary-dark);
 }
 
 .input-container input:focus ~ label,
 .input-container input:valid ~ label{
 	top:-12px;
 	font-size:11px;
-	color: lightgrey;
+	color: var(--grey-superlight);
 }
 
 #signup-btn{
 	width: 54%;
-	color:#fff;
-	background-color:#7F00FF;
+	color: var(--white);
+	background-color:var(--primary);
 	outline: none;
 	border: 0;
-	color: #fff;
+	color: var(--white);
 	padding:10px 20px;
 	text-transform:uppercase;
 	margin: 20px 0 10px 0;
@@ -707,7 +615,7 @@ form {
 .input-container input:valid ~ label{
 	top:-12px;
 	font-size:12px;
-	color: lightgrey;
+	color: var(--grey-superlight);
 }
 
 #or-separator {
@@ -715,7 +623,7 @@ form {
 	display: flex;
 	justify-content: center;
 	text-align: center;
-	color: white;
+	color: var(--white);
 }
 
 .g_id_signin {
@@ -732,16 +640,15 @@ form {
 }
 
 #form-bottom > p {
-	color: white;
+	color: var(--white);
 }
 
 #form-bottom > #login-link {
 	font-weight: 600;
 	margin: 10px 20px;
-	color: #7F00FF;
+	color: var(--primary);
 	text-decoration: none;
 }
-
 
 #message {
 	display:none;
@@ -768,7 +675,7 @@ form {
   }
   
   .invalid {
-	color: red;
+	color: crimson;
   }
   
   .invalid:before {
