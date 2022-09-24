@@ -1,10 +1,5 @@
 @import url("../css/main.css");
 
-* {
-    font-family: Raleway;
-    box-sizing: border-box;
-}
-
 #view-entry-container {
     padding: 30px;
     color: var(--text-color-secondary);
@@ -73,7 +68,7 @@
     padding: 4px 10px;
     background-color: #9673f5;
     border-radius: 15px;
-    color: white;
+    color: var(--white);
     text-decoration: none;
     font-weight: 500;
     display: flex;

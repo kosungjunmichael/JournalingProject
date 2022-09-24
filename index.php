@@ -22,13 +22,13 @@ try {
 //----------------PAGE NAVIGATION-------------------
 //--------------------------------------------------
 
-        case "toSignup":
-            toSignup();
-            break;
+        // case "toSignup":
+        //     toSignup();
+        //     break;
 
-        case "toLogin":
-            toLogin();
-            break;
+        // case "toLogin":
+        //     toLogin();
+        //     break;
 
         case "toTimeline":
             toTimeline($_SESSION['uid'], "monthly");
