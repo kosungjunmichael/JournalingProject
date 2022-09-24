@@ -3,9 +3,12 @@
 <?php $script = "script";?>
 
 <?php ob_start();?>
-<?php if(isset($error)){
+<!-- <?php if(isset($error)){
         echo $error;
-    }?>
+    }?> -->
+    <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
+    <?php if (isset($username)){ echo "<span id='login-error'>Username: " . $username . "</span>"; } ?>
+    <?php if (isset($email)){ echo "<span id='login-error'>Email: " . $email . "</span>"; } ?>
     <div class="box">
         <form method="POST" action="<?=BASE. "/index.php?action=regularSignup"?>" class="signup">
             <span id="header-text">Sign Up</span>
@@ -41,14 +44,14 @@
         </div>
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-            data-context="signup"
             data-ux_mode="popup"
+            data-context="signup"
             data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
             data-auto_prompt="false">
         </div>
         <div class="g_id_signin"
             data-type="standard"
-            data-shape="rectangular"
+            data-shape="circle"
             data-theme="outline"
             data-text="signup_with"
             data-size="large"

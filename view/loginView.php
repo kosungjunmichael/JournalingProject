@@ -1,4 +1,4 @@
-<?php $title = "Log In";?>
+<?php $title = "DearDiary - Log In";?>
 <?php $style = "login" ?>
 <?php $script = "script";?>
 
@@ -25,6 +25,7 @@
         </div>
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
+            data-context="signin"
             data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin"
             data-auto_prompt="false">
         </div>
@@ -33,7 +34,7 @@
             data-size="large"
             data-theme="outline"
             data-text="sign_in_with"
-            data-shape="rectangular"
+            data-shape="circle"
             data-logo_alignment="left">
         </div>
         <div id="form-bottom">

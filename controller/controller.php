@@ -3,24 +3,76 @@
 require_once('./model/EntryManager.php');
 require_once('./model/UserManager.php');
 
+//--------------------------------------------------
+//----------------PAGE NAVIGATION-------------------
+//--------------------------------------------------
+
+function toLanding() {
+  require(ROOT . '/view/journeyView.php');
+}
+
+function toAboutUs() {
+  require(ROOT . '/view/aboutView.php');
+}
+
+function toSignup() {
+  require(ROOT . '/view/signupView.php');
+}
+
+function toLogin() {
+  require(ROOT . '/view/journeyView.php');
+}
+
+function toTimeline($Unique_id, $entryGroup) {
+  $entryManager = new EntryManager();
+  $entries = $entryManager->getEntries($Unique_id, $entryGroup);
+  $view = $entryGroup;
+  require(ROOT . '/view/timelineView.php');
+}
+
+function createNewEntry() {
+  require(ROOT . '/view/createEntryView.php');
+}
+
+function toMap($uid) {
+  require(ROOT . '/view/mapView.php');
+}
+
+function toLogout() {
+  session_destroy();
+  header("Location: index.php");
+}
+
+//--------------------------------------------------
+//----------------USER SIGNUP-----------------------
+//--------------------------------------------------
+
 function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
+
   if ($check === false){
-    // session_start();
     toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error = $check['error'];
     if (isset($check['username'])) {
         $username = $check['username'];
     };
-    require(ROOT . '/view/loginView.php');
+    if (isset($check['email'])) {
+        $email = $check['email'];
+    };
+    require(ROOT . '/view/signUpView.php');
   }
 }
+
+//--------------------------------------------------
+//----------------USER LOGIN------------------------
+//--------------------------------------------------
 
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
+  // echo $check;
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
@@ -29,6 +81,40 @@ function login($data, $type){
     require(ROOT . '/view/loginView.php');
   }
 }
+
+//--------------------------------------------------
+//----------------ENTRY MANAGEMENT------------------
+//--------------------------------------------------
+
+function newEntry($data){
+  $entryManager = new EntryManager();
+  $entry_id = $entryManager->createEntry($data);
+  if ($entry_id){
+    if ($_FILES['imgUpload']['error'] !== 4) {
+      $checkImgs = $entryManager->uploadImages($entry_id);
+    }
+    $error = "Entry Submitted!";
+    // require(ROOT . '/index.php?action=sidebarTimeline');
+    // toTimeline($check);
+    header("Location: index.php?action=toTimeline");
+  } else {
+    $error = "Not a valid Entry";
+    require(ROOT . '/view/createEntryView.php');
+  }
+}
+
+function viewEntry($entryId){
+    $entryManager = new EntryManager();
+    $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
+    // echo "<pre>";
+    // print_r($entryContent);
+    // echo "</pre>";
+    require(ROOT . '/view/viewEntryView.php');
+}
+
+//--------------------------------------------------
+//----------------UTILITY FUNCTIONS-----------------
+//--------------------------------------------------
 
 function displayMonths($numOfMonths = 5){
   $months = array();
@@ -52,71 +138,21 @@ function displayDaysInWeek(){
   return $week;
 }
 
-function toTimeline($Unique_id, $entryGroup){
-  $entryManager = new EntryManager();
-  $entries = $entryManager->getEntries($Unique_id, $entryGroup);
-  $view = $entryGroup;
-  require(ROOT . '/view/timelineView.php');
-}
-
-function toMap($uid){
-    require(ROOT . '/view/mapView.php');
-}
 
 function updateLastActive($uid){
   $userManager = new UserManager();
   $userManager->updateLastActive($uid);
 }
 
-function createNewEntry(){
-  require(ROOT . '/view/createEntryView.php');
-}
-
-
-
-function newEntry($data){
-  $entryManager = new EntryManager();
-  $entry_id = $entryManager->createEntry($data);
-  if ($entry_id){
-    if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_id);
-    }
-    $error = "Entry Submitted!";
-    // require(ROOT . '/index.php?action=sidebarTimeline');
-    // toTimeline($check);
-    header("Location: index.php?action=toTimeline");
+function echoPre($user_fetch)
+{
+  if (is_array($user_fetch)) {
+    echo "<pre>";
+    print_r($user_fetch);
+    echo "</pre>";
   } else {
-    $error = "Not a valid Entry";
-    require(ROOT . '/view/createEntryView.php');
+    echo "<pre>";
+    echo $user_fetch;
+    echo "</pre>";
   }
-}
-
-function toLogout(){
-  session_destroy();
-  header("Location: index.php");
-}
-
-function toSignup(){
-  require(ROOT . '/view/signupView.php');
-}
-
-function toLogin(){
-  require(ROOT . '/view/loginView.php');
-}
-
-function toLanding(){
-  require(ROOT . '/view/journeyView.php');
-}
-
-function toAboutUs(){
-  require(ROOT . '/view/aboutView.php');
-}
-
-function viewEntry($entryId){
-    $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
-    // echo "<pre>";
-    // print_r($entryContent);
-    // echo "</pre>";
-    require(ROOT . '/view/viewEntryView.php');
 }
