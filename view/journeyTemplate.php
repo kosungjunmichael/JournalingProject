@@ -12,8 +12,8 @@
     <!-- Page specific javascript file -->
     <script defer src="<?= BASE . "/public/js/loginSignup.js?>"; ?>"></script>
 
-    <title>DearDiary - <?= $title; ?></title>
-    <link rel="icon" href="../public/images/logo.png">
+    <title><?=$title;?></title>
+    <link rel="icon" href="<?= BASE . "/public/images/static/logo.png"?>">
 </head>
 
 <body> <?= $content; ?> </body>
