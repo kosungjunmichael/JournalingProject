@@ -1,4 +1,4 @@
-<?php $title = "AboutUs" ;?>
+<?php $title = "AboutUs";?>
 <?php $style = "aboutView";?>
 
 <?php ob_start(); ?>
