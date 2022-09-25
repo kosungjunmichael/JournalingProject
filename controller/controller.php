@@ -50,17 +50,23 @@ function toLogout() {
 function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
-
+  // echoPre($check);
+  // echo $check;
+  // print_r($check);
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
-    $error = $check['error'];
-    if (isset($check['username'])) {
-        $username = $check['username'];
-    };
-    if (isset($check['email'])) {
-        $email = $check['email'];
-    };
+    if (isset($check['error'])) {
+      $error = $check['error'];
+      if (isset($check['username'])) {
+          $username = $check['username'];
+      };
+      if (isset($check['email'])) {
+          $email = $check['email'];
+      };
+    } else {
+      $error = $check;
+    }
     require(ROOT . '/view/signUpView.php');
   }
 }
@@ -86,22 +92,22 @@ function login($data, $type){
 //----------------ENTRY MANAGEMENT------------------
 //--------------------------------------------------
 
-function newEntry($data){
-  $entryManager = new EntryManager();
-  $entry_id = $entryManager->createEntry($data);
-  if ($entry_id){
-    if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_id);
-    }
-    $error = "Entry Submitted!";
-    // require(ROOT . '/index.php?action=sidebarTimeline');
-    // toTimeline($check);
-    header("Location: index.php?action=toTimeline");
-  } else {
-    $error = "Not a valid Entry";
-    require(ROOT . '/view/createEntryView.php');
-  }
-}
+// function newEntry($data){
+//   $entryManager = new EntryManager();
+//   $entry_id = $entryManager->createEntry($data);
+//   if ($entry_id){
+//     if ($_FILES['imgUpload']['error'] !== 4) {
+//       $checkImgs = $entryManager->uploadImages($entry_id);
+//     }
+//     $error = "Entry Submitted!";
+//     // require(ROOT . '/index.php?action=sidebarTimeline');
+//     // toTimeline($check);
+//     header("Location: index.php?action=toTimeline");
+//   } else {
+//     $error = "Not a valid Entry";
+//     require(ROOT . '/view/createEntryView.php');
+//   }
+// }
 
 function newEntry($data) {
   $entryManager = new EntryManager();
@@ -174,4 +180,5 @@ function echoPre($user_fetch) {
     echo "<pre>";
     echo $user_fetch;
     echo "</pre>";
+  }
 }
