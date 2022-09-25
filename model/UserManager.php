@@ -169,48 +169,65 @@ class UserManager extends Manager{
             case 'regular':
                 // creating normal regular user
 
-                // if user doesn't exist, create user in database
-                $existingUser = $this->checkUserExist($data);
-                if (!$existingUser) {
+                // BACKEND FORM VALIDATIONS
+                $control = [];
+                preg_match("/^[a-zA-Z0-9]{4,}/", $data['sign-u']) ? array_push($control, true) : array_push($control, "Your username must include at least 4 characters.");
+                preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data['sign-e']) ? array_push($control, true) : array_push($control, "You must use a proper email address.");
+                preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/", $data['sign-p']) ? array_push($control, true) : array_push($control, "Your password did not meet the minimum requirements.");
+                $data['sign-p'] == $data['sign-cp'] ? array_push($control, true) : array_push($control, "Your passwords did not match.");
+                if (count(array_unique($control)) == 1) {
 
-                    //                if (empty($data['sign-u']) OR
-                    //                empty($data['sign-e']) OR
-                    //                empty($data['sign-p']) OR
-                    //                empty($data['sign-cp'])){
-                    //                    return "Fill in all parameters";
-                    //                } else if (){
-                    //                    return "Fill in all parameters";
-                    //                }
+                    // if user doesn't exist, create user in database
+                    $existingUser = $this->checkUserExist($data);
+                    if (!$existingUser) {
 
-                    // if conditions met, create user in database
+                        // if (empty($data['sign-u']) OR
+                        // empty($data['sign-e']) OR
+                        // empty($data['sign-p']) OR
+                        // empty($data['sign-cp'])){
+                        //     return "Fill in all parameters";
+                        // } else if (){
+                        //     return "Fill in all parameters";
+                        // }
 
-                    $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+                        // if conditions met, create user in database
 
-                    // create a new user into users database table
-                    $req = $db->prepare('INSERT INTO users (u_id, username, email, password) VALUES (:inUID, :inUsername, :inEmail, :inPassword)');
-                    $req->bindParam('inUID', $uid, PDO::PARAM_STR);
-                    $req->bindParam('inUsername', $data['sign-u'], PDO::PARAM_STR);
-                    $req->bindParam('inEmail', $data['sign-e'], PDO::PARAM_STR);
-                    $req->bindParam('inPassword', $hashpass, PDO::PARAM_STR);
-                    $req->execute();
+                        $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
-                    // create session variable for user login/signup
-                    $_SESSION['uid'] = $uid;
-                    // if (isset($user['u_id'])) {
-                    //     $_SESSION['uid'] = $user['u_id'];
-                    // }
+                        // create a new user into users database table
+                        $req = $db->prepare('INSERT INTO users (u_id, username, email, password) VALUES (:inUID, :inUsername, :inEmail, :inPassword)');
+                        $req->bindParam('inUID', $uid, PDO::PARAM_STR);
+                        $req->bindParam('inUsername', $data['sign-u'], PDO::PARAM_STR);
+                        $req->bindParam('inEmail', $data['sign-e'], PDO::PARAM_STR);
+                        $req->bindParam('inPassword', $hashpass, PDO::PARAM_STR);
+                        $req->execute();
 
-                    // redirect to index with registered type
-                    return false;
+                        // create session variable for user login/signup
+                        $_SESSION['uid'] = $uid;
+                        // if (isset($user['u_id'])) {
+                        //     $_SESSION['uid'] = $user['u_id'];
+                        // }
+
+                        // redirect to index with registered type
+                        return false;
+                    } else {
+                        return array(
+                            'error' => "User with these credentials already exists. Please log in.",
+                            'username' => $data['sign-u'],
+                            'email' => $data['sign-e']
+                        );
+                    }
                 } else {
-                    return array(
-                        'error' => "User with these credentials already exists. Please log in.",
-                        'username' => $data['sign-u'],
-                        'email' => $data['sign-e']
-                    );
+                    // return "sign up failed";
+                    // $error = '';
+                    $error = [];
+                    foreach ($control as $value) {
+                        // if ($value != '1') $error .= $value . '<br>';
+                        if ($value != '1') array_push($error, $value);
+                    }
+                    return $error;
                 }
                 break;
         }
     }
 }
-
