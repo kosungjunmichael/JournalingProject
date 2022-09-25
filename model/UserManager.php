@@ -4,11 +4,12 @@ require_once('Manager.php');
 
 class UserManager extends Manager{
 
-    public function confirmUser($credentials, $type) {
+    public function confirmUser($data, $type) {
         $db = $this->dbConnect();
 
         switch ($type) {
             case 'google':
+                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true);
                 $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
                 $req->bindParam(1, $credentials['email'], PDO::PARAM_STR);
                 $req->execute();
@@ -36,7 +37,7 @@ class UserManager extends Manager{
 
                 // retrieve the user
                 $req = $db->prepare('SELECT u_id, username, email, password, is_active FROM users WHERE ? IN(username, email)');
-                $req->bindParam(1, $credentials['login-ue'], PDO::PARAM_STR);
+                $req->bindParam(1, $data['login-ue'], PDO::PARAM_STR);
                 $req->execute();
                 $user = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -45,8 +46,8 @@ class UserManager extends Manager{
                 // catch login errors
                 if (
                     !$user
-                    OR ($credentials['login-ue'] !== $user['username'] and $credentials['login-ue'] !== $user['email'])
-                    OR (!password_verify($credentials['login-p'], $user['password']))
+                    OR ($data['login-ue'] !== $user['username'] and $data['login-ue'] !== $user['email'])
+                    OR (!password_verify($data['login-p'], $user['password']))
                     OR $user['is_active'] === 0
                     ) {
                         return array(

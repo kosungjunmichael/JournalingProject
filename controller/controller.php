@@ -50,9 +50,6 @@ function toLogout() {
 function signUp($data, $type){
   $userManager = new UserManager();
   $check = $userManager->createUser($data, $type);
-  // echoPre($check);
-  // echo $check;
-  // print_r($check);
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
@@ -71,6 +68,10 @@ function signUp($data, $type){
   }
 }
 
+function kakaoSignUp($data) {
+  echoPre($data);
+}
+
 //--------------------------------------------------
 //----------------USER LOGIN------------------------
 //--------------------------------------------------
@@ -78,7 +79,6 @@ function signUp($data, $type){
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
-  // echo $check;
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
