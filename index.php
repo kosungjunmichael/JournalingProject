@@ -1,10 +1,10 @@
 <?php
 require('./controller/controller.php');
 
-// use in PHP
+// USE IN PHP
 define('ROOT', dirname(__FILE__));
 
-// use in HTML
+// USE IN HTML
 $httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
 define('BASE', $httpProtocol.'://'.$_SERVER['HTTP_HOST'].'/sites/JournalingProject');
 
@@ -60,24 +60,15 @@ try {
 
         // GOOGLE SIGNUP
         case "googleSignUp":
-            // echo "<pre>";
-            // print_r($_REQUEST);
-            // echo "</pre>";
-            // $response = $_REQUEST['credential'];
-            // TODO: No need to decode now; can pass as raw data to controller
-            // $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-            // echo "<pre>";
-            // print_r($credentials);
-            // echo "</pre>";
-            // signUp($credentials, 'google');
             signUp($_REQUEST, 'google');
             break;
 
+        // KAKAO SIGNUP
+        case "kakaoSignUp":
+            kakaoSignUp($_REQUEST);
+            break;
         // REGULAR SIGNUP
         case "regularSignup":
-            // echo "<pre>";
-            // echo print_r($_REQUEST);
-            // echo "</pre>";
             signUp($_REQUEST, 'regular');
             break;
 
@@ -87,9 +78,7 @@ try {
 
         // GOOGLE LOGIN
         case "googleLogin":
-            $response = $_REQUEST['credential'];
-            $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-            login($credentials, 'google');
+            login($_REQUEST, 'google');
             break;
             
         // REGULAR LOGIN
