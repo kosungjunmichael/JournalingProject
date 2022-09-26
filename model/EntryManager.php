@@ -188,7 +188,19 @@ class EntryManager extends Manager{
         $query->bindParam('u_id', $uid, PDO::PARAM_STR);
         $query->execute();
         return $query->fetchAll();
+    }
 
+    public function getAlbum(){
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT x.u_id, x.title, x.date_created,
+        GROUP_CONCAT(y.path SEPARATOR ', ') as paths
+        FROM ENTRIES x
+        JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
+        GROUP BY x.u_id ");
+
+        $req -> execute();
+        $res = $req -> fetchAll(PDO::FETCH_ASSOC);
+        return $res;
     }
 }
 

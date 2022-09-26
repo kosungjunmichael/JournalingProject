@@ -1,1 +1,115 @@
 @import url('../css/main.css');
+
+#container{
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    width: calc(100% - 240px);
+
+}
+
+#album-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#album-container h1{
+    align-self: flex-start;
+}
+
+/* #album-container2{
+    display:flex;
+    flex-direction: column;
+} */
+
+#album-container-bottom{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+
+
+
+.album{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 275px;
+    height: 275px;
+    padding: 20px;
+    background-repeat: no-repeat;
+    /* background-color:linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 66.15%); */
+    /* background-position: ; */
+    background-size:contain; 
+    /* box-shadow:inset 0px 0px 10px 10px rgba(0,0,0,0.6); */
+
+}
+
+#album-title{
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: white;
+
+}
+
+.album-bottom{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.album-bottom p:first-child{
+    background-color: gray;
+    padding: 5px 15px 0px 15px;
+    border-radius: 10px;
+    color: white;
+    
+}
+
+.album-bottom p:nth-child(2){
+    color: white;
+    font-size: 0.9em;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+
+.overlay{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(6px);
+    background-color: rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+.modal-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal{
+    width: 80vw;
+    height: 80vh;
+    position: relative;
+    background-color: black;
+    z-index: 3;
+}
+
+.display-none{
+    display: none;
+}
+
+
+/* carousel */
+
