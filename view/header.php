@@ -6,6 +6,7 @@
             <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
             <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>
+    </nav>
 
     <div id="login" class="modal fade" role="dialog">
         <div class="box">
@@ -16,14 +17,13 @@
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
             
-<!-- Sign In form -->
+            <!-- Sign In form -->
 
             <form method="POST" action="<?= BASE . "/index.php?action=regularogin" ?>" class="signin">
                 <span id="header-text">Login</span>
 
                 <div class="input-container">
-                    <input 
-                    id="login-ue" 
+                    <input id="login-ue" 
                     type="text" 
                     name="login-ue" 
                     <?php if(isset($username)) {echo "value='" . $username . "'";}?> 
@@ -35,8 +35,7 @@
                 </div>
 
                 <div class="input-container">
-                    <input 
-                    id="login-p" 
+                    <input id="login-p" 
                     type="password"
                     name="login-p" />
                     <label 
@@ -47,29 +46,23 @@
                 <button type="submit" class="form-button" id="login-btn">Log In</button>
 
             </form>
-            <div id="or-separator">
-                OR
-            </div>
+
+            <div id="or-separator">OR</div>
+
             <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
             </div>
             <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
-            <div id="or-separator">
-                OR
-            </div>
+
             <div>
                 <a id="kakao-login-btn" href="javascript:loginWithKakao()">
                     <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" />
                 </a>
             </div>
             
-            <a href="http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp">
-                <button class="form-button">Kakao</button>
-            </a>
             <div id="form-bottom">
                 <p>Don't have an account yet?</p>
                 <a id="sign-up-link">Sign Up</a>
             </div>
-
         </div>
 
         <!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
@@ -89,8 +82,7 @@
             <span id="header-text">Sign Up</span>
 
             <div class="input-container">
-                <input 
-                id="sign-u"
+                <input id="sign-u"
                 type="text" 
                 name="sign-u" />
                 <label 
@@ -103,8 +95,7 @@
             </div>
 
             <div class="input-container">
-                <input 
-                id="sign-e" 
+                <input id="sign-e" 
                 type="text" 
                 name="sign-e" />
                 <label 
@@ -117,8 +108,7 @@
             </div>
 
             <div class="input-container">
-                <input 
-                type="password" 
+                <input type="password" 
                 id="sign-p" 
                 name="sign-p" />
                 <!-- <div class="svg-container eye" id="su-pwd-show">
@@ -162,9 +152,7 @@
             <input type="submit" class="form-button" id="signup-btn">Sign Up</button>
         </form>
 
-        <div id="or-separator">
-                OR
-        </div>
+        <div id="or-separator">OR</div>
         <!-- Google login -->
         <div class="google-btn">
             <div id="g_id_onload"
@@ -172,24 +160,14 @@
                 data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
                 data-auto_prompt="false">
             </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="pill"
-                data-logo_alignment="left">
-            </div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
         </div>
-        <div class="center-button">
-            <a href="http://localhost/sites/JournalingProject/index.php/?action=kakaoLogin">
-                <button class="form-button">Kakao</button>
-            </a>
-        </div>
+        <a href="http://localhost/sites/JournalingProject/index.php/?action=kakaoLogin">
+            <button class="form-button">Kakao</button>
     </div>
             <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
             </div> -->
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
+            <!-- <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div> -->
         </div>
         <div class="blur"></div>
 </header>
