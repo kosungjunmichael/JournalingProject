@@ -76,16 +76,19 @@ function createNewEntry(){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $entry_id = $entryManager->createEntry($data);
-  if ($entry_id){
+  $entry_uid = $entryManager->createEntry($data);
+  if ($entry_uid){
     if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_id);
+      $checkImgs = $entryManager->uploadImages($entry_uid);
+    } else {
+      throw new Exception("IMAGE UPLOAD ERROR");
     }
     $error = "Entry Submitted!";
     // require(ROOT . '/index.php?action=sidebarTimeline');
     // toTimeline($check);
     header("Location: index.php?action=toTimeline");
   } else {
+    throw new Exception("FAILED TO CREATE ENTRY");
     $error = "Not a valid Entry";
     require(ROOT . '/view/createEntryView.php');
   }
@@ -106,6 +109,12 @@ function toLogin(){
 
 function toLanding(){
   require(ROOT . '/view/journeyView.php');
+}
+
+function toAlbum($uid){
+  $entryManager = new EntryManager();
+  $entryImages = $entryManager->getImages($uid);
+  require(ROOT . '/view/albumView.php');
 }
 
 function toAboutUs(){

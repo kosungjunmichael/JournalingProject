@@ -298,8 +298,8 @@
                     <div class="subfeature-description">
                         <p>
                             " Most of the community plugin and theme developers also hang out
-                             in our community. Learn together and make something awesome!
-                              Teamwork makes the dream work. "
+                            in our community. Learn together and make something awesome!
+                            Teamwork makes the dream work. "
                         </p>
                     </div>
                 </div>
