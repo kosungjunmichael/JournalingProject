@@ -27,9 +27,9 @@
                 <?php
             } else if ($view === "monthly") {
                 ?>
-                <!-- <a href="index.php?action=toggleView&view=week">
+                <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
-                </a> -->
+                </a>
                 <div class="group">Monthly</div>
                 <?php
             }

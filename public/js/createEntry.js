@@ -2,12 +2,15 @@
 let addedTags = [];
 
 let destroyTags = document.querySelectorAll('.fa-solid.fa-x');
-// queryselector for the + button in the tag input
-let entryTagBtn = document.querySelector('#create-entry-tag-btn');
-// queryselector for the text input of tag to be submitted
-// query selector for the div containing all the displayed tags
-let entryTagContainer = document.querySelector('#entry-tag-cont');
-let tagInput = document.querySelector('.entry-tag-input');
+
+// queryselectors for tag creation
+let createTagBtn = document.querySelector('#create-tag-btn');
+let createTagInput = document.querySelector('#create-tag-input');
+
+// queryselectors for display and submitted tags
+let tagContainer = document.querySelector('#tag-cont');
+let submitTagInput = document.querySelector('.submitted-tags-input');
+
 
 function removeTags() {
   let allTags = document.querySelectorAll('.entry-tag');
@@ -17,7 +20,6 @@ function removeTags() {
 }
 
 function createTags() {
-
   for (let i =0; i<addedTags.length; i++) {
     let text = addedTags[i];
     let tagDisplay = document.createElement('div');
@@ -33,15 +35,15 @@ function createTags() {
     tagDisplay.classList.add("entry-tag");
     tagDisplay.prepend(destroyTag);
   
-    entryTagContainer.appendChild(tagDisplay);
+    tagContainer.appendChild(tagDisplay);
   }
   // format of the hidden input value
   //      seoul,delicious food,nice day
-  tagInput.value = addedTags.join(",");
+  submitTagInput.value = addedTags.join(",");
 }
 
 function handleAddTag() {
-  let entryTagInput = document.querySelector('#create-entry-tag-input');
+  let entryTagInput = document.querySelector('#create-tag-input');
   // array to check if the tags already exist
   let val = entryTagInput.value;
   if (val !== "" && !val.includes(",") && !addedTags.includes(val)){
@@ -49,15 +51,19 @@ function handleAddTag() {
     removeTags();
     createTags();
   }
-
+  createTagInput.value = "";
 }
 
-entryTagBtn.addEventListener('click',()=>{
+createTagBtn.addEventListener('click',()=>{
   handleAddTag();
 })
+
 // TODO: add eventListener for Enter key "13" on the text input
-entryTagBtn.addEventListener('keydown',()=>{
-  handleAddTag();
+createTagInput.addEventListener('keydown',(e)=>{
+  if (e.key === "Enter"){
+    e.preventDefault();
+    handleAddTag();
+  };
 })
 
 

@@ -76,19 +76,19 @@ function createNewEntry(){
 
 function newEntry($data){
   $entryManager = new EntryManager();
-  $entry_id = $entryManager->createEntry($data);
-  if ($entry_id){
+  if (!empty($data->title) AND !empty($data->entry)){
+    $entry_id = $entryManager->createEntry($data);
     if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_id);
+        $checkImgs = $entryManager->uploadImages($entry_id);
+      }
+      $error = "Entry Submitted!";
+      // require(ROOT . '/index.php?action=sidebarTimeline');
+      // toTimeline($check);
+      header("Location: index.php?action=toTimeline");
+    } else {
+      $error = "Not a valid Entry";
+      require(ROOT . '/view/createEntryView.php');
     }
-    $error = "Entry Submitted!";
-    // require(ROOT . '/index.php?action=sidebarTimeline');
-    // toTimeline($check);
-    header("Location: index.php?action=toTimeline");
-  } else {
-    $error = "Not a valid Entry";
-    require(ROOT . '/view/createEntryView.php');
-  }
 }
 
 function toLogout(){

@@ -54,7 +54,6 @@ class EntryManager extends Manager{
     public function createEntry($data){
         $db = $this->dbConnect();
 
-        if (!empty($data->title) OR !empty($data->entry)){
 
             // create unique ID, check if it's actually unique
             do {
@@ -75,9 +74,6 @@ class EntryManager extends Manager{
     
             // Direct the user to the timeline
             return $entry_id->u_id;
-        } else {
-            return false;
-        }
     }
 
     public function getEntries($userId, $entryGroup){
