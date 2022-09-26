@@ -82,9 +82,9 @@
             <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup" data-auto_prompt="false">
             </div>
             <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
+                
             </div>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+                <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
     <div class="blur"></div>
 </header>
