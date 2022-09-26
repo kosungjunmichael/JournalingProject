@@ -1,18 +1,14 @@
 @import url('../css/main.css');
 
-* {
-	font-family: Raleway;
-}
-
 body{
     display: flex;
     justify-content: center;
-    /*background: linear-gradient(45deg, #7F00FF,#000000);*/
+    /*background: linear-gradient(45deg, var(--primary),#000000);*/
 }
 
 #header-text {
-	color:#fff;
-	text-transform:uppercase;
+	color: var(--white);
+	text-transform: uppercase;
 	font-weight: bolder;
 	font-size: 23px;
 	margin: 0 0 30px 0;
@@ -22,10 +18,10 @@ body{
 
 .box{
 	position:absolute;
-	left:50%;
-	top:50%;
+	left: 50%;
+	top: 50%;
 	transform: translate(-50%,-50%);
-	background-color: #2f2f2f;
+	background-color: var(--grey-dark);
 	border-radius: 15px;
 	padding: 30px;
 	min-width: 300px;
@@ -42,41 +38,41 @@ body{
 	top:0px;
 	left:0px;
 	font-size:16px;
-	color:#fff;
+	color: var(--white);
 	/* pointer-event:none; */
 	transition: all 0.5s ease-in-out;
 }
 
 .input-container input{
 	border:0;
-	border-bottom:1px solid #555;
+	border-bottom:1px solid var(--grey);
 	background:transparent;
 	width:100%;
 	padding:8px 0 5px 0;
 	font-size:16px;
-	color:#fff;
+	color: var(--white);
 }
 
 .input-container input:focus{
 	border:none;
 	outline:none;
-	border-bottom:1px solid rgb(123, 0, 255);
+	border-bottom:1px solid var(--primary-dark);
 }
 
 .input-container input:focus ~ label,
 .input-container input:valid ~ label{
 	top:-12px;
 	font-size:11px;
-	color: lightgrey;
+	color: var(--grey-superlight);
 }
 
 #signup-btn{
 	width: 100%;
-	color:#fff;
-	background-color:#7F00FF;
+	color: var(--white);
+	background-color:var(--primary);
 	outline: none;
 	border: 0;
-	color: #fff;
+	color: var(--white);
 	padding:10px 20px;
 	text-transform:uppercase;
 	margin: 20px 0 10px 0;
@@ -89,7 +85,7 @@ body{
 .input-container input:valid ~ label{
 	top:-12px;
 	font-size:12px;
-	color: lightgrey;
+	color: var(--grey-superlight);
 }
 
 #or-separator {
@@ -97,7 +93,7 @@ body{
 	display: flex;
 	justify-content: center;
 	text-align: center;
-	color: white;
+	color: var(--white);
 }
 
 .g_id_signin {
@@ -114,21 +110,21 @@ body{
 }
 
 #form-bottom > p {
-	color: white;
+	color: var(--white);
 }
 
 #form-bottom > #login-link {
 	font-weight: 600;
 	margin: 10px 20px;
-	color: #7F00FF;
+	color: var(--primary);
 	text-decoration: none;
 }
 
 
 #message {
 	display:none;
-	background: #f1f1f1;
-	color: #000;
+	background: var(--grey-superlight);
+	color: var(--black);
 	position: relative;
 	padding: 20px;
 	margin-top: 10px;
@@ -150,7 +146,7 @@ body{
   }
   
   .invalid {
-	color: red;
+	color: crimson;
   }
   
   .invalid:before {

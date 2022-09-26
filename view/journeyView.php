@@ -2,100 +2,10 @@
 <?php $style = "journey" ?>
 
 <?php ob_start(); ?>
+
+<?php include(ROOT . "/view/header.php"); ?>
+
 <div class="container">
-    <nav>
-        <h2><a href="#" class="logo">Dear Diary</a></h2>
-        <ul class="navbar">
-            <li><a href="aboutView.php">About us</a></li>
-            <li><a href="#" data-target="#login" data-toggle="modal" class="btn" >Login</a></li>
-            <li><a href="#"data-target="#signup" data-toggle="modal" class="btn1" >Signup</a></li>
-        </ul>
-    </nav>
-    <div id="login" class="modal fade" role="dialog">
-        <div class="box">
-            <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-            <button data-close="modal" id="close" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=regularlogin"?>" class="signin">
-                <span id="header-text">Login</span>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="login-ue" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="login-ue" >Username / Email</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="login-p"/>
-                    <label for="login-p">Password</label>
-                </div>
-                <button type="submit" id="login-btn">Log In</button>
-            </form>
-            <div id="or-separator">
-                OR
-            </div>
-            <div id="g_id_onload"
-                data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-            <div id="form-bottom">
-                <p>Don't have an account yet?</p>
-                <a id="sign-up-link">Sign Up</a>
-            </div>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </div>
-
-
-    <div id="signup" class="modal fade" role="dialog">
-        <div class="box">
-            <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-            <button data-close="modal" id="close1" class="close"> <p>X</p></button>
-            <form method="POST" action="<?=BASE. "/index.php?action=regularSignup"?>" class="signin">
-                <span id="header-text">Sign Up</span>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="sign-u" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="sign-u">Username</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-ue" type="text" required name="sign-e" <?php if(isset($username)) {echo "value='" . $username . "'";}?> />
-                    <label for="sign-e">Email</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="sign-p"/>
-                    <label for="sign-p">Password</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="sign-cp"/>
-                    <label for="sign-cp">Confirm Password</label>
-                </div>
-                <button type="submit" id="login-btn">Sign Up</button>
-            </form>
-            <div id="or-separator">
-                OR
-            </div>
-            <div id="g_id_onload"
-                data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
-                data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="rectangular"
-                data-logo_alignment="left">
-            </div>
-        </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </div>
-    <div class="blur"></div>
     <div class="hero">
         <div class="content">
             <h2>
@@ -226,9 +136,7 @@
                                     alt="ios icon">
                             </div> 
                             <div class="list-item-content">
-                                <p>
-                                    iOS App Store Best New Update
-                                </p>
+                                <p>iOS App Store Best New Update</p>
                             </div>
                         </div>
                         <div class="list-item">
@@ -237,9 +145,7 @@
                                     alt="feature icon">
                             </div>
                             <div class="list-item-content">
-                                <p>
-                                    Featured on Vogue, The New York 
-                                </p>
+                                <p>Featured on Vogue, The New York</p>
                             </div>
                         </div>
                     </div>   
@@ -445,213 +351,10 @@
         </div>
     </section>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-row">
-                <div class="col">
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-facebook-circle' ></i>
-                        </span>
-                    </a>
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-instagram' ></i>
-                        </span>
-                    </a>
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-twitter' ></i>
-                        </span>
-                    </a>
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-tiktok' ></i>
-                        </span>
-                    </a>
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-snapchat' ></i>
-                        </span>
-                    </a>
-                    <a href="#">
-                        <span>
-                            <i class='bx bxl-pinterest' ></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <hr role="separator">
-            <div class="footer-main">
-                <ul class="footer-menu">
-                    <li class="menu-item">
-                        <a href="" class="menu-item-title">
-                            GET THE APP
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    iPhone/iPad/Watch
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    MAC
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Android
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Browser Extensions
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-item-title">
-                            OFFERS
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Features
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Pricing
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Book Printing
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Send a gift
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Redeem a gift
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-item-title">
-                            ABOUT
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    About Dear Diary
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Privacy and Security FAQs
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Press
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Podcast
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Community
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-item-title">
-                            HELP
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Help Guides
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Contact Us
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Career
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Terms
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Privacy
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="menu-item">
-                        <a href="" class="menu-item-title">
-                            SOCIAL
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Facebook
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Twitter
-                                </a>
-                            </li>
-                            <li class="sub-menu-item">
-                                <a href="#">
-                                    Instagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-card">
-            <span>
-                © 2022 Dear Diary Corporation
-            </span>
-        </div>
-    </footer>
-</div>
+<?php include(ROOT . "/view/footer.php"); ?>
+
 <?php $content = ob_get_clean(); ?>
 <?php require("journeyTemplate.php"); ?>
-
-
-
-
-
-
 
 
 
