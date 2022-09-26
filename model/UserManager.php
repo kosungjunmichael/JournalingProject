@@ -29,6 +29,9 @@ class UserManager extends Manager{
                     );
                 }
                 break;
+            case 'kakao':
+
+                break;
             case 'regular':
                 // add login user check code
 
@@ -166,6 +169,9 @@ class UserManager extends Manager{
                     // user already exists, sign in with google credentials, will return false
                     return $this->confirmUser($credentials, 'google');
                 }
+                break;
+            case 'kakao':
+                
                 break;
             case 'regular':
                 // creating normal regular user
