@@ -22,13 +22,13 @@
                     ?>
                                 <div class="tag"><?= htmlspecialchars($tag['tag_name']);?></div>
                     <?php
+                            }
+                        } else {
+                    ?>
+                            <div class="no-tag">no tags</div>
+                        <?php
                         }
-                    } else {
-                    ?>
-                        <div class="no-tag">no tags</div>
-                    <?php
-                    }
-                    ?>
+                        ?>
                     <!-- <div class="tag">weekend</div>
                     <div class="tag">summer</div> -->
                 </div>

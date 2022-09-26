@@ -64,7 +64,7 @@
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>
@@ -85,7 +85,7 @@
                             <div class="week-container">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>

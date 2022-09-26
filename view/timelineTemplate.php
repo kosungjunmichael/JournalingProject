@@ -24,7 +24,7 @@
                     ?>
             </div>
             <div class="entry-date"> 
-                <?= htmlspecialchars($entry['month']), " ",htmlspecialchars($entry['day']), ", ", htmlspecialchars($entry['year'])?> 
+                <?= date_format(date_create($entry['last_edited']), 'F d, Y')?> 
             </div>
         </div>
     </div>
