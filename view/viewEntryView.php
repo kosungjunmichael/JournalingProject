@@ -21,10 +21,10 @@
                             foreach($entryTags as $tag){
                     ?>
                                 <div class="tag"><?= htmlspecialchars($tag['tag_name']);?></div>
-                    <?php
+                        <?php
                             }
                         } else {
-                    ?>
+                        ?>
                             <div class="no-tag">no tags</div>
                         <?php
                         }

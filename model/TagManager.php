@@ -4,19 +4,6 @@ require_once('Manager.php');
 
 class TagManager extends Manager{
 
-
-    protected function checkTagMap($entryUID){
-        $db = $this->dbConnect();
-        $check_tag_map = $db->prepare("SELECT tag_id
-                                    FROM tag_map 
-                                    WHERE entry_id = :entry_id
-                                    ");
-        $check_tag_map->bindParam('entry_id', $entryUID, PDO::PARAM_STR);
-        $check_tag_map->execute();
-        $existingTags = $check_tag_map->fetchAll(PDO::FETCH_ASSOC);
-        return $existingTags;
-    }
-
     protected function getTagID($tag_name){
         $db = $this->dbConnect();
         $check_tags = $db->prepare('SELECT id
@@ -28,7 +15,6 @@ class TagManager extends Manager{
         return $check_tags->fetch();
     }
     
-
     public function getTags($entryUID){
         $db = $this->dbConnect();
         $get_tags = $db->prepare('SELECT tag_name 
@@ -46,7 +32,7 @@ class TagManager extends Manager{
         $db = $this->dbConnect();
 
         // Check for existing Tabs
-        $existingTags = $this->checkTagMap($entryUID);
+        $existingTags = $this->getTags($entryUID);
         
         // array with all the inputted tags
         $tags_to_insert = explode(',' ,$tag_string);
@@ -54,15 +40,8 @@ class TagManager extends Manager{
         // TODO: use for Editing Tags Feature
         // if that entry already has tags
         if (count($existingTags) > 0){
-
-            $entry_tags = $db->query("SELECT tag_name
-                                    FROM tags t
-                                    INNER JOIN tag_map tm
-                                    ON t.id = tm.tag_id
-                                    ");
-            $existing_entry_tags = $entry_tags->fetchAll(PDO::FETCH_ASSOC);
             foreach($tags_to_insert as $tag_name){
-                if (array_key_exists($tag_name, $existing_entry_tags)){
+                if (array_key_exists($tag_name, $existingTags)){
                     $tags_to_insert = array_splice($tags_to_insert, 1, $tag_name);
                 }
             }
@@ -70,29 +49,25 @@ class TagManager extends Manager{
 
         // submitting the tags
         foreach($tags_to_insert as $tag){
-            // to get the tag IDs
+            // check if the tag already exists
             $checkID = $this->getTagID($tag);
 
-            // if doesn't tag exists
+            // if tag doesn't exist
             if (!$checkID){
                 // insert into tags table
-                $req1 = $db->prepare("INSERT INTO tags
-                                                (tag_name)
-                                                VALUES
-                                                (?)
+                $req1 = $db->prepare("INSERT INTO tags (tag_name)
+                                                VALUES (?)
                                     ");
                 $req1->bindParam(1, $tag, PDO::PARAM_STR);
                 $req1->execute();
             }
-            // to get the tag IDs after submitting into table
+            // get the tag IDs after submitting into table
             $getID = $this->getTagID($tag);
             // insert into tag_map table
             $req2 = $db->prepare("INSERT INTO tag_map
-                                            (entry_id
-                                            , tag_id)
+                                            (entry_id, tag_id)
                                             VALUES
-                                            (:entry_id
-                                            , :tag_id)
+                                            (:entry_id, :tag_id)
                                 ");
             $req2->bindParam('entry_id', $entryUID, PDO::PARAM_STR);
             $req2->bindParam('tag_id', $getID['id'], PDO::PARAM_INT);

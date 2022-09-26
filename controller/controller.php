@@ -125,7 +125,7 @@ function newEntry($data) {
       // $error = "Entry Submitted!";
       // require(ROOT . '/index.php?action=sidebarTimeline');
       // toTimeline($check);
-      header("Location: index.php?action=toTimeline");
+    header("Location: index.php?action=toTimeline");
   } else {
     // throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
     $error = "Not a valid Entry";
