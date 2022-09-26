@@ -65,8 +65,9 @@ try {
 
         // KAKAO SIGNUP
         case "kakaoSignUp":
-            kakaoSignUp($_REQUEST);
-            // signUp($_REQUEST, 'kakao');
+            // print_r($_REQUEST);
+            // kakaoSignUp($_REQUEST);
+            signUp($_REQUEST, 'kakao');
             break;
 
         // REGULAR SIGNUP
@@ -90,6 +91,7 @@ try {
             
         // REGULAR LOGIN
         case "regularLogin":
+            // print_r($_REQUEST);
             login($_REQUEST, 'regular');
             break;
 

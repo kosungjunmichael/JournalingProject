@@ -15,7 +15,7 @@
             <button data-close="modal" id="close" class="close">
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
-            <form method="POST" action="<?= BASE . "/index.php?action=regularlogin" ?>" class="signin">
+            <form method="POST" action="<?= BASE . "/index.php?action=regularogin" ?>" class="signin">
                 <span id="header-text">Login</span>
                 <div class="input-container">
                     <input id="login-ue" type="text" required name="login-ue" <?php if (isset($username)) {
@@ -34,13 +34,22 @@
             </div>
             <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
             </div>
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
+            <div id="or-separator">
+                OR
+            </div>
+            <div>
+                <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                    <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" />
+                </a>
             </div>
             <div id="form-bottom">
                 <p>Don't have an account yet?</p>
                 <a id="sign-up-link">Sign Up</a>
             </div>
         </div>
+        <!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
+        <!-- <script src="../public/js/kakao.js" async defer></script> -->
         <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
 
@@ -79,14 +88,12 @@
             <div id="or-separator">
                 OR
             </div>
-            <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup" data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
-                
-            </div>
-                <script src="https://accounts.google.com/gsi/client" async defer></script>
-    </div>
-    <div class="blur"></div>
+            <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
+            </div> -->
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
+            <script src="https://accounts.google.com/gsi/client" async defer></script>
+        </div>
+        <div class="blur"></div>
 </header>
 
 <script>
@@ -151,3 +158,51 @@
 
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+
+
+<!-- KAKAO -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script>
+    Kakao.init("<?= $_SERVER['JS_API_KEY'] ?>"); // Enter your app's JavaScript key
+    function loginWithKakao() {
+        Kakao.Auth.login({
+            success: function(authObj) {
+                Kakao.Auth.setAccessToken(authObj.access_token);
+
+                getInfo();
+            },
+            fail: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function getInfo() {
+        Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+                console.log(res);
+                // console.log(res);
+                console.log(res.kakao_account.email);
+                console.log(res.kakao_account.profile.nickname);
+                console.log(res.kakao_account.profile.thumbnail_image_url)
+                let email = res.kakao_account.email;
+                // let gender = res.kakao_account.gender;
+                // let nickname = res.kakao_account.profile.nickname;
+                // let profile_image = res.kakao_account.profile.thumbnail_image_url;
+
+                // console.log(email, gender, nickname, profile_image);
+                // console.log(email, nickname, profile_image);
+
+                window.location.href = `http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp&email=${res.kakao_account.email}`;
+                // return res;
+            },
+            fail: function(error) {
+                alert(JSON.stringify(error));
+            }
+        })
+    }
+</script>

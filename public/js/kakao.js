@@ -18,14 +18,17 @@ function getInfo() {
 	Kakao.API.request({
 		url: "/v2/user/me",
 		success: function (res) {
-			console.log(res);
+			// console.log(res);
 			let email = res.kakao_account.email;
 			// let gender = res.kakao_account.gender;
 			let nickname = res.kakao_account.profile.nickname;
 			let profile_image = res.kakao_account.profile.thumbnail_image_url;
 
 			// console.log(email, gender, nickname, profile_image);
-			console.log(email, nickname, profile_image);
+			// console.log(email, nickname, profile_image);
+
+			window.location.href = `http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp&username=${res.kakao_account.nickname}&email=${res.kakao_account.email}`;
+			// return res;
 		},
 		fail: function (error) {
 			alert(JSON.stringify(error));
