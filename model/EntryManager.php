@@ -45,7 +45,9 @@ class EntryManager extends Manager{
         $db = $this->dbConnect();
         // check if UID already exists
         // fetch matching unique IDs
-        $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id');
+        $query = $db->prepare('SELECT u_id 
+                                FROM entries 
+                                WHERE u_id = :u_id');
         $query->bindParam('u_id', $uid, PDO::PARAM_STR);
         $query->execute();
         return $query->fetchAll();
@@ -61,15 +63,16 @@ class EntryManager extends Manager{
             } while (count($existingUID) > 0);
 
             // Inserting the entry into the 'entries' table
-            $req = $db->prepare('INSERT INTO entries (title
-                                                        , text_content
-                                                        , user_uid
-                                                        , u_id) 
-                                                        VALUES (
-                                                        :title
-                                                        , :entry
-                                                        , :user_uid
-                                                        , :uid)
+            $req = $db->prepare('INSERT INTO entries 
+                                (title
+                                ,text_content
+                                , user_uid
+                                , u_id)
+                            VALUES (
+                                :title
+                                , :entry
+                                , :user_uid
+                                , :uid)
             ');
             $req->bindParam('title', $data->title, PDO::PARAM_STR);
             $req->bindParam('entry', $data->entry, PDO::PARAM_STR);
@@ -95,18 +98,20 @@ class EntryManager extends Manager{
         // current week number for the year
         $thisWeek = date('W');
         $req = $db->prepare('SELECT
-        u_id
-        , title
-        , text_content
-        , last_edited
-        , DAYNAME(last_edited) as dayname
-        , WEEK(last_edited) as week
-        , DAY(last_edited) as day
-        , MONTHNAME(last_edited) as month
-        , YEAR(last_edited) as year
-        , date_created
-        , location
-        FROM entries WHERE user_uid = :userId GROUP BY last_edited DESC');
+                            u_id
+                            , title
+                            , text_content
+                            , last_edited
+                            , DAYNAME(last_edited) as dayname
+                            , WEEK(last_edited) as week
+                            , DAY(last_edited) as day
+                            , MONTHNAME(last_edited) as month
+                            , YEAR(last_edited) as year
+                            , date_created
+                            , location
+        FROM entries 
+        WHERE user_uid = :userId 
+        GROUP BY last_edited DESC');
         $req->execute(array(
             'userId' => $userId,
         ));
@@ -153,6 +158,7 @@ class EntryManager extends Manager{
     public function getEntry($entryId, $userId){
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT title
+        , u_id
         , text_content
         , location
         , weather
@@ -163,7 +169,9 @@ class EntryManager extends Manager{
         , YEAR(last_edited) as year
         , TIME_FORMAT(last_edited, "%h:%i %p") as time
         FROM entries
-        WHERE user_uid = :userId AND u_id = :entryId AND is_active = :active');
+        WHERE user_uid = :userId 
+        AND u_id = :entryId 
+        AND is_active = :active');
         $req->execute(array(
             'userId' => $userId,
             'entryId' => $entryId,

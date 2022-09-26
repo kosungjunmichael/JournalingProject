@@ -12,6 +12,7 @@
     --grey-dark: #2F2F2F;
     --grey: #3B3D3E;
     --grey-light: #868686;
+    --grey-mid-light: #dbdbdb;
     --grey-superlight: #F6F6F6;
     --border-radius-light: 10px;
     --border-radius-medium: 15px;
@@ -27,6 +28,7 @@ body[data-theme='light'] {
     --sidebar-link: var(--grey-light);
     --theme-toggle-pill: var(--white);
     --tag-bg: var(--grey-superlight);
+    --time-tag-bg: var(--grey-mid-light);
 }
 
 body[data-theme='dark'] {
@@ -38,6 +40,7 @@ body[data-theme='dark'] {
     --sidebar-link: var(--white);
     --theme-toggle-pill: var(--grey);
     --tag-bg: var(--grey-superlight);
+    --time-tag-bg: var(--grey-superlight);
 }
 
 @font-face {
