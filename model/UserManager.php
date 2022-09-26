@@ -4,11 +4,14 @@ require_once('Manager.php');
 
 class UserManager extends Manager{
 
-    public function confirmUser($credentials, $type) {
+    public function confirmUser($data, $type) {
         $db = $this->dbConnect();
+        $credentials = $type == 'google' ? json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true) : $data;
 
         switch ($type) {
             case 'google':
+            case 'kakao':
+                // $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true);
                 $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
                 $req->bindParam(1, $credentials['email'], PDO::PARAM_STR);
                 $req->execute();
@@ -28,7 +31,7 @@ class UserManager extends Manager{
                     );
                 }
                 break;
-            case 'regular':
+            default:
                 // add login user check code
 
                 // regular login will use the login name from the form to confirm
@@ -36,7 +39,7 @@ class UserManager extends Manager{
 
                 // retrieve the user
                 $req = $db->prepare('SELECT u_id, username, email, password, is_active FROM users WHERE ? IN(username, email)');
-                $req->bindParam(1, $credentials['login-ue'], PDO::PARAM_STR);
+                $req->bindParam(1, $data['login-ue'], PDO::PARAM_STR);
                 $req->execute();
                 $user = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -45,8 +48,8 @@ class UserManager extends Manager{
                 // catch login errors
                 if (
                     !$user
-                    OR ($credentials['login-ue'] !== $user['username'] and $credentials['login-ue'] !== $user['email'])
-                    OR (!password_verify($credentials['login-p'], $user['password']))
+                    OR ($data['login-ue'] !== $user['username'] and $data['login-ue'] !== $user['email'])
+                    OR (!password_verify($data['login-p'], $user['password']))
                     OR $user['is_active'] === 0
                     ) {
                         return array(
@@ -73,45 +76,70 @@ class UserManager extends Manager{
         $update->execute(array('uid' => $uid));
     }
 
-    protected function checkUserExist($credentials) {
+    protected function checkUserExist($credentials, $type) {
         $db = $this->dbConnect();
-        $query = $db->prepare('SELECT username, email FROM users WHERE username = :inUsername OR email = :inEmail');
+        $query = $db->prepare('SELECT login_type, username, email FROM users WHERE username = :inUsername OR email = :inEmail');
 
-        if (isset($credentials['iss'])) {
-            $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
-            $query->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
-        } else {
-            $query = $db->prepare('SELECT username, email FROM users WHERE username = :inUsername OR email = :inEmail');
-            $query->bindParam('inUsername', $credentials['sign-u'], PDO::PARAM_STR);
-            $query->bindParam('inEmail', $credentials['sign-e'], PDO::PARAM_STR);
+        switch ($type) {
+            case 'google':
+            case 'kakao':
+                $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+                $query->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
+                break;
+            default:
+                $query->bindParam('inUsername', $credentials['sign-u'], PDO::PARAM_STR);
+                $query->bindParam('inEmail', $credentials['sign-e'], PDO::PARAM_STR);
+                break;
         }
-        
+        // if (isset($credentials['iss'])) {
+        //     $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+        //     $query->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
+        // } else if($credentials['action'] == 'kakaoSignUp') {
+        //     $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+        //     $query->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
+        // } else {
+        //     $query = $db->prepare('SELECT username, email FROM users WHERE username = :inUsername OR email = :inEmail');
+        //     $query->bindParam('inUsername', $credentials['sign-u'], PDO::PARAM_STR);
+        //     $query->bindParam('inEmail', $credentials['sign-e'], PDO::PARAM_STR);
+        // }
+
         $query->execute();
-        return $query->fetchAll();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+        // return $query->fetchAll();
         // $query = $db->prepare('SELECT email from users WHERE username = :inEmail');
         // $query->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
         // $query->execute();
         // return $query->fetch();
     }
 
-    protected function checkGoogleUserExist($credentials){
-        $db = $this->dbConnect();
+    // protected function checkGoogleUserExist($credentials){
+    //     $db = $this->dbConnect();
 
-        $query = $db->prepare('SELECT username from users WHERE username = :inUsername');
-        $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
-        $query->execute();
-        return $query->fetch();
-    }
+    //     $query = $db->prepare('SELECT username from users WHERE username = :inUsername');
+    //     $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetch();
+    // }
 
-    protected function checkRegularUserExist($credentials){
-        $db = $this->dbConnect();
+    // protected function checkRegularUserExist($credentials){
+    //     $db = $this->dbConnect();
 
-        $query = $db->prepare('SELECT username, email FROM users WHERE username = :inUsername OR email = :inEmail');
-        $query->bindParam('inUsername',$credentials['sign-u'], PDO::PARAM_STR);
-        $query->bindParam('inEmail',$credentials['sign-e'], PDO::PARAM_STR);
-        $query->execute();
-        return $query->fetchAll();
-    }
+    //     $query = $db->prepare('SELECT username, email FROM users WHERE username = :inUsername OR email = :inEmail');
+    //     $query->bindParam('inUsername',$credentials['sign-u'], PDO::PARAM_STR);
+    //     $query->bindParam('inEmail',$credentials['sign-e'], PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetchAll();
+    // }
+
+    // protected function checkKakaoUserExist($credentials){
+    //     $db = $this->dbConnect();
+
+    //     $query = $db->prepare('SELECT username from users WHERE username = :inUsername');
+    //     $query->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetch();
+    // } 
+
 
     protected function checkUniqueIDExist($uid){
         $db = $this->dbConnect();
@@ -125,7 +153,6 @@ class UserManager extends Manager{
 
     public function createUser($data, $type){
         $db = $this->dbConnect();
-
         // CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
         // IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
         // IF NO, RETAIN UID AND CONTINUE WITH CODE
@@ -133,21 +160,32 @@ class UserManager extends Manager{
             $uid = $this->uidCreate();
             $existingUID = $this->checkUniqueIDExist($uid);
         } while (count($existingUID) > 0);
-
+        
+        $credentials = $type == 'google' ? json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true) : $data;
+        // return $credentials;
+        $existingUser = $this->checkUserExist($credentials, $type);
+        // return $existingUser;
         switch ($type) {
             case 'google':
-
-                // CONVERTS JWT GIVEN BY GOOGLE TO A READABLE ARRAY
-                $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true);
-                // return $credentials;
-
-                // CHECKS TO SEE IF USER WITH GOOGLE CREDENTIALS ALREADY EXIST IN DB
-                $existingUser = $this->checkUserExist($credentials);
-                // IF YES, SIGN IN WITH GOOGLE CREDENTIALS INSTEAD
-                // IF NO, PROCEED WITH CREATING A NEW USER WITH GIVEN CREDENTIALS
-                if (!$existingUser) {
-                    $req = $db->prepare('INSERT INTO users (u_id, username, email) VALUES (:inUID, :inUsername, :inEmail)');
+            case 'kakao':
+                if ($existingUser and $existingUser['login_type'] == $type) {
+                    return $this->confirmUser($credentials, $type);
+                } else if ($existingUser and $existingUser['login_type'] != $type) {
+                    $username = '';
+                    $email = '';
+                    foreach ($existingUser as $value) {
+                        $username = $value['username'] == $data['sign-u'] ? $value['username'] : null;
+                        $email = $value['email'] == $data['sign-e'] ? $value['email'] : null;
+                    }
+                    return array(
+                        'error' => "User with these credentials already exists. Please log in.",
+                        'username' => $username,
+                        'email' => $email
+                    );
+                } else {
+                    $req = $db->prepare('INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)');
                     $req->bindParam('inUID', $uid, PDO::PARAM_STR);
+                    $req->bindParam('inLoginType', $type, PDO::PARAM_STR);
                     $req->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
                     $req->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
                     $req->execute();
@@ -161,72 +199,125 @@ class UserManager extends Manager{
 
                     // redirect to index with registered type
                     return false;
-                } else {
-                    // user already exists, sign in with google credentials, will return false
-                    return $this->confirmUser($credentials, 'google');
                 }
-                break;
-            case 'regular':
-                // creating normal regular user
+                // $credentials = $type == 'google' ? json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true) : $data;
+                // CONVERTS JWT GIVEN BY GOOGLE TO A READABLE ARRAY
+                // $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true);
+                // return $credentials;
 
-                // BACKEND FORM VALIDATIONS
-                $control = [];
-                preg_match("/^[a-zA-Z0-9]{4,}/", $data['sign-u']) ? array_push($control, true) : array_push($control, "Your username must include at least 4 characters.");
-                preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data['sign-e']) ? array_push($control, true) : array_push($control, "You must use a proper email address.");
-                preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/", $data['sign-p']) ? array_push($control, true) : array_push($control, "Your password did not meet the minimum requirements.");
-                $data['sign-p'] == $data['sign-cp'] ? array_push($control, true) : array_push($control, "Your passwords did not match.");
-                if (count(array_unique($control)) == 1) {
+                // CHECKS TO SEE IF USER WITH GOOGLE CREDENTIALS ALREADY EXIST IN DB
+                // $existingUser = $this->checkUserExist($credentials, $type);
+                // // IF YES, SIGN IN WITH GOOGLE CREDENTIALS INSTEAD
+                // // IF NO, PROCEED WITH CREATING A NEW USER WITH GIVEN CREDENTIALS
+                // if (!$existingUser) {
+                //     $req = $db->prepare('INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)');
+                //     $req->bindParam('inUID', $uid, PDO::PARAM_STR);
+                //     $req->bindParam('inLoginType', $type, PDO::PARAM_STR);
+                //     $req->bindParam('inUsername', $credentials['email'], PDO::PARAM_STR);
+                //     $req->bindParam('inEmail', $credentials['email'], PDO::PARAM_STR);
+                //     $req->execute();
+
+                //     // CREATE SESSION VARIABLE FOR USER UID
+                //     // session_start();
+                //     $_SESSION['uid'] = $uid;
+                //     // if (isset($user['u_id'])){
+                //     //     $_SESSION['uid'] = $user['u_id'];
+                //     // }
+
+                //     // redirect to index with registered type
+                //     return false;
+                // } else {
+                //     // user already exists, sign in with google credentials, will return false
+                //     return $this->confirmUser($credentials, 'google');
+                // }
+                break;
+            default:
+                if ($existingUser) {
+                    $username = '';
+                    $email = '';
+                    foreach ($existingUser as $value) {
+                        $username = $value['username'] == $credentials['sign-u'] ? $value['username'] : null;
+                        $email = $value['email'] == $credentials['sign-e'] ? $value['email'] : null;
+                    }
+                    return array(
+                        'error' => "User with these credentials already exists. Please log in.",
+                        'username' => $username,
+                        'email' => $email
+                    );
+                } else {
+                    $hashpass = password_hash($credentials['sign-p'], PASSWORD_DEFAULT);
+
+                    // create a new user into users database table
+                    $req = $db->prepare('INSERT INTO users (u_id, login_type, username, email, password) VALUES (:inUID, :inLoginType, :inUsername, :inEmail, :inPassword)');
+                    $req->bindParam('inUID', $uid, PDO::PARAM_STR);
+                    $req->bindParam('inLoginType', $login_type, PDO::PARAM_STR);
+                    $req->bindParam('inUsername', $credentials['sign-u'], PDO::PARAM_STR);
+                    $req->bindParam('inEmail', $credentials['sign-e'], PDO::PARAM_STR);
+                    $req->bindParam('inPassword', $hashpass, PDO::PARAM_STR);
+                    $req->execute();
+
+                    // create session variable for user login/signup
+                    $_SESSION['uid'] = $uid;
+                    // if (isset($user['u_id'])) {
+                    //     $_SESSION['uid'] = $user['u_id'];
+                    // }
+
+                    // redirect to index with registered type
+                    return false;
+                }
 
                     // if user doesn't exist, create user in database
-                    $existingUser = $this->checkUserExist($data);
-                    if (!$existingUser) {
+                    // $existingUser = $this->checkUserExist($data, $type);
+                    // if (!$existingUser) {
 
-                        // if (empty($data['sign-u']) OR
-                        // empty($data['sign-e']) OR
-                        // empty($data['sign-p']) OR
-                        // empty($data['sign-cp'])){
-                        //     return "Fill in all parameters";
-                        // } else if (){
-                        //     return "Fill in all parameters";
-                        // }
+                    //     // if (empty($data['sign-u']) OR
+                    //     // empty($data['sign-e']) OR
+                    //     // empty($data['sign-p']) OR
+                    //     // empty($data['sign-cp'])){
+                    //     //     return "Fill in all parameters";
+                    //     // } else if (){
+                    //     //     return "Fill in all parameters";
+                    //     // }
 
-                        // if conditions met, create user in database
+                    //     // if conditions met, create user in database
 
-                        $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
+                    //     $hashpass = password_hash($data['sign-p'], PASSWORD_DEFAULT);
 
-                        // create a new user into users database table
-                        $req = $db->prepare('INSERT INTO users (u_id, username, email, password) VALUES (:inUID, :inUsername, :inEmail, :inPassword)');
-                        $req->bindParam('inUID', $uid, PDO::PARAM_STR);
-                        $req->bindParam('inUsername', $data['sign-u'], PDO::PARAM_STR);
-                        $req->bindParam('inEmail', $data['sign-e'], PDO::PARAM_STR);
-                        $req->bindParam('inPassword', $hashpass, PDO::PARAM_STR);
-                        $req->execute();
+                    //     // create a new user into users database table
+                    //     $req = $db->prepare('INSERT INTO users (u_id, login_type, username, email, password) VALUES (:inUID, :inLoginType, :inUsername, :inEmail, :inPassword)');
+                    //     $req->bindParam('inUID', $uid, PDO::PARAM_STR);
+                    //     $req->bindParam('inLoginType', $login_type, PDO::PARAM_STR);
+                    //     $req->bindParam('inUsername', $data['sign-u'], PDO::PARAM_STR);
+                    //     $req->bindParam('inEmail', $data['sign-e'], PDO::PARAM_STR);
+                    //     $req->bindParam('inPassword', $hashpass, PDO::PARAM_STR);
+                    //     $req->execute();
 
-                        // create session variable for user login/signup
-                        $_SESSION['uid'] = $uid;
-                        // if (isset($user['u_id'])) {
-                        //     $_SESSION['uid'] = $user['u_id'];
-                        // }
+                    //     // create session variable for user login/signup
+                    //     $_SESSION['uid'] = $uid;
+                    //     // if (isset($user['u_id'])) {
+                    //     //     $_SESSION['uid'] = $user['u_id'];
+                    //     // }
 
-                        // redirect to index with registered type
-                        return false;
-                    } else {
-                        return array(
-                            'error' => "User with these credentials already exists. Please log in.",
-                            'username' => $data['sign-u'],
-                            'email' => $data['sign-e']
-                        );
-                    }
-                } else {
+                    //     // redirect to index with registered type
+                    //     return false;
+                    // } else {
+                    //     return array(
+                    //         'error' => "User with these credentials already exists. Please log in.",
+                    //         'username' => $data['sign-u'],
+                    //         'email' => $data['sign-e']
+                    //     );
+                    // }
+                // } 
+                // else {
                     // return "sign up failed";
                     // $error = '';
-                    $error = [];
-                    foreach ($control as $value) {
-                        // if ($value != '1') $error .= $value . '<br>';
-                        if ($value != '1') array_push($error, $value);
-                    }
-                    return $error;
-                }
+                //     $error = [];
+                //     foreach ($control as $value) {
+                //         // if ($value != '1') $error .= $value . '<br>';
+                //         if ($value != '1') array_push($error, $value);
+                //     }
+                //     return $error;
+                // }
                 break;
         }
     }

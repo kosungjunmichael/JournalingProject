@@ -1,19 +1,24 @@
 <header>
     <nav>
-        <h2><a href="<?=BASE."/index.php?action=toLanding"?>" class="logo">Dear Diary</a></h2>
+        <h2><a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
-            <li><a href="<?=BASE."/index.php?action=toAboutUs"?>">About us</a></li>
-            <li><a href="#" data-target="#login" data-toggle="modal" class="btn" >Login</a></li>
-            <li><a href="#"data-target="#signup" data-toggle="modal" class="btn1" >Signup</a></li>
+            <li><a href="<?= BASE . "/index.php?action=toAboutUs" ?>">About us</a></li>
+            <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
+            <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>
-    </nav>
-<div id="login" class="modal fade" role="dialog">
-    <div class="box">
-    <?php if (isset($error)){ echo "<span id='login-error'>" . $error . "</span>"; } ?>
-            <button data-close="modal" id="close" class="close"><p><i class="fa-solid fa-circle-xmark"></i></p></button>
 
-             <!-- Sign In form -->
-            <form method="POST" action="<?=BASE. "/index.php?action=regularlogin"?>" class="signin">
+    <div id="login" class="modal fade" role="dialog">
+        <div class="box">
+            <?php if (isset($error)) {
+                echo "<span id='login-error'>" . $error . "</span>";
+            } ?>
+            <button data-close="modal" id="close" class="close">
+                <p><i class="fa-solid fa-circle-xmark"></i></p>
+            </button>
+            
+<!-- Sign In form -->
+
+            <form method="POST" action="<?= BASE . "/index.php?action=regularogin" ?>" class="signin">
                 <span id="header-text">Login</span>
 
                 <div class="input-container">
@@ -26,6 +31,7 @@
                     <label 
                     for="login-ue" 
                     class="label" >Username / Email</label>
+
                 </div>
 
                 <div class="input-container">
@@ -44,18 +50,16 @@
             <div id="or-separator">
                 OR
             </div>
-            <div id="g_id_onload"
-                data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-                data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin"
-                data-auto_prompt="false">
+            <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
             </div>
-            <div class="g_id_signin"
-                data-type="standard"
-                data-size="large"
-                data-theme="outline"
-                data-text="sign_in_with"
-                data-shape="pill"
-                data-logo_alignment="left">
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
+            <div id="or-separator">
+                OR
+            </div>
+            <div>
+                <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                    <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" />
+                </a>
             </div>
             
             <a href="http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp">
@@ -67,6 +71,10 @@
             </div>
 
         </div>
+
+        <!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
+        <!-- <script src="../public/js/kakao.js" async defer></script> -->
+        <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
 
     <!-- Sign Up form -->
@@ -134,7 +142,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="input-container">
                 <input 
                 id="sign-cp" 
@@ -180,8 +187,11 @@
             </a>
         </div>
     </div>
-</div>
-<div class="blur"></div>
+            <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
+            </div> -->
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
+        </div>
+        <div class="blur"></div>
 </header>
 
 <script>
@@ -311,44 +321,44 @@ function checkPsw() {
 
     // When the user starts to type something inside the password field
     myInput.onkeyup = function() {
-    // Validate lowercase letters
+        // Validate lowercase letters
         var lowerCaseLetters = /[a-z]/g;
-        if(myInput.value.match(lowerCaseLetters)) {  
-        letter.classList.remove("invalid");
-        letter.classList.add("valid");
-    } else {
-        letter.classList.remove("valid");
-        letter.classList.add("invalid");
-    }
+        if (myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
 
 
-    var upperCaseLetters = /[A-Z]/g;
-        if(myInput.value.match(upperCaseLetters)) {  
-        capital.classList.remove("invalid");
-        capital.classList.add("valid");
-    } else {
-        capital.classList.remove("valid");
-        capital.classList.add("invalid");
-    }
+        var upperCaseLetters = /[A-Z]/g;
+        if (myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
 
-    // Validate numbers
-    var numbers = /[0-9]/g;
-    if(myInput.value.match(numbers)) {  
-        number.classList.remove("invalid");
-        number.classList.add("valid");
-    } else {
-        number.classList.remove("valid");
-        number.classList.add("invalid");
-    }
-    
-    // Validate length
-    if(myInput.value.length >= 8) {
-        length.classList.remove("invalid");
-        length.classList.add("valid");
-    } else {
-        length.classList.remove("valid");
-        length.classList.add("invalid");
-    }
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if (myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+
+        // Validate length
+        if (myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
     }
         return false;
     }
@@ -394,3 +404,51 @@ su_form.addEventListener("submit", function(e) {
 </script>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+
+
+<!-- KAKAO -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script>
+    Kakao.init("<?= $_SERVER['JS_API_KEY'] ?>"); // Enter your app's JavaScript key
+    function loginWithKakao() {
+        Kakao.Auth.login({
+            success: function(authObj) {
+                Kakao.Auth.setAccessToken(authObj.access_token);
+
+                getInfo();
+            },
+            fail: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function getInfo() {
+        Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+                console.log(res);
+                // console.log(res);
+                console.log(res.kakao_account.email);
+                console.log(res.kakao_account.profile.nickname);
+                console.log(res.kakao_account.profile.thumbnail_image_url)
+                let email = res.kakao_account.email;
+                // let gender = res.kakao_account.gender;
+                // let nickname = res.kakao_account.profile.nickname;
+                // let profile_image = res.kakao_account.profile.thumbnail_image_url;
+
+                // console.log(email, gender, nickname, profile_image);
+                // console.log(email, nickname, profile_image);
+
+                window.location.href = `http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp&email=${res.kakao_account.email}`;
+                // return res;
+            },
+            fail: function(error) {
+                alert(JSON.stringify(error));
+            }
+        })
+    }
+</script>

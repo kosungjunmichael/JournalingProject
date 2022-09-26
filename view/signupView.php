@@ -22,6 +22,7 @@
     ?>
         <div>
     <?php
+            // print_r($error);
             foreach($error as $messages) {
     ?>
                 <p><?= $messages?></p>

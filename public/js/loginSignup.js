@@ -2,6 +2,7 @@
     // }    
 let blur = document.querySelector(".blur");
 
+
 function openLogin() {
     document.getElementById("login").style.display = "block";
     blur.style.display = "block";
