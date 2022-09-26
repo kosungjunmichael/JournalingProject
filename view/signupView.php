@@ -3,25 +3,57 @@
 <?php $script = "script";?>
 
 <?php ob_start();?>
-<?php if(isset($error)){
-        echo $error;
-    }?>
+    <?php 
+    if (isset($error) AND !is_array($error)){
+    ?>
+        <span id='login-error'><?= $error ?></span>
+    <?php
+        if (isset($username)) {
+    ?>
+        <span id='login-error'><?= "Username: $username"?></span>
+    <?php
+        }
+        if (isset($email)) {
+    ?>
+    <span id='login-error'><?= "Email: $email"?></span>
+    <?php
+        }
+    } else {
+    ?>
+        <div>
+    <?php
+            foreach($error as $messages) {
+    ?>
+                <p><?= $messages?></p>
+    <?php
+            }
+    } ?>
+        </div>
+    <?php 
+    // if (isset($error)){ "<span id='login-error'>" . $error . "</span>"; } 
+    ?>
+    <?php 
+    // if (isset($username)){ echo "<span id='login-error'>Username: " . $username . "</span>"; } 
+    ?>
+    <?php 
+    // if (isset($email)){ echo "<span id='login-error'>Email: " . $email . "</span>"; } 
+    ?>
     <div class="box">
         <form method="POST" action="<?=BASE. "/index.php?action=regularSignup"?>" class="signup">
             <span id="header-text">Sign Up</span>
             <div class="input-container">
-                <input id="sign-u" type="text" required name="sign-u"/>
+                <input id="sign-u" type="text" name="sign-u"/>
                 <label for="sign-u">Username</label>
             </div>
             <div class="input-container">
-                <input id="sign-e" type="email" required name="sign-e"/>
+                <input id="sign-e" type="text" name="sign-e"/>
                 <label for="sign-e">Email</label>
             </div>
             <div class="input-container">
                 <label for="sign-p">Password</label>
-                <input type="password" id="psw" name="sign-p" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                <input type="password" id="psw" name="sign-p" 
                 title="Must contain at least one number and one uppercase and lowercase letter, and at 
-                least 8 or more characters" required>
+                least 8 or more characters">
                 <div id="message">
                 <h3>Password must contain the following:</h3>
                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
@@ -31,7 +63,7 @@
                 </div>
             </div>
             <div class="input-container">
-                <input id="sign-cp" type="password" required name="sign-cp"/>
+                <input id="sign-cp" type="password" name="sign-cp"/>
                 <label for="sign-cp">Confirm Password</label>
             </div>
             <button id="signup-btn" type="submit">Sign Up</button>
@@ -41,14 +73,14 @@
         </div>
         <div id="g_id_onload"
             data-client_id="<?=$_SERVER['CLIENT_ID']?>"
-            data-context="signup"
             data-ux_mode="popup"
+            data-context="signup"
             data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup"
             data-auto_prompt="false">
         </div>
         <div class="g_id_signin"
             data-type="standard"
-            data-shape="rectangular"
+            data-shape="pill"
             data-theme="outline"
             data-text="signup_with"
             data-size="large"
@@ -121,7 +153,7 @@
 </script>
 
 
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <?php $content = ob_get_clean(); ?>
 <?php require('templateView.php'); ?>
 

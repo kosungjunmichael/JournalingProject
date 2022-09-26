@@ -1,135 +1,54 @@
 @import url('../css/main.css');
+@import url('../css/footer.css');
+@import url('../css/header.css');
 
 body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3B3D3E;
-    color: #fff;
+    background-color: var(--grey);
+    color: var(--white);
     font-size: x-large;
     overflow-x:hidden; 
     overflow-y:auto;
     display: flow-root;
 }
-nav > h2,li{
-    color: #dddddd;
+/* nav > h2,li{
+    color: var(--grey-superlight);
+} */
+h1 {
+    color: var(--primary);
 }
-h1{
-    color: #9b40f6;
-}
-#basicInfo{
+#basicInfo {
     width: 700px;
     margin-top: 180px;
 }
 
-nav{
-    background-color: rgba(22,22,22,0.7);
-    width:100%;
-    padding: 30px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position:fixed;
-}
-
-.logo{
-    color:#7d7f80;
+/* .logo {
+    color:var(--grey-light);
     font-size: 30px;
     text-decoration: none;
     font-weight: 800;
     letter-spacing: 1px;
-}
-
+} */
+/* 
 nav ul li{
     list-style-type: none;
     display: inline-block;
     padding: 10px 25px;
-}
+} */
 
-nav ul li a{
-    color:#7d7f80;
+/* nav ul li a{
+    color:var(--grey-light);
     text-decoration: none;
     font-weight:500;
     letter-spacing: 1px;
     padding: 2px 15px;
+} */
+
+/* nav ul li a:hover{
+    color:var(--primary);
 }
-
-nav ul li a:hover{
-    color:#9b40f6;
-}
+ */
 
 
-
-/* footer */
-
-footer{
-    background-color: #272727;
-    text-align: center;
-    margin-top: 30px;
-}
-
-.col{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
-
-footer i{
-    color:white;
-    font-size: 25px;
-    margin-top: 20px;;
-}
-
-footer hr{
-    text-align: center;
-    width: 60%;
-    border-top: 0.3px solid #bbb;
-    margin-left: 290px;
-    margin-top: 20px;
-}
-
-
-.footer-main{
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 18px;
-}
-
-.footer-menu{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap:70px;
-}
-
-.footer-main a{
-    color:white;
-}
-
-footer ul li{
-    list-style: none;
-}
-footer a{
-    text-decoration: none;
-}
-
-.menu-item{
-    line-height: 2rem;
-}
-
-.menu-item-title{
-    font-weight: 800;
-    letter-spacing: 0.05em;
-}
-
-.sub-menu-item a{
-    color:#bababa;
-    font-size:15px;
-}
-
-.footer-card{
-    margin-top: 60px;
-    color: #9b40f6;
-    width: 100%;
-    height:100px;
-}

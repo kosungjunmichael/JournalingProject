@@ -9,7 +9,7 @@
 
 body{
     width: 100%;
-    text-decoration:none;
+    text-decoration: none;
     color: var(--text-color-primary);
 }
 
@@ -121,7 +121,7 @@ body{
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
-    /* background-color: #2f2f2f; */
+    /* background-color: var(--grey-dark); */
     margin: 10px;
     background-color: var(--bg-secondary);
     border:none;
@@ -174,7 +174,7 @@ body{
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 5;
-    height: 6rem;
+    height: 5rem;
 }
 
 .entryInfo {
@@ -184,8 +184,26 @@ body{
 }
 
 .entryTags{
-    margin: 5px 8px;
+    margin: 5px -5px;
     font-weight:700;
+    display:flex;
+}
+
+.tag{
+    background-color: var(--tag-bg);
+    color: black;
+    text-align:center;
+    width: fit-content;
+    margin: 0px 5px;
+    padding: 1px 10px;
+    border-radius: var(--border-radius-pill);
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.no-tag{
+    margin: 0px 10px;
+    padding: 0px 5px;
 }
 
 .entryDate{

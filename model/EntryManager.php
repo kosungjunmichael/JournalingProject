@@ -54,7 +54,6 @@ class EntryManager extends Manager{
     public function createEntry($data){
         $db = $this->dbConnect();
 
-
             // create unique ID, check if it's actually unique
             do {
                 $uid = $this->uidCreate();
@@ -62,7 +61,16 @@ class EntryManager extends Manager{
             } while (count($existingUID) > 0);
 
             // Inserting the entry into the 'entries' table
-            $req = $db->prepare('INSERT INTO entries (title, text_content, user_uid, u_id) VALUES (:title, :entry, :user_uid, :uid)');
+            $req = $db->prepare('INSERT INTO entries (title
+                                                        , text_content
+                                                        , user_uid
+                                                        , u_id) 
+                                                        VALUES (
+                                                        :title
+                                                        , :entry
+                                                        , :user_uid
+                                                        , :uid)
+            ');
             $req->bindParam('title', $data->title, PDO::PARAM_STR);
             $req->bindParam('entry', $data->entry, PDO::PARAM_STR);
             $req->bindParam('user_uid', $data->userUID, PDO::PARAM_STR);
@@ -75,6 +83,8 @@ class EntryManager extends Manager{
             // Direct the user to the timeline
             return $entry_id->u_id;
     }
+
+
 
     public function getEntries($userId, $entryGroup){
         $db = $this->dbConnect();

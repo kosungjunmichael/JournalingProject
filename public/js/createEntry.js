@@ -1,6 +1,7 @@
 // TODO: create a way to delete tags
 let addedTags = [];
 
+// To remove tags
 let destroyTags = document.querySelectorAll('.fa-solid.fa-x');
 
 // queryselectors for tag creation
@@ -13,10 +14,10 @@ let submitTagInput = document.querySelector('.submitted-tags-input');
 
 
 function removeTags() {
-  let allTags = document.querySelectorAll('.entry-tag');
-  for (let tag of allTags) {
-    tag.remove();
-  }
+    let allTags = document.querySelectorAll(".entry-tag");
+    for (let tag of allTags) {
+        tag.remove();
+    }
 }
 
 function createTags() {
@@ -66,6 +67,43 @@ createTagInput.addEventListener('keydown',(e)=>{
   };
 })
 
+// display the selected image
 
+const img_container = document.querySelector("#entry-upload-photo");
+const image_input = document.querySelector("#imgUpload");
+const image_label = document.querySelector(".entry-photo");
 
+function handleImageSelect() {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+        console.log("reader");
+        const uploaded_image = reader.result;
 
+        img_count++;
+        if (img_count === 5) {
+            image_label.remove();
+        }
+        if (img_count <= 5) {
+            const img = document.createElement("div");
+            img_container.appendChild(img);
+            img.className = "chosenImg";
+            img.style.backgroundImage = `url(${uploaded_image})`;
+            const new_name = "imgUpload" + img_count;
+            const clone_input = image_input.cloneNode(true);
+            clone_input.value = "";
+            clone_input.id = new_name;
+            clone_input.setAttribute("name", new_name);
+            clone_input.addEventListener("change", handleImageSelect);
+            image_label.appendChild(clone_input);
+            image_label.onclick = function () {
+                document.getElementById(new_name).click();
+            };
+        } else {
+            alert("reached max");
+            return;
+        }
+    });
+    reader.readAsDataURL(this.files[0]);
+}
+
+image_input.addEventListener("change", handleImageSelect);

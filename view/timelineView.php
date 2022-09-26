@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<?php $script = "timeline";?>
+<!-- <?php $script = "timeline";?> -->
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
