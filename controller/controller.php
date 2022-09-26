@@ -15,13 +15,13 @@ function toAboutUs() {
   require(ROOT . '/view/aboutView.php');
 }
 
-function toSignup() {
-  require(ROOT . '/view/signupView.php');
-}
+// function toSignup() {
+//   require(ROOT . '/view/signupView.php');
+// }
 
-function toLogin() {
-  require(ROOT . '/view/journeyView.php');
-}
+// function toLogin() {
+//   require(ROOT . '/view/journeyView.php');
+// }
 
 function toTimeline($Unique_id, $entryGroup) {
   $entryManager = new EntryManager();

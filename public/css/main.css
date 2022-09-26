@@ -16,6 +16,7 @@
     --border-radius-light: 10px;
     --border-radius-medium: 15px;
     --border-radius-pill: 50px;
+    --border-radius-button: 25px;
 }
 
 body[data-theme='light'] {
