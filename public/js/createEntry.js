@@ -67,6 +67,7 @@ createTagInput.addEventListener('keydown',(e)=>{
   };
 })
 
+
 // display the selected image
 
 const img_container = document.querySelector("#entry-upload-photo");

@@ -22,15 +22,16 @@ function addFilters(){
     destroyFilter.className = 'fa-solid fa-x';
     destroyFilter.onclick = ()=>{
       addedFilters.splice(i,1);
-      remove
+      removeFilters();
+      addFilters();
     }
     filterDisplay.textContent = filterText;
     filterDisplay.classList.add("filter-tag");
-
-
-
-
+    filterDisplay.prepend(destroyFilter);
+    
+    filterResults.appendChild(filterDisplay);
   }
+
 }
 
 
@@ -42,8 +43,6 @@ function filterEntries(){
     removeEntries();
     addEntries();
   }
-
-
 }
 
 searchBar.addEventListener('keydown',(e)=>{
