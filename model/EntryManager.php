@@ -28,7 +28,7 @@ class EntryManager extends Manager{
         // TODO: add image path to DB
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO entry_images (entry_uid, path) VALUES (:entry_id, :path)');
-        $req->bindParam('entry_id', $entry_id, PDO::PARAM_INT);
+        $req->bindParam('entry_id', $entry_id, PDO::PARAM_STR);
         $req->bindParam('path', $newpath, PDO::PARAM_STR);
         $req->execute();
     }

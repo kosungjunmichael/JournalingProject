@@ -57,7 +57,7 @@ function signUp($data, $type){
       $control = [];
       preg_match("/^[a-zA-Z0-9]{4,}/", $data['sign-u']) ? array_push($control, true) : array_push($control, "Your username must include at least 4 characters.");
       preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data['sign-e']) ? array_push($control, true) : array_push($control, "You must use a proper email address.");
-      preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/", $data['sign-p']) ? array_push($control, true) : array_push($control, "Your password did not meet the minimum requirements.");
+      preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data['sign-p']) ? array_push($control, true) : array_push($control, "Your password did not meet the minimum requirements.");
       $data['sign-p'] == $data['sign-cp'] ? array_push($control, true) : array_push($control, "Your passwords did not match.");
 
       if (count(array_unique($control)) == 1) {
