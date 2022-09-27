@@ -16,13 +16,13 @@ function toAboutUs() {
   require(ROOT . '/view/aboutView.php');
 }
 
-function toSignup() {
-  require(ROOT . '/view/signupView.php');
-}
+// function toSignup() {
+//   require(ROOT . '/view/signupView.php');
+// }
 
-function toLogin() {
-  require(ROOT . '/view/journeyView.php');
-}
+// function toLogin() {
+//   require(ROOT . '/view/journeyView.php');
+// }
 
 function toTimeline($Unique_id, $entryGroup) {
   $entryManager = new EntryManager();
@@ -51,24 +51,84 @@ function toLogout() {
 //--------------------------------------------------
 
 function signUp($data, $type){
-  $userManager = new UserManager();
-  $check = $userManager->createUser($data, $type);
-  if ($check === false){
-    toTimeline($_SESSION['uid'], "monthly");
-  } else {
-    if (isset($check['error'])) {
-      $error = $check['error'];
-      if (isset($check['username'])) {
-          $username = $check['username'];
-      };
-      if (isset($check['email'])) {
-          $email = $check['email'];
-      };
-    } else {
-      $error = $check;
-    }
-    require(ROOT . '/view/signUpView.php');
+  // $userManager = new UserManager();
+  // $check = $userManager->createUser($data, $type);
+  // echoPre($check);
+  switch ($type) {
+    case 'regular':
+      $control = [];
+      preg_match("/^[a-zA-Z0-9]{4,}/", $data['sign-u']) ? array_push($control, true) : array_push($control, "Your username must include at least 4 characters.");
+      preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data['sign-e']) ? array_push($control, true) : array_push($control, "You must use a proper email address.");
+      preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data['sign-p']) ? array_push($control, true) : array_push($control, "Your password did not meet the minimum requirements.");
+      $data['sign-p'] == $data['sign-cp'] ? array_push($control, true) : array_push($control, "Your passwords did not match.");
+
+      if (count(array_unique($control)) == 1) {
+        $userManager = new UserManager();
+        $check = $userManager->createUser($data, $type);
+
+        if ($check === false) {
+          toTimeline($_SESSION['uid'], "monthly");
+        } else {
+          if (isset($check['error'])) {
+            $error = $check['error'];
+            if (isset($check['username'])) {
+              $username = $check['username'];
+            };
+            if (isset($check['email'])) {
+              $email = $check['email'];
+            };
+          } else {
+            $error = $check;
+          }
+          require(ROOT . '/view/signUpView.php');
+        }
+      } else {
+        $error = [];
+        foreach ($control as $value) {
+          // if ($value != '1') $error .= $value . '<br>';
+          if ($value != '1') array_push($error, $value);
+        }
+        require(ROOT . '/view/signUpView.php');
+      }
+      break;
+    default:
+      $userManager = new UserManager();
+      $check = $userManager->createUser($data, $type);
+      if ($check === false) {
+        toTimeline($_SESSION['uid'], "monthly");
+      } else {
+        if (isset($check['error'])) {
+          $error = $check['error'];
+          if (isset($check['username'])) {
+            $username = $check['username'];
+          };
+          if (isset($check['email'])) {
+            $email = $check['email'];
+          };
+        } else {
+          $error = $check;
+        }
+        require(ROOT . '/view/signUpView.php');
+      }
+      break;
   }
+
+  // if ($check === false){
+  //   toTimeline($_SESSION['uid'], "monthly");
+  // } else {
+  //   if (isset($check['error'])) {
+  //     $error = $check['error'];
+  //     if (isset($check['username'])) {
+  //         $username = $check['username'];
+  //     };
+  //     if (isset($check['email'])) {
+  //         $email = $check['email'];
+  //     };
+  //   } else {
+  //     $error = $check;
+  //   }
+  //   require(ROOT . '/view/signUpView.php');
+  // }
 }
 
 function kakaoSignUp($data) {
