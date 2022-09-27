@@ -27,6 +27,8 @@ function toLogin() {
 function toTimeline($Unique_id, $entryGroup) {
   $entryManager = new EntryManager();
   $entries = $entryManager->getEntries($Unique_id, $entryGroup);
+  // echo "ENTRIES:controller.php:  ", "<br>";
+  // echoPre($entries);
   $view = $entryGroup;
   require(ROOT . '/view/timelineView.php');
 }

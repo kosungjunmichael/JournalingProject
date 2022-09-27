@@ -7,6 +7,8 @@
                 <?php
                     $tagManager = new TagManager();
                     $entryTags = $tagManager->getTags($entry['u_id']);
+                    // echo "ENTRYTAGS:timelineTemplate.php:  ", "<br>";
+                    // echoPre($entryTags);
                     if (!empty($entryTags)){
                         for ($i=0;$i<count($entryTags);$i++){
                         // foreach($entryTags as $tag){
