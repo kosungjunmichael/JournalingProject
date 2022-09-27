@@ -41,6 +41,7 @@ if (!isset($_SESSION['uid'])){
 
             <div id="create-entry-weather">
                 <select id="weather-select">
+                    <option value="">choose weather</option>
                     <option value="Sunny">Sunny</option>
                     <option value="Rainy">Rainy</option>
                     <option value="Cloudy">Cloudy</option>
