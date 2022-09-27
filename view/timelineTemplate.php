@@ -5,23 +5,19 @@
         <div class="entry-info">
             <div class="entry-tags">
                 <?php
-                    $tagManager = new TagManager();
-                    $entryTags = $tagManager->getTags($entry['u_id']);
-                    // echo "ENTRYTAGS:timelineTemplate.php:  ", "<br>";
-                    // echoPre($entryTags);
-                    if (!empty($entryTags)){
-                        for ($i=0;$i<count($entryTags);$i++){
-                        // foreach($entryTags as $tag){
+                    $entryTags = explode(",",$entry['tags']);
+                    for ($i=0;$i<count($entryTags);$i++){
+                        if (!empty($entryTags["$i"])){
                             if ($i < 3){
                 ?>
-                                <div class="tag"><?= htmlspecialchars($entryTags["$i"]['tag_name']);?></div>
+                                <div class="tag"><?= htmlspecialchars($entryTags["$i"]);?></div>
+                        <?php
+                            } 
+                        } else {
+                        ?>
+                            <div class="no-tag">no tags</div>
                     <?php
-                            }
                         }
-                    } else {
-                    ?>
-                        <div class="no-tag">no tags</div>
-                    <?php
                     }
                     ?>
             </div>

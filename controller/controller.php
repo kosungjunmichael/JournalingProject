@@ -3,6 +3,7 @@
 require_once('./model/EntryManager.php');
 require_once('./model/UserManager.php');
 require_once('./model/TagManager.php');
+require_once('./model/FilterManager.php');
 
 //--------------------------------------------------
 //----------------PAGE NAVIGATION-------------------
@@ -195,13 +196,19 @@ function newEntry($data) {
   }
 }
 
+function filterEntries($filter){
+    $filterManager = new FilterManager();
+    // echo "<div>".$_SESSION['uid']."<div>";
+    // $type = "monthly";
+    $entries = $filterManager->filterEntries($_SESSION['uid'],$filter);
+    // echoPre($entries);
+    require(ROOT . '/view/timelineFiltered.php');
+}
+
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
     $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
-    // echo "<pre>";
-    // print_r($entryContent);
-    // echo "</pre>";
     require(ROOT . '/view/viewEntryView.php');
 }
 

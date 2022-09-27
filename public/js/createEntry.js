@@ -8,7 +8,7 @@ let destroyTags = document.querySelectorAll('.fa-solid.fa-x');
 let createTagBtn = document.querySelector('#create-tag-btn');
 let createTagInput = document.querySelector('#create-tag-input');
 
-// queryselectors for display and submitted tags
+// tag display "through a div container" and submit input
 let tagContainer = document.querySelector('#tag-cont');
 let submitTagInput = document.querySelector('.submitted-tags-input');
 
@@ -66,6 +66,7 @@ createTagInput.addEventListener('keydown',(e)=>{
     handleAddTag();
   };
 })
+
 
 // display the selected image
 
