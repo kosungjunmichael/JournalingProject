@@ -7,41 +7,60 @@ let filterResults = document.querySelector('.filter-cont');
 // array of all the filter results to be added
 let addedFilters = [];
 
+// entries display container
+let entriesDisplay = document.querySelector('.entry-display');
+
+
 function removeFilters(){
-  let allFilters = document.querySelectorAll('.filter-tags');
-  for (let entry of allFilters){
-    entry.remove();
+  let allFilters = document.querySelectorAll('.filter-tag');
+  for (let filter of allFilters){
+    filter.remove();
   }
 }
 
-const addFilters = () => {
-  for (let i=0;i<addedFilters.length;i++){
-    let filterText = addedFilters[i];
+function addFilters(){
+  for (let i=0; i<addedFilters.length; i++){
+    let text = addedFilters[i];
     let filterDisplay = document.createElement('div');
     let destroyFilter = document.createElement('i');
     destroyFilter.className = 'fa-solid fa-x';
-    destroyFilter.onclick = ()=>{
+    destroyFilter.onclick = () => {
       addedFilters.splice(i,1);
       removeFilters();
       addFilters();
     }
-    filterDisplay.textContent = filterText;
+    filterDisplay.textContent = text;
     filterDisplay.classList.add("filter-tag");
     filterDisplay.prepend(destroyFilter);
     
     filterResults.appendChild(filterDisplay);
   }
-
+  filtersString = addedFilters.join(',');
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}`)
+  xhr.addEventListener('readystatechange',()=>{
+    if (xhr.status === 200 && xhr.readyState === XMLHttpRequest.DONE){
+        // console.log(xhr.responseText);
+        // console.log(entriesDisplay);
+        entriesDisplay.innerHTML = xhr.responseText;
+    } else if (xhr.status !== 200 && xhr.readyState === XMLHttpRequest.DONE){
+        console.log(`there's an error code: ${xhr.status} text: ${xhr.statusText}`);
+    }
+  })
+  xhr.send();
 }
 
-const filterEntries = () => {
-  let val = searchBar.value;
 
-  if (val === "" && !val.includes(",") && !addedResults.includes(val)){
-    addedResults.push(val);
-    removeEntries();
-    addEntries();
+function filterEntries(){
+  
+  let val = searchBar.value;
+  console.log(addedFilters);
+  if (val !== "" && !val.includes(",") && !addedFilters.includes(val)){
+    addedFilters.push(searchBar.value);
+    removeFilters();
+    addFilters();
   }
+  searchBar.value = "";
 }
 
 searchBar.addEventListener('keydown',(e)=>{

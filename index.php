@@ -87,6 +87,11 @@ try {
 //--------------------------------------------------
 //----------------ENTRY MANAGEMENT------------------
 //--------------------------------------------------
+        case "filterEntries":
+            if (isset($_REQUEST['filter'])){
+                filterEntries($_REQUEST['filter']);
+            }
+            break;
 
         case "toggleView":
             if ($_GET['view'] === "week"){

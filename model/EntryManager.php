@@ -94,16 +94,16 @@ class EntryManager extends Manager
 		return $entry_id->u_id;
 	}
 
-	public function getEntries($userId, $entryGroup)
-	{
-		$db = $this->dbConnect();
-		// current year
-		$thisYear = date("Y");
-		// current month
-		$thisMonth = date("F");
-		// current week number for the year
-		$thisWeek = date("W");
-		$req = $db->prepare('SELECT
+
+    public function getEntries($userId, $entryGroup) {
+        $db = $this->dbConnect();
+        // current year
+        $thisYear = date('Y');
+        // current month
+        $thisMonth = date('F');
+        // current week number for the year
+        $thisWeek = date('W');
+        $req = $db->prepare('SELECT
                             e.u_id
                             , e.title
                             , e.text_content
@@ -181,10 +181,9 @@ class EntryManager extends Manager
 		$req->closeCursor();
 	}
 
-	public function getEntry($entryId, $userId)
-	{
-		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT e.title
+    public function getEntry($entryId, $userId) {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT e.title
         , e.u_id
         , e.text_content
         , e.location

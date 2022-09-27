@@ -9,8 +9,8 @@ let createTagBtn = document.querySelector("#create-tag-btn");
 let createTagInput = document.querySelector("#create-tag-input");
 
 // tag display "through a div container" and submit input
-let tagContainer = document.querySelector("#tag-cont");
-let submitTagInput = document.querySelector(".submitted-tags-input");
+let tagContainer = document.querySelector('#tag-cont');
+let submitTagInput = document.querySelector('.submitted-tags-input');
 
 // -----------------------------------------------------------------------------
 // --------------------------------TAGS-----------------------------------------
