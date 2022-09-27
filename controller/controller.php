@@ -182,14 +182,17 @@ function newEntry($data) {
     $entry_uid = $entryManager->createEntry($data);
     // echo "controller-newEntry-ENTRY_ID:  ", $entry_uid, "<br>";
     $tagManager->submitTags($data->tags, $entry_uid);
-      if ($_FILES['imgUpload']['error'] !== 4) {
-        $checkImgs = $entryManager->uploadImages($entry_uid);
+    // echoPre($entry_uid);
+    if ($_FILES['imgUpload']['error'] !== 4) {
+      // echoPre($entry_uid);
+      $checkImgs = $entryManager->uploadImages($entry_uid);
+      // echoPre($checkImgs);
       } else if (count($_FILES) > 1 AND $_FILES['imgUpload']['error'] === 4) {
         throw new Exception('Error, image error status 4 - controller.php: newEntry()');
       }
-      // $error = "Entry Submitted!";
-      // require(ROOT . '/index.php?action=sidebarTimeline');
-      // toTimeline($check);
+      $error = "Entry Submitted!";
+    //   require(ROOT . '/index.php?action=sidebarTimeline');
+    //   // toTimeline($check);
     header("Location: index.php?action=toTimeline");
   } else {
     // throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
