@@ -1,41 +1,40 @@
 // function login() {
-    // }    
+// }
 let blur = document.querySelector(".blur");
 
-
 function openLogin() {
-    document.getElementById("login").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeLogin);
+	document.getElementById("login").style.display = "block";
+	blur.style.display = "block";
+	blur.addEventListener("click", closeLogin);
 }
 
 function openSignup() {
-    document.getElementById ("signup").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeSignup);
+	document.getElementById("signup").style.display = "block";
+	blur.style.display = "block";
+	blur.addEventListener("click", closeSignup);
 }
 
 function closeLogin() {
-    document.getElementById('login').style.display = 'none';
-    document.querySelector(".blur").style.display = "none";
-    blur.removeEventListener('click', closeLogin);
+	document.getElementById("login").style.display = "none";
+	document.querySelector(".blur").style.display = "none";
+	blur.removeEventListener("click", closeLogin);
 }
 
 function closeSignup() {
-    document.querySelector(".blur").style.display = "none";
-    document.getElementById("signup").style.display = "none";
-    blur.removeEventListener('click', closeSignup);
+	document.querySelector(".blur").style.display = "none";
+	document.getElementById("signup").style.display = "none";
+	blur.removeEventListener("click", closeSignup);
 }
 
-document.querySelector("#close").addEventListener('click', closeLogin)
-document.querySelector("#close1").addEventListener('click', closeSignup)
-document.querySelector(".btn").addEventListener('click', openLogin)
-document.querySelector(".btn1").addEventListener('click', openSignup)
+document.querySelector("#close").addEventListener("click", closeLogin);
+document.querySelector("#close1").addEventListener("click", closeSignup);
+document.querySelector(".btn").addEventListener("click", openLogin);
+document.querySelector(".btn1").addEventListener("click", openSignup);
 
-document.getElementById("sign-up-link").addEventListener('click', () => {
-    closeLogin();
-    openSignup();
-})
+document.getElementById("sign-up-link").addEventListener("click", () => {
+	closeLogin();
+	openSignup();
+});
 
 // var myInput = document.getElementById("psw");
 // var letter = document.getElementById("letter");
@@ -57,7 +56,7 @@ document.getElementById("sign-up-link").addEventListener('click', () => {
 // myInput.onkeyup = function() {
 //     // Validate lowercase letters
 //     var lowerCaseLetters = /[a-z]/g;
-//     if(myInput.value.match(lowerCaseLetters)) {  
+//     if(myInput.value.match(lowerCaseLetters)) {
 //         letter.classList.remove("invalid");
 //         letter.classList.add("valid");
 //     } else {
@@ -65,9 +64,8 @@ document.getElementById("sign-up-link").addEventListener('click', () => {
 //         letter.classList.add("invalid");
 //     }
 
-
 //     var upperCaseLetters = /[A-Z]/g;
-//     if(myInput.value.match(upperCaseLetters)) {  
+//     if(myInput.value.match(upperCaseLetters)) {
 //         capital.classList.remove("invalid");
 //         capital.classList.add("valid");
 //     } else {
@@ -77,14 +75,14 @@ document.getElementById("sign-up-link").addEventListener('click', () => {
 
 //     // Validate numbers
 //     var numbers = /[0-9]/g;
-//     if(myInput.value.match(numbers)) {  
+//     if(myInput.value.match(numbers)) {
 //         number.classList.remove("invalid");
 //         number.classList.add("valid");
 //     } else {
 //         number.classList.remove("valid");
 //         number.classList.add("invalid");
 //     }
-    
+
 //     // Validate length
 //     if(myInput.value.length >= 8) {
 //         length.classList.remove("invalid");
