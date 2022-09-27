@@ -1,4 +1,3 @@
-
 <div id="sidebar-container">
     <div id="sidebar-top">
         <a href="<?=BASE."/index.php?action=toLanding"?>">
