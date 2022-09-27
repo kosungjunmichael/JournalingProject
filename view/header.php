@@ -236,9 +236,9 @@ togglePswSi.addEventListener("click", () => {
 });
     
 // ==== Regex ====
-    var regName = /^[a-zA-Z0-9]{4,}/;
-    var regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var regPsw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]){8,}$/;
+var regName = /^[a-zA-Z0-9]{4,}/;
+var regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+var regPsw = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
 // === Validate Username ===
 
@@ -312,7 +312,6 @@ function checkPsw() {
             letter.classList.add("invalid");
         }
 
-
         var upperCaseLetters = /[A-Z]/g;
         if (myInput.value.match(upperCaseLetters)) {
             capital.classList.remove("invalid");
@@ -385,7 +384,6 @@ su_form.addEventListener("submit", function(e) {
 </script>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-
 
 <!-- KAKAO -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
