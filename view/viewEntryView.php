@@ -14,8 +14,23 @@
             </h1>
             <div id="details-row">
                 <div id="entry-tags">
-                    <div class="tag">weekend</div>
-                    <div class="tag">summer</div>
+                    <?php
+                        $tagManager = new TagManager();
+                        $entryTags = $tagManager->getTags($entryContent['u_id']);
+                        if (!empty($entryTags)){
+                            foreach($entryTags as $tag){
+                    ?>
+                                <div class="tag"><?= htmlspecialchars($tag['tag_name']);?></div>
+                        <?php
+                            }
+                        } else {
+                        ?>
+                            <div class="no-tag">no tags</div>
+                        <?php
+                        }
+                        ?>
+                    <!-- <div class="tag">weekend</div>
+                    <div class="tag">summer</div> -->
                 </div>
                 <div id="entry-created">
                     <i class="ph-calendar-blank"></i>

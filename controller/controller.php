@@ -2,6 +2,7 @@
 
 require_once('./model/EntryManager.php');
 require_once('./model/UserManager.php');
+require_once('./model/TagManager.php');
 
 //--------------------------------------------------
 //----------------PAGE NAVIGATION-------------------
@@ -171,24 +172,27 @@ function login($data, $type){
 
 function newEntry($data) {
   $entryManager = new EntryManager();
-  $entry_uid = $entryManager->createEntry($data);
-  // echo "controller-newEntry-ENTRY_ID:  ", $entry_uid, "<br>";
-  if ($entry_uid){
-    if ($_FILES['imgUpload']['error'] !== 4) {
-      $checkImgs = $entryManager->uploadImages($entry_uid);
-    } else if (count($_FILES) > 1 AND $_FILES['imgUpload']['error'] === 4) {
-      throw new Exception('Error, image error status 4 - controller.php: newEntry()');
-    }
-    $error = "Entry Submitted!";
-    // require(ROOT . '/index.php?action=sidebarTimeline');
-    // toTimeline($check);
+  $tagManager = new TagManager();
+  if (!empty($data->title) AND !empty($data->entry)){
+    $entry_uid = $entryManager->createEntry($data);
+    // echo "controller-newEntry-ENTRY_ID:  ", $entry_uid, "<br>";
+    $tagManager->submitTags($data->tags, $entry_uid);
+      if ($_FILES['imgUpload']['error'] !== 4) {
+        $checkImgs = $entryManager->uploadImages($entry_uid);
+      } else if (count($_FILES) > 1 AND $_FILES['imgUpload']['error'] === 4) {
+        throw new Exception('Error, image error status 4 - controller.php: newEntry()');
+      }
+      // $error = "Entry Submitted!";
+      // require(ROOT . '/index.php?action=sidebarTimeline');
+      // toTimeline($check);
     header("Location: index.php?action=toTimeline");
   } else {
-    throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
+    // throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
     $error = "Not a valid Entry";
     require(ROOT . '/view/createEntryView.php');
   }
 }
+
 
 function viewEntry($entryId){
     $entryManager = new EntryManager();
@@ -230,6 +234,7 @@ function updateLastActive($uid){
   $userManager = new UserManager();
   $userManager->updateLastActive($uid);
 }
+
 
 function echoPre($user_fetch) {
   if (is_array($user_fetch)) {
