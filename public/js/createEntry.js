@@ -77,7 +77,7 @@ const image_label = document.querySelector(".entry-photo");
 function handleImageSelect() {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
-        console.log("reader");
+        // console.log("reader");
         const uploaded_image = reader.result;
 
         img_count++;
