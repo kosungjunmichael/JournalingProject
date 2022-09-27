@@ -67,7 +67,7 @@ var regPsw = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 let user = document.getElementById("sign-u");
 let error_user = document.getElementById("tooltip-u");
 
-function checkUser() {
+const checkUser = () => {
 	if (regName.test(user.value)) {
 		error_user.style.display = "none";
 		return true;
@@ -82,7 +82,7 @@ function checkUser() {
 let mail = document.getElementById("sign-e");
 let error_mail = document.getElementById("tooltip-e");
 
-function checkMail() {
+const checkMail = () => {
 	if (regMail.test(mail.value)) {
 		error_mail.style.display = "none";
 		return true;
@@ -99,7 +99,7 @@ let cp = document.getElementById("sign-cp");
 let error_p = document.getElementById("tooltip-psw");
 let error_cp = document.getElementById("tooltip-cp");
 
-function checkPsw() {
+const checkPsw = () => {
 	if (regPsw.test(psw.value)) {
 		error_p.style.display = "none";
 		return true;
@@ -166,7 +166,7 @@ function checkPsw() {
 	}
 }
 
-function checkCP() {
+const checkCP = () => {
 	if (psw.value == cp.value) {
 		error_cp.style.display = "none";
 		return true;

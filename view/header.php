@@ -1,8 +1,10 @@
 <header>
     <nav>
-        <h2><a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
+        <h2><a href="<?= BASE .
+        	"/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
-            <li><a href="<?= BASE . "/index.php?action=toAboutUs" ?>">About us</a></li>
+            <li><a href="<?= BASE .
+            	"/index.php?action=toAboutUs" ?>">About us</a></li>
             <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
             <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>
@@ -16,13 +18,14 @@
 
             <!-- Sign In form -->
 
-            <form method="POST" action="<?= BASE . "/index.php?action=regularLogin" ?>" class="signin">
+            <form method="POST" action="<?= BASE .
+            	"/index.php?action=regularLogin" ?>" class="signin">
                 <span id="header-text">Login</span>
 
                 <!-- Back-end Error Notification -->
                 <?php if (isset($error_login)) { ?>
                     <script>
-                        alert("<?= $error_login; ?>")
+                        alert("<?= $error_login ?>")
                     </script>
                 <?php } ?>
 
@@ -30,7 +33,9 @@
                     <input id="login-ue" 
                     type="text" 
                     name="login-ue" 
-                    <?php if(isset($username)) {echo "value='" . $username . "'";}?> 
+                    <?php if (isset($username)) {
+                    	echo "value='" . $username . "'";
+                    } ?> 
                     />
                     <label for="login-ue" class="label" >Username / Email</label>
                 </div>
@@ -49,7 +54,9 @@
             </form>
             <div id="or-separator">OR</div>
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID']; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
+                <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
 
@@ -75,13 +82,14 @@
 
             <!-- Sign Up form -->
 
-            <form method="POST" action="<?= BASE . "/index.php?action=regularSignup" ?>" class="signup" id="su-form">
+            <form method="POST" action="<?= BASE .
+            	"/index.php?action=regularSignup" ?>" class="signup" id="su-form">
                 <span id="header-text">Sign Up</span>
                 
                 <!-- Back-end Error Notification -->
                 <?php if (isset($error_signup)) { ?>
                     <script>
-                        alert("<?= $error_signup; ?>")
+                        alert("<?= $error_signup ?>")
                     </script>
                 <?php } ?>
 
@@ -148,7 +156,9 @@
 
             <!-- Google login -->
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
+                <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
                 </div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left">
                 </div>
@@ -161,12 +171,12 @@
 </header>
 
 <!-- FORM VALIDATION -->
-<script src="<?= BASE . "/public/js/formValidation.js"; ?>"></script>
+<script src="<?= BASE . "/public/js/formValidation.js" ?>"></script>
 
 <!-- GOOGLE -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <!-- KAKAO -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script> Kakao.init("<?= $_SERVER['JS_API_KEY'] ?>"); </script>
-<script src="<?= BASE . "/public/js/kakao.js"; ?>"></script>
+<script> Kakao.init("<?= $_SERVER["JS_API_KEY"] ?>"); </script>
+<script src="<?= BASE . "/public/js/kakao.js" ?>"></script>

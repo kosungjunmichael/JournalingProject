@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title><?= $title; ?></title>
+        <title><?= $title ?></title>
         <?php if (isset($style)) { ?>
-            <link rel="stylesheet" href="<?= BASE . "/public/css/$style.css"; ?>">
+            <link rel="stylesheet" href="<?= BASE .
+            	"/public/css/$style.css" ?>">
         <?php } ?>
         <link rel="icon" href="../public/images/logo.png">
         <!-- Boxicons Link -->
@@ -16,12 +17,12 @@
         <!-- Font awesome icons Link -->
         <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
         <!--  global javascript file  -->
-        <script defer src=" <?= BASE . "/public/js/script.js"; ?> "></script>
+        <script defer src=" <?= BASE . "/public/js/script.js" ?> "></script>
         <!-- Page specific javascript file -->
         <?php if (isset($script)) { ?>
             <script defer src="<?= BASE . "/public/js/$script.js" ?>"></script>
         <?php } ?>
         <link rel="icon" href="<?= BASE . "/public/images/static/logo.png" ?>">
     </head>
-    <body> <?= $content; ?> </body>
+    <body> <?= $content ?> </body>
 </html>

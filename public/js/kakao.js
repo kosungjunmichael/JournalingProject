@@ -1,4 +1,4 @@
-function loginWithKakao() {
+const loginWithKakao = () => {
 	Kakao.Auth.login({
 		success: function (authObj) {
 			Kakao.Auth.setAccessToken(authObj.access_token);
@@ -11,7 +11,7 @@ function loginWithKakao() {
 	});
 }
 
-function signUpWithKakao() {
+const signUpWithKakao = () => {
 	Kakao.Auth.login({
 		success: function (authObj) {
 			Kakao.Auth.setAccessToken(authObj.access_token);
@@ -23,7 +23,7 @@ function signUpWithKakao() {
 	});
 }
 
-function getInfo(type) {
+const getInfo = (type) => {
 	Kakao.API.request({
 		url: "/v2/user/me",
 		success: function (res) {

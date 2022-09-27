@@ -1,9 +1,9 @@
-<?php $title = "Album";?>
-<?php $style = "album";?>
-<?php $script = "script";?>
+<?php $title = "Album"; ?>
+<?php $style = "album"; ?>
+<?php $script = "script"; ?>
 
-<?php ob_start();?>
-<?php include("sidebarView.php");?>
+<?php ob_start(); ?>
+<?php include "sidebarView.php"; ?>
 
 <h1>Album</h1>
 <div id="album-container">
@@ -37,4 +37,4 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
+<?php require "template.php"; ?>

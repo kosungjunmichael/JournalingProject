@@ -14,7 +14,7 @@ function removeFilters(){
   }
 }
 
-function addFilters(){
+const addFilters = () => {
   for (let i=0;i<addedFilters.length;i++){
     let filterText = addedFilters[i];
     let filterDisplay = document.createElement('div');
@@ -34,7 +34,7 @@ function addFilters(){
 
 }
 
-function filterEntries(){
+const filterEntries = () => {
   let val = searchBar.value;
 
   if (val === "" && !val.includes(",") && !addedResults.includes(val)){
