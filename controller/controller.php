@@ -199,9 +199,6 @@ function newEntry($data) {
 function viewEntry($entryId){
     $entryManager = new EntryManager();
     $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
-    // echo "<pre>";
-    // print_r($entryContent);
-    // echo "</pre>";
     require(ROOT . '/view/viewEntryView.php');
 }
 
