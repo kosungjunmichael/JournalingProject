@@ -179,28 +179,31 @@ class EntryManager extends Manager{
         $req->closeCursor();
     }
 
-    public function getImages($uid){
+    // public function getImages($uid){
 
-        $db = $this->dbConnect();
-        // check if UID already exists
-        // fetch matching unique IDs
-        $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id');
-        $query->bindParam('u_id', $uid, PDO::PARAM_STR);
-        $query->execute();
-        return $query->fetchAll();
-    }
+    //     $db = $this->dbConnect();
+    //     // check if UID already exists
+    //     // fetch matching unique IDs
+    //     $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id ORDER BY date_created DESC');
+    //     $query->bindParam('u_id', $uid, PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetchAll();
+    // }
 
     public function getAlbum(){
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT x.u_id, x.title, x.date_created,
-        GROUP_CONCAT(y.path SEPARATOR ', ') as paths
+        GROUP_CONCAT(y.path SEPARATOR ',') as paths
         FROM ENTRIES x
         JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
-        GROUP BY x.u_id ");
+        GROUP BY x.u_id ORDER BY date_created DESC LIMIT 5");
 
         $req -> execute();
         $res = $req -> fetchAll(PDO::FETCH_ASSOC);
+        // echo "EntryManager.php: getAlbum: RES", "<br>";
+        // echoPre($res);
         return $res;
     }
 }
+
 
