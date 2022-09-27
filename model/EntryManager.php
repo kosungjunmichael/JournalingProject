@@ -98,18 +98,22 @@ class EntryManager extends Manager{
         // current week number for the year
         $thisWeek = date('W');
         $req = $db->prepare('SELECT
-                            u_id
-                            , title
-                            , text_content
-                            , last_edited
-                            , DAYNAME(last_edited) as dayname
-                            , WEEK(last_edited) as week
-                            , DAY(last_edited) as day
-                            , MONTHNAME(last_edited) as month
-                            , YEAR(last_edited) as year
-                            , date_created
-                            , location
-        FROM entries 
+                            e.u_id
+                            , e.title
+                            , e.text_content
+                            , e.last_edited
+                            , DAYNAME(e.last_edited) as dayname
+                            , WEEK(e.last_edited) as week
+                            , DAY(e.last_edited) as day
+                            , MONTHNAME(e.last_edited) as month
+                            , YEAR(e.last_edited) as year
+                            , e.date_created
+                            , e.location
+                            , GROUP_CONCAT(t.tag_name) as tags
+                            -- add GROUP_CONCAT function here. give it an alias like "as tags" 
+        FROM entries e
+        LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
+        LEFT JOIN tags t ON t.id = tm.tag_id
         WHERE user_uid = :userId 
         GROUP BY last_edited DESC');
         $req->execute(array(
@@ -157,21 +161,24 @@ class EntryManager extends Manager{
 
     public function getEntry($entryId, $userId){
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT title
-        , u_id
-        , text_content
-        , location
-        , weather
-        , last_edited
-        , date_created 
-        , DAY(last_edited) as day
-        , MONTHNAME(last_edited) as month
-        , YEAR(last_edited) as year
-        , TIME_FORMAT(last_edited, "%h:%i %p") as time
-        FROM entries
-        WHERE user_uid = :userId 
-        AND u_id = :entryId 
-        AND is_active = :active');
+        $req = $db->prepare('SELECT e.title
+        , e.u_id
+        , e.text_content
+        , e.location
+        , e.weather
+        , e.last_edited
+        , e.date_created 
+        , DAY(e.last_edited) as day
+        , MONTHNAME(e.last_edited) as month
+        , YEAR(e.last_edited) as year
+        , TIME_FORMAT(e.last_edited, "%h:%i %p") as time
+        , GROUP_CONCAT(t.tag_name) as tags
+        FROM entries e
+        LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
+        LEFT JOIN tags t ON t.id = tm.tag_id
+        WHERE e.user_uid = :userId 
+        AND e.u_id = :entryId 
+        AND e.is_active = :active');
         $req->execute(array(
             'userId' => $userId,
             'entryId' => $entryId,

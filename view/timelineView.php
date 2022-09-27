@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<!-- <?php $script = "timeline";?> -->
+<?php $script = "timeline";?>
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
@@ -16,6 +16,8 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
+    <input type="text" name="search_bar" class="search-bar">
+    <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
@@ -55,6 +57,7 @@
                 // number of months from the current month to display
                 $numOfMonths = 5;
                 $monthsToDisplay = displayMonths($numOfMonths);
+                // september, august, 
                 foreach($monthsToDisplay as $month){
                     // check if there are entries from that month
                     if (array_key_exists($month, $entries)){

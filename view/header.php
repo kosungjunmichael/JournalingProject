@@ -14,18 +14,17 @@
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
 
-            <!-- Back-end Error Notification -->
-
-            <?php if (isset($error_login)) { ?>
-                <script>
-                    alert("<?= $error_login; ?>")
-                </script>
-            <?php } ?>
-
             <!-- Sign In form -->
 
             <form method="POST" action="<?= BASE . "/index.php?action=regularLogin" ?>" class="signin">
                 <span id="header-text">Login</span>
+
+                <!-- Back-end Error Notification -->
+                <?php if (isset($error_login)) { ?>
+                    <script>
+                        alert("<?= $error_login; ?>")
+                    </script>
+                <?php } ?>
 
                 <div class="input-container">
                     <input id="login-ue" 
@@ -33,9 +32,7 @@
                     name="login-ue" 
                     <?php if(isset($username)) {echo "value='" . $username . "'";}?> 
                     />
-                    <label 
-                    for="login-ue" 
-                    class="label" >Username / Email</label>
+                    <label for="login-ue" class="label" >Username / Email</label>
                 </div>
 
                 <div class="input-container">
@@ -45,20 +42,15 @@
                     <div class="svg-container eye" id="si-pwd-show">
                         <i class="fa-solid fa-eye" id="togglePswSi"></i>
                     </div>
-                    <label 
-                    for="login-p"
-                    class="label">Password</label>
+                    <label for="login-p" class="label">Password</label>
                 </div>
 
                 <button type="submit" class="form-button" id="login-btn">Log In</button>
-
             </form>
-
             <div id="or-separator">OR</div>
             <div class="google-btn">
                 <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID']; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
-                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
-                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
 
             <div>
@@ -84,18 +76,17 @@
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
 
-            <!-- Back-end Error Notification -->
-
-            <?php if (isset($error_signup)) { ?>
-                <script>
-                    alert("<?= $error_signup; ?>")
-                </script>
-            <?php } ?>
 
             <!-- Sign Up form -->
 
             <form method="POST" action="<?= BASE . "/index.php?action=regularSignup" ?>" class="signup" id="su-form">
                 <span id="header-text">Sign Up</span>
+                <!-- Back-end Error Notification -->
+                <?php if (isset($error_signup)) { ?>
+                    <script>
+                        alert("<?= $error_signup; ?>")
+                    </script>
+                <?php } ?>
 
                 <div class="input-container">
                     <input id="sign-u" type="text" name="sign-u" />
@@ -122,9 +113,7 @@
                 <div class="svg-container eye" id="su-pwd-show">
                     <i class="fa-solid fa-eye" id="togglePsw"></i>
                 </div>
-                <label 
-                for="sign-p"
-                class="label">Password</label>
+                <label for="sign-p" class="label">Password</label>
                 <div class="error-msg" id="tooltip-psw">
                     <div class="arrow-left"></div>
                     <p>✖ Please enter a valid Password</p>
@@ -140,6 +129,7 @@
                         </div>
                     </div>
             </div>
+
             <div class="input-container">
                 <input type="password"
                 id="sign-cp"
@@ -147,9 +137,7 @@
                 <div class="svg-container eye" id="su-pwd2-show">
                     <i class="fa-solid fa-eye" id="togglePsw2"></i>
                 </div>
-                <label 
-                for="sign-cp"
-                class="label">Confirm Password</label>
+                <label for="sign-cp" class="label">Confirm Password</label>
                 <div class="error-msg" id="tooltip-cp">
                     <div class="arrow-left"></div>
                     <p>✖ Please match with the above password</p>
@@ -171,12 +159,12 @@
             <a href="javascript:signUpWithKakao()">
                 <button class="form-button">Kakao</button>
             </a>
-        </div>
+        
         <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
             </div> -->
         <!-- <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div> -->
     </div>
-    <div class="blur"></div>
+<div class="blur"></div>
 </header>
 
 <script>

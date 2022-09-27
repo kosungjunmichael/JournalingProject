@@ -7,7 +7,7 @@ class TagManager extends Manager{
     protected function getTagID($tag_name){
         $db = $this->dbConnect();
         $check_tags = $db->prepare('SELECT id
-                                    FROM tags 
+                                    FROM tags
                                     WHERE tag_name = :tag_name
                                     ');
         $check_tags->bindParam('tag_name',$tag_name, PDO::PARAM_STR);
@@ -17,10 +17,10 @@ class TagManager extends Manager{
     
     public function getTags($entryUID){
         $db = $this->dbConnect();
-        $get_tags = $db->prepare('SELECT tag_name 
-                                FROM tags t 
-                                JOIN tag_map tm 
-                                ON t.id = tm.tag_id 
+        $get_tags = $db->prepare('SELECT tag_name
+                                FROM tags t
+                                JOIN tag_map tm
+                                ON t.id = tm.tag_id
                                 WHERE tm.entry_id = :entry_id
                                 ');
         $get_tags->bindParam('entry_id', $entryUID, PDO::PARAM_STR);
