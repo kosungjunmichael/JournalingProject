@@ -1,9 +1,9 @@
 <?php $title = "Journey"; ?>
-<?php $style = "journey" ?>
+<?php $style = "journey"; ?>
 
 <?php ob_start(); ?>
 
-<?php include(ROOT . "/view/header.php"); ?>
+<?php include ROOT . "/view/header.php"; ?>
 
 <div class="container">
     <div class="hero">
@@ -247,7 +247,10 @@
                         <div class="author-box">
                             <div class="twitter-profile">
                                 <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="user_image" class="user_image">
+                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                    	1,
+                                    	70
+                                    ) ?>" alt="user_image" class="user_image">
                                 </a>
                                 <a href="#" class="author-name">
                                     Alex Isak
@@ -273,7 +276,10 @@
                         <div class="author-box">
                             <div class="twitter-profile">
                                 <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="user_image" class="user_image">
+                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                    	1,
+                                    	70
+                                    ) ?>" alt="user_image" class="user_image">
                                 </a>
                                 <a href="#" class="author-name">
                                     Saint-Maximin
@@ -303,7 +309,10 @@
                         <div class="author-box">
                             <div href="#" class="twitter-profile">
                                 <a class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="user_image" class="user_image">
+                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                    	1,
+                                    	70
+                                    ) ?>" alt="user_image" class="user_image">
                                 </a>
                                 <a href="#" class="author-name">
                                     Kieran Guimarães
@@ -327,7 +336,10 @@
                         <div class="author-box">
                             <div class="twitter-profile">
                                 <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="user_image" class="user_image">
+                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                    	1,
+                                    	70
+                                    ) ?>" alt="user_image" class="user_image">
                                 </a>
                                 <a href="#" class="author-name">
                                     Nick Almirón
@@ -351,17 +363,16 @@
         </div>
     </section>
 
-<?php include(ROOT . "/view/footer.php"); ?>
+<?php include ROOT . "/view/footer.php"; ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php 
-require("journeyTemplate.php"); 
+<?php require "journeyTemplate.php"; ?>
+
+<?php
+// require("template.php");
 ?>
 
-<?php 
-// require("template.php"); 
-?>
 
 
-
+ ?>

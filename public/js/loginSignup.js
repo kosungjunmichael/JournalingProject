@@ -1,24 +1,24 @@
 let blur = document.querySelector(".blur");
 
-function openLogin() {
+const openLogin = () => {
 	document.getElementById("login").style.display = "block";
 	blur.style.display = "block";
 	blur.addEventListener("click", closeLogin);
 }
 
-function openSignup() {
+const openSignup = () => {
 	document.getElementById("signup").style.display = "block";
 	blur.style.display = "block";
 	blur.addEventListener("click", closeSignup);
 }
 
-function closeLogin() {
+const closeLogin = () => {
 	document.getElementById("login").style.display = "none";
 	document.querySelector(".blur").style.display = "none";
 	blur.removeEventListener("click", closeLogin);
 }
 
-function closeSignup() {
+const closeSignup = () => {
 	document.querySelector(".blur").style.display = "none";
 	document.getElementById("signup").style.display = "none";
 	blur.removeEventListener("click", closeSignup);
