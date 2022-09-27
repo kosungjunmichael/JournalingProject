@@ -4,7 +4,7 @@
 
 <?php ob_start();?>
     <?php 
-    if (isset($error) AND !is_array($error)){
+    if (isset($error)){
     ?>
         <span id='login-error'><?= $error ?></span>
     <?php
@@ -18,18 +18,21 @@
     <span id='login-error'><?= "Email: $email"?></span>
     <?php
         }
-    } else {
+    }
     ?>
-        <div>
     <?php
-            // print_r($error);
-            foreach($error as $messages) {
+    // else {
+    // ?>
+    <!-- //     <div> -->
+    <?php
+    //         print_r($error);
+    //         foreach($error as $messages) {
     ?>
-                <p><?= $messages?></p>
+    <!-- //             <p><?= $messages?></p> -->
     <?php
-            }
-    } ?>
-        </div>
+    //         }
+    // } ?>
+        <!-- </div> -->
     <?php 
     // if (isset($error)){ "<span id='login-error'>" . $error . "</span>"; } 
     ?>

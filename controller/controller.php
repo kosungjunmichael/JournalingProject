@@ -67,18 +67,19 @@ function signUp($data, $type){
         if ($check === false) {
           toTimeline($_SESSION['uid'], "monthly");
         } else {
-          if (isset($check['error'])) {
-            $error = $check['error'];
-            if (isset($check['username'])) {
-              $username = $check['username'];
-            };
-            if (isset($check['email'])) {
-              $email = $check['email'];
-            };
-          } else {
-            $error = $check;
-          }
-          require(ROOT . '/view/signUpView.php');
+          $error_signup = $check;
+          // if (isset($check['error'])) {
+          //   $error = $check['error'];
+          //   if (isset($check['username'])) {
+          //     $username = $check['username'];
+          //   };
+          //   if (isset($check['email'])) {
+          //     $email = $check['email'];
+          //   };
+          // } else {
+          //   $error = $check;
+          // }
+          require(ROOT . '/view/journeyView.php');
         }
       } else {
         $error = [];
@@ -86,7 +87,7 @@ function signUp($data, $type){
           // if ($value != '1') $error .= $value . '<br>';
           if ($value != '1') array_push($error, $value);
         }
-        require(ROOT . '/view/signUpView.php');
+        require(ROOT . '/view/journeyView.php');
       }
       break;
     default:
@@ -95,18 +96,19 @@ function signUp($data, $type){
       if ($check === false) {
         toTimeline($_SESSION['uid'], "monthly");
       } else {
-        if (isset($check['error'])) {
-          $error = $check['error'];
-          if (isset($check['username'])) {
-            $username = $check['username'];
-          };
-          if (isset($check['email'])) {
-            $email = $check['email'];
-          };
-        } else {
-          $error = $check;
-        }
-        require(ROOT . '/view/signUpView.php');
+        $error_signup = $check;
+        // if (isset($check['error'])) {
+        //   $error = $check['error'];
+        //   if (isset($check['username'])) {
+        //     $username = $check['username'];
+        //   };
+        //   if (isset($check['email'])) {
+        //     $email = $check['email'];
+        //   };
+        // } else {
+        //   $error = $check;
+        // }
+        require(ROOT . '/view/journeyView.php');
       }
       break;
   }
@@ -129,9 +131,9 @@ function signUp($data, $type){
   // }
 }
 
-function kakaoSignUp($data) {
-  echoPre($data);
-}
+// function kakaoSignUp($data) {
+//   echoPre($data);
+// }
 
 //--------------------------------------------------
 //----------------USER LOGIN------------------------
@@ -140,12 +142,13 @@ function kakaoSignUp($data) {
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
+  // echoPre($check);
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
-    $error = $check['error'];
-    $username = $check['username'];
-    require(ROOT . '/view/loginView.php');
+    $error_login = $check;
+    // $error = $check['error'];
+    require(ROOT . '/view/journeyView.php');
   }
 }
 

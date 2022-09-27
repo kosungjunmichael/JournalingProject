@@ -11,24 +11,23 @@ class UserManager extends Manager{
         switch ($type) {
             case 'google':
             case 'kakao':
-                // $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $data['credential'])[1]))), true);
-                $req = $db->prepare('SELECT u_id, is_active FROM users WHERE email = ?');
+                $req = $db->prepare('SELECT u_id, login_type, is_active FROM users WHERE email = ?');
                 $req->bindParam(1, $credentials['email'], PDO::PARAM_STR);
                 $req->execute();
                 $user = $req->fetch(PDO::FETCH_ASSOC);
 
                 // $_SESSION['uid'] = $user['is_active'] === 1 ? (isset($user['u_id']) ? $user['u_id'] : null) : null;
-                if ($user['is_active'] === 1) {
+                if ($user['login_type'] === $type AND $user['is_active'] === 1) {
                     // if correct, head to the timelineView
                     if (isset($user['u_id'])) {
                         $_SESSION['uid'] = $user['u_id'];
                     }
                     return false;
                 } else {
-                    return array(
-                        "error" => "User with those credentials does not exist. Please try again.",
-                        "username" => ""
-                    );
+                    return "Login Failed. Please try again.";
+                    // return array(
+                    //     "error" => "Login Failed. Please try again.",
+                    // );
                 }
                 break;
             default:
@@ -52,10 +51,11 @@ class UserManager extends Manager{
                     OR (!password_verify($data['login-p'], $user['password']))
                     OR $user['is_active'] === 0
                     ) {
-                        return array(
-                            "error" => "User with those credentials does not exist. Please try again.",
-                            "username" => ""
-                        );
+                        return "Login Failed. Please try again.";
+                        // return array(
+                        //     "error" => "User with those credentials does not exist. Please try again.",
+                        //     "username" => ""
+                        // );
                     }
 
                 if (isset($user['u_id'])) {
@@ -153,6 +153,7 @@ class UserManager extends Manager{
 
     public function createUser($data, $type){
         $db = $this->dbConnect();
+
         // CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
         // IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
         // IF NO, RETAIN UID AND CONTINUE WITH CODE
@@ -174,14 +175,21 @@ class UserManager extends Manager{
                     $username = '';
                     $email = '';
                     foreach ($existingUser as $value) {
-                        $username = $value['username'] == $data['sign-u'] ? $value['username'] : null;
-                        $email = $value['email'] == $data['sign-e'] ? $value['email'] : null;
+                        $username = $value['username'] == $existingUser['sign-u'] ? $value['username'] : null;
+                        $email = $value['email'] == $existingUser['sign-e'] ? $value['email'] : null;
                     }
-                    return array(
-                        'error' => "User with these credentials already exists. Please log in.",
-                        'username' => $username,
-                        'email' => $email
-                    );
+                    if ($username AND $email) {
+                        return "Username and email already exist. Please try different ones.";
+                    } else if ($username AND !$email) {
+                        return "Username already exists. Please try a different one.";
+                    } else {
+                        return "Email already exists. Please try a different one.";
+                    }
+                    // return array(
+                    //     'error' => "User with these credentials already exists:",
+                    //     'username' => $username,
+                    //     'email' => $email
+                    // );
                 } else {
                     $req = $db->prepare('INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)');
                     $req->bindParam('inUID', $uid, PDO::PARAM_STR);
@@ -233,17 +241,32 @@ class UserManager extends Manager{
                 break;
             default:
                 if ($existingUser) {
+                    // return $existingUser;
                     $username = '';
                     $email = '';
                     foreach ($existingUser as $value) {
-                        $username = $value['username'] == $credentials['sign-u'] ? $value['username'] : null;
-                        $email = $value['email'] == $credentials['sign-e'] ? $value['email'] : null;
+                        if ($value['username'] == $credentials['sign-u']) {
+                            $username = $value['username'];
+                        }
+
+                        if ($value['email'] == $credentials['sign-e']) {
+                            $email = $value['email'];
+                        }
+                        // $username = $value['username'] == $credentials['sign-u'] ? $value['username'] : null;
+                        // $email = $value['email'] == $credentials['sign-e'] ? $value['email'] : null;
                     }
-                    return array(
-                        'error' => "User with these credentials already exists. Please log in.",
-                        'username' => $username,
-                        'email' => $email
-                    );
+                    if ($username and $email) {
+                        return "Username and email already exist. Please try different ones.";
+                    } else if ($username and !$email) {
+                        return "Username already exists. Please try a different one.";
+                    } else {
+                        return "Email already exists. Please try a different one.";
+                    }
+                    // return array(
+                    //     'error' => "User with these credentials already exists. Please log in.",
+                    //     'username' => $username,
+                    //     'email' => $email
+                    // );
                 } else {
                     $hashpass = password_hash($credentials['sign-p'], PASSWORD_DEFAULT);
 

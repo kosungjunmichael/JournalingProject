@@ -86,6 +86,7 @@ try {
 
         // KAKAO LOGIN
         case "kakaoLogin":
+            // print_r($_REQUEST);
             login($_REQUEST, 'kakao');
             break;
             
