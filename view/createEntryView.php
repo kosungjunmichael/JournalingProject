@@ -1,19 +1,19 @@
 <?php
 
-if (!isset($_SESSION['uid'])){
-    throw new Exception("401 - Unauthorized");
-}
-?>
-<?php $title = "Create New Entry";?>
-<?php $style = "createEntry";?>
-<?php $script = "createEntry";?>
+if (!isset($_SESSION["uid"])) {
+	throw new Exception("401 - Unauthorized");
+} ?>
+<?php $title = "Create New Entry"; ?>
+<?php $style = "createEntry"; ?>
+<?php $script = "createEntry"; ?>
 
-<?php ob_start();?>
+<?php ob_start(); ?>
 
-<?php include("sidebarView.php");?>
+<?php include "sidebarView.php"; ?>
 
     <div id="create-entry-container">
-        <form id="create-entry-form" action="<?=BASE . "/index.php?action=addNewEntry"?>" method="post" enctype="multipart/form-data">
+        <form id="create-entry-form" action="<?= BASE .
+        	"/index.php?action=addNewEntry" ?>" method="post" enctype="multipart/form-data">
             <h2 id="create-entry-header-text">CREATE A NEW ENTRY</h2>
             <div id="create-entry-title">
                 <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title"/>
@@ -27,7 +27,7 @@ if (!isset($_SESSION['uid'])){
                 <!-- <i class='bx bx-calendar'></i> -->
                 <!--  Default date to today  -->
                 <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
-                <!-- <?php echo date('Y-m-d'); ?> -->
+                <!-- <?php echo date("Y-m-d"); ?> -->
                 <!-- "/> -->
             </div>
             <div id="tag-cont">
@@ -56,7 +56,7 @@ if (!isset($_SESSION['uid'])){
             </div>
 
             <div id="create-entry-bottom">
-                <?php require('uploadImageView.php'); ?>
+                <?php require "uploadImageView.php"; ?>
                 <div id="create-entry-submit">
                     <input type="submit"/>
                 </div>
@@ -67,4 +67,4 @@ if (!isset($_SESSION['uid'])){
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require "template.php"; ?>
