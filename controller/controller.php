@@ -16,19 +16,9 @@ function toAboutUs() {
   require(ROOT . '/view/aboutView.php');
 }
 
-// function toSignup() {
-//   require(ROOT . '/view/signupView.php');
-// }
-
-// function toLogin() {
-//   require(ROOT . '/view/journeyView.php');
-// }
-
 function toTimeline($Unique_id, $entryGroup) {
   $entryManager = new EntryManager();
   $entries = $entryManager->getEntries($Unique_id, $entryGroup);
-  // echo "ENTRIES:controller.php:  ", "<br>";
-  // echoPre($entries);
   $view = $entryGroup;
   require(ROOT . '/view/timelineView.php');
 }
@@ -51,9 +41,6 @@ function toLogout() {
 //--------------------------------------------------
 
 function signUp($data, $type){
-  // $userManager = new UserManager();
-  // $check = $userManager->createUser($data, $type);
-  // echoPre($check);
   switch ($type) {
     case 'regular':
       $control = [];
@@ -70,17 +57,6 @@ function signUp($data, $type){
           toTimeline($_SESSION['uid'], "monthly");
         } else {
           $error_signup = $check;
-          // if (isset($check['error'])) {
-          //   $error = $check['error'];
-          //   if (isset($check['username'])) {
-          //     $username = $check['username'];
-          //   };
-          //   if (isset($check['email'])) {
-          //     $email = $check['email'];
-          //   };
-          // } else {
-          //   $error = $check;
-          // }
           require(ROOT . '/view/journeyView.php');
         }
       } else {
@@ -99,43 +75,11 @@ function signUp($data, $type){
         toTimeline($_SESSION['uid'], "monthly");
       } else {
         $error_signup = $check;
-        // if (isset($check['error'])) {
-        //   $error = $check['error'];
-        //   if (isset($check['username'])) {
-        //     $username = $check['username'];
-        //   };
-        //   if (isset($check['email'])) {
-        //     $email = $check['email'];
-        //   };
-        // } else {
-        //   $error = $check;
-        // }
         require(ROOT . '/view/journeyView.php');
       }
       break;
   }
-
-  // if ($check === false){
-  //   toTimeline($_SESSION['uid'], "monthly");
-  // } else {
-  //   if (isset($check['error'])) {
-  //     $error = $check['error'];
-  //     if (isset($check['username'])) {
-  //         $username = $check['username'];
-  //     };
-  //     if (isset($check['email'])) {
-  //         $email = $check['email'];
-  //     };
-  //   } else {
-  //     $error = $check;
-  //   }
-  //   require(ROOT . '/view/signUpView.php');
-  // }
 }
-
-// function kakaoSignUp($data) {
-//   echoPre($data);
-// }
 
 //--------------------------------------------------
 //----------------USER LOGIN------------------------
@@ -144,12 +88,10 @@ function signUp($data, $type){
 function login($data, $type){
   $userManager = new UserManager();
   $check = $userManager->confirmUser($data, $type);
-  // echoPre($check);
   if ($check === false){
     toTimeline($_SESSION['uid'], "monthly");
   } else {
     $error_login = $check;
-    // $error = $check['error'];
     require(ROOT . '/view/journeyView.php');
   }
 }
@@ -158,35 +100,14 @@ function login($data, $type){
 //----------------ENTRY MANAGEMENT------------------
 //--------------------------------------------------
 
-// function newEntry($data){
-//   $entryManager = new EntryManager();
-//   $entry_id = $entryManager->createEntry($data);
-//   if ($entry_id){
-//     if ($_FILES['imgUpload']['error'] !== 4) {
-//       $checkImgs = $entryManager->uploadImages($entry_id);
-//     }
-//     $error = "Entry Submitted!";
-//     // require(ROOT . '/index.php?action=sidebarTimeline');
-//     // toTimeline($check);
-//     header("Location: index.php?action=toTimeline");
-//   } else {
-//     $error = "Not a valid Entry";
-//     require(ROOT . '/view/createEntryView.php');
-//   }
-// }
-
 function newEntry($data) {
   $entryManager = new EntryManager();
   $tagManager = new TagManager();
   if (!empty($data->title) AND !empty($data->entry)){
     $entry_uid = $entryManager->createEntry($data);
-    // echo "controller-newEntry-ENTRY_ID:  ", $entry_uid, "<br>";
     $tagManager->submitTags($data->tags, $entry_uid);
-    // echoPre($entry_uid);
     if ($_FILES['imgUpload']['error'] !== 4) {
-      // echoPre($entry_uid);
       $checkImgs = $entryManager->uploadImages($entry_uid);
-      // echoPre($checkImgs);
       } else if (count($_FILES) > 1 AND $_FILES['imgUpload']['error'] === 4) {
         throw new Exception('Error, image error status 4 - controller.php: newEntry()');
       }

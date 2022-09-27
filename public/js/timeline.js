@@ -34,7 +34,6 @@ function addFilters(){
 
 }
 
-
 function filterEntries(){
   let val = searchBar.value;
 

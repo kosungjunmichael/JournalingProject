@@ -22,13 +22,13 @@ try {
 //----------------PAGE NAVIGATION-------------------
 //--------------------------------------------------
 
-        // case "toSignup":
-        //     toSignup();
-        //     break;
-
-        // case "toLogin":
-        //     toLogin();
-        //     break;
+        case "toLanding":
+            toLanding();
+            break;
+            
+        case "toAboutUs":
+            toAboutUs();
+            break;
 
         case "toTimeline":
             toTimeline($_SESSION['uid'], "monthly");
@@ -36,14 +36,6 @@ try {
 
         case "toMap":
             toMap($_SESSION['uid']);
-            break;
-
-        case "toLanding":
-            toLanding();
-            break;
-
-        case "toAboutUs":
-            toAboutUs();
             break;
 
         case "createEntry":
@@ -65,8 +57,6 @@ try {
 
         // KAKAO SIGNUP
         case "kakaoSignUp":
-            // print_r($_REQUEST);
-            // kakaoSignUp($_REQUEST);
             signUp($_REQUEST, 'kakao');
             break;
 
@@ -86,13 +76,11 @@ try {
 
         // KAKAO LOGIN
         case "kakaoLogin":
-            // print_r($_REQUEST);
             login($_REQUEST, 'kakao');
             break;
             
         // REGULAR LOGIN
         case "regularLogin":
-            // print_r($_REQUEST);
             login($_REQUEST, 'regular');
             break;
 
@@ -114,7 +102,6 @@ try {
             $entryContent->entry = $_REQUEST['textContent'];
             $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->userUID = $_SESSION['uid'];
-            // print_r($entryContent);
             newEntry($entryContent);
             break;
 
@@ -127,7 +114,7 @@ try {
             break;
             
         default:
-            // show login as default
+            // SHOW LOGIN AS DEFAULT
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid'], "monthly");
             } else {

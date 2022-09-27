@@ -52,4 +52,9 @@
 <?php include(ROOT . "/view/footer.php"); ?>
 
 <?php $content = ob_get_clean(); ?>
-<?php require("journeyTemplate.php"); ?>
+<?php 
+require("journeyTemplate.php"); 
+?>
+<?php 
+// require("template.php"); 
+?>

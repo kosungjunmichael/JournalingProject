@@ -13,13 +13,6 @@ class EntryManager extends Manager{
       }
 
     private function uploadImage($file, $entry_id) {
-        // return $entry_id;
-        // if (isset($entry_id)) {
-        //     return $entry_id;
-        // } else {
-        //     return "no entry_uid";
-        // }
-
         $hash = hash_file("md5", $file['tmp_name']);
         $first = substr($hash, 0, 2);
         $second = substr($hash, 2, 2);
@@ -32,8 +25,6 @@ class EntryManager extends Manager{
         $newpath = "./public/images/uploaded/$first/$second/$filename";
         move_uploaded_file($file['tmp_name'], $newpath);
 
-        // TODO: add image path to DB
-        // return $entry_id;
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO entry_images (entry_uid, path) VALUES (:entry_id, :path)');
         $req->bindParam('entry_id', $entry_id, PDO::PARAM_STR);
@@ -42,13 +33,9 @@ class EntryManager extends Manager{
     }
 
     public function uploadImages($entry_id) {
-        // return $entry_id;
         foreach($_FILES as $file){
-            // return $file['error'];
             if ($file['error'] === 0) {
-                // return $file;
                 $test = $this->uploadImage($file, $entry_id);
-                // return $test;
             }
         }
     }
