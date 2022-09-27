@@ -1,6 +1,6 @@
 <?php $title = "Timeline";?>
 <?php $style = "timeline";?>
-<?php $script = "timeline";?>
+<!-- <?php $script = "timeline";?> -->
 
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
@@ -16,7 +16,7 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
-    <div class="switchToggle">
+    <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
                 ?>
@@ -27,9 +27,9 @@
                 <?php
             } else if ($view === "monthly") {
                 ?>
-                <!-- <a href="index.php?action=toggleView&view=week">
+                <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
-                </a> -->
+                </a>
                 <div class="group">Monthly</div>
                 <?php
             }
@@ -39,19 +39,15 @@
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
     ?>
-         <div class="entryDisplay">
+         <div class="entry-display">
     <?php
     } else if ($view === 'monthly'){
         ?>
-         <div class="entryDisplay monthlyView">
+         <div class="entry-display monthlyView">
     <?php
     }
     ?>
             <?php
-            // TODO: if problem uncomment the bottom code
-                // echo "<pre>";
-                // print_r($entries);
-                // echo "<pre>";
             if ($entries === null){
                 $entries = array();
             }
@@ -64,11 +60,11 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <div class="monthName"><?=$month." ".$entries["$month"][0]['year']?></div>
-                            <div class="monthContainer">
+                            <div class="month-name"><?=$month." ".$entries["$month"][0]['year']?></div>
+                            <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>
@@ -83,13 +79,13 @@
                     if (array_key_exists($weekDay, $entries)){
             ?>
                         <div class="week">
-                            <div class="weekName">
+                            <div class="week-name">
                                 <?=$weekDay?>
                             </div>
-                            <div class="weekContainer">
+                            <div class="week-container">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>
@@ -98,7 +94,7 @@
                     } else {
             ?>
                         <div class="week">
-                            <div class="weekName">
+                            <div class="week-name">
                                 <!-- <?=$weekDay?> -->
                             </div>
                         </div>

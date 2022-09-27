@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?= $title; ?></title>
     <link rel="stylesheet" href="<?= BASE . "/public/css/$style.css"; ?>">
+    <link rel="icon" href="../public/images/logo.png">
     <!-- Boxicons Link -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <!--    Phosphor Icons Link -->
@@ -19,7 +20,6 @@
     <?php if (isset($script)) {
         echo "<script defer src='" . BASE . "/public/js/" . $script . ".js'></script>";
     }?>
-    <title><?=$title?></title>
     <link rel="icon" href="<?= BASE . "/public/images/static/logo.png"?>">
 </head>
 
