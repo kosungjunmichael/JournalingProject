@@ -20,6 +20,16 @@ body{
     font-family:'Galey';
 }
 
+.search-bar{
+    padding: 15px;
+    margin: 0px 50px;
+    font-size: 25px;
+    background-color: var(--bg-secondary);
+    color: var(--text-color-secondary);
+    border: none;
+    border-radius: var(--border-radius-medium);
+}
+
 .switch-toggle{
     display: flex;
     flex-direction: row;

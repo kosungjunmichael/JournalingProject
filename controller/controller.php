@@ -27,6 +27,8 @@ function toAboutUs() {
 function toTimeline($Unique_id, $entryGroup) {
   $entryManager = new EntryManager();
   $entries = $entryManager->getEntries($Unique_id, $entryGroup);
+  // echo "ENTRIES:controller.php:  ", "<br>";
+  // echoPre($entries);
   $view = $entryGroup;
   require(ROOT . '/view/timelineView.php');
 }
@@ -200,9 +202,6 @@ function newEntry($data) {
 function viewEntry($entryId){
     $entryManager = new EntryManager();
     $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
-    // echo "<pre>";
-    // print_r($entryContent);
-    // echo "</pre>";
     require(ROOT . '/view/viewEntryView.php');
 }
 
