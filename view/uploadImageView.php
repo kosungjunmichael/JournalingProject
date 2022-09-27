@@ -3,7 +3,7 @@
 <!-- 3. append that new element somewhere-->
 <!-- 4. update the onclick function of the .class-entry div to click on that new element -->
 
- <input type="file" name="imgUpload" id="imgUpload" accept="image/png, image/jpeg, image/jpg" style="display:none;"/>
+ <input type="file" name="imgUpload" id="imgUpload" accept="image/png, image/jpeg, image/jpg"/>
  <div class="entry-photo" onclick="document.getElementById('imgUpload').click();">
         <label>
             <i id='upload-icon' class='bx bx-cloud-upload bx-md'></i>

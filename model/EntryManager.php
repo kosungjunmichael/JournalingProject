@@ -39,9 +39,9 @@ class EntryManager extends Manager
 	public function uploadImages($entry_id)
 	{
 		foreach ($_FILES as $file) {
-			return $_FILES;
 			if ($file["error"] === 0) {
-				$test = $this->uploadImage($file, $entry_id);
+				return $_FILES;
+				$this->uploadImage($file, $entry_id);
 			}
 		}
 	}

@@ -142,7 +142,7 @@ function newEntry($data)
 				"Error, image error status 4 - controller.php: newEntry()"
 			);
 		}
-		$error = "Entry Submitted!";
+		// $error = "Entry Submitted!";
 		//   require(ROOT . '/index.php?action=sidebarTimeline');
 		//   // toTimeline($check);
 		// header("Location: index.php?action=toTimeline");
