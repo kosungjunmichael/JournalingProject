@@ -17,6 +17,7 @@
 
     <div class="title">Timeline</div>
     <input type="text" name="search_bar" class="search-bar">
+    <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
