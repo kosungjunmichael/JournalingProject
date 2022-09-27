@@ -111,4 +111,4 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require('template.php'); ?>
