@@ -31,13 +31,15 @@
                     <label 
                     for="login-ue" 
                     class="label" >Username / Email</label>
-
                 </div>
 
                 <div class="input-container">
-                    <input id="login-p" 
-                    type="password"
+                    <input type="password"
+                    id="login-p" 
                     name="login-p" />
+                    <div class="svg-container eye" id="si-pwd-show">
+                        <i class="fa-solid fa-eye" id="togglePswSi"></i>
+                    </div>
                     <label 
                     for="login-p"
                     class="label">Password</label>
@@ -67,7 +69,7 @@
 
         <!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
         <!-- <script src="../public/js/kakao.js" async defer></script> -->
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
+        
     </div>
 
     <!-- Sign Up form -->
@@ -111,9 +113,9 @@
                 <input type="password" 
                 id="sign-p" 
                 name="sign-p" />
-                <!-- <div class="svg-container eye" id="su-pwd-show">
+                <div class="svg-container eye" id="su-pwd-show">
                     <i class="fa-solid fa-eye" id="togglePsw"></i>
-                </div> -->
+                </div>
                 <label 
                 for="sign-p"
                 class="label">Password</label>
@@ -133,13 +135,12 @@
                 </div>
             </div>
             <div class="input-container">
-                <input 
-                id="sign-cp" 
-                type="password" 
+                <input type="password"
+                id="sign-cp"
                 name="sign-cp"/>
-                <!-- <div class="svg-container eye" id="su-pwd2-show">
+                <div class="svg-container eye" id="su-pwd2-show">
                     <i class="fa-solid fa-eye" id="togglePsw2"></i>
-                </div> -->
+                </div>
                 <label 
                 for="sign-cp"
                 class="label">Confirm Password</label>
@@ -149,7 +150,7 @@
                 </div>
             </div>
 
-            <input type="submit" class="form-button" id="signup-btn">Sign Up</button>
+            <button type="submit" class="form-button" id="signup-btn">Sign Up</button>
         </form>
 
         <div id="or-separator">OR</div>
@@ -175,67 +176,69 @@
 <script>
 
 // === Toggle to show password ===
-// const togglePsw = document.getElementById("su-pwd-show");
-// const pswToggle = document.querySelector(".input-field i#togglePsw");
-// const su_pwd = document.getElementById("su-pwd1");
+// Sign up
+const togglePsw = document.getElementById("su-pwd-show");
+const pswToggle = document.querySelector(".input-container i#togglePsw");
+const su_pwd = document.getElementById("sign-p");
 
-// togglePsw.addEventListener("click", () => {
-//     if (pswToggle.classList.contains("fa-eye")) {
-//         pswToggle.classList.remove("fa-eye");
-//         pswToggle.classList.add("fa-eye-slash");
-//     } else {
-//         pswToggle.classList.remove("fa-eye-slash");
-//         pswToggle.classList.add("fa-eye");
-//     }
-//     const type =
-//     su_pwd.getAttribute("type") === "password" ? "text" : "password";
-//     su_pwd.setAttribute("type", type);
-//     togglePsw.innerHTML = "";
-//     togglePsw.appendChild(pswToggle);
-// });
+togglePsw.addEventListener("click", () => {
+    if (pswToggle.classList.contains("fa-eye")) {
+        pswToggle.classList.remove("fa-eye");
+        pswToggle.classList.add("fa-eye-slash");
+    } else {
+        pswToggle.classList.remove("fa-eye-slash");
+        pswToggle.classList.add("fa-eye");
+    }
+    const type =
+    su_pwd.getAttribute("type") === "password" ? "text" : "password";
+    su_pwd.setAttribute("type", type);
+    togglePsw.innerHTML = "";
+    togglePsw.appendChild(pswToggle);
+});
 
-// const togglePsw2 = document.getElementById("su-pwd2-show");
-// const pwd2Toggle = document.querySelector(".input-field i#togglePsw2");
-// const su_pwd2_inp = document.getElementById("su-pwd2");
+const togglePsw2 = document.getElementById("su-pwd2-show");
+const pwd2Toggle = document.querySelector(".input-container i#togglePsw2");
+const su_pwd2 = document.getElementById("sign-cp");
 
-// togglePsw2.addEventListener("click", () => {
-//     if (pwd2Toggle.classList.contains("fa-eye")) {
-//         pwd2Toggle.classList.remove("fa-eye");
-//         pwd2Toggle.classList.add("fa-eye-slash");
-//     } else {
-//         pwd2Toggle.classList.remove("fa-eye-slash");
-//         pwd2Toggle.classList.add("fa-eye");
-//     }
-//     const type2 =
-//     su_pwd2_inp.getAttribute("type") === "password" ? "text" : "password";
-//     su_pwd2_inp.setAttribute("type", type2);
-//     togglePsw2.innerHTML = "";
-//     togglePsw2.appendChild(pwd2Toggle);
-// });
+togglePsw2.addEventListener("click", () => {
+    if (pwd2Toggle.classList.contains("fa-eye")) {
+        pwd2Toggle.classList.remove("fa-eye");
+        pwd2Toggle.classList.add("fa-eye-slash");
+    } else {
+        pwd2Toggle.classList.remove("fa-eye-slash");
+        pwd2Toggle.classList.add("fa-eye");
+    }
+    const type2 =
+    su_pwd2.getAttribute("type") === "password" ? "text" : "password";
+    su_pwd2.setAttribute("type", type2);
+    togglePsw2.innerHTML = "";
+    togglePsw2.appendChild(pwd2Toggle);
+});
 
-// const togglePswSi = document.getElementById("si-pwd-show");
-// const pwdSiToggle = document.querySelector(".input-field i#togglePswSi");
-// const si_pwd = document.getElementById("si-pwd");
+// Login
+const togglePswSi = document.getElementById("si-pwd-show");
+const pswSiToggle = document.querySelector(".input-container i#togglePswSi");
+const si_pwd = document.getElementById("login-p");
 
-// togglePswSi.addEventListener("click", () => {
-//     if (pwdSiToggle.classList.contains("fa-eye")) {
-//         pwdSiToggle.classList.remove("fa-eye");
-//         pwdSiToggle.classList.add("fa-eye-slash");
-//     } else {
-//         pwdSiToggle.classList.remove("fa-eye-slash");
-//         pwdSiToggle.classList.add("fa-eye");
-//     }
-//     const typeSi =
-//     si_pwd.getAttribute("type") === "password" ? "text" : "password";
-//     si_pwd.setAttribute("type", typeSi);
-//     togglePswSi.innerHTML = "";
-//     togglePswSi.appendChild(pwdSiToggle);
-// });
+togglePswSi.addEventListener("click", () => {
+    if (pswSiToggle.classList.contains("fa-eye")) {
+        pswSiToggle.classList.remove("fa-eye");
+        pswSiToggle.classList.add("fa-eye-slash");
+    } else {
+        pswSiToggle.classList.remove("fa-eye-slash");
+        pswSiToggle.classList.add("fa-eye");
+    }
+    const typeSi =
+    si_pwd.getAttribute("type") === "password" ? "text" : "password";
+    si_pwd.setAttribute("type", typeSi);
+    togglePswSi.innerHTML = "";
+    togglePswSi.appendChild(pswSiToggle);
+});
     
 // ==== Regex ====
     var regName = /^[a-zA-Z0-9]{4,}/;
     var regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var regPsw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
+    var regPsw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]){8,}$/;
 
 // === Validate Username ===
 
@@ -382,8 +385,6 @@ su_form.addEventListener("submit", function(e) {
 </script>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-
 
 
 <!-- KAKAO -->
