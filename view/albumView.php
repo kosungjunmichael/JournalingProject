@@ -14,12 +14,13 @@
 
 <?php
 $month_arr = [];
+
         for($i = 0; $i < count($res); $i++){
+            $date_created = $res[$i]["date_created"];
+            $month_created = date("F Y", strtotime($date_created));  
             $path_raw = $res[$i]["paths"];
             $path = explode(",",$path_raw);
-            $date_created = $res[$i]["date_created"];
             $newDate = date("F j Y", strtotime($date_created));  
-            $month_created = date("F Y", strtotime($date_created));  
             $month_name = date("F", strtotime($date_created));
             $title = $res[$i]["title"];
             
@@ -29,14 +30,20 @@ $month_arr = [];
                 ?>
             <div id="album-container-bottom">
                 <?php 
-                if(!in_array($month_created, $month_arr)){
-                    array_push($month_arr, $month_created);
+                // if(!in_array($month_created, $month_arr)){
+                //     array_push($month_arr, $month_created);
+                    
+                //     echo 
+                //     "
+                //     <p>{$month_created}</p>
+                //     ";
 
-                    echo "<p id='date-category'>{$month_created}</p>";
-                } 
+                    
+
                 
             ?>
             <!-- *BUG* . being added to path when uploading images on entry -->
+            
                     <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?=BASE . $path[0]?>")';>
                         <p id="album-title"> <?=$title?> </p>
                         <div class="album-bottom">
@@ -48,6 +55,7 @@ $month_arr = [];
 
             <?php
         }
+    // }
 
         ?>
 
