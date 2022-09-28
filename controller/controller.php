@@ -172,13 +172,12 @@ function createNewEntry(){
 }
 
 
-
-
 function toAlbum($uid){
-  $entryManager = new EntryManager();
-  $res = $entryManager->getAlbum();
-  require(ROOT . '/view/albumView.php');
-}
+	$entryManager = new EntryManager();
+	$res = $entryManager->getAlbum();
+	require(ROOT . '/view/albumView.php');
+  }
+
 
 function echoPre($user_fetch) {
   if (is_array($user_fetch)) {
