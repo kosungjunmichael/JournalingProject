@@ -88,7 +88,7 @@ class EntryManager extends Manager
 		$req->bindParam("inUser_UID", $data->userUID, PDO::PARAM_STR);
 		$req->bindParam("inTitle", $data->title, PDO::PARAM_STR);
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
-		$req->bindParam("inWeather", $data->weather, PDO::PARAM_STR);
+		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
 		$req->bindParam("inTextContent", $data->entry, PDO::PARAM_STR);
 		$req->execute();
 
