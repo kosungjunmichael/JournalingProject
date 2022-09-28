@@ -213,7 +213,7 @@ class UserManager extends Manager
 						"INSERT INTO users (u_id, login_type, username, email, password) VALUES (:inUID, :inLoginType, :inUsername, :inEmail, :inPassword)"
 					);
 					$req->bindParam("inUID", $uid, PDO::PARAM_STR);
-					$req->bindParam("inLoginType", $login_type, PDO::PARAM_STR);
+					$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
 					$req->bindParam("inUsername", $credentials["sign-u"], PDO::PARAM_STR);
 					$req->bindParam("inEmail", $credentials["sign-e"], PDO::PARAM_STR);
 					$req->bindParam("inPassword", $hashpass, PDO::PARAM_STR);

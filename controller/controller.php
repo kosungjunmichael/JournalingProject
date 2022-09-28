@@ -137,7 +137,7 @@ function newEntry($data)
 		$tagManager->submitTags($data->tags, $entry_uid);
 		if ($_FILES["imgUpload"]["error"] !== 4) {
 			$checkImgs = $entryManager->uploadImages($entry_uid);
-			echoPre($checkImgs);
+			// echoPre($checkImgs);
 		} elseif (count($_FILES) > 1 and $_FILES["imgUpload"]["error"] === 4) {
 			throw new Exception(
 				"Error, image error status 4 - controller.php: newEntry()"
@@ -146,7 +146,7 @@ function newEntry($data)
 		// $error = "Entry Submitted!";
 		//   require(ROOT . '/index.php?action=sidebarTimeline');
 		//   // toTimeline($check);
-		// header("Location: index.php?action=toTimeline");
+		header("Location: index.php?action=toTimeline");
 	} else {
 		// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
 		$error = "Not a valid Entry";

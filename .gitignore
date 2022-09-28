@@ -1,6 +1,5 @@
 # Files you don't want added into Github
 .DS_Store
-kakaoMaps.php
 package-lock.json
 package.json
 node_modules
