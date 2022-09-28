@@ -9,7 +9,8 @@
             <link rel="stylesheet" href="<?= BASE .
             	"/public/css/$style.css" ?>">
         <?php } ?>
-        <link rel="icon" href="../public/images/logo.png">
+        <!-- Old Icon -->
+        <!-- <link rel="icon" href="../public/images/assets/logo.png"> -->
         <!-- Boxicons Link -->
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
         <!--    Phosphor Icons Link -->
