@@ -100,13 +100,12 @@ function handleImageSelect() {
           image_label.onclick = function () {
             document.getElementById(new_name).click();
           };
-        }
 
-        if (img_count === 5) {
-            image_label.style.display='none';
+        if (img_count===5) {
+            image_label.style.display = 'none';
         }
-    });
-    reader.readAsDataURL(this.files[0]);
+      });
+      reader.readAsDataURL(this.files[0]);
 }
 
 image_input.addEventListener("change", handleImageSelect);

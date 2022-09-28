@@ -102,11 +102,14 @@ try {
             break;
         
         case "addNewEntry":
+            // echoPre($_REQUEST);
             $entryContent = (object)array();
-            $entryContent->title = $_REQUEST['title'];
-            $entryContent->entry = $_REQUEST['textContent'];
-            $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->userUID = $_SESSION['uid'];
+            $entryContent->title = $_REQUEST['title'];
+            $entryContent->tags = $_REQUEST['tagNames'];
+            $entryContent->location = $_REQUEST['location'];
+            $entryContent->weather = $_REQUEST['weather'];
+            $entryContent->entry = $_REQUEST['textContent'];
             newEntry($entryContent);
             break;
 
