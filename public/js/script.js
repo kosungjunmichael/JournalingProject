@@ -2,7 +2,6 @@
 let themeToggle = document.querySelector("#theme-toggle-pill");
 let themeInner = document.querySelector("#theme-toggle-inner");
 let themeInput = document.querySelector("#theme-toggle-input");
-let img_count = 0;
 
 // get and set theme
 const theme = localStorage.getItem("dear_diary_theme");

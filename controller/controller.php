@@ -134,13 +134,13 @@ function newEntry($data) {
 		$tagManager->submitTags($data->tags, $entry_uid);
 		if ($_FILES["imgUpload"]["error"] !== 4) {
 			$checkImgs = $entryManager->uploadImages($entry_uid);
-			echoPre($checkImgs);
+			// echoPre($checkImgs);
 		} elseif (count($_FILES) > 1 and $_FILES["imgUpload"]["error"] === 4) {
 			throw new Exception(
 				"Error, image error status 4 - controller.php: newEntry()"
 			);
 		}
-		$error = "Entry Submitted!";
+		// $error = "Entry Submitted!";
 		//   require(ROOT . '/index.php?action=sidebarTimeline');
 		//   // toTimeline($check);
 		header("Location: index.php?action=toTimeline");

@@ -24,8 +24,16 @@ nav{
     position:fixed;
 }
 
+#logo-container{
+    display: flex;
+    gap:20px;
+}
+#logo-title{
+    margin-top: 5px;
+}
+
 .logo{
-    color:var(--grey-light);
+    color: white;
     font-size: 30px;
     text-decoration: none;
     font-weight: 800;
@@ -39,7 +47,7 @@ nav ul li{
 }
 
 nav ul li a{
-    color:var(--grey-light);
+    color: white;
     text-decoration: none;
     font-weight:500;
     letter-spacing: 1px;
@@ -47,7 +55,7 @@ nav ul li a{
 }
 
 nav ul li a:hover{
-    color:var(--primary);
+    color: var(--primary);
 }
 
 .hero .content{

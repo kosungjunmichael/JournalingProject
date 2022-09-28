@@ -9,8 +9,8 @@ let createTagBtn = document.querySelector("#create-tag-btn");
 let createTagInput = document.querySelector("#create-tag-input");
 
 // tag display "through a div container" and submit input
-let tagContainer = document.querySelector('#tag-cont');
-let submitTagInput = document.querySelector('.submitted-tags-input');
+let tagContainer = document.querySelector("#tag-cont");
+let submitTagInput = document.querySelector(".submitted-tags-input");
 
 // -----------------------------------------------------------------------------
 // --------------------------------TAGS-----------------------------------------
@@ -21,7 +21,7 @@ const removeTags = () => {
 	for (let tag of allTags) {
 		tag.remove();
 	}
-}
+};
 
 const createTags = () => {
 	for (let i = 0; i < addedTags.length; i++) {
@@ -44,7 +44,7 @@ const createTags = () => {
 	// format of the hidden input value
 	//      seoul,delicious food,nice day
 	submitTagInput.value = addedTags.join(",");
-}
+};
 
 const handleAddTag = () => {
 	let entryTagInput = document.querySelector("#create-tag-input");
@@ -56,7 +56,7 @@ const handleAddTag = () => {
 		createTags();
 	}
 	createTagInput.value = "";
-}
+};
 
 createTagBtn.addEventListener("click", () => {
 	handleAddTag();
@@ -77,23 +77,21 @@ createTagInput.addEventListener("keydown", (e) => {
 const img_container = document.querySelector("#entry-upload-photo");
 const image_input = document.querySelector("#imgUpload");
 const image_label = document.querySelector(".entry-photo");
+let img_count = 0;
 
-const handleImageSelect = () => {
+function handleImageSelect() {
 	const reader = new FileReader();
 	reader.addEventListener("load", () => {
 		const uploaded_image = reader.result;
 
 		img_count++;
-		if (img_count === 5) {
-			image_label.remove();
-		}
 		if (img_count <= 5) {
 			const img = document.createElement("div");
 			img_container.appendChild(img);
 			img.className = "chosenImg";
 			img.style.backgroundImage = `url(${uploaded_image})`;
-			const clone_input = image_input.cloneNode(true);
 			const new_name = "imgUpload" + img_count;
+			const clone_input = image_input.cloneNode(true);
 			clone_input.value = "";
 			clone_input.id = new_name;
 			clone_input.setAttribute("name", new_name);
@@ -102,9 +100,10 @@ const handleImageSelect = () => {
 			image_label.onclick = function () {
 				document.getElementById(new_name).click();
 			};
-		} else {
-			alert("reached max");
-			return;
+		}
+
+		if (img_count === 5) {
+			image_label.style.display = "none";
 		}
 	});
 	reader.readAsDataURL(this.files[0]);
