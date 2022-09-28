@@ -22,13 +22,13 @@ try {
 //----------------PAGE NAVIGATION-------------------
 //--------------------------------------------------
 
-        // case "toSignup":
-        //     toSignup();
-        //     break;
-
-        // case "toLogin":
-        //     toLogin();
-        //     break;
+        case "toLanding":
+            toLanding();
+            break;
+            
+        case "toAboutUs":
+            toAboutUs();
+            break;
 
         case "toTimeline":
             toTimeline($_SESSION['uid'], "monthly");
@@ -40,14 +40,6 @@ try {
 
         case "toMap":
             toMap($_SESSION['uid']);
-            break;
-
-        case "toLanding":
-            toLanding();
-            break;
-
-        case "toAboutUs":
-            toAboutUs();
             break;
 
         case "createEntry":
@@ -69,8 +61,7 @@ try {
 
         // KAKAO SIGNUP
         case "kakaoSignUp":
-            kakaoSignUp($_REQUEST);
-            // signUp($_REQUEST, 'kakao');
+            signUp($_REQUEST, 'kakao');
             break;
 
         // REGULAR SIGNUP
@@ -100,6 +91,11 @@ try {
 //--------------------------------------------------
 //----------------ENTRY MANAGEMENT------------------
 //--------------------------------------------------
+        case "filterEntries":
+            if (isset($_REQUEST['filter'])){
+                filterEntries($_REQUEST['filter']);
+            }
+            break;
 
         case "toggleView":
             if ($_GET['view'] === "week"){
@@ -110,12 +106,14 @@ try {
             break;
         
         case "addNewEntry":
+            // echoPre($_REQUEST);
             $entryContent = (object)array();
-            $entryContent->title = $_REQUEST['title'];
-            $entryContent->entry = $_REQUEST['textContent'];
-            $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->userUID = $_SESSION['uid'];
-            // print_r($entryContent);
+            $entryContent->title = $_REQUEST['title'];
+            $entryContent->tags = $_REQUEST['tagNames'];
+            $entryContent->location = $_REQUEST['location'];
+            $entryContent->weather = $_REQUEST['weather'];
+            $entryContent->entry = $_REQUEST['textContent'];
             newEntry($entryContent);
             break;
 
@@ -128,7 +126,7 @@ try {
             break;
             
         default:
-            // show login as default
+            // SHOW LOGIN AS DEFAULT
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid'], "monthly");
             } else {

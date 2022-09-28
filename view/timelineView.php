@@ -16,7 +16,9 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
-    <div class="switchToggle">
+    <input type="text" name="search_bar" class="search-bar">
+    <div class="filter-cont"></div>
+    <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
                 ?>
@@ -39,36 +41,33 @@
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
     ?>
-         <div class="entryDisplay">
+         <div class="entry-display">
     <?php
     } else if ($view === 'monthly'){
         ?>
-         <div class="entryDisplay monthlyView">
+         <div class="entry-display">
     <?php
     }
     ?>
             <?php
-            // TODO: if problem uncomment the bottom code
-                // echo "<pre>";
-                // print_r($entries);
-                // echo "<pre>";
-            if ($entries === null){
-                $entries = array();
-            }
-            if ($view === "monthly") {
+            // if ($entries === null){
+            //     $entries = array();
+            // }
+            if ($entries AND $view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;
                 $monthsToDisplay = displayMonths($numOfMonths);
+                // september, august, 
                 foreach($monthsToDisplay as $month){
                     // check if there are entries from that month
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <div class="monthName"><?=$month." ".$entries["$month"][0]['year']?></div>
-                            <div class="monthContainer">
+                            <div class="month-name"><?=$month." ".$entries["$month"][0]['year']?></div>
+                            <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>
@@ -83,13 +82,13 @@
                     if (array_key_exists($weekDay, $entries)){
             ?>
                         <div class="week">
-                            <div class="weekName">
+                            <div class="week-name">
                                 <?=$weekDay?>
                             </div>
-                            <div class="weekContainer">
+                            <div class="week-container">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
-                                    include "timeTempView.php";
+                                    include "timelineTemplate.php";
                                 }
                                 ?>
                             </div>
@@ -98,7 +97,7 @@
                     } else {
             ?>
                         <div class="week">
-                            <div class="weekName">
+                            <div class="week-name">
                                 <!-- <?=$weekDay?> -->
                             </div>
                         </div>
@@ -112,4 +111,4 @@
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require('template.php'); ?>

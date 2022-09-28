@@ -1,7 +1,6 @@
-
 <div id="sidebar-container">
     <div id="sidebar-top">
-        <a href="<?=BASE."/index.php?action=toLanding"?>">
+        <a href="<?= BASE . "/index.php?action=toLanding" ?>">
             <div id="logo-container">
                 <svg id="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
@@ -44,10 +43,12 @@
                 </a>
             </li>
         </ul>
-        <a id="create-entry-btn" href="<?=BASE."/index.php?action=createEntry"?>">Create Entry</a>
+        <a id="create-entry-btn" href="<?= BASE .
+        	"/index.php?action=createEntry" ?>">Create Entry</a>
     </div>
     <div id="sidebar-bottom">
-        <a id="logout-btn" href="<?=BASE."/index.php?action=toLogout"?>">Logout</a>
+        <a id="logout-btn" href="<?= BASE .
+        	"/index.php?action=toLogout" ?>">Logout</a>
         <div id="theme-toggle">
             <i class='bx bx-sun'></i>
             <input id="theme-toggle-input" type="checkbox">

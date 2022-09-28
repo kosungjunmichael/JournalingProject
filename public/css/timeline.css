@@ -20,7 +20,17 @@ body{
     font-family:'Galey';
 }
 
-.switchToggle{
+.search-bar{
+    padding: 15px;
+    margin: 0px 50px;
+    font-size: 25px;
+    background-color: var(--bg-secondary);
+    color: var(--text-color-secondary);
+    border: none;
+    border-radius: var(--border-radius-medium);
+}
+
+.switch-toggle{
     display: flex;
     flex-direction: row;
     font-size: 25px;
@@ -32,7 +42,7 @@ body{
     border-radius:var(--border-radius);
 }
 
-.switchToggle a{
+.switch-toggle a{
     width: fit-content;
 }
 
@@ -52,15 +62,15 @@ body{
     overflow-y: scroll;
 }
 
-.entryDisplay{
+.entry-display{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
     margin-left: 15px;
 }
-.monthlyView{
+/* .monthlyView{
     flex-direction: column;
-}
+} */
 
 /*          === Monthly View ===          */
 
@@ -68,14 +78,14 @@ body{
     padding: 15px;
 }
 
-.monthName {
+.month-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
     margin: 10px;
 }
 
-.monthContainer{
+.month-container{
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -93,14 +103,14 @@ body{
     align-items: center;
 }
 
-.weekName {
+.week-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
     margin: 0px;
 }
 
-.weekContainer{
+.week-container{
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -110,14 +120,14 @@ body{
 
 /*          === Entries ===          */
 
-.monthContainer a
-,.weekContainer a{
+.month-container a
+,.week-container a{
     color: var(--text-color-primary);
     text-decoration: none;
 }
 
-.entryContainer{
-    width: 430px;
+.entry-container{
+    width: 420px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
@@ -129,7 +139,7 @@ body{
 
 /*      === Weekly ===      */
 
-.weekContainer .entryContainer{
+.week-container .entry-container{
     min-width: 180px;
     max-width: 180px;
     height: 180px;
@@ -137,60 +147,80 @@ body{
     border:none;
 }
 
-.weekContainer .entryTitle{
+.week-container .entry-title{
     font-size: 20px;
 }
 
-.weekContainer .entryContent{
+.week-container .entry-content{
     max-height: 3.6rem;
     -webkit-line-clamp: 3;
     height: 3.6rem;
 }
 
-.weekContainer .entryInfo{
+.week-container .entry-info{
     flex-direction: column;
     padding: 4px;
 }
 
 /*      === Monthly ===      */
 
-.entryTitle {
+.entry-title {
     font-size: 30px;
-    padding: 10px 8px;
+    padding: 10px 20px;
     font-family:'Galey';
-    white-space:nowrap;
+    white-space: nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
 }
 
-.entryContent{
-    margin: 8px;
-    overflow:hidden;
+.entry-content{
+    margin: 6px 20px;
     line-height: 1.2rem;
     max-height: 6rem;
     -webkit-box-orient: vertical;
-    display: block;
     display: -webkit-box;
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 5;
-    height: 6rem;
+    height: 5rem;
 }
 
-.entryInfo {
+.entry-info {
     display: flex;
     padding:5px;
     justify-content: space-between;
 }
 
-.entryTags{
-    margin: 5px 8px;
+.entry-tags{
+    margin: 0px 5px;
     font-weight:700;
+    display:flex;
 }
 
-.entryDate{
-    margin: 5px 8px;
+.tag{
+    background-color: var(--time-tag-bg);
+    color: black;
+    text-align:center;
+    width: fit-content;
+    min-width: 75px;
+    margin: 0px 5px;
+    padding: 5px 5px;
+    border-radius: var(--border-radius-pill);
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size: 12px;
+}
+
+.no-tag{
+    margin: 0px 5px;
+    padding: 0px 5px;
+    font-size: 12px;
+}
+
+.entry-date{
+    margin: 5px 15px;
     font-weight:700;
+    font-size: 12px;
 }
 
 h3, h5 ,p{

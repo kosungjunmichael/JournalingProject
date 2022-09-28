@@ -4,8 +4,8 @@
 <?php $style = "album";?>
 <?php $script = "album";?>
 
-<?php ob_start();?>
-<?php include("sidebarView.php");?>
+<?php ob_start(); ?>
+<?php include "sidebarView.php"; ?>
 
 
 <div id="container"> 
@@ -71,4 +71,4 @@ $month_arr = [];
 </div>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require "template.php"; ?>

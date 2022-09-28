@@ -1,12 +1,9 @@
-Kakao.init("<?= $_SERVER['JS_API_KEY'] ?>"); // Enter your app's JavaScript key
-// console.log(Kakao.isInitialized());
-
-function loginWithKakao() {
+const loginWithKakao = () => {
 	Kakao.Auth.login({
 		success: function (authObj) {
 			Kakao.Auth.setAccessToken(authObj.access_token);
-
-			getInfo();
+			getInfo("login");
+			window.location.href = `http://localhost/sites/JournalingProject/index.php/?action=kakaoLogin&username=${response.kakao_account.email}&email=${response.kakao_account.email}`;
 		},
 		fail: function (err) {
 			console.log(err);
@@ -14,18 +11,26 @@ function loginWithKakao() {
 	});
 }
 
-function getInfo() {
+const signUpWithKakao = () => {
+	Kakao.Auth.login({
+		success: function (authObj) {
+			Kakao.Auth.setAccessToken(authObj.access_token);
+			getInfo("signup");
+		},
+		fail: function (err) {
+			console.log(err);
+		},
+	});
+}
+
+const getInfo = (type) => {
 	Kakao.API.request({
 		url: "/v2/user/me",
 		success: function (res) {
-			console.log(res);
-			let email = res.kakao_account.email;
-			// let gender = res.kakao_account.gender;
-			let nickname = res.kakao_account.profile.nickname;
-			let profile_image = res.kakao_account.profile.thumbnail_image_url;
-
-			// console.log(email, gender, nickname, profile_image);
-			console.log(email, nickname, profile_image);
+			window.location =
+				type == "login"
+					? `http://localhost/sites/JournalingProject/index.php/?action=kakaoLogin&username=${res.kakao_account.email}&email=${res.kakao_account.email}`
+					: `http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp&username=${res.kakao_account.email}&email=${res.kakao_account.email}`;
 		},
 		fail: function (error) {
 			alert(JSON.stringify(error));

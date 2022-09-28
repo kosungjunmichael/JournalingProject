@@ -14,8 +14,23 @@
             </h1>
             <div id="details-row">
                 <div id="entry-tags">
-                    <div class="tag">weekend</div>
-                    <div class="tag">summer</div>
+                    <?php
+                        $entryTags = explode(",", $entryContent['tags']);
+                        foreach($entryTags as $tag){
+                            if (!empty($tag)){
+                    ?>
+                                <div class="tag"><?= htmlspecialchars($tag);?></div>
+                        <?php
+                            
+                            } else {
+                        ?>
+                            <div class="no-tag">no tags</div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    <!-- <div class="tag">weekend</div>
+                    <div class="tag">summer</div> -->
                 </div>
                 <div id="entry-created">
                     <i class="ph-calendar-blank"></i>
@@ -73,4 +88,4 @@
 </article>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require('template.php'); ?>

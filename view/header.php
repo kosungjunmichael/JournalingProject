@@ -1,153 +1,182 @@
 <header>
     <nav>
-        <h2><a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
+        <h2><a href="<?= BASE .
+        	"/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
         <ul class="navbar">
-            <li><a href="<?= BASE . "/index.php?action=toAboutUs" ?>">About us</a></li>
+            <li><a href="<?= BASE .
+            	"/index.php?action=toAboutUs" ?>">About us</a></li>
             <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
             <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>
     </nav>
+
     <div id="login" class="modal fade" role="dialog">
         <div class="box">
-            <?php if (isset($error)) {
-                echo "<span id='login-error'>" . $error . "</span>";
-            } ?>
             <button data-close="modal" id="close" class="close">
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
-            <form method="POST" action="<?= BASE . "/index.php?action=regularlogin" ?>" class="signin">
+
+            <!-- Sign In form -->
+
+            <form method="POST" action="<?= BASE .
+            	"/index.php?action=regularLogin" ?>" class="signin">
                 <span id="header-text">Login</span>
+
+                <!-- Back-end Error Notification -->
+                <?php if (isset($error_login)) { ?>
+                    <script>
+                        alert("<?= $error_login ?>")
+                    </script>
+                <?php } ?>
+
                 <div class="input-container">
-                    <input id="login-ue" type="text" required name="login-ue" <?php if (isset($username)) {
-                                                                                    echo "value='" . $username . "'";
-                                                                                } ?> />
-                    <label for="login-ue">Username / Email</label>
+                    <input id="login-ue" 
+                    type="text" 
+                    name="login-ue" 
+                    <?php if (isset($username)) {
+                    	echo "value='" . $username . "'";
+                    } ?> 
+                    />
+                    <label for="login-ue" class="label" >Username / Email</label>
                 </div>
+
                 <div class="input-container">
-                    <input id="login-p" type="password" required name="login-p" />
-                    <label for="login-p">Password</label>
+                    <input type="password"
+                    id="login-p" 
+                    name="login-p" />
+                    <div class="svg-container eye" id="si-pwd-show">
+                        <i class="fa-solid fa-eye" id="togglePswSi"></i>
+                    </div>
+                    <label for="login-p" class="label">Password</label>
                 </div>
-                <button type="submit" id="login-btn">Log In</button>
+
+                <button type="submit" class="form-button" id="login-btn">Log In</button>
             </form>
-            <div id="or-separator">
-                OR
+            <div id="or-separator">OR</div>
+            <div class="google-btn">
+                <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
-            <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false">
+
+            <div>
+                <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                    <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" />
+                </a>
             </div>
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
-            </div>
+
             <div id="form-bottom">
                 <p>Don't have an account yet?</p>
                 <a id="sign-up-link">Sign Up</a>
             </div>
         </div>
-        <script src="https://accounts.google.com/gsi/client" async defer></script>
     </div>
 
     <div id="signup" class="modal fade" role="dialog">
         <div class="box">
-            <?php if (isset($error)) {
-                echo "<span id='login-error'>" . $error . "</span>";
-            } ?>
             <button data-close="modal" id="close1" class="close">
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
-            <form method="POST" action="<?= BASE . "/index.php?action=regularSignup" ?>" class="signin">
+
+
+            <!-- Sign Up form -->
+
+            <form method="POST" action="<?= BASE .
+            	"/index.php?action=regularSignup" ?>" class="signup" id="su-form">
                 <span id="header-text">Sign Up</span>
-                <div class="input-container">
-                    <input type="text" name="sign-u" <?php if (isset($username)) {
-                                                            echo "value='" . $username . "'";
-                                                        } ?> />
-                    <label for="sign-u">Username</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" name="sign-e" <?php if (isset($username)) {
-                                                            echo "value='" . $username . "'";
-                                                        } ?> />
-                    <label for="sign-e">Email</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" name="sign-p" />
-                    <label for="sign-p">Password</label>
-                </div>
-                <div class="input-container">
-                    <input id="login-p" type="password" required name="sign-cp" />
-                    <label for="sign-cp">Confirm Password</label>
-                </div>
-                <button type="submit" id="login-btn">Sign Up</button>
-            </form>
-            <div id="or-separator">
-                OR
-            </div>
-            <div id="g_id_onload" data-client_id="<?= $_SERVER['CLIENT_ID'] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignup" data-auto_prompt="false">
-            </div>
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left">
                 
+                <!-- Back-end Error Notification -->
+                <?php if (isset($error_signup)) { ?>
+                    <script>
+                        alert("<?= $error_signup ?>")
+                    </script>
+                <?php } ?>
+
+                <div class="input-container">
+                    <input id="sign-u" type="text" name="sign-u" />
+                    <label for="sign-u" class="label">Username</label>
+                    <div class="error-msg" id="tooltip-u">
+                        <div class="arrow-left"></div>
+                        <p>✖ Username can't be less than 4 characters</p>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <input id="sign-e" type="text" name="sign-e" />
+                    <label for="sign-e" class="label">Email</label>
+                    <div class="error-msg" id="tooltip-e">
+                        <div class="arrow-left"></div>
+                        <p>✖ Please enter a valid Email Address</p>
+                    </div>
+                </div>
+                
+            <div class="input-container">
+                <input type="password" 
+                id="sign-p" 
+                name="sign-p" />
+                <div class="svg-container eye" id="su-pwd-show">
+                    <i class="fa-solid fa-eye" id="togglePsw"></i>
+                </div>
+                <label for="sign-p" class="label">Password</label>
+                <div class="error-msg" id="tooltip-psw">
+                    <div class="arrow-left"></div>
+                    <p>✖ Please enter a valid Password</p>
+                </div>
+
+                    <div id="tooltip-p">
+                        <div class="arrow-left"></div>
+                        <div id="message">
+                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                            <p id="capital" class="invalid">A <b>capital</b> letter</p>
+                            <p id="number" class="invalid">A <b>number</b></p>
+                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                        </div>
+                    </div>
             </div>
-                <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+            <div class="input-container">
+                <input type="password"
+                id="sign-cp"
+                name="sign-cp"/>
+                <div class="svg-container eye" id="su-pwd2-show">
+                    <i class="fa-solid fa-eye" id="togglePsw2"></i>
+                </div>
+                <label for="sign-cp" class="label">Confirm Password</label>
+                <div class="error-msg" id="tooltip-cp">
+                    <div class="arrow-left"></div>
+                    <p>✖ Please match with the above password</p>
+                </div>
+            </div>
+
+            <button type="submit" class="form-button" id="signup-btn">Sign Up</button>
+        </form>
+
+            <div id="or-separator">OR</div>
+
+            <!-- Google login -->
+            <div class="google-btn">
+                <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left">
+                </div>
+            </div>
+            <a href="javascript:signUpWithKakao()">
+                <button class="form-button">Kakao</button>
+            </a>
     </div>
-    <div class="blur"></div>
+<div class="blur"></div>
 </header>
 
-<script>
-    var myInput = document.getElementById("psw");
-    var letter = document.getElementById("letter");
-    var capital = document.getElementById("capital");
-    var number = document.getElementById("number");
-    var length = document.getElementById("length");
+<!-- FORM VALIDATION -->
+<script src="<?= BASE . "/public/js/formValidation.js" ?>"></script>
 
-    // When the user clicks on the password field, show the message box
-    myInput.onfocus = function() {
-        document.getElementById("message").style.display = "block";
-    }
-
-    // When the user clicks outside of the password field, hide the message box
-    myInput.onblur = function() {
-        document.getElementById("message").style.display = "none";
-    }
-
-    // When the user starts to type something inside the password field
-    myInput.onkeyup = function() {
-        // Validate lowercase letters
-        var lowerCaseLetters = /[a-z]/g;
-        if (myInput.value.match(lowerCaseLetters)) {
-            letter.classList.remove("invalid");
-            letter.classList.add("valid");
-        } else {
-            letter.classList.remove("valid");
-            letter.classList.add("invalid");
-        }
-
-
-        var upperCaseLetters = /[A-Z]/g;
-        if (myInput.value.match(upperCaseLetters)) {
-            capital.classList.remove("invalid");
-            capital.classList.add("valid");
-        } else {
-            capital.classList.remove("valid");
-            capital.classList.add("invalid");
-        }
-
-        // Validate numbers
-        var numbers = /[0-9]/g;
-        if (myInput.value.match(numbers)) {
-            number.classList.remove("invalid");
-            number.classList.add("valid");
-        } else {
-            number.classList.remove("valid");
-            number.classList.add("invalid");
-        }
-
-        // Validate length
-        if (myInput.value.length >= 8) {
-            length.classList.remove("invalid");
-            length.classList.add("valid");
-        } else {
-            length.classList.remove("valid");
-            length.classList.add("invalid");
-        }
-    }
-</script>
-
-
+<!-- GOOGLE -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<!-- KAKAO -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script> Kakao.init("<?= $_SERVER["JS_API_KEY"] ?>"); </script>
+<script src="<?= BASE . "/public/js/kakao.js" ?>"></script>

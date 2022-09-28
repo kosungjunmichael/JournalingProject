@@ -1,0 +1,285 @@
+/* Remove input hightlight in Chrome */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+  }
+
+/* LOG in  */
+#header-text {
+	color: var(--white);	
+	text-transform:uppercase;
+    font-weight: bolder;
+    font-size: 23px;
+    margin: 0 0 30px 0;
+    display: block;
+    text-align: center;
+}
+
+#login-error {
+    display: inline-block;
+    margin-bottom: 10px;
+    background-color: var(--white);
+    padding: 4px 10px;
+    border-radius: var(--border-radius-medium);
+    font-weight: 500;
+    font-size: 8px;
+}
+
+.box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	background-color: var(--grey-dark);
+	border-radius: var(--border-radius-medium);
+	padding: 30px;
+	min-width: 350px;
+}
+
+.input-container {
+    width: 100%;
+	position: relative;
+	margin-bottom: 25px;
+    display: flex;
+    border-bottom:1px solid var(--grey);  
+}
+
+.input-container label {
+	position: absolute;
+	top:0px;
+	left:0px;
+	font-size: 16px;
+    font-weight: 400;
+	color: var(--white);	
+    /* pointer-event:none; */
+	transition: all 0.5s ease-in-out;
+}
+
+.input-container input { 
+    border: 0;
+    background: transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: var(--white);
+}
+
+.input-container input:focus{ 
+    border:none;	
+    outline:none;
+    border-bottom:1px solid var(--primary-dark);	
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+    top:-12px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--grey-superlight);
+}
+
+.form-button {
+    width: 175px;
+	color: var(--white);
+	background-color:var(--primary);
+    border: 0;
+    color: var(--white);
+	padding: 10px 20px;
+	text-transform: uppercase;
+    text-align: center;
+	margin: 20px auto 10px auto;
+	border-radius: var(--border-radius-button);
+	cursor: pointer;
+    height: 39px;
+}
+
+#container {
+    margin-top: 8px;
+}
+
+#or-separator {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.g_id_signin {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0 0 0;
+}
+
+#form-bottom > p {
+    color: var(--white);
+}
+
+#form-bottom > #sign-up-link {
+    font-weight: 600;
+    margin: 10px 20px;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* === Sign up/Log in validation */
+
+/* Tooltip for Password */
+
+#tooltip-p {
+    visibility: hidden;
+    position: absolute;
+    right: -260px;
+    top: -10px;
+    height: fit-content;
+    width: 220px;
+    padding: 8px 20px;
+    margin-bottom: 10px;
+    background-color: var(--primary-light);
+    z-index: 99;
+    font-size: 14px;
+    border-radius: var(--border-radius-medium);
+    }
+  
+#sign-p:focus ~ #tooltip-p {
+    visibility: visible;
+  }
+
+.arrow-left {
+    position: absolute;
+    left: -5px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid var(--primary-light);;
+}
+
+/* Input error message */
+.error-msg {
+    display: none;
+    position: absolute;
+    right: -260px;
+    top: -10px;
+    height: fit-content;
+    width: 220px;
+    padding: 8px 10px;
+    background-color: var(--primary-light);
+    z-index: 99;
+    font-size: 14px;
+    color: crimson;
+    border-radius: var(--border-radius-medium);
+    }
+
+#tooltip-cp {
+    top: 20px;
+}
+
+#message {
+    /* display: none; */
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    position: relative;
+    padding: 5px;
+}
+
+.valid {
+color: forestgreen;
+}
+
+.valid:before {
+    position: relative;
+    left: -10px;
+    content: "✔";
+}
+
+.invalid {
+    color: crimson;
+}
+
+.invalid:before {
+    position: relative;
+    left: -10px;
+    content: "✖";
+}
+
+/* =========== */
+.login:hover {
+    /* TODO change to global color */
+    background: var(--primary-light);
+    color: var(--white);
+}
+
+#login, #signup {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 315px;
+    z-index: 1000;
+}
+
+.close {
+    align-items: center;
+    background-color: transparent;
+    border-width: 0px;
+    color: var(--white);
+    cursor: pointer;
+    display: inline-flex;
+    height: 18px;
+    width: 5px;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 16px;
+}
+
+.blur {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* z-index: -1; */
+    backdrop-filter: blur(8px);
+}
+
+.eye {
+    color: var(--white);
+}
+
+.input-container .svg-container.eye {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  /* === Autofill === */
+
+  /* Autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--grey-dark) inset !important;
+  -webkit-text-fill-color: var(--white) !important;
+}
