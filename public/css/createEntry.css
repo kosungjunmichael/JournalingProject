@@ -22,11 +22,14 @@
 
 #create-entry-title-input{
     color: var(--text-color-primary);
-    background: transparent;
+    background-color: var(--bg-secondary);
+    /* background: transparent; */
     border: none;
     outline: none;
     font-size: 20px;
     margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
 #create-entry-tag{

@@ -15,18 +15,18 @@
             <div id="details-row">
                 <div id="entry-tags">
                     <?php
-                        $tagManager = new TagManager();
-                        $entryTags = $tagManager->getTags($entryContent['u_id']);
-                        if (!empty($entryTags)){
-                            foreach($entryTags as $tag){
+                        $entryTags = explode(",", $entryContent['tags']);
+                        foreach($entryTags as $tag){
+                            if (!empty($tag)){
                     ?>
-                                <div class="tag"><?= htmlspecialchars($tag['tag_name']);?></div>
+                                <div class="tag"><?= htmlspecialchars($tag);?></div>
                         <?php
-                            }
-                        } else {
+                            
+                            } else {
                         ?>
                             <div class="no-tag">no tags</div>
                         <?php
+                            }
                         }
                         ?>
                     <!-- <div class="tag">weekend</div>
@@ -88,4 +88,4 @@
 </article>
 
 <?php $content = ob_get_clean(); ?>
-<?php require('templateView.php'); ?>
+<?php require('template.php'); ?>

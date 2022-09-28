@@ -134,22 +134,7 @@ form {
     text-decoration: none;
 }
 
-/* #signup-btn {
-	width: 100%;
-	color: var(--white);
-	background-color:var(--primary);
-	outline: none;
-	border: 0;
-	color: var(--white);
-	padding:10px 20px;
-	text-transform:uppercase;
-	margin: 20px 0 10px 0;
-	border-radius: 25px;
-	cursor:pointer;
-	position:relative;
-} */
-
-/* === Sign up validation */
+/* === Sign up/Log in validation */
 
 /* Tooltip for Password */
 
@@ -282,3 +267,19 @@ color: forestgreen;
     margin: 5px;
     padding: 5px;
   }
+
+  /* === Autofill === */
+
+  /* Autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px var(--grey-dark) inset !important;
+  -webkit-text-fill-color: var(--white) !important;
+}

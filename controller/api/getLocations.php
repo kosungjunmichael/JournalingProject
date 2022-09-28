@@ -1,22 +1,22 @@
 <?php
 // API endpoint to get entry locations
 // set uid from session variable
-if (isset($_SESSION['uid'])){
-    $uid = $_SESSION['uid'];
+if (isset($_SESSION["uid"])) {
+	$uid = $_SESSION["uid"];
 
-    // get data from db
-    require_once('../../model/EntryManager.php');
-    $entryManager = new EntryManager();
-    $entries = $entryManager->getEntries($uid, 'all');
+	// get data from db
+	require_once "../../model/EntryManager.php";
+	$entryManager = new EntryManager();
+	$entries = $entryManager->getEntries($uid, "all");
 
-//    $locations = array();
+	//    $locations = array();
 
-//    foreach ($entries as $entry) {
-//        $locations[] = array(
-//            'u_id' => $entry['u_id'],
-//            'location' => $entry['location']
-//        );
-//    }
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($entries);
+	//    foreach ($entries as $entry) {
+	//        $locations[] = array(
+	//            'u_id' => $entry['u_id'],
+	//            'location' => $entry['location']
+	//        );
+	//    }
+	header("Content-Type: application/json; charset=utf-8");
+	echo json_encode($entries);
 }
