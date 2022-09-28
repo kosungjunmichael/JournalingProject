@@ -139,7 +139,7 @@ class EntryManager extends Manager
 				// if Monthly
 				if ($entryGroup === "monthly") {
 					// for current year
-					if ($entryContent["year"] == $thisYear) {
+//					if ($entryContent["year"] == $thisYear) {
 						// check if the keyname exists in the $entriesDisplay
 //						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
 //							// push the entryContent into the key
@@ -165,7 +165,7 @@ class EntryManager extends Manager
                             $entriesDisplay[$monthYearKey] = array();
                             $entriesDisplay[$monthYearKey][] = $entryContent;
                         }
-					}
+//					}
 				} elseif ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (
