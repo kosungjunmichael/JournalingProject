@@ -2,7 +2,7 @@
 
 require_once('Manager.php');
 
-class filterManager extends Manager{
+class filterManager extends Manager {
 
     public function filterEntries($userUID, $filters){
       $db = $this->dbConnect();

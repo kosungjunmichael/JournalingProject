@@ -40,7 +40,7 @@ class EntryManager extends Manager
 	{
 		foreach ($_FILES as $file) {
 			if ($file["error"] === 0) {
-				return $_FILES;
+				// return $_FILES;
 				$this->uploadImage($file, $entry_id);
 			}
 		}
@@ -70,21 +70,26 @@ class EntryManager extends Manager
 		} while (count($existingUID) > 0);
 
 		// Inserting the entry into the 'entries' table
-		$req = $db->prepare('INSERT INTO entries 
-                                (title
-                                ,text_content
+		$req = $db->prepare('INSERT INTO entries                                
+                                (u_id
                                 , user_uid
-                                , u_id)
-                            VALUES (
-                                :title
-                                , :entry
-                                , :user_uid
-                                , :uid)
+								, title
+								, location
+								, weather
+                                ,text_content)
+                            VALUES (:inUID
+								, :inUser_UID
+								, :inTitle
+								, :inLocation
+								, :inWeather
+								, :inTextContent)
             ');
-		$req->bindParam("title", $data->title, PDO::PARAM_STR);
-		$req->bindParam("entry", $data->entry, PDO::PARAM_STR);
-		$req->bindParam("user_uid", $data->userUID, PDO::PARAM_STR);
-		$req->bindParam("uid", $uid, PDO::PARAM_STR);
+		$req->bindParam("inUID", $uid, PDO::PARAM_STR);
+		$req->bindParam("inUser_UID", $data->userUID, PDO::PARAM_STR);
+		$req->bindParam("inTitle", $data->title, PDO::PARAM_STR);
+		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
+		$req->bindParam("inWeather", $data->weather, PDO::PARAM_STR);
+		$req->bindParam("inTextContent", $data->entry, PDO::PARAM_STR);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
@@ -94,16 +99,16 @@ class EntryManager extends Manager
 		return $entry_id->u_id;
 	}
 
-
-    public function getEntries($userId, $entryGroup) {
-        $db = $this->dbConnect();
-        // current year
-        $thisYear = date('Y');
-        // current month
-        $thisMonth = date('F');
-        // current week number for the year
-        $thisWeek = date('W');
-        $req = $db->prepare('SELECT
+	public function getEntries($userId, $entryGroup)
+	{
+		$db = $this->dbConnect();
+		// current year
+		$thisYear = date("Y");
+		// current month
+		$thisMonth = date("F");
+		// current week number for the year
+		$thisWeek = date("W");
+		$req = $db->prepare('SELECT
                             e.u_id
                             , e.title
                             , e.text_content
@@ -181,9 +186,10 @@ class EntryManager extends Manager
 		$req->closeCursor();
 	}
 
-    public function getEntry($entryId, $userId) {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT e.title
+	public function getEntry($entryId, $userId)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT e.title
         , e.u_id
         , e.text_content
         , e.location
