@@ -24,6 +24,7 @@ function toTimeline($Unique_id, $entryGroup)
 	$entryManager = new EntryManager();
 	$entries = $entryManager->getEntries($Unique_id, $entryGroup);
 	$view = $entryGroup;
+	// echoPre($entries);
 	require ROOT . "/view/timelineView.php";
 }
 
@@ -178,9 +179,9 @@ function viewEntry($entryId){
 function displayMonths($numOfMonths = 5)
 {
 	$months = [];
-	array_push($months, date("F"));
+	array_push($months, date("F Y"));
 	for ($i = 1; $i < $numOfMonths; $i++) {
-		array_push($months, Date("F", strtotime("-$i month")));
+		array_push($months, Date("F Y", strtotime("-$i month")));
 	}
 	return $months;
 }
