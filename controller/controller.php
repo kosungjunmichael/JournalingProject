@@ -24,7 +24,6 @@ function toTimeline($Unique_id, $entryGroup)
 	$entryManager = new EntryManager();
 	$entries = $entryManager->getEntries($Unique_id, $entryGroup);
 	$view = $entryGroup;
-	// echoPre($entries);
 	require ROOT . "/view/timelineView.php";
 }
 

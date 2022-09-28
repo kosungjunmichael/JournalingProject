@@ -30,9 +30,9 @@ class filterManager extends Manager {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function filterEntriesByTag($userUID, $filters){
-        $db = $this->dbConnect();
 
+
+    public function filterEntriesByTag($userUID, $filters){
         //   return $filters;
         
         // Array of Filters
@@ -47,13 +47,14 @@ class filterManager extends Manager {
         foreach($filters as $filter){
             foreach($eachEntry as $entry){
                 if (str_contains($entry['tags'], $filter)){
-                    if (array_key_exists($entry['month'], $entriesDisplay)) {
+                    $monthYearKey = $entry['month'] . " " . $entry['year'];
+                    if (array_key_exists($monthYearKey, $entriesDisplay)) {
                         // push the entry into the key
-                        array_push($entriesDisplay[$entry['month']], $entry);
+                        $entriesDisplay[$monthYearKey][] = $entry;
                     } else {
-                        // create the array in the key & push the entry into the key
-                        $entriesDisplay[$entry['month']] = array();
-                        array_push($entriesDisplay[$entry['month']], $entry);
+                        // create the key in the array & push the entry into the key
+                        $entriesDisplay[$monthYearKey] = [];
+                        $entriesDisplay[$monthYearKey][] = $entry;
                     }
                 }
             }
@@ -61,4 +62,5 @@ class filterManager extends Manager {
         }
     }
 
+    
 }

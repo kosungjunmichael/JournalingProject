@@ -50,9 +50,6 @@
     }
     ?>
             <?php
-            // if ($entries === null){
-            //     $entries = array();
-            // }
             if ($entries AND $view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;
