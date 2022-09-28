@@ -1,7 +1,24 @@
 <header>
     <nav>
-        <h2><a href="<?= BASE .
-        	"/index.php?action=toLanding" ?>" class="logo">Dear Diary</a></h2>
+        <h2>
+            <a href="<?= BASE ."/index.php?action=toLanding" ?>" class="logo">
+                <div id="logo-container">
+                    <svg id="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
+                        <path d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" stroke="#9673F5" stroke-width="2"/>
+                        <rect class="logo-svg-box" x="4" y="4" width="25" height="32" fill="#fff"/>
+                        <rect x="4" y="4" width="25" height="32" stroke="#9673F5" stroke-width="2"/>
+                        <rect class="logo-svg-box" x="1" y="1" width="25" height="32" fill="#fff"/>
+                        <rect x="1" y="1" width="25" height="32" stroke="#9673F5" stroke-width="2"/>
+                        <line x1="0.707107" y1="33.2929" x2="6.70711" y2="39.2929" stroke="#9673F5" stroke-width="2"/>
+                        <line x1="0.707107" y1="32.2929" x2="6.70711" y2="38.2929" stroke="#9673F5" stroke-width="2"/>
+                    </svg>
+                    <div id="logo-title">
+                        Dear Diary
+                    </div>
+                </div>
+            </a>
+        </h2>
         <ul class="navbar">
             <li><a href="<?= BASE .
             	"/index.php?action=toAboutUs" ?>">About us</a></li>
@@ -59,10 +76,18 @@
                 ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
-
-            <div>
+            
+            <div id="kakao-login-container">
                 <a id="kakao-login-btn" href="javascript:loginWithKakao()">
-                    <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" />
+                    <div class="kakao-container">
+                        <div class="kakao-symbol">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="kakao-label">
+                            Login with Kakao
+                        </div>
+                    </div>
+                    <!-- <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" /> -->
                 </a>
             </div>
 
@@ -164,7 +189,16 @@
                 </div>
             </div>
             <a href="javascript:signUpWithKakao()">
-                <button class="form-button">Kakao</button>
+                <div id="kakao-signup-container">
+                    <div class="kakao-container">
+                        <div class="kakao-symbol">
+                            <i class="fa-solid fa-comment"></i>
+                        </div>
+                        <div class="kakao-label">
+                            Signup with Kakao
+                        </div>
+                    </div>
+                </div>
             </a>
     </div>
 <div class="blur"></div>
