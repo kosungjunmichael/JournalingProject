@@ -100,7 +100,7 @@ function handleImageSelect() {
           image_label.onclick = function () {
             document.getElementById(new_name).click();
           };
-        } 
+
         if (img_count===5) {
             image_label.style.display = 'none';
         }
