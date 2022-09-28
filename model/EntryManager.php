@@ -139,23 +139,33 @@ class EntryManager extends Manager
 				// if Monthly
 				if ($entryGroup === "monthly") {
 					// for current year
-					if ($entryContent["year"] == $thisYear) {
+//					if ($entryContent["year"] == $thisYear) {
 						// check if the keyname exists in the $entriesDisplay
-						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
-							// push the entryContent into the key
-							array_push(
-								$entriesDisplay[$entryContent["month"]],
-								$entryContent
-							);
-						} else {
-							// create the array in the key & push the entryContent into the key
-							$entriesDisplay[$entryContent["month"]] = [];
-							array_push(
-								$entriesDisplay[$entryContent["month"]],
-								$entryContent
-							);
-						}
-					}
+//						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
+//							// push the entryContent into the key
+//							array_push(
+//								$entriesDisplay[$entryContent["month"]],
+//								$entryContent
+//							);
+//						} else {
+//							// create the array in the key & push the entryContent into the key
+//							$entriesDisplay[$entryContent["month"]] = [];
+//							array_push(
+//								$entriesDisplay[$entryContent["month"]],
+//								$entryContent
+//							);
+//						}
+                        $monthYearKey = $entryContent['month'] . " " . $entryContent['year'];
+                        // check if the keyname exists in the $entriesDisplay
+                        if (array_key_exists($monthYearKey, $entriesDisplay)) {
+                            // push the entryContent into the key
+                            array_push($entriesDisplay[$monthYearKey], $entryContent);
+                        } else {
+                            // create the array in the key & push the entryContent into the key
+                            $entriesDisplay[$monthYearKey] = array();
+                            $entriesDisplay[$monthYearKey][] = $entryContent;
+                        }
+//					}
 				} elseif ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (

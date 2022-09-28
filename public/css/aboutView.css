@@ -20,3 +20,6 @@ h1 {
     margin: 180px auto 0 auto;
     font-size: large;
 }
+a{
+    color: var(--primary);
+}

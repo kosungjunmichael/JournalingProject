@@ -373,6 +373,3 @@
 // require("template.php");
 ?>
 
-
-
- ?>

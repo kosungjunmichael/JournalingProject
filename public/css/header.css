@@ -109,6 +109,33 @@ input:focus, textarea:focus, select:focus {
     justify-content: center;
 }
 
+#kakao-login-container, #kakao-signup-container{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.kakao-container{
+    width: 175px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    margin-top: 20px;
+    background-color: #FEE500;
+    border-radius: 12px;
+}
+.kakao-container i , .kakao-label{
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    letter-spacing: 0.25px;
+}
+.kakao-label{
+    font-weight: 500;
+}
+
 form {
     display: flex;
     flex-direction: column;
