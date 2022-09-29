@@ -152,10 +152,10 @@ function newEntry($data) {
 }
 
 function filterEntries($filter){
-		$entryManager = new EntryManager();
+    $entryManager = new EntryManager();
     $filterManager = new FilterManager();
     // $type = "monthly";
-		if ($filter === ""){
+		if ($filter === "")		{
 			$entries = $entryManager->getEntries($_SESSION['uid'], "monthly");
 		} else {
 			$entries = $filterManager->filterEntriesByTag($_SESSION['uid'],$filter);
