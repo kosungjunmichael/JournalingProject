@@ -20,8 +20,7 @@
             </a>
         </h2>
         <ul class="navbar">
-            <li><a href="<?= BASE .
-            	"/index.php?action=toAboutUs" ?>">About us</a></li>
+            <li><a href="<?= BASE . "/index.php?action=toAboutUs" ?>">About us</a></li>
             <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
             <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>

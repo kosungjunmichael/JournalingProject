@@ -34,6 +34,9 @@ try {
             toTimeline($_SESSION['uid'], "monthly");
             break;
 
+        case "toCalendar":
+            toCalendar();
+            
         case "toAlbum":
             toAlbum($_SESSION['uid']);
             break;

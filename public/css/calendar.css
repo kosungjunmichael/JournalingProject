@@ -1,0 +1,8 @@
+@import url('../css/main.css');
+
+#calendarview-container {
+    height: calc(100vh - 41px);
+    width: 100%;
+    padding: 20px;
+    position: relative;
+}
