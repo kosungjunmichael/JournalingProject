@@ -47,18 +47,7 @@ document.getElementById("sign-up-link").addEventListener("click", () => {
 	openSignup();
 });
 
-// TODO: Add login redirect to signup card
-// document.getElementById("login-link").addEventListener("click", () => {
-// 	closeSignup();
-// 	openLogin();
-// });
-
-
-	/* <div class="google-btn">
-	<div id='g_id_onload' data-client_id='<?= $_SERVER['CLIENT_ID']; ?>' data-login_uri='http://localhost/sites/JournalingProject/index.php?action=googleLogin' data-auto_prompt='false'></div>
-	<div class='g_id_signin' data-type='standard' data-size='large' data-theme='outline' data-text='sign_in_with' data-shape='pill' data-logo_alignment='left'></div>
-</div>
-
-<div class="google-btn">
-	<div id='g_id_onload' data-client_id='<?= $_SERVER['CLIENT_ID']; ?>' data-login_uri='http://localhost/sites/JournalingProject/index.php?action=googleSignUp' data-auto_prompt='false'></div><div class='g_id_signin' data-type='standard' data-size='large' data-theme='outline' data-text='signup_with' data-shape='pill' data-logo_alignment='left'></div>
-</div> */
+document.getElementById("sign-in-link").addEventListener("click", () => {
+	closeSignup();
+	openLogin();
+});

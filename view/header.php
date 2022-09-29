@@ -47,6 +47,11 @@
                     </script>
                 <?php } ?>
 
+                <div id="form-bottom">
+                    <p>Don't have an account yet?</p>
+                    <a id="sign-up-link">Sign Up</a>
+                </div>
+
                 <div class="input-container">
                     <input id="login-ue" 
                     type="text" 
@@ -93,11 +98,6 @@
                     </div>
                 </a>
             </div>
-
-            <div id="form-bottom">
-                <p>Don't have an account yet?</p>
-                <a id="sign-up-link">Sign Up</a>
-            </div>
         </div>
     </div>
 
@@ -120,6 +120,11 @@
                         alert("<?= $error_signup ?>")
                     </script>
                 <?php } ?>
+
+                <div id="form-bottom">
+                    <p>Already have an account?</p>
+                    <a id="sign-in-link">Sign In</a>
+                </div>
 
                 <div class="input-container">
                     <input id="sign-u" type="text" name="sign-u" />
