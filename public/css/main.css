@@ -30,6 +30,8 @@ body[data-theme='light'] {
     --theme-toggle-pill: var(--white);
     --tag-bg: var(--grey-superlight);
     --time-tag-bg: var(--grey-mid-light);
+    --button-color: rgba(0,0,0,0.4);
+    --album-color: rgba(200, 200, 200, 0.4);
 }
 
 body[data-theme='dark'] {
@@ -42,6 +44,9 @@ body[data-theme='dark'] {
     --theme-toggle-pill: var(--grey);
     --tag-bg: var(--grey-superlight);
     --time-tag-bg: var(--grey-superlight);
+    --button-color: rgba(255,255,255,0.4);
+    --album-color: rgba(0, 0, 0, 0.4);
+
 }
 
 @font-face {

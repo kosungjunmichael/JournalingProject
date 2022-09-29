@@ -209,15 +209,23 @@ function updateLastActive($uid)
 	$userManager->updateLastActive($uid);
 }
 
-function echoPre($user_fetch)
-{
-	if (is_array($user_fetch)) {
-		echo "<pre>";
-		print_r($user_fetch);
-		echo "</pre>";
-	} else {
-		echo "<pre>";
-		echo $user_fetch;
-		echo "</pre>";
-	}
+
+
+function toAlbum($uid){
+	$entryManager = new EntryManager();
+	$res = $entryManager->getAlbum();
+	require(ROOT . '/view/albumView.php');
+  }
+
+
+function echoPre($user_fetch) {
+  if (is_array($user_fetch)) {
+    echo "<pre>";
+    print_r($user_fetch);
+    echo "</pre>";
+  } else {
+    echo "<pre>";
+    echo $user_fetch;
+    echo "</pre>";
+  }
 }
