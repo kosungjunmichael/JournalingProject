@@ -28,7 +28,7 @@ const openModal = pathsStr => { // use type to know which input to add the data 
     modal.appendChild(dotContainer);
 
     for(let i=0; i<paths.length; i++){
-        if(paths.length >= 1 ){
+        if(paths.length > 1 ){
             let dot = document.createElement("span");
             // let dots = document.getElementsByClassName("dot");
             dotContainer.appendChild(dot);

@@ -34,6 +34,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-bottom: 30px;
 }
 
 .month-container-header{
@@ -87,19 +88,30 @@
 .album-bottom{
     display: flex;
     justify-content: space-around;
-    width: 100%;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
     margin-top: 10px;
+    gap: 10px;
 }
 
-.album-bottom p:first-child{
+
+
+.inside-album-tags{
     background-color: gray;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 10px 5px 10px;
+    max-width: 100px;
+    height: auto;
     border-radius: 10px;
+    font-size: 0.9em;
     color: var(--text-color-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     
 }
 
-.album-bottom p:nth-child(2){
+.inside-album-dates{
   color: var(--text-color-primary);
   font-size: 0.9em;
 }

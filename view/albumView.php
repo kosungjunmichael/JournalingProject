@@ -15,6 +15,7 @@
 <?php
 $month_arr = [];
 
+
         for($i = 0; $i < count($res); $i++){
             $date_created = $res[$i]["date_created"];
             $month_created = date("F Y", strtotime($date_created));  
@@ -23,16 +24,17 @@ $month_arr = [];
             $newDate = date("F j Y", strtotime($date_created));  
             $month_name = date("F", strtotime($date_created));
             $title = $res[$i]["title"];
+            $tagStr = $res[$i]["tags"];
+            $tags = explode(",",$tagStr);
+            
 
-                // if the month_created is NOT in the array, add it and display it
-                // if it IS in the array, do nothing
+            // if the month_created is NOT in the array, add it and display it
             if(!in_array($month_created, $month_arr)){
                 array_push($month_arr, $month_created);
                 echo 
                 "<h2 class='month-container-header'>{$month_created}</h2>
                 <div class='month-container'>";
             }
-            // print_r($get_tags);
                 
 ?>
             <div id="album-container-bottom">
@@ -42,8 +44,22 @@ $month_arr = [];
                     <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?=BASE . $path[0]?>")';>
                         <p id="album-title"> <?=$title?> </p>
                         <div class="album-bottom">
-                            <p>tag</p>
-                            <p><?=$newDate?></p>
+
+                        <?php
+                        if(1 < count($tags)){
+                        foreach ($tags as $tag) {
+                        ?>
+                        <div class="inside-album-tags-div">
+                            <p class="inside-album-tags"><?=$tag?></p>
+                        </div>
+                        <?php
+                        }
+                        } else {
+                            ?> <p class="inside-album-tags">No tag</p>
+                            <?php
+                        }
+                        ?>
+                        <p class="inside-album-dates"><?=$newDate?></p>
                     </div>
                 </div> 
             </div>
@@ -59,6 +75,7 @@ $month_arr = [];
                 echo "</div>";
             }
     }
+
 
         ?>
 
