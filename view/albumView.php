@@ -32,6 +32,7 @@ $month_arr = [];
                 "<h2 class='month-container-header'>{$month_created}</h2>
                 <div class='month-container'>";
             }
+            // print_r($get_tags);
                 
 ?>
             <div id="album-container-bottom">

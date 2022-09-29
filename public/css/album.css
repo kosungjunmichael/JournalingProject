@@ -38,6 +38,8 @@
 
 .month-container-header{
   color: var(--text-color-primary);
+  font-weight:100;
+  font-size: 1.4em;
 
 }
 
@@ -53,13 +55,17 @@
     background-position: center center;
     background-size:cover;
     -webkit-border-radius: 20px;
-    box-shadow: inset 0 1px 12px 1px rgba(0,0,0,0.3);
+    box-shadow: var(--album-color) 20px 20px 150px inset;
+
 
 }
 
 #album-page-title{
-    margin-left: 40px;
+
+    margin: 30px;
     color: var(--text-color-primary);
+    font-weight: 400;
+    font-size: 1.5em;
 
 }
 
@@ -72,8 +78,8 @@
 
 #album-title{
     text-align: center;
-    font-size: 1.5em;
-    font-weight: 900;
+    font-size: 1.3em;
+    font-weight:600;
     color: var(--text-color-primary);
 
 }
@@ -82,23 +88,20 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
+    margin-top: 10px;
 }
 
 .album-bottom p:first-child{
     background-color: gray;
-    padding: 5px 15px 0px 15px;
+    padding: 5px 15px 5px 15px;
     border-radius: 10px;
     color: var(--text-color-primary);
-
     
 }
 
 .album-bottom p:nth-child(2){
   color: var(--text-color-primary);
-
-    font-size: 0.9em;
-    padding-top: 10px;
-    padding-left: 10px;
+  font-size: 0.9em;
 }
 
 
@@ -201,7 +204,8 @@
   height: 17px;
   width: 17px;
   margin: 0 2px;
-  background-color: rgba(0,0,0,0.4);
+  background-color: var(--button-color);
+
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -215,7 +219,8 @@
 }
 
 .active, .dot:hover {
-  background-color: white;
+  background-color: var(--text-color-primary);
+
 }
 
 /* Fading animation */
