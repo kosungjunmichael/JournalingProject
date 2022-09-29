@@ -1,5 +1,6 @@
 <?php $title = "Map View"; ?>
 <?php $style = "map"; ?>
+<link rel="stylesheet" href="<?= BASE . "/public/css/timeline.css" ?>">
 <?php
 // $script = "map";
 ?>

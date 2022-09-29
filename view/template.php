@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?= $title ?></title>
     <?php if (isset($style)) { ?>
-        <link rel="stylesheet" href="<?= BASE .
-                                            "/public/css/$style.css" ?>">
+        <link rel="stylesheet" href="<?= BASE . "/public/css/$style.css" ?>">
     <?php } ?>
     <!-- Old Icon -->
     <!-- <link rel="icon" href="../public/images/assets/logo.png"> -->
