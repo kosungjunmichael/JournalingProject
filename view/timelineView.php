@@ -50,9 +50,6 @@
     }
     ?>
             <?php
-            // if ($entries === null){
-            //     $entries = array();
-            // }
             if ($entries AND $view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;
@@ -63,7 +60,7 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <div class="month-name"><?=$month." ".$entries["$month"][0]['year']?></div>
+                            <div class="month-name"><?=$month?></div>
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){

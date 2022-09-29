@@ -5,9 +5,11 @@
 <?php ob_start(); ?>
 <?php include(ROOT . "/view/header.php"); ?>
 
-<div id="basicInfo">
+<div class="landing-box">
     <div class="about">
-        <h1>About</h1>
+        <h1>
+            About
+        </h1>
         <br>
         <p>
             Dear Diary is a journaling app for the iPhone, iPad and Mac. From once-in-a-lifetime events 
@@ -53,8 +55,8 @@
 
 <?php $content = ob_get_clean(); ?>
 <?php 
-require("journeyTemplate.php"); 
+// require("journeyTemplate.php"); 
 ?>
 <?php 
-// require("template.php"); 
+require("template.php"); 
 ?>
