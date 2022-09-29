@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?= BASE . "/public/css/$style.css" ?>">
 
     <!-- Page specific javascript file -->
-    <script defer src="<?= BASE . "/public/js/loginSignup.js?>" ?>"></script>
+    <script type="module" defer src="<?= BASE . "/public/js/loginSignup.js?>" ?>"></script>
 
     <script src="https://kit.fontawesome.com/ed779ab57c.js" crossorigin="anonymous"></script>
 

@@ -2,7 +2,7 @@
 
 require_once "Manager.php";
 
-class TagManager extends Manager
+class TagManager extends Manager 
 {
 	protected function getTagID($tag_name)
 	{

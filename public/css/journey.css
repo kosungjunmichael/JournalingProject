@@ -5,11 +5,12 @@
 .container{
     overflow-y: scroll;
     width: 100%;
+    background-color: var(--grey);
 }
 
 .hero{
-    height:100vh;
-    width:100%;
+    height: 100vh;
+    width: 100%;
     background-color: var(--grey);
 }
 
@@ -19,7 +20,6 @@
     width:100%;
     justify-content: center;
     align-items: center;
-    background-color:var(--grey) ;
     color: #bababa;
     text-align: center;
     padding-top: 150px;
@@ -35,15 +35,9 @@
     margin-bottom: 30px;
 }
 
-.content h2 span{
+.journey-span {
     color:var(--primary);
-    font-size: 65px;
-    font-weight: 600;
-}
-
-.content p span{
-    color:var(--primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .content p{
@@ -52,27 +46,24 @@
     margin-bottom: 40px;
 } 
 
-.comment-container{
-    display:flex;
-    padding: 10px 30px;
+.comment-container {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    color: var(--white);
 }
 
-.text-container{
-    padding:25px 30px;
-    margin: 10px 20px 20px 20px;
+.text-container {
+    margin: 20px auto;
     font-size: 20px;
     line-height: 1.5;
-    max-width: 700px;
-    color:#bababa;
+    width: 500px;
 }
 
 .text-person{
     margin-top: 16px;
     font-size: 17px;
     font-weight: 600;
-    color:#dadada;
 }
 
  section{
@@ -84,7 +75,7 @@
 /* Second page */
 /* ---------- */
 
-.feature-container{
+.feature-container {
     padding: 100px;
     line-height: 1.5;
     font-size: 16px;
@@ -101,6 +92,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--white);
 }
 
 .feature-container h3{
@@ -119,14 +111,12 @@
     display: flex;
 }
 .jr-text-container{
-    height:350px;
+    height: 350px;
     width: 50%;
-    padding: 25px 30px;
-    margin: 0px -75px 0px 75px;
 }
 .jr-feature-container{
-    width:50%;
-    height:350px;
+    width: 50%;
+    height:3 50px;
 }
 
 .jr-feature-container{
@@ -161,16 +151,23 @@
     text-align: center;
 }
 
-.note-container h1{
+.journey-h1 {
     color: var(--white);
-    font-size: 65px;
+    font-size: 60px;
+    text-align: center;
 }
+.journey-h2 {
+    color: var(--white);
+    font-size: 40px;
+    text-align: center;
+}
+
 .note-container p{
     margin-top: 40px;
     width:65%;
     font-size: 22px;
     line-height: 34px;
-    color:#bababa;
+    color: var(--white);
     text-align: left;
 }
 .note-container p b{
@@ -246,7 +243,7 @@
 }
 .twitter-container p{
     margin: 0 0 1.5em;
-    font-size: 20px;
+    font-size: 17px;
 }
 /* .twitter-container a{
     text-decoration: none;
@@ -255,20 +252,23 @@
 
 .tweets-container{
     display:flex;
+    flex-direction: wrap;
     gap:2em;
 }
 .twitter-block{
     background-color: var(--white);
     color:black;
     padding: 10px 20px;
+    /* margin: 10px 50px; */
     border: 1px solid #ccc;
     border-radius: 8px;
     min-height: 228px;
+    /* max-width: 800px; */
 }
 .tweet-column{
     display: flex;
     flex-direction: column;
-    gap:2em;
+    gap: 2em;
 }
 
 .author-name {
@@ -289,6 +289,7 @@
 }
 
 .twitter-profile, .author-screenname {
+
     text-decoration: none;
     display: block;
     font-size: 16px;

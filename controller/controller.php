@@ -1,9 +1,9 @@
 <?php
 
-require_once('./model/EntryManager.php');
-require_once('./model/UserManager.php');
-require_once('./model/TagManager.php');
-require_once('./model/FilterManager.php');
+require_once "./model/EntryManager.php";
+require_once "./model/UserManager.php";
+require_once "./model/TagManager.php";
+require_once "./model/FilterManager.php";
 
 //--------------------------------------------------
 //----------------PAGE NAVIGATION-------------------
@@ -19,11 +19,12 @@ function toAboutUs()
 	require ROOT . "/view/aboutView.php";
 }
 
-function toTimeline($Unique_id, $entryGroup)
+function toTimeline($u_id, $entry_group)
 {
-	$entryManager = new EntryManager();
-	$entries = $entryManager->getEntries($Unique_id, $entryGroup);
-	$view = $entryGroup;
+	$entry_manager = new EntryManager();
+	$entries = $entry_manager->getEntries($u_id, $entry_group);
+	$view = $entry_group;
+	
 	require ROOT . "/view/timelineView.php";
 }
 
@@ -32,8 +33,11 @@ function createNewEntry()
 	require ROOT . "/view/createEntryView.php";
 }
 
-function toMap($uid)
+function toMap($u_id, $entry_group)
 {
+	$entryManager = new EntryManager();
+	$entries = $entryManager->getEntries($u_id, $entry_group);
+	// echoPre($entries);
 	require ROOT . "/view/mapView.php";
 }
 
@@ -137,15 +141,11 @@ function newEntry($data)
 		$tagManager->submitTags($data->tags, $entry_uid);
 		if ($_FILES["imgUpload"]["error"] !== 4) {
 			$checkImgs = $entryManager->uploadImages($entry_uid);
-			// echoPre($checkImgs);
 		} elseif (count($_FILES) > 1 and $_FILES["imgUpload"]["error"] === 4) {
 			throw new Exception(
 				"Error, image error status 4 - controller.php: newEntry()"
 			);
 		}
-		// $error = "Entry Submitted!";
-		//   require(ROOT . '/index.php?action=sidebarTimeline');
-		//   // toTimeline($check);
 		header("Location: index.php?action=toTimeline");
 	} else {
 		// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
@@ -154,20 +154,25 @@ function newEntry($data)
 	}
 }
 
-function filterEntries($filter){
-    $filterManager = new FilterManager();
-    // echo "<div>".$_SESSION['uid']."<div>";
-    // $type = "monthly";
-    $entries = $filterManager->filterEntries($_SESSION['uid'],$filter);
-    // echoPre($entries);
-    require(ROOT . '/view/timelineFiltered.php');
+function filterEntries($filter)
+{
+	$entryManager = new EntryManager();
+	$filterManager = new FilterManager();
+	// $type = "monthly";
+	if ($filter === "") {
+		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
+	} else {
+		$entries = $filterManager->filterEntriesByTag($_SESSION["uid"], $filter);
+		// echoPre($entries);
+	}
+	require ROOT . "/view/timelineFiltered.php";
 }
 
-
-function viewEntry($entryId){
-    $entryManager = new EntryManager();
-    $entryContent = $entryManager->getEntry($entryId, $_SESSION['uid']);
-    require(ROOT . '/view/viewEntryView.php');
+function viewEntry($entryId)
+{
+	$entryManager = new EntryManager();
+	$entryContent = $entryManager->getEntry($entryId, $_SESSION["uid"]);
+	require ROOT . "/view/viewEntryView.php";
 }
 
 //--------------------------------------------------
@@ -177,9 +182,9 @@ function viewEntry($entryId){
 function displayMonths($numOfMonths = 5)
 {
 	$months = [];
-	array_push($months, date("F"));
+	array_push($months, date("F Y"));
 	for ($i = 1; $i < $numOfMonths; $i++) {
-		array_push($months, Date("F", strtotime("-$i month")));
+		array_push($months, Date("F Y", strtotime("-$i month")));
 	}
 	return $months;
 }
