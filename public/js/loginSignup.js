@@ -33,3 +33,9 @@ document.getElementById("sign-up-link").addEventListener("click", () => {
 	closeLogin();
 	openSignup();
 });
+
+
+document.getElementById("sign-in-link").addEventListener("click", () => {
+	closeSignup();
+	openLogin();
+});

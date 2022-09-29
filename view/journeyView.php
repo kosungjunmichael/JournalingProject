@@ -5,6 +5,8 @@
 
 <?php include ROOT . "/view/header.php"; ?>
 
+
+
 <div class="container">
     <div class="hero">
         <div class="content">
@@ -367,9 +369,9 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require "journeyTemplate.php"; ?>
+<!-- <?php //require "journeyTemplate.php"; ?> -->
 
 <?php
-// require("template.php");
+require("template.php");
 ?>
 

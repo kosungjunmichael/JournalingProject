@@ -46,6 +46,11 @@
                     </script>
                 <?php } ?>
 
+                <div id="form-bottom">
+                    <p>Don't have an account yet?</p>
+                    <a id="sign-up-link">Sign Up</a>
+                </div>
+
                 <div class="input-container">
                     <input id="login-ue" 
                     type="text" 
@@ -91,10 +96,6 @@
                 </a>
             </div>
 
-            <div id="form-bottom">
-                <p>Don't have an account yet?</p>
-                <a id="sign-up-link">Sign Up</a>
-            </div>
         </div>
     </div>
 
@@ -103,7 +104,6 @@
             <button data-close="modal" id="close1" class="close">
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
-
 
             <!-- Sign Up form -->
 
@@ -117,6 +117,12 @@
                         alert("<?= $error_signup ?>")
                     </script>
                 <?php } ?>
+
+                <div id="have-an-account">
+                    <p>Already have an account?</p>
+                    <a id="sign-in-link">Sign In</a>
+                </div>
+
 
                 <div class="input-container">
                     <input id="sign-u" type="text" name="sign-u" />
