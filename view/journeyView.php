@@ -7,66 +7,53 @@
 
 <div class="container">
     <div class="hero">
+
         <div class="content">
-            <h2>
-                Dear Diary. <br><span>Your journal for life</span>.
-            </h2>
+            <h1 class="journey-h1">
+                Dear Diary. <br><span class="journey-span">Your journal for life</span>.
+            </h1>
             <p>
-                The <span>#1</span> app for <span>journaling</span>.
+                The <span class="journey-span">#1</span> app for <span class="journey-span">journaling</span>.
             </p>
         </div>
+
         <div class="comment-container">
             <div class="text-container">
-                <p>
-                    “It feels almost sacred: A completely private digital space.”
-                </p>
+                <p>“It feels almost sacred: A completely private digital space.”</p>
                 <div class="text-person">
-                    <p>
-                        Famous Youtuber
-                    </p>
+                    <p>Famous Youtuber</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    “Dear Diary makes journaling as easy as composing a tweet.”
-                </p>
+                <p>“Dear Diary makes journaling as easy as composing a tweet.”</p>
                 <div class="text-person">
-                    <p>
-                        Forbes
-                    </p>
+                    <p>Forbes</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    "Dear Diary looks good, works great, and most importantly,<br> 
-                    I own and control my data."
-                </p>
+                <p>"Dear Diary looks good, works great, and most importantly,<br> 
+                    I own and control my data."</p>
                 <div class="text-person">
-                    <p>
-                        CTO of Doist
-                    </p>
+                    <p>CTO of Doist</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    “Dear Diary is life changing.
-                    It's not just a note taking app,<br>
-                    it's a better way to think.”
-                </p>
+                <p>“Dear Diary is life changing. It's not just a note taking app,<br>
+                    it's a better way to think.”</p>
                 <div class="text-person">
-                    <p>
-                        Famous Creator
-                    </p>
+                    <p>Famous Creator</p>
                 </div>
             </div>
         </div>
+
     </div>
     
     <section>
-        <div class="feature-container">
-            <h3>
-            Meet Dear Diary, Your Self-Care Journal
-            </h3>
+        <div class="landing-box">
+            <h2 class="journey-h2">
+            Meet Dear Diary,<br>
+            Your Self-Care Journal
+            </h2>
             <div class="feature-content">
                 <div class='feature-text-container'>
                     <div class="jr-text-container">
@@ -157,10 +144,10 @@
 
     <section>
         <div class="note-container">
-            <h1>
+            <h2 class="journey-h2">
                 Notes for your <br>
                 grandchildren
-            </h1>
+            </h2>
             <p>
                 In our age when cloud services can <span>shut down,
                 get bought,</span> or <span>change privacy policy</span> any day,
@@ -232,7 +219,7 @@
 
     <section>
         <div class="twitter-container">
-            <h2>
+            <h2 class="journey-h2">
                 People ❤️ Dear Diary.
             </h2>
             <p>

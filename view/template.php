@@ -24,6 +24,7 @@
     <?php if (isset($script)) { ?>
         <script defer src="<?= BASE . "/public/js/$script.js" ?>"></script>
     <?php } ?>
+
     <link rel="icon" href="<?= BASE . "/public/images/static/logo.png" ?>">
 </head>
 

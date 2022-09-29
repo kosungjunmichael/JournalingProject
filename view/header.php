@@ -104,7 +104,6 @@
                 <p><i class="fa-solid fa-circle-xmark"></i></p>
             </button>
 
-
             <!-- Sign Up form -->
 
             <form method="POST" action="<?= BASE .
@@ -149,15 +148,15 @@
                     <p>✖ Please enter a valid Password</p>
                 </div>
 
-                    <div id="tooltip-p">
-                        <div class="arrow-left"></div>
-                        <div id="message">
-                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                            <p id="capital" class="invalid">A <b>capital</b> letter</p>
-                            <p id="number" class="invalid">A <b>number</b></p>
-                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                        </div>
+                <div id="tooltip-p">
+                    <div class="arrow-left"></div>
+                    <div id="message">
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                     </div>
+                </div>
             </div>
 
             <div class="input-container">
@@ -177,35 +176,40 @@
             <button type="submit" class="form-button" id="signup-btn">Sign Up</button>
         </form>
 
-            <div id="or-separator">OR</div>
+        <div id="or-separator">OR</div>
 
-            <!-- Google login -->
-            <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER[
-                	"CLIENT_ID"
-                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left">
-                </div>
+        <!-- Google login -->
+        <div class="google-btn">
+            <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                "CLIENT_ID"
+            ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
             </div>
-            <a href="javascript:signUpWithKakao()">
-                <div id="kakao-signup-container">
-                    <div class="kakao-container">
-                        <div class="kakao-symbol">
-                            <i class="fa-solid fa-comment"></i>
-                        </div>
-                        <div class="kakao-label">
-                            Signup with Kakao
-                        </div>
+            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left">
+            </div>
+        </div>
+        <!-- Kakao login -->
+        <a href="javascript:signUpWithKakao()">
+            <div id="kakao-signup-container">
+                <div class="kakao-container">
+                    <div class="kakao-symbol">
+                        <i class="fa-solid fa-comment"></i>
+                    </div>
+                    <div class="kakao-label">
+                        Signup with Kakao
                     </div>
                 </div>
-            </a>
+            </div>
+        </a>
+
     </div>
 <div class="blur"></div>
 </header>
 
 <!-- FORM VALIDATION -->
 <script src="<?= BASE . "/public/js/formValidation.js" ?>"></script>
+
+<!-- BLUR -->
+<script src="<?= BASE . "/public/js/loginSignup.js" ?>"></script>
 
 <!-- GOOGLE -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
