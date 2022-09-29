@@ -118,15 +118,16 @@ if (!isset($_SESSION["uid"])) {
             <input type="color" id="backColor" class="adv-option-button" />
             <label for="backColor">Highlight Color</label>
             </div>
-            </div>
-            <form action="EntryEditManager.php" method="post"> <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
+        </div>
+        <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
+            <!-- <form action="EntryEditManager.php" method="post"> 
             <div id="input-text" contenteditable="true"></div>
             <textarea name="textContent" id="hidden-text" cols="100" rows="130" hidden></textarea>
-            <!-- <button id="submit">Submit</button> -->
-            <!-- <input id="submit" type="submit" value="Submit"> -->
-            </form>
+            <button id="submit">Submit</button>
+            <input id="submit" type="submit" value="Submit">
+            </form> -->
 
-            <!-- <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea> -->
+            <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
         </div>
 
         <div id="entry-upload-photo">
