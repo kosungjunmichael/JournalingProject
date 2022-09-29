@@ -47,8 +47,7 @@ function toLogout()
 //----------------USER SIGNUP-----------------------
 //--------------------------------------------------
 
-function signUp($data, $type)
-{
+function signUp($data, $type) {
 	switch ($type) {
 		case "regular":
 			$control = [];
@@ -112,8 +111,7 @@ function signUp($data, $type)
 //----------------USER LOGIN------------------------
 //--------------------------------------------------
 
-function login($data, $type)
-{
+function login($data, $type) {
 	$userManager = new UserManager();
 	$check = $userManager->confirmUser($data, $type);
 	if ($check === false) {
@@ -128,8 +126,7 @@ function login($data, $type)
 //----------------ENTRY MANAGEMENT------------------
 //--------------------------------------------------
 
-function newEntry($data)
-{
+function newEntry($data) {
 	$entryManager = new EntryManager();
 	$tagManager = new TagManager();
 	if (!empty($data->title) and !empty($data->entry)) {
@@ -155,11 +152,15 @@ function newEntry($data)
 }
 
 function filterEntries($filter){
+		$entryManager = new EntryManager();
     $filterManager = new FilterManager();
-    // echo "<div>".$_SESSION['uid']."<div>";
     // $type = "monthly";
-    $entries = $filterManager->filterEntries($_SESSION['uid'],$filter);
-    // echoPre($entries);
+		if ($filter === ""){
+			$entries = $entryManager->getEntries($_SESSION['uid'], "monthly");
+		} else {
+			$entries = $filterManager->filterEntriesByTag($_SESSION['uid'],$filter);
+			// echoPre($entries);
+		}
     require(ROOT . '/view/timelineFiltered.php');
 }
 
@@ -177,9 +178,9 @@ function viewEntry($entryId){
 function displayMonths($numOfMonths = 5)
 {
 	$months = [];
-	array_push($months, date("F"));
+	array_push($months, date("F Y"));
 	for ($i = 1; $i < $numOfMonths; $i++) {
-		array_push($months, Date("F", strtotime("-$i month")));
+		array_push($months, Date("F Y", strtotime("-$i month")));
 	}
 	return $months;
 }

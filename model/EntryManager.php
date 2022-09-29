@@ -125,7 +125,7 @@ class EntryManager extends Manager
         FROM entries e
         LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
         LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE user_uid = :userId 
+        WHERE user_uid = :userId
         GROUP BY last_edited DESC');
 		$req->execute([
 			"userId" => $userId,
@@ -161,7 +161,7 @@ class EntryManager extends Manager
                             // push the entryContent into the key
                             array_push($entriesDisplay[$monthYearKey], $entryContent);
                         } else {
-                            // create the array in the key & push the entryContent into the key
+                            // create the key in the array & push the entryContent into the key
                             $entriesDisplay[$monthYearKey] = array();
                             $entriesDisplay[$monthYearKey][] = $entryContent;
                         }
