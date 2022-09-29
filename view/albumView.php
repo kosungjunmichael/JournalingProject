@@ -7,7 +7,6 @@
 <?php ob_start(); ?>
 <?php include "sidebarView.php"; ?>
 
-
 <div id="container"> 
 <h1 id="album-page-title">Album</h1> 
 <section id="album-container"> 
