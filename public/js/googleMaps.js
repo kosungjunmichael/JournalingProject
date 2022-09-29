@@ -31,6 +31,9 @@ const initMap = () => {
 						day: "numeric",
 						year: "numeric",
 					})}` +
+					// `<a href="<?= BASE . "/index.php?action=viewEntry&id="${coords['u_id']}">View Entry</a>` +
+					`<a class="entry-date" href="./index.php?action=viewEntry&id=${coords['u_id']}" style="color:white">View Entry</a>` +
+					// `<a href="<?php echo "BASE . '/index.php?action=viewEntry&id=${coords['u_id']}'";?>">View Entry</a>` +
 					`</div>` +
 					`</div>` +
 					`</div>`;
