@@ -231,16 +231,40 @@ class EntryManager extends Manager
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
-		$imagesReq = $db->prepare(
-			"SELECT path FROM entry_images WHERE entry_uid = ?"
-		);
-		$imagesReq->execute([$entryId]);
-		$images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
-		$entryContent["images"] = $images;
+        $imagesReq = $db->prepare('SELECT path FROM entry_images WHERE entry_uid = ?');
+        $imagesReq->execute(array($entryId));
+        $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
+        $entryContent['images'] = $images;
+        
+        return $entryContent;
+        $req->closeCursor();
+    }
 
-		return $entryContent;
-		$req->closeCursor();
-	}
+    // public function getImages($uid){
+
+    //     $db = $this->dbConnect();
+    //     // check if UID already exists
+    //     // fetch matching unique IDs
+    //     $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id ORDER BY date_created DESC');
+    //     $query->bindParam('u_id', $uid, PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetchAll();
+    // }
+
+    public function getAlbum(){
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT x.u_id, x.title, x.date_created,
+        GROUP_CONCAT(y.path SEPARATOR ',') as paths
+        FROM ENTRIES x
+        JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
+        GROUP BY x.u_id ORDER BY date_created DESC LIMIT 5");
+
+        $req -> execute();
+        $res = $req -> fetchAll(PDO::FETCH_ASSOC);
+        // echo "EntryManager.php: getAlbum: RES", "<br>";
+        // echoPre($res);
+        return $res;
+    }
 
 	public function createCoord($location)
 	{
@@ -260,3 +284,5 @@ class EntryManager extends Manager
 		];
 	}
 }
+
+
