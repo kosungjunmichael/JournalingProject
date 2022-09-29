@@ -94,7 +94,7 @@
         } ?>
     </div>
     <div id="view-entry-text-content">
-        <?= $entryContent["text_content"] ?>
+        <?= $entryContent["text_content"] ?> 
     </div>
 </article>
 
