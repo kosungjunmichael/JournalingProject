@@ -28,22 +28,18 @@ const openModal = pathsStr => { // use type to know which input to add the data 
     modal.appendChild(dotContainer);
 
     for(let i=0; i<paths.length; i++){
-        if(paths.length > 1 ){
+        if(paths.length >= 1 ){
             let dot = document.createElement("span");
-            let dots = document.getElementsByClassName("dot");
-            dot.classList.add("dot");
+            // let dots = document.getElementsByClassName("dot");
             dotContainer.appendChild(dot);
+            dot.classList.add("dot", "active");
+            
             showSlides(paths.length);
-            dots[i].setAttribute("onclick", `currentSlide(${i})`);
-
-            dots[i].classList.add("active");
-            // dots[slideIndex-1].classList.add("active");
-            
-            
+            dot.setAttribute("onclick", `currentSlide(${i})`);
             }
+
         }
     
-
 
     // Carousel
     let arrowRight = document.createElement("a");
@@ -75,17 +71,16 @@ const closeModal = function(){
     html.style.overflow = "visible";
 }
 
-let slideIndex = 1;
-let dotIndex = 1;
+// let slideIndex = -1;
 
 // Next/previous controls
 function plusSlides(n) {
-    showSlides(slideIndex += n);
+    showSlides(slideIndex += n);    
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
-    showSlides(slideIndex = n);
+    showSlides(slideIndex = n+2);
 }
 
 function showSlides(n) {
@@ -101,18 +96,9 @@ function showSlides(n) {
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
-
+    
     slides[slideIndex-1].style.display = "block";
-    // dots[slideIndex-1].classList.toggle("active");
+    // dots[slideIndex[i]].className += " active";
+    // dots[slideIndex].classList.toggle("active");
+    console.log(dots[slideIndex]);
 }
-
-// function showDots(n){
-//     let i;
-//     let dots = document.getElementsByClassName("dot");
-//     if (n > dots.length) {dotIndex = 1}
-//     if (n <= 1) {dotIndex = dots.length}
-//     for (i = 0; i < dots.length; i++) {
-//         dots[i].classList.remove("active");
-//     }
-//     dots[dotIndex-1].classList.add("active");
-// }

@@ -23,25 +23,19 @@ $month_arr = [];
             $newDate = date("F j Y", strtotime($date_created));  
             $month_name = date("F", strtotime($date_created));
             $title = $res[$i]["title"];
-            
-                
+
                 // if the month_created is NOT in the array, add it and display it
                 // if it IS in the array, do nothing
-                ?>
-            <div id="album-container-bottom">
-                <?php 
-                // if(!in_array($month_created, $month_arr)){
-                //     array_push($month_arr, $month_created);
-                    
-                //     echo 
-                //     "
-                //     <p>{$month_created}</p>
-                //     ";
-
-                    
-
+            if(!in_array($month_created, $month_arr)){
+                array_push($month_arr, $month_created);
+                echo 
+                "<h2 class='month-container-header'>{$month_created}</h2>
+                <div class='month-container'>";
+            }
                 
-            ?>
+?>
+            <div id="album-container-bottom">
+
             <!-- *BUG* . being added to path when uploading images on entry -->
             
                     <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?=BASE . $path[0]?>")';>
@@ -54,20 +48,24 @@ $month_arr = [];
             </div>
 
             <?php
-        }
-    // }
+            if($i+1 < count($res)){
+                $date_created_next = $res[$i+1]["date_created"];
+                $month_created_next = date("F Y", strtotime($date_created_next));  
+                if ($month_created_next !== $month_created){
+                    echo "</div>";
+                } 
+            } else {
+                echo "</div>";
+            }
+    }
 
         ?>
 
 </section>
-    </div>
-    <div class="overlay display-none" onclick="closeModal()"></div>
-<div class="modal-container display-none">
-<div class="modal display-none">
-
-
-
 </div>
+<div class="overlay display-none" onclick="closeModal()"></div>
+<div class="modal-container display-none">
+    <div class="modal display-none"></div>
 </div>
 
 <?php $content = ob_get_clean(); ?>

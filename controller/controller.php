@@ -204,9 +204,6 @@ function updateLastActive($uid)
 	$userManager->updateLastActive($uid);
 }
 
-function createNewEntry(){
-  require(ROOT . '/view/createEntryView.php');
-}
 
 
 function toAlbum($uid){

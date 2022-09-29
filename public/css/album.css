@@ -10,10 +10,11 @@
 
 #album-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 40px;
     margin-left: 40px;
+    max-width: 100vw;
 }
 
 #album-container h1{
@@ -23,13 +24,22 @@
 
 #album-container-bottom{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
     
 }
 
+.month-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
+.month-container-header{
+  color: var(--text-color-primary);
+
+}
 
 
 .album{
@@ -65,7 +75,6 @@
     font-size: 1.5em;
     font-weight: 900;
     color: var(--text-color-primary);
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 
 }
 
@@ -133,7 +142,7 @@
 }
 
   .nav-arrow {
-    opacity: 0.3;
+    opacity: 0.5;
     position: absolute;
     background: #fff;
     height: 30px;
@@ -147,7 +156,7 @@
     transition: all 0.2s ease-out;
   }
   .nav-arrow:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
   .nav-arrow:before,
   .nav-arrow:after {
@@ -185,31 +194,18 @@
   display: none;
 }
 
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
 
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
+  height: 17px;
+  width: 17px;
   margin: 0 2px;
-  background-color: #bbb;
+  background-color: rgba(0,0,0,0.4);
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  margin-top: 15px;
 }
 
 .dotContainer{
@@ -219,13 +215,13 @@
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: white;
 }
 
 /* Fading animation */
 .fade {
   animation-name: fade;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
 }
 
 @keyframes fade {
