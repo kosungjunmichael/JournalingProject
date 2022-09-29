@@ -69,18 +69,23 @@ class EntryManager extends Manager
 			$existingUID = $this->checkUniqueIDExist($uid);
 		} while (count($existingUID) > 0);
 
+		// Getting lat/long for entry location
+		$lat_lng = json_encode($this->createCoord($data->location));
+
 		// Inserting the entry into the 'entries' table
 		$req = $db->prepare('INSERT INTO entries                                
                                 (u_id
                                 , user_uid
 								, title
 								, location
+								, lat_lng
 								, weather
                                 ,text_content)
                             VALUES (:inUID
 								, :inUser_UID
 								, :inTitle
 								, :inLocation
+								, :inLatLong
 								, :inWeather
 								, :inTextContent)
             ');
@@ -88,6 +93,7 @@ class EntryManager extends Manager
 		$req->bindParam("inUser_UID", $data->userUID, PDO::PARAM_STR);
 		$req->bindParam("inTitle", $data->title, PDO::PARAM_STR);
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
+		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
 		$req->bindParam("inTextContent", $data->entry, PDO::PARAM_STR);
 		$req->execute();
@@ -111,15 +117,16 @@ class EntryManager extends Manager
 		$req = $db->prepare('SELECT
                             e.u_id
                             , e.title
+                            , e.location
+							, e.lat_lng
                             , e.text_content
+                            , e.date_created
                             , e.last_edited
                             , DAYNAME(e.last_edited) as dayname
-                            , WEEK(e.last_edited) as week
                             , DAY(e.last_edited) as day
+                            , WEEK(e.last_edited) as week
                             , MONTHNAME(e.last_edited) as month
                             , YEAR(e.last_edited) as year
-                            , e.date_created
-                            , e.location
                             , GROUP_CONCAT(t.tag_name) as tags
                             -- add GROUP_CONCAT function here. give it an alias like "as tags" 
         FROM entries e
@@ -139,33 +146,33 @@ class EntryManager extends Manager
 				// if Monthly
 				if ($entryGroup === "monthly") {
 					// for current year
-//					if ($entryContent["year"] == $thisYear) {
-						// check if the keyname exists in the $entriesDisplay
-//						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
-//							// push the entryContent into the key
-//							array_push(
-//								$entriesDisplay[$entryContent["month"]],
-//								$entryContent
-//							);
-//						} else {
-//							// create the array in the key & push the entryContent into the key
-//							$entriesDisplay[$entryContent["month"]] = [];
-//							array_push(
-//								$entriesDisplay[$entryContent["month"]],
-//								$entryContent
-//							);
-//						}
-                        $monthYearKey = $entryContent['month'] . " " . $entryContent['year'];
-                        // check if the keyname exists in the $entriesDisplay
-                        if (array_key_exists($monthYearKey, $entriesDisplay)) {
-                            // push the entryContent into the key
-                            array_push($entriesDisplay[$monthYearKey], $entryContent);
-                        } else {
-                            // create the key in the array & push the entryContent into the key
-                            $entriesDisplay[$monthYearKey] = array();
-                            $entriesDisplay[$monthYearKey][] = $entryContent;
-                        }
-//					}
+					//					if ($entryContent["year"] == $thisYear) {
+					// check if the keyname exists in the $entriesDisplay
+					//						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
+					//							// push the entryContent into the key
+					//							array_push(
+					//								$entriesDisplay[$entryContent["month"]],
+					//								$entryContent
+					//							);
+					//						} else {
+					//							// create the array in the key & push the entryContent into the key
+					//							$entriesDisplay[$entryContent["month"]] = [];
+					//							array_push(
+					//								$entriesDisplay[$entryContent["month"]],
+					//								$entryContent
+					//							);
+					//						}
+					$monthYearKey = $entryContent["month"] . " " . $entryContent["year"];
+					// check if the keyname exists in the $entriesDisplay
+					if (array_key_exists($monthYearKey, $entriesDisplay)) {
+						// push the entryContent into the key
+						array_push($entriesDisplay[$monthYearKey], $entryContent);
+					} else {
+						// create the key in the array & push the entryContent into the key
+						$entriesDisplay[$monthYearKey] = [];
+						$entriesDisplay[$monthYearKey][] = $entryContent;
+					}
+					//					}
 				} elseif ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (
@@ -224,14 +231,58 @@ class EntryManager extends Manager
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
-		$imagesReq = $db->prepare(
-			"SELECT path FROM entry_images WHERE entry_uid = ?"
-		);
-		$imagesReq->execute([$entryId]);
-		$images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
-		$entryContent["images"] = $images;
+        $imagesReq = $db->prepare('SELECT path FROM entry_images WHERE entry_uid = ?');
+        $imagesReq->execute(array($entryId));
+        $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
+        $entryContent['images'] = $images;
+        
+        return $entryContent;
+        $req->closeCursor();
+    }
 
-		return $entryContent;
-		$req->closeCursor();
+    // public function getImages($uid){
+
+    //     $db = $this->dbConnect();
+    //     // check if UID already exists
+    //     // fetch matching unique IDs
+    //     $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id ORDER BY date_created DESC');
+    //     $query->bindParam('u_id', $uid, PDO::PARAM_STR);
+    //     $query->execute();
+    //     return $query->fetchAll();
+    // }
+
+    public function getAlbum(){
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT x.u_id, x.title, x.date_created,
+        GROUP_CONCAT(y.path SEPARATOR ',') as paths
+        FROM ENTRIES x
+        JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
+        GROUP BY x.u_id ORDER BY date_created DESC LIMIT 5");
+
+        $req -> execute();
+        $res = $req -> fetchAll(PDO::FETCH_ASSOC);
+        // echo "EntryManager.php: getAlbum: RES", "<br>";
+        // echoPre($res);
+        return $res;
+    }
+
+	public function createCoord($location)
+	{
+		$location = urlencode($location);
+		$url = "https://maps.googleapis.com/maps/api/geocode/json?address={$location}&key={$_SERVER["GMAP_API_KEY"]}";
+		$resp = json_decode(file_get_contents($url), true);
+		$lat = isset($resp["results"][0]["geometry"]["location"]["lat"])
+			? $resp["results"][0]["geometry"]["location"]["lat"]
+			: "";
+		$lng = isset($resp["results"][0]["geometry"]["location"]["lng"])
+			? $resp["results"][0]["geometry"]["location"]["lng"]
+			: "";
+
+		return [
+			"lat" => $lat,
+			"lng" => $lng,
+		];
 	}
 }
+
+

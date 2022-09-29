@@ -7,66 +7,53 @@
 
 <div class="container">
     <div class="hero">
+
         <div class="content">
-            <h2>
-                Dear Diary. <br><span>Your journal for life</span>.
-            </h2>
+            <h1 class="journey-h1">
+                Dear Diary. <br><span class="journey-span">Your journal for life</span>.
+            </h1>
             <p>
-                The <span>#1</span> app for <span>journaling</span>.
+                The <span class="journey-span">#1</span> app for <span class="journey-span">journaling</span>.
             </p>
         </div>
+
         <div class="comment-container">
             <div class="text-container">
-                <p>
-                    “It feels almost sacred: A completely private digital space.”
-                </p>
+                <p>“It feels almost sacred: A completely private digital space.”</p>
                 <div class="text-person">
-                    <p>
-                        Famous Youtuber
-                    </p>
+                    <p>Famous Youtuber</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    “Dear Diary makes journaling as easy as composing a tweet.”
-                </p>
+                <p>“Dear Diary makes journaling as easy as composing a tweet.”</p>
                 <div class="text-person">
-                    <p>
-                        Forbes
-                    </p>
+                    <p>Forbes</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    "Dear Diary looks good, works great, and most importantly,<br> 
-                    I own and control my data."
-                </p>
+                <p>"Dear Diary looks good, works great, and most importantly,<br> 
+                    I own and control my data."</p>
                 <div class="text-person">
-                    <p>
-                        CTO of Doist
-                    </p>
+                    <p>CTO of Doist</p>
                 </div>
             </div>
             <div class="text-container">
-                <p>
-                    “Dear Diary is life changing.
-                    It's not just a note taking app,<br>
-                    it's a better way to think.”
-                </p>
+                <p>“Dear Diary is life changing. It's not just a note taking app,<br>
+                    it's a better way to think.”</p>
                 <div class="text-person">
-                    <p>
-                        Famous Creator
-                    </p>
+                    <p>Famous Creator</p>
                 </div>
             </div>
         </div>
+
     </div>
     
     <section>
-        <div class="feature-container">
-            <h3>
-            Meet Dear Diary, Your Self-Care Journal
-            </h3>
+        <div class="landing-box">
+            <h2 class="journey-h2">
+            Meet Dear Diary,<br>
+            Your Self-Care Journal
+            </h2>
             <div class="feature-content">
                 <div class='feature-text-container'>
                     <div class="jr-text-container">
@@ -157,10 +144,10 @@
 
     <section>
         <div class="note-container">
-            <h1>
+            <h2 class="journey-h2">
                 Notes for your <br>
                 grandchildren
-            </h1>
+            </h2>
             <p>
                 In our age when cloud services can <span>shut down,
                 get bought,</span> or <span>change privacy policy</span> any day,
@@ -204,8 +191,8 @@
                     <div class="subfeature-description">
                         <p>
                             " Most of the community plugin and theme developers also hang out
-                             in our community. Learn together and make something awesome!
-                              Teamwork makes the dream work. "
+                            in our community. Learn together and make something awesome!
+                            Teamwork makes the dream work. "
                         </p>
                     </div>
                 </div>
@@ -232,7 +219,7 @@
 
     <section>
         <div class="twitter-container">
-            <h2>
+            <h2 class="journey-h2">
                 People ❤️ Dear Diary.
             </h2>
             <p>
@@ -245,19 +232,23 @@
                 <div class="tweet-column">
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div class="twitter-profile">
-                                <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Alex Isak
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @marvelnian
-                                </a>
+                            <div>
+                                <div class="twitter-profile">
+                                    <a href="#" class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Alex Isak
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @marvelnian
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>
@@ -307,19 +298,23 @@
                 <div class="tweet-column">
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div href="#" class="twitter-profile">
-                                <a class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Kieran Guimarães
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @kieranguimaraes
-                                </a>
+                            <div>
+                                <div href="#" class="twitter-profile">
+                                    <a class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Kieran Guimarães
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @kieranguimaraes
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>
@@ -334,19 +329,23 @@
                     </div>
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div class="twitter-profile">
-                                <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Nick Almirón
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @newmiron2022
-                                </a>
+                            <div>
+                                <div class="twitter-profile">
+                                    <a href="#" class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Nick Almirón
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @newmiron2022
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>
@@ -367,9 +366,9 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require "journeyTemplate.php"; ?>
+<!-- <?php //require "journeyTemplate.php"; ?> -->
 
 <?php
-// require("template.php");
+require("template.php");
 ?>
 
