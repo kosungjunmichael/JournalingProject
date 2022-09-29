@@ -56,6 +56,11 @@ body[data-theme='dark'] {
     font-family: Raleway;
 }
 
+/* Remove input hightlight in Chrome */
+input:focus, textarea:focus, select:focus  {
+    outline: none;
+  }
+
 a {
     text-decoration: none;
 }

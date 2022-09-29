@@ -32,6 +32,11 @@ function createNewEntry()
 	require ROOT . "/view/createEntryView.php";
 }
 
+function toCalendar()
+{
+	require ROOT . "/view/calendarView.php";
+}
+
 function toMap($uid)
 {
 	require ROOT . "/view/mapView.php";

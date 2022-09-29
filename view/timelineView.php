@@ -16,7 +16,7 @@
 <div id="timeline">
 
     <div class="title">Timeline</div>
-    <input type="text" name="search_bar" class="search-bar">
+    <input type="text" name="search_bar" class="search-bar" placeholder="Search...">
     <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
