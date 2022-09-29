@@ -12,7 +12,7 @@
         <!-- Old Icon -->
         <!-- <link rel="icon" href="../public/images/assets/logo.png"> -->
         <!-- Boxicons Link -->
-        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!--    Phosphor Icons Link -->
         <script src="https://unpkg.com/phosphor-icons"></script>
         <!-- Font awesome icons Link -->

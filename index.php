@@ -39,7 +39,7 @@ try {
             break;
 
         case "toMap":
-            toMap($_SESSION['uid']);
+            toMap($_SESSION['uid'], "all");
             break;
 
         case "createEntry":
@@ -106,7 +106,6 @@ try {
             break;
         
         case "addNewEntry":
-            // echoPre($_REQUEST);
             $entryContent = (object)array();
             $entryContent->userUID = $_SESSION['uid'];
             $entryContent->title = $_REQUEST['title'];

@@ -249,3 +249,10 @@ body{
 
 /* --------------------------- */
 /* --------------------------- */
+
+.landing-box{
+    max-width: 900px;
+    margin: 180px auto 50px auto;
+    font-size: large;
+    padding: 0 20px;
+}
