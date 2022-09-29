@@ -5,57 +5,12 @@
 .container{
     overflow-y: scroll;
     width: 100%;
-}
-
-.hero{
-    height:100vh;
-    width:100%;
     background-color: var(--grey);
 }
 
-nav{
-    background-color: rgba(22,22,22,0.7);
-    color: var(--grey-superlight);
-    width:100%;
-    padding: 30px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position:fixed;
-}
-
-#logo-container{
-    display: flex;
-    gap:20px;
-}
-#logo-title{
-    margin-top: 5px;
-}
-
-.logo{
-    color: white;
-    font-size: 30px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-nav ul li{
-    list-style-type: none;
-    display: inline-block;
-    padding: 10px 25px;
-}
-
-nav ul li a{
-    color: white;
-    text-decoration: none;
-    font-weight:500;
-    letter-spacing: 1px;
-    padding: 2px 15px;
-}
-
-nav ul li a:hover{
-    color: var(--primary);
+.hero{
+    height: 100vh;
+    width: 100%;
 }
 
 .hero .content{
@@ -64,7 +19,6 @@ nav ul li a:hover{
     width:100%;
     justify-content: center;
     align-items: center;
-    background-color:var(--grey) ;
     color: #bababa;
     text-align: center;
     padding-top: 150px;
@@ -80,15 +34,9 @@ nav ul li a:hover{
     margin-bottom: 30px;
 }
 
-.content h2 span{
+.journey-span {
     color:var(--primary);
-    font-size: 65px;
-    font-weight: 600;
-}
-
-.content p span{
-    color:var(--primary);
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .content p{
@@ -97,27 +45,24 @@ nav ul li a:hover{
     margin-bottom: 40px;
 } 
 
-.comment-container{
-    display:flex;
-    padding: 10px 30px;
+.comment-container {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    color: var(--white);
 }
 
-.text-container{
-    padding:25px 30px;
-    margin: 10px 20px 20px 20px;
+.text-container {
+    margin: 20px auto;
     font-size: 20px;
     line-height: 1.5;
-    max-width: 700px;
-    color:#bababa;
+    width: 500px;
 }
 
 .text-person{
     margin-top: 16px;
     font-size: 17px;
     font-weight: 600;
-    color:#dadada;
 }
 
  section{
@@ -129,7 +74,7 @@ nav ul li a:hover{
 /* Second page */
 /* ---------- */
 
-.feature-container{
+.feature-container {
     padding: 100px;
     line-height: 1.5;
     font-size: 16px;
@@ -146,6 +91,7 @@ nav ul li a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--white);
 }
 
 .feature-container h3{
@@ -164,14 +110,12 @@ nav ul li a:hover{
     display: flex;
 }
 .jr-text-container{
-    height:350px;
+    height: 350px;
     width: 50%;
-    padding: 25px 30px;
-    margin: 0px -75px 0px 75px;
 }
 .jr-feature-container{
-    width:50%;
-    height:350px;
+    width: 50%;
+    height:3 50px;
 }
 
 .jr-feature-container{
@@ -206,16 +150,23 @@ nav ul li a:hover{
     text-align: center;
 }
 
-.note-container h1{
+.journey-h1 {
     color: var(--white);
-    font-size: 65px;
+    font-size: 60px;
+    text-align: center;
 }
+.journey-h2 {
+    color: var(--white);
+    font-size: 40px;
+    text-align: center;
+}
+
 .note-container p{
     margin-top: 40px;
     width:65%;
     font-size: 22px;
     line-height: 34px;
-    color:#bababa;
+    color: var(--white);
     text-align: left;
 }
 .note-container p b{
@@ -291,7 +242,7 @@ nav ul li a:hover{
 }
 .twitter-container p{
     margin: 0 0 1.5em;
-    font-size: 20px;
+    font-size: 17px;
 }
 .twitter-container a{
     text-decoration: none;
@@ -300,20 +251,23 @@ nav ul li a:hover{
 
 .tweets-container{
     display:flex;
+    flex-direction: wrap;
     gap:2em;
 }
 .twitter-block{
     background-color: var(--white);
     color:black;
     padding: 10px 20px;
+    /* margin: 10px 50px; */
     border: 1px solid #ccc;
     border-radius: 8px;
     min-height: 228px;
+    /* max-width: 800px; */
 }
 .tweet-column{
     display: flex;
     flex-direction: column;
-    gap:2em;
+    gap: 2em;
 }
 .twitter-profile .author-name{
     color:black;
@@ -330,7 +284,6 @@ nav ul li a:hover{
     border-radius: 25px;
     margin-right: 5px;
 }
-
 
 .twitter-profile .author-screenname{
     text-decoration: none;

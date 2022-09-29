@@ -5,7 +5,7 @@
 <?php ob_start(); ?>
 <?php include(ROOT . "/view/header.php"); ?>
 
-<div id="basicInfo">
+<div class="landing-box">
     <div class="about">
         <h1>About</h1>
         <br>
