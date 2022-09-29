@@ -15,7 +15,7 @@
 
 <div id="timeline">
 
-    <div class="title">Timeline</div>
+    <h1 class="title">Timeline</h1>
     <input type="text" name="search_bar" class="search-bar" placeholder="Search...">
     <div class="filter-cont"></div>
     <div class="switch-toggle">

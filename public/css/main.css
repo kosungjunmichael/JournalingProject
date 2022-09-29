@@ -256,3 +256,11 @@ body{
     font-size: large;
     padding: 0 20px;
 }
+
+.title{
+    font-size: 35px;
+    padding: 20px;
+    font-weight: 900;
+    font-family:'Galey';
+    text-transform: capitalize;
+}

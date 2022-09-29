@@ -6,13 +6,6 @@ body{
     color: var(--text-color-primary);
 }
 
-.title{
-    font-size: 35px;
-    padding: 20px;
-    font-weight: 900;
-    font-family:'Galey';
-}
-
 .search-bar{
     padding: 15px;
     margin: 0px 50px;
@@ -127,7 +120,7 @@ body{
     /* background-color: var(--grey-dark); */
     margin: 10px;
     background-color: var(--bg-secondary);
-    border:none;
+    border: none;
 }
 
 /*      === Weekly ===      */
