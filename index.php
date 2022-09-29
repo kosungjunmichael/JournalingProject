@@ -1,10 +1,10 @@
 <?php
 require('./controller/controller.php');
 
-// use in PHP
+// USE IN PHP
 define('ROOT', dirname(__FILE__));
 
-// use in HTML
+// USE IN HTML
 $httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
 define('BASE', $httpProtocol.'://'.$_SERVER['HTTP_HOST'].'/sites/JournalingProject');
 
@@ -18,44 +18,16 @@ try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
     switch ($action){
-        case "googleSignup":
-            // google signup
-            $response = $_REQUEST['credential'];
-            $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-            signUp($credentials, 'google');
-            break;
+//--------------------------------------------------
+//----------------PAGE NAVIGATION-------------------
+//--------------------------------------------------
 
-            // regular signup
-        case "regularSignup":
-            signUp($_REQUEST, 'regular');
-            break;
-
-        case "googleLogin":
-            // google login
-            $response = $_REQUEST['credential'];
-            $credentials = json_decode(base64_decode(str_replace('_', '/', str_replace('-', '+', explode('.', $response)[1]))));
-            login($credentials, 'google');
+        case "toLanding":
+            toLanding();
             break;
             
-            // regular login
-        case "regularLogin":
-            login($_REQUEST, 'regular');
-            break;
-
-        case "toSignup":
-            toSignup();
-            break;
-
-        case "toLogin":
-            toLogin();
-            break;
-
-        case "toggleView":
-            if ($_GET['view'] === "week"){
-                toTimeline($_SESSION['uid'], "weekly");
-            } else if ($_GET['view'] === "month") {
-                toTimeline($_SESSION['uid'], "monthly");
-            }
+        case "toAboutUs":
+            toAboutUs();
             break;
 
         case "toTimeline":
@@ -66,26 +38,78 @@ try {
             toMap($_SESSION['uid']);
             break;
 
-        case "toLanding":
-            toLanding();
-            break;
-
-        case "toAboutUs":
-            toAboutUs();
-            break;
-
         case "createEntry":
             createNewEntry();
             break;
+
+        case "toLogout":
+            toLogout();
+            break;
+
+//--------------------------------------------------
+//----------------USER SIGNUP-----------------------
+//--------------------------------------------------
+
+        // GOOGLE SIGNUP
+        case "googleSignUp":
+            signUp($_REQUEST, 'google');
+            break;
+
+        // KAKAO SIGNUP
+        case "kakaoSignUp":
+            signUp($_REQUEST, 'kakao');
+            break;
+
+        // REGULAR SIGNUP
+        case "regularSignup":
+            signUp($_REQUEST, 'regular');
+            break;
+
+//--------------------------------------------------
+//----------------USER LOGIN------------------------
+//--------------------------------------------------
+
+        // GOOGLE LOGIN
+        case "googleLogin":
+            login($_REQUEST, 'google');
+            break;
+
+        // KAKAO LOGIN
+        case "kakaoLogin":
+            login($_REQUEST, 'kakao');
+            break;
+            
+        // REGULAR LOGIN
+        case "regularLogin":
+            login($_REQUEST, 'regular');
+            break;
+
+//--------------------------------------------------
+//----------------ENTRY MANAGEMENT------------------
+//--------------------------------------------------
+        case "filterEntries":
+            if (isset($_REQUEST['filter'])){
+                filterEntries($_REQUEST['filter']);
+            }
+            break;
+
+        case "toggleView":
+            if ($_GET['view'] === "week"){
+                toTimeline($_SESSION['uid'], "weekly");
+            } else if ($_GET['view'] === "month") {
+                toTimeline($_SESSION['uid'], "monthly");
+            }
+            break;
         
         case "addNewEntry":
-            // TODO: uncomment this
+            // echoPre($_REQUEST);
             $entryContent = (object)array();
-            $entryContent->title = $_REQUEST['title'];
-            $entryContent->entry = $_REQUEST['textContent'];
-            $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->userUID = $_SESSION['uid'];
-            // print_r($entryContent);
+            $entryContent->title = $_REQUEST['title'];
+            $entryContent->tags = $_REQUEST['tagNames'];
+            $entryContent->location = $_REQUEST['location'];
+            $entryContent->weather = $_REQUEST['weather'];
+            $entryContent->entry = $_REQUEST['textContent'];
             newEntry($entryContent);
             break;
 
@@ -96,17 +120,13 @@ try {
                 throw new Exception('Error, no entry ID');
             }
             break;
-
-        case "toLogout":
-            toLogout();
-            break;
             
         default:
-            // show login as default
+            // SHOW LOGIN AS DEFAULT
             if (isset($_SESSION['uid'])){
                 toTimeline($_SESSION['uid'], "monthly");
             } else {
-                toLogin();
+                toLanding();
             }
             break;
     }

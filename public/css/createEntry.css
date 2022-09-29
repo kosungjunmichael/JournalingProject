@@ -22,11 +22,14 @@
 
 #create-entry-title-input{
     color: var(--text-color-primary);
-    background: transparent;
+    background-color: var(--bg-secondary);
+    /* background: transparent; */
     border: none;
     outline: none;
     font-size: 20px;
     margin: 10px 0;
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
 #create-entry-tag{
@@ -41,7 +44,7 @@
     padding: 0 15px;
 }
 
-#create-entry-tag-input{
+#create-tag-input{
     background: transparent;
     color: var(--text-color-primary);
     border: none;
@@ -49,10 +52,10 @@
     font-weight: 500;
 }
 
-#entry-tag-cont{
+#tag-cont{
     background:transparent;
     width: fit-content;
-    height: fit-content;
+    height: 35px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -71,7 +74,7 @@
     align-items: center;
     border-radius: 10px;
     gap: 10px;
-    padding: 0 15px;
+    padding: 15px;
 }
 
 #create-entry-location{
@@ -194,10 +197,15 @@
     width: 100px;
     height:30px;
     border-radius: 15px;
-    background-color: #9673F5;
-    color:white;
+    background-color: var(--primary);
+    color: var(--white);
     border: 0px solid;
     font-size: 15px;
     font-weight: 800;
     margin-top:30px;
 }
+
+
+
+/* TESTING */
+

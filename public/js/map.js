@@ -1,4 +1,4 @@
-async function geocode(locationStr, lang) {
+const geocode = async (locationStr, lang) => {
     // geocode with Kakao, korean
     if (lang === 'ko') {
         const geocoder = new kakao.maps.services.Geocoder();
@@ -28,7 +28,7 @@ async function geocode(locationStr, lang) {
     }
 }
 
-async function getLocations() {
+const getLocations = async () => {
     return await fetch('http://localhost/sites/JournalingProject/controller/api/getLocations.php')
         .then(res => res.json())
         .then(data => {
@@ -38,7 +38,7 @@ async function getLocations() {
         .catch(err => console.log(err));
 }
 
-async function getEntries() {
+const getEntries = async () => {
     const entriesArr = [];
     const entriesData = await getLocations();
     // console.log(entryLocations);
@@ -65,13 +65,13 @@ async function getEntries() {
     return entriesArr;
 }
 
-function closeEntryCard() {
+const closeEntryCard = () => {
     console.log('closing');
     const entryCardToClose = document.querySelector('.map-view-card-visible');
     entryCardToClose.classList.remove('map-view-card-visible');
 }
 
-async function renderMap() {
+const renderMap = async () => {
     const mapDiv = document.getElementById('map-view-map');
     const options = {
         center: new kakao.maps.LatLng(37.5665, 126.9780),

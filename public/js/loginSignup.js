@@ -1,99 +1,49 @@
-// function login() {
-    // }    
 let blur = document.querySelector(".blur");
+// let header = document.querySelector("header");
+// console.log(header);
 
-function openLogin() {
-    document.getElementById("login").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeLogin);
+const openLogin = () => {
+	document.getElementById("login").style.display = "block";
+	blur.style.display = "block";
+	blur.addEventListener("click", closeLogin);
+	// header.innerHTML += "<script src='https://accounts.google.com/gsi/client' async defer></script>";
+};
 
-}
+const openSignup = () => {
+	document.getElementById("signup").style.display = "block";
+	blur.style.display = "block";
+	blur.addEventListener("click", closeSignup);
+};
 
-function openSignup() {
-    document.getElementById ("signup").style.display = "block";
-    blur.style.display = "block";
-    blur.addEventListener('click', closeSignup);
+const closeLogin = () => {
+	document.getElementById("login").style.display = "none";
+	document.querySelector(".blur").style.display = "none";
+	blur.removeEventListener("click", closeLogin);
+};
 
-}
+const closeSignup = () => {
+	document.querySelector(".blur").style.display = "none";
+	document.getElementById("signup").style.display = "none";
+	blur.removeEventListener("click", closeSignup);
+};
 
-function closeLogin() {
-    document.getElementById('login').style.display = 'none';
-    document.querySelector(".blur").style.display = "none";
-    blur.removeEventListener('click', closeLogin);
+document.querySelector("#close").addEventListener("click", closeLogin);
+document.querySelector("#close1").addEventListener("click", closeSignup);
+document.querySelector(".btn").addEventListener("click", openLogin);
+document.querySelector(".btn1").addEventListener("click", openSignup);
 
-}
+document.getElementById("sign-up-link").addEventListener("click", () => {
+	closeLogin();
+	openSignup();
+});
 
-function closeSignup() {
-    document.querySelector(".blur").style.display = "none";
-    document.getElementById("signup").style.display = "none";
-    blur.removeEventListener('click', closeSignup);
+{
+	/* <div class="google-btn">
+	<div id='g_id_onload' data-client_id='<?= $_SERVER['CLIENT_ID']; ?>' data-login_uri='http://localhost/sites/JournalingProject/index.php?action=googleLogin' data-auto_prompt='false'></div>
+	<div class='g_id_signin' data-type='standard' data-size='large' data-theme='outline' data-text='sign_in_with' data-shape='pill' data-logo_alignment='left'></div>
+</div>
 
-}
-
-document.querySelector("#close").addEventListener('click', closeLogin)
-document.querySelector("#close1").addEventListener('click', closeSignup)
-document.querySelector(".btn").addEventListener('click', openLogin)
-document.querySelector(".btn1").addEventListener('click', openSignup)
-
-document.getElementById("sign-up-link").addEventListener('click', () => {
-    closeLogin();
-    openSignup();
-})
-
-var myInput = document.getElementById("psw");
-var letter = document.getElementById("letter");
-var capital = document.getElementById("capital");
-var number = document.getElementById("number");
-var length = document.getElementById("length");
-
-// When the user clicks on the password field, show the message box
-myInput.onfocus = function() {
-    document.getElementById("message").style.display = "block";
-}
-
-// When the user clicks outside of the password field, hide the message box
-myInput.onblur = function() {
-    document.getElementById("message").style.display = "none";
-}
-
-// When the user starts to type something inside the password field
-myInput.onkeyup = function() {
-    // Validate lowercase letters
-    var lowerCaseLetters = /[a-z]/g;
-    if(myInput.value.match(lowerCaseLetters)) {  
-        letter.classList.remove("invalid");
-        letter.classList.add("valid");
-    } else {
-        letter.classList.remove("valid");
-        letter.classList.add("invalid");
-    }
-
-
-    var upperCaseLetters = /[A-Z]/g;
-    if(myInput.value.match(upperCaseLetters)) {  
-        capital.classList.remove("invalid");
-        capital.classList.add("valid");
-    } else {
-        capital.classList.remove("valid");
-        capital.classList.add("invalid");
-    }
-
-    // Validate numbers
-    var numbers = /[0-9]/g;
-    if(myInput.value.match(numbers)) {  
-        number.classList.remove("invalid");
-        number.classList.add("valid");
-    } else {
-        number.classList.remove("valid");
-        number.classList.add("invalid");
-    }
-    
-    // Validate length
-    if(myInput.value.length >= 8) {
-        length.classList.remove("invalid");
-        length.classList.add("valid");
-    } else {
-        length.classList.remove("valid");
-        length.classList.add("invalid");
-    }
+<div class="google-btn">
+	<div id='g_id_onload' data-client_id='<?= $_SERVER['CLIENT_ID']; ?>' data-login_uri='http://localhost/sites/JournalingProject/index.php?action=googleSignUp' data-auto_prompt='false'></div><div class='g_id_signin' data-type='standard' data-size='large' data-theme='outline' data-text='signup_with' data-shape='pill' data-logo_alignment='left'></div>
+</div> */
 }
