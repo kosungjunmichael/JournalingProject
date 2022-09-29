@@ -5,8 +5,6 @@
 
 <?php include ROOT . "/view/header.php"; ?>
 
-
-
 <div class="container">
     <div class="hero">
         <div class="content">
@@ -247,19 +245,23 @@
                 <div class="tweet-column">
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div class="twitter-profile">
-                                <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Alex Isak
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @marvelnian
-                                </a>
+                            <div>
+                                <div class="twitter-profile">
+                                    <a href="#" class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Alex Isak
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @marvelnian
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>
@@ -309,19 +311,23 @@
                 <div class="tweet-column">
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div href="#" class="twitter-profile">
-                                <a class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Kieran Guimarães
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @kieranguimaraes
-                                </a>
+                            <div>
+                                <div href="#" class="twitter-profile">
+                                    <a class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Kieran Guimarães
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @kieranguimaraes
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>
@@ -336,19 +342,23 @@
                     </div>
                     <div class="twitter-block">
                         <div class="author-box">
-                            <div class="twitter-profile">
-                                <a href="#" class="author-avatar">
-                                    <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                    	1,
-                                    	70
-                                    ) ?>" alt="user_image" class="user_image">
-                                </a>
-                                <a href="#" class="author-name">
-                                    Nick Almirón
-                                </a>
-                                <a href="#" class="author-screenname">
-                                    @newmiron2022
-                                </a>
+                            <div>
+                                <div class="twitter-profile">
+                                    <a href="#" class="author-avatar">
+                                        <img src="https://i.pravatar.cc/40?img=<?= rand(
+                                            1,
+                                            70
+                                        ) ?>" alt="user_image" class="user_image">
+                                    </a>
+                                </div>
+                                <div class="author-container">
+                                    <a href="#" class="author-name">
+                                        Nick Almirón
+                                    </a>
+                                    <a href="#" class="author-screenname">
+                                        @newmiron2022
+                                    </a>
+                                </div>
                             </div>
                             <div class="twitter-logo">
                                 <i class='bx bxl-twitter'></i>

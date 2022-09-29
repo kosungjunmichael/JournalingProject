@@ -2,8 +2,6 @@
 @import url('../css/footer.css');
 @import url('../css/header.css');
 
-
-
 body {
     display: flex;
     justify-content: center;
@@ -18,10 +16,12 @@ h1 {
     color: var(--primary);
 }
 #basicInfo {
+    width: 100%;
     width: 700px;
     margin: 180px auto 0 auto;
     font-size: large;
 }
+
 a{
     color: var(--primary);
 }

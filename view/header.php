@@ -1,7 +1,7 @@
 <header>
     <nav>
         <h2>
-            <a href="<?= BASE ."/index.php?action=toLanding" ?>" class="logo">
+            <a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">
                 <div id="logo-container">
                     <svg id="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
@@ -40,6 +40,7 @@
                 <span id="header-text">Login</span>
 
                 <!-- Back-end Error Notification -->
+
                 <?php if (isset($error_login)) { ?>
                     <script>
                         alert("<?= $error_login ?>")
@@ -75,13 +76,16 @@
                 <button type="submit" class="form-button" id="login-btn">Log In</button>
             </form>
             <div id="or-separator">OR</div>
+
+            <!-- Google Login -->
+
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER[
-                	"CLIENT_ID"
-                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
+                <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"]; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleLogin" data-auto_prompt="false"></div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
             
+            <!-- Kakao Login -->
+
             <div id="kakao-login-container">
                 <a id="kakao-login-btn" href="javascript:loginWithKakao()">
                     <div class="kakao-container">
@@ -92,10 +96,8 @@
                             Login with Kakao
                         </div>
                     </div>
-                    <!-- <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="Kakao login button" /> -->
                 </a>
             </div>
-
         </div>
     </div>
 
@@ -112,17 +114,17 @@
                 <span id="header-text">Sign Up</span>
                 
                 <!-- Back-end Error Notification -->
+
                 <?php if (isset($error_signup)) { ?>
                     <script>
                         alert("<?= $error_signup ?>")
                     </script>
                 <?php } ?>
 
-                <div id="have-an-account">
+                <div id="form-bottom">
                     <p>Already have an account?</p>
                     <a id="sign-in-link">Sign In</a>
                 </div>
-
 
                 <div class="input-container">
                     <input id="sign-u" type="text" name="sign-u" />
@@ -155,15 +157,15 @@
                     <p>✖ Please enter a valid Password</p>
                 </div>
 
-                    <div id="tooltip-p">
-                        <div class="arrow-left"></div>
-                        <div id="message">
-                            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-                            <p id="capital" class="invalid">A <b>capital</b> letter</p>
-                            <p id="number" class="invalid">A <b>number</b></p>
-                            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-                        </div>
+                <div id="tooltip-p">
+                    <div class="arrow-left"></div>
+                    <div id="message">
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                     </div>
+                </div>
             </div>
 
             <div class="input-container">
@@ -183,17 +185,17 @@
             <button type="submit" class="form-button" id="signup-btn">Sign Up</button>
         </form>
 
-            <div id="or-separator">OR</div>
+        <div id="or-separator">OR</div>
 
-            <!-- Google login -->
+            <!-- Google Signup -->
+
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER[
-                	"CLIENT_ID"
-                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false">
-                </div>
-                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left">
-                </div>
+                <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"]; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleSignUp" data-auto_prompt="false"></div>
+                <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
+
+            <!-- Kakao Signup -->
+
             <a href="javascript:signUpWithKakao()">
                 <div id="kakao-signup-container">
                     <div class="kakao-container">
@@ -205,13 +207,18 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
+        </a>
+
     </div>
 <div class="blur"></div>
 </header>
 
 <!-- FORM VALIDATION -->
 <script src="<?= BASE . "/public/js/formValidation.js" ?>"></script>
+
+<!-- BLUR -->
+<script src="<?= BASE . "/public/js/loginSignup.js" ?>"></script>
 
 <!-- GOOGLE -->
 <script src="https://accounts.google.com/gsi/client" async defer></script>
