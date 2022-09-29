@@ -11,6 +11,7 @@
 .hero{
     height: 100vh;
     width: 100%;
+    background-color: var(--grey);
 }
 
 .hero .content{
@@ -244,10 +245,10 @@
     margin: 0 0 1.5em;
     font-size: 17px;
 }
-.twitter-container a{
+/* .twitter-container a{
     text-decoration: none;
     color:var(--primary);
-}
+} */
 
 .tweets-container{
     display:flex;
@@ -269,11 +270,13 @@
     flex-direction: column;
     gap: 2em;
 }
-.twitter-profile .author-name{
+
+.author-name {
     color:black;
     font-weight: 700;
     font-size: 18px;
     margin-right: 4px;
+    width: 300px;
 }
 .twitter-profile .author-avatar img{
     width: 48px;
@@ -285,22 +288,29 @@
     margin-right: 5px;
 }
 
-.twitter-profile .author-screenname{
+.twitter-profile, .author-screenname {
+
     text-decoration: none;
     display: block;
     font-size: 16px;
     font-weight: 500;
     color: gray;
 }
-.author-box{
-    display: block;
-    min-height: 48px;
+.author-box {
+    display: flex;
+    justify-content: space-between;
+    min-height: 55px;
     margin-top: 10px;
-    position:relative;
 }
+
+.author-container{
+    display: flex;
+    flex-direction: column;
+    /* width: fit-content; */
+}
+
 .twitter-logo{
     font-size:25px;
-    position: absolute;
     top: 0;
     right: 0;
     color: #1b95e0;

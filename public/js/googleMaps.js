@@ -2,45 +2,61 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-let map; // initializes Google map
-const address = "Seoul"; // will be an array of objects of entries
+console.log(data);
 
 const initMap = () => {
+	let map = google.maps.Map;
+	// let marker;
+	// let markers = (google.maps.Marker = []);
 	map = new google.maps.Map(document.getElementById("map-view-map"), {
 		zoom: 2,
 		center: new google.maps.LatLng(2.8, -187.3),
 	});
 
-	initialize();
+	for (const coords of data) {
+		// console.log(JSON.parse(coords["lat_lng"]));
+		const latLng = JSON.parse(coords["lat_lng"]);
+		// console.log(latLng.lat);
+		if (latLng.lat && latLng.lng) {
+			// let marker = google.maps.Marker;
+			window.setTimeout(() => {
+				const contentString =
+					`<div class="entry-container">` +
+					`<div class="entry-title" >${coords["title"]}</div>` +
+					`<div class="entry-content">${coords["text_content"]}</div>` +
+					`<div class="entry-info">` +
+					`<div class="entry-date">` +
+					`${new Date(coords["last_edited"]).toLocaleDateString("en-US", {
+						month: "long",
+						day: "numeric",
+						year: "numeric",
+					})}` +
+					`</div>` +
+					`</div>` +
+					`</div>`;
+
+				const infowindow = new google.maps.InfoWindow({
+					content: contentString,
+					// maxWidth: 200,
+				});
+
+				// markers.push("stuff");
+				let marker = new google.maps.Marker({
+					position: latLng,
+					map: map,
+					animation: google.maps.Animation.DROP,
+				});
+
+				marker.addListener("click", () => {
+					infowindow.open({
+						anchor: marker,
+						map,
+						shouldFocus: false,
+					});
+				});
+			}, 2000);
+		}
+	}
 };
 
 window.initMap = initMap;
-
-const initialize = () => {
-	let geocoder = new google.maps.Geocoder();
-
-	geocoder.geocode(
-		{
-			address: address, // Location from entries
-		},
-		(results, status) => {
-			if (status == google.maps.GeocoderStatus.OK) {
-				// Storing Lat & Lng from address
-				const latLng = {
-					lat: results[0].geometry.location.lat(),
-					lng: results[0].geometry.location.lng(),
-				};
-				console.log(latLng);
-
-				new google.maps.Marker({
-					position: latLng,
-					map: map,
-				});
-			} else {
-				alert(
-					`Geocode was not successful for the following reasons: ${status}`
-				);
-			}
-		}
-	);
-};

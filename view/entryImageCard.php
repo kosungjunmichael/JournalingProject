@@ -1,3 +1,3 @@
 <div class="img-container">
-    <img src="<?= $img_source ?>"/>
+    <img src="<?= BASE . $img_source?>"/>
 </div>

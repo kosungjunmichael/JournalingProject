@@ -1,14 +1,16 @@
 <?php $title = "Map View"; ?>
 <?php $style = "map"; ?>
+<link rel="stylesheet" href="<?= BASE . "/public/css/timeline.css" ?>">
 <?php
 // $script = "map";
 ?>
 <?php
+$data = json_encode($entries);
 $script = "googleMaps";
 ?>
 
 <?php ob_start(); ?>
-
+<?= "<script> let data = $data </script>" ?>
 <?php include "sidebarView.php"; ?>
 
 <!--The div element for the map -->

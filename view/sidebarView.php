@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toAlbum">
+                <a class="sidebar-link" href="./index.php?action=toAlbum">
                     <i class='bx bx-photo-album' ></i>
                     <span>Album</span>
                 </a>
