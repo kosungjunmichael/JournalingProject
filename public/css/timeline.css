@@ -1,23 +1,9 @@
 @import url('../css/main.css');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family:'Raleway';
-}
-
 body{
     width: 100%;
     text-decoration: none;
     color: var(--text-color-primary);
-}
-
-.title{
-    font-size: 35px;
-    padding: 20px;
-    font-weight: 900;
-    font-family:'Galey';
 }
 
 .search-bar{
@@ -134,7 +120,7 @@ body{
     /* background-color: var(--grey-dark); */
     margin: 10px;
     background-color: var(--bg-secondary);
-    border:none;
+    border: none;
 }
 
 /*      === Weekly ===      */

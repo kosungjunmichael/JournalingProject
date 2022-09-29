@@ -1,5 +1,6 @@
 <?php $title = "Map View"; ?>
 <?php $style = "map"; ?>
+<link rel="stylesheet" href="<?= BASE . "/public/css/timeline.css" ?>">
 <?php
 // $script = "map";
 ?>
@@ -14,7 +15,7 @@ $script = "googleMaps";
 
 <!--The div element for the map -->
 <div id="map-view-container">
-    <h2 class="page-header-text">MAP VIEW</h2>
+    <h1 class="title">Map View</h1>
     <div id="map-view-map"></div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=<?= $_SERVER["GMAP_API_KEY"] ?>&callback=initMap&v=weekly" defer></script>

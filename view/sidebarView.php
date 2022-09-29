@@ -1,6 +1,6 @@
 <div id="sidebar-container">
     <div id="sidebar-top">
-        <a href="<?= BASE . "/index.php?action=toLanding" ?>">
+        <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
             <div id="logo-container">
                 <svg id="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
@@ -25,13 +25,13 @@
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toAlbum">
+                <a class="sidebar-link" href="./index.php?action=toAlbum">
                     <i class='bx bx-photo-album' ></i>
                     <span>Album</span>
                 </a>
             </li>
             <li>
-                <a class="sidebar-link" href="./index.php?action=linkTo&page=toCalendar">
+                <a class="sidebar-link" href="./index.php?action=toCalendar">
                     <i class='bx bx-calendar' ></i>
                     <span>Calendar</span>
                 </a>

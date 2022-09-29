@@ -30,6 +30,8 @@ body[data-theme='light'] {
     --theme-toggle-pill: var(--white);
     --tag-bg: var(--grey-superlight);
     --time-tag-bg: var(--grey-mid-light);
+    --button-color: rgba(0,0,0,0.4);
+    --album-color: rgba(200, 200, 200, 0.4);
 }
 
 body[data-theme='dark'] {
@@ -42,6 +44,9 @@ body[data-theme='dark'] {
     --theme-toggle-pill: var(--grey);
     --tag-bg: var(--grey-superlight);
     --time-tag-bg: var(--grey-superlight);
+    --button-color: rgba(255,255,255,0.4);
+    --album-color: rgba(0, 0, 0, 0.4);
+
 }
 
 @font-face {
@@ -55,6 +60,11 @@ body[data-theme='dark'] {
     box-sizing: border-box;
     font-family: Raleway;
 }
+
+/* Remove input hightlight in Chrome */
+input:focus, textarea:focus, select:focus  {
+    outline: none;
+  }
 
 a {
     text-decoration: none;
@@ -250,4 +260,12 @@ body{
     margin: 180px auto 50px auto;
     font-size: large;
     padding: 0 20px;
+}
+
+.title{
+    font-size: 35px;
+    padding: 20px;
+    font-weight: 900;
+    font-family:'Galey';
+    text-transform: capitalize;
 }

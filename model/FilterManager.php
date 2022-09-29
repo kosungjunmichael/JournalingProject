@@ -2,9 +2,11 @@
 
 require_once('Manager.php');
 
-class filterManager extends Manager {
+class filterManager extends Manager 
+{
 
-    protected function getAllEntries($userUID){
+    protected function getAllEntries($userUID)
+    {
         $db = $this->dbConnect();
 
         $req = $db->prepare('SELECT e.u_id
@@ -30,36 +32,43 @@ class filterManager extends Manager {
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
     public function filterEntriesByTag($userUID, $filters){
-        //   return $filters;
         
+        // Filter variable
+        $selector = "tags";
+
         // Array of Filters
         $filters = explode(',',$filters);
 
         // All Entries
-        $eachEntry = $this->getAllEntries($userUID);
+        $allEntries = $this->getAllEntries($userUID);
 
         // return array
-        $entriesDisplay = [];
+        $filteredED = [];
 
-        foreach($filters as $filter){
-            foreach($eachEntry as $entry){
-                if (str_contains($entry['tags'], $filter)){
-                    $monthYearKey = $entry['month'] . " " . $entry['year'];
-                    if (array_key_exists($monthYearKey, $entriesDisplay)) {
-                        // push the entry into the key
-                        $entriesDisplay[$monthYearKey][] = $entry;
-                    } else {
-                        // create the key in the array & push the entry into the key
-                        $entriesDisplay[$monthYearKey] = [];
-                        $entriesDisplay[$monthYearKey][] = $entry;
-                    }
-                }
+        //TODO: way to handle more than one filter
+        $filteredEntries = array_filter($allEntries,function($el) use ($filters, $selector){
+            
+            foreach($filters as $filter){
+                if (!str_contains($el["$selector"],$filter)){
+                    return false;
+                };
+            };
+            return true;
+
+        });
+        foreach($filteredEntries as $filteredEntry){
+            $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
+            if (array_key_exists($monthYearKey, $filteredED)){
+                // push the entry into the key
+                $filteredED[$monthYearKey] = $filteredEntries;
+            } else {
+                // create the key in the array & push the entry into the key
+                $filteredED[$monthYearKey] = [];
+                $filteredED[$monthYearKey] = $filteredEntries;
             }
-            return $entriesDisplay;
         }
+        return $filteredED;
     }
 
     
