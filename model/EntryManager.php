@@ -212,7 +212,7 @@ class EntryManager extends Manager
         , e.location
         , e.weather
         , e.last_edited
-        , e.date_created 
+        , e.date_created
         , DAY(e.last_edited) as day
         , MONTHNAME(e.last_edited) as month
         , YEAR(e.last_edited) as year

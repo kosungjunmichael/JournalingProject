@@ -13,21 +13,71 @@ body{
     color: var(--text-color-primary);
 }
 
+#timeline{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 240px);
+    overflow-y: scroll;
+    padding: 25px;
+}
+
 .title{
     font-size: 35px;
-    padding: 20px;
+    padding: 15px;
     font-weight: 900;
     font-family:'Galey';
 }
 
+.filter-field{
+    display:flex;
+}
+
 .search-bar{
     padding: 15px;
-    margin: 0px 50px;
+    margin: 0px 15px 0px 50px;
+    width: 100%;
     font-size: 25px;
     background-color: var(--bg-secondary);
     color: var(--text-color-secondary);
     border: none;
     border-radius: var(--border-radius-medium);
+}
+
+.filter-btn{
+    margin: 0px 50px 0px 15px;
+    font-size: 25px;
+    padding: 20px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--bg-secondary);
+    color: var(--text-color-secondary);
+    border-radius: var(--border-radius-medium);
+}
+
+.filter-cont{
+    background:transparent;
+    width: fit-content;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+    /* padding: 0 15px; */
+}
+
+.filter-tag{
+    background-color: var(--bg-secondary);
+    width: fit-content;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    gap: 10px;
+    padding: 15px;
 }
 
 .switch-toggle{
@@ -55,18 +105,11 @@ body{
     padding: 15px;
 }
 
-#timeline{
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 240px);
-    overflow-y: scroll;
-}
-
 .entry-display{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 /* .monthlyView{
     flex-direction: column;
