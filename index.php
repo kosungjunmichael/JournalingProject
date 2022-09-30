@@ -36,6 +36,7 @@ try {
 
         case "toCalendar":
             toCalendar();
+            break;
             
         case "toAlbum":
             toAlbum($_SESSION['uid']);
@@ -71,6 +72,10 @@ try {
         case "regularSignup":
             signUp($_REQUEST, 'regular');
             break;
+        
+        case "signUp":
+            signUP($_REQUEST, $_REQUEST['method']);
+            break;
 
 //--------------------------------------------------
 //----------------USER LOGIN------------------------
@@ -89,6 +94,10 @@ try {
         // REGULAR LOGIN
         case "regularLogin":
             login($_REQUEST, 'regular');
+            break;
+            
+        case "login":
+            login($_REQUEST, $_REQUEST['method']);
             break;
 
 //--------------------------------------------------
