@@ -32,10 +32,10 @@ const openModal = pathsStr => { // use type to know which input to add the data 
             let dot = document.createElement("span");
             // let dots = document.getElementsByClassName("dot");
             dotContainer.appendChild(dot);
-            dot.classList.add("dot", "active");
+            dot.classList.add("dot");
+            dot.setAttribute("onclick", `currentSlide(${i})`);
             
             showSlides(paths.length);
-            dot.setAttribute("onclick", `currentSlide(${i})`);
             }
 
         }

@@ -46,17 +46,22 @@ $month_arr = [];
                         <div class="album-bottom">
 
                         <?php
-                        if(1 < count($tags)){
-                        foreach ($tags as $tag) {
-                        ?>
-                        <div class="inside-album-tags-div">
-                            <p class="inside-album-tags"><?=$tag?></p>
-                        </div>
+                        // if(!is_null($tags[0])){
+                            // 0 < count($tags) && !is_null($tags[0])
+                        if(count($tags) === 1 && $tags[0] == null){
+                    
+                        ?> 
+                            <p class="inside-album-tags">No tag</p>
                         <?php
                         }
-                        } else {
-                            ?> <p class="inside-album-tags">No tag</p>
-                            <?php
+                        else {
+                            foreach ($tags as $tag) {
+                                ?>
+                                <div class="inside-album-tags-div">
+                                    <p class="inside-album-tags"><?=$tag?></p>
+                                </div>
+                                <?php
+                                }
                         }
                         ?>
                         <p class="inside-album-dates"><?=$newDate?></p>
