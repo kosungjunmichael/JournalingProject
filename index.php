@@ -45,7 +45,7 @@ try {
             toMap($_SESSION['uid'], "all");
             break;
 
-        case "createEntry":
+        case "toCreateEntry":
             createNewEntry();
             break;
 
@@ -56,6 +56,9 @@ try {
 //--------------------------------------------------
 //----------------USER SIGNUP-----------------------
 //--------------------------------------------------
+
+//TODO: these all call the same function, route to the separate login types through the UserManager
+// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
 
         // GOOGLE SIGNUP
         case "googleSignUp":

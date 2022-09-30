@@ -27,21 +27,27 @@ body{
 
 .filter-field{
     display:flex;
+    align-items: center;
+    margin-left: 10px;
 }
 
-.filter-field > i{
-    font-size: 50px;
+.filter-input-field{
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius-medium);
+    background-color: var(--bg-secondary);
+    color: var(--text-color-secondary);
+    padding: 15px;
+}
+
+.ph-funnel{
+    font-size: 25px;
 }
 
 .search-bar{
-    padding: 15px;
-    margin: 0px 15px 0px 50px;
-    width: 100%;
-    font-size: 25px;
     background-color: var(--bg-secondary);
-    color: var(--text-color-secondary);
+    font-size: 15px;
     border: none;
-    border-radius: var(--border-radius-medium);
 }
 
 .filter-btn{
@@ -72,13 +78,15 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     gap: 10px;
-    padding: 30px 48px;
+    /* padding: 30px 48px; */
+    margin: 0px 10px;
 }
 
 .filter-tag{
-    background-color: var(--bg-secondary);
+    background: var(--primary);
+    color: var(--white);
     width: fit-content;
     height: 35px;
     display: flex;
@@ -127,7 +135,7 @@ body{
 /*          === Monthly View ===          */
 
 .month{
-    padding: 15px;
+    padding: 15px 0px;
 }
 
 .month-name {

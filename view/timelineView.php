@@ -17,12 +17,16 @@
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
-        <i class="fa-solid fa-filter"></i>
-        <input type="text" name="search_bar" class="search-bar">
+        <div class="filter-input-field">
+            <i class="ph-funnel"></i>
+            <div class="filter-cont"></div>
+            <input type="text" name="search_bar" class="search-bar" placeholder="Type Filter & Press Enter">
+        </div>
+        <button class="filter-tags-switch">tags</button>
+        <button class="filter-title-switch">title</button>
+        <button class="filter-entries-switch">entries</button>
         <button class="filter-btn">Filter</button>
-
     </div>
-    <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
