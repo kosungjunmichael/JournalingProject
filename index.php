@@ -9,11 +9,11 @@ $httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' 
 define('BASE', $httpProtocol.'://'.$_SERVER['HTTP_HOST'].'/sites/JournalingProject');
 
 session_start();
-
 if (isset($_SESSION['uid'])){
     updateLastActive($_SESSION['uid']);
 }
-
+// TODO: REMOVE THIS
+// echo "SESSION: ", $_SESSION['uid'];
 try {
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : null;
 
@@ -34,8 +34,15 @@ try {
             toTimeline($_SESSION['uid'], "monthly");
             break;
 
+        case "toCalendar":
+            toCalendar();
+            
+        case "toAlbum":
+            toAlbum($_SESSION['uid']);
+            break;
+
         case "toMap":
-            toMap($_SESSION['uid']);
+            toMap($_SESSION['uid'], "all");
             break;
 
         case "createEntry":
@@ -102,14 +109,13 @@ try {
             break;
         
         case "addNewEntry":
-            // echoPre($_REQUEST);
             $entryContent = (object)array();
             $entryContent->userUID = $_SESSION['uid'];
             $entryContent->title = $_REQUEST['title'];
             $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->location = $_REQUEST['location'];
             $entryContent->weather = $_REQUEST['weather'];
-            $entryContent->entry = $_REQUEST['textContent'];
+            $entryContent->textContent = $_REQUEST['textContent'];
             newEntry($entryContent);
             break;
 
