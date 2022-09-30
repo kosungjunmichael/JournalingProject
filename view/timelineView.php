@@ -44,7 +44,7 @@
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
     ?>
-         <section class="entry-display">
+         <!-- <section class="entry-display"> -->
     <?php
     } else if ($view === 'monthly'){
         ?>

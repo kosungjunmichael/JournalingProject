@@ -1,74 +1,179 @@
 // TODO: create a way to delete tags
-let addedTags = [];
+// let addedTags = [];
+//
+// // To remove tags
+// let destroyTags = document.querySelectorAll(".fa-solid.fa-x");
+//
+// // queryselectors for tag creation
+// let createTagBtn = document.querySelector("#create-tag-btn");
+// let createTagInput = document.querySelector("#create-tag-input");
+//
+// // tag display "through a div container" and submit input
+// let tagContainer = document.querySelector("#tag-cont");
+// let submitTagInput = document.querySelector(".submitted-tags-input");
+//
+// // -----------------------------------------------------------------------------
+// // --------------------------------TAGS-----------------------------------------
+// // -----------------------------------------------------------------------------
+//
+// const removeTags = () => {
+// 	let allTags = document.querySelectorAll(".entry-tag");
+// 	for (let tag of allTags) {
+// 		tag.remove();
+// 	}
+// };
+//
+// const createTags = () => {
+// 	for (let i = 0; i < addedTags.length; i++) {
+// 		let text = addedTags[i];
+// 		let tagDisplay = document.createElement("div");
+// 		let destroyTag = document.createElement("i");
+// 		destroyTag.className = "fa-solid fa-x";
+// 		destroyTag.onclick = () => {
+// 			addedTags.splice(i, 1);
+// 			removeTags();
+// 			createTags();
+// 		};
+//
+// 		tagDisplay.textContent = text;
+// 		tagDisplay.classList.add("entry-tag");
+// 		tagDisplay.prepend(destroyTag);
+//
+// 		tagContainer.appendChild(tagDisplay);
+// 	}
+// 	// format of the hidden input value
+// 	//      seoul,delicious food,nice day
+// 	submitTagInput.value = addedTags.join(",");
+// };
+//
+// const handleAddTag = () => {
+// 	let entryTagInput = document.querySelector("#create-tag-input");
+// 	// array to check if the tags already exist
+// 	let val = entryTagInput.value;
+// 	if (val !== "" && !val.includes(",") && !addedTags.includes(val)) {
+// 		addedTags.push(entryTagInput.value);
+// 		removeTags();
+// 		createTags();
+// 	}
+// 	createTagInput.value = "";
+// };
+//
+// createTagBtn.addEventListener("click", () => {
+// 	handleAddTag();
+// });
+//
+// // TODO: add eventListener for Enter key "13" on the text input
+// createTagInput.addEventListener("keydown", (e) => {
+// 	if (e.key === "Enter") {
+// 		e.preventDefault();
+// 		handleAddTag();
+// 	}
+// });
 
-// To remove tags
-let destroyTags = document.querySelectorAll(".fa-solid.fa-x");
+const ul = document.querySelector("#create-entry-tag-input-ul"),
+	input = document.querySelector("#create-entry-tag-input"),
+	tagNum = document.querySelector("#create-entry-tag-details #create-entry-tag-details-tagnum"),
+	hiddenInput = document.querySelector("#create-entry-tags-hidden");
+let maxTags = 5,
+	tags = [];
+countTags();
+createTag();
 
-// queryselectors for tag creation
-let createTagBtn = document.querySelector("#create-tag-btn");
-let createTagInput = document.querySelector("#create-tag-input");
+function countTags(){
+	tagNum.innerText = maxTags - tags.length;
+}
 
-// tag display "through a div container" and submit input
-let tagContainer = document.querySelector("#tag-cont");
-let submitTagInput = document.querySelector(".submitted-tags-input");
+function createTag(){
+	// remove all tags
+	ul.querySelectorAll("li").forEach(li => li.remove());
+	// recreate tags
+	tags.slice().reverse().forEach(tag =>{
+		let liTag = `
+        <li>${tag}
+            <svg class="create-entry-tag-close" onclick="remove(this, '${tag}')" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                <rect width="256" height="256" fill="none"></rect>
+                <circle class="close-svg-circle" cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="16"></circle>
+                <line class="close-svg-line" x1="160" y1="96" x2="96" y2="160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                <line class="close-svg-line" x1="160" y1="160" x2="96" y2="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+            </svg>
+        </li>`;
+		// insert tag
+		ul.insertAdjacentHTML("afterbegin", liTag);
+	});
+	// count tags
+	countTags();
+}
 
-// -----------------------------------------------------------------------------
-// --------------------------------TAGS-----------------------------------------
-// -----------------------------------------------------------------------------
+// remove single tag
+function remove(element, tag){
+	// get index of tag in tags array
+	let index  = tags.indexOf(tag);
+	// update tags array
+	tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+	// remove tag
+	element.parentElement.remove();
+	// update tags hidden input value
+	const tagsVal = tags.join(',');
+	hiddenInput.value = tagsVal;
+	// count tags
+	countTags();
+}
 
-const removeTags = () => {
-	let allTags = document.querySelectorAll(".entry-tag");
-	for (let tag of allTags) {
-		tag.remove();
+function addTag(e){
+	// on "Enter", push to tags array and create hmtl Tag element
+	if(e.key === "Enter"){
+		// handle white spacing, multiple to one
+		let tag = e.target.value.replace(/\s+/g, ' ');
+		if(tag.length > 1 && !tags.includes(tag)){
+			if(tags.length < 10){
+				tag.split(',').forEach(tag => {
+					// add tag to tags array
+					tags.push(tag);
+					// create the html tag
+					createTag();
+					// update tags hidden input value
+					const tagsVal = tags.join(',');
+					hiddenInput.value = tagsVal;
+					console.log(hiddenInput.value);
+				});
+			}
+		}
+		// reset input value to blank
+		e.target.value = "";
 	}
-};
+}
 
-const createTags = () => {
-	for (let i = 0; i < addedTags.length; i++) {
-		let text = addedTags[i];
-		let tagDisplay = document.createElement("div");
-		let destroyTag = document.createElement("i");
-		destroyTag.className = "fa-solid fa-x";
-		destroyTag.onclick = () => {
-			addedTags.splice(i, 1);
-			removeTags();
-			createTags();
-		};
+// add tag on keyup (enter)
+input.addEventListener("keyup", addTag);
 
-		tagDisplay.textContent = text;
-		tagDisplay.classList.add("entry-tag");
-		tagDisplay.prepend(destroyTag);
-
-		tagContainer.appendChild(tagDisplay);
-	}
-	// format of the hidden input value
-	//      seoul,delicious food,nice day
-	submitTagInput.value = addedTags.join(",");
-};
-
-const handleAddTag = () => {
-	let entryTagInput = document.querySelector("#create-tag-input");
-	// array to check if the tags already exist
-	let val = entryTagInput.value;
-	if (val !== "" && !val.includes(",") && !addedTags.includes(val)) {
-		addedTags.push(entryTagInput.value);
-		removeTags();
-		createTags();
-	}
-	createTagInput.value = "";
-};
-
-createTagBtn.addEventListener("click", () => {
-	handleAddTag();
+// remove all tags on button click,
+const removeBtn = document.querySelector("#create-entry-tag-details #tag-remove-btn");
+removeBtn.addEventListener("click", () =>{
+	tags.length = 0;
+	ul.querySelectorAll("li").forEach(li => li.remove());
+	// update count
+	countTags();
 });
 
-// TODO: add eventListener for Enter key "13" on the text input
-createTagInput.addEventListener("keydown", (e) => {
-	if (e.key === "Enter") {
+// prevent form submit on 'Enter' key, for inputs and selects
+const inputs = document.querySelectorAll('input');
+const select = document.querySelector('select');
+
+for (let input of inputs) {
+	input.addEventListener('keydown', (e) => {
+		if(e.key === 'Enter'){
+			e.preventDefault();
+			return false;
+		}
+	})
+}
+
+select.addEventListener('keydown', (e) => {
+	if(e.key === 'Enter'){
 		e.preventDefault();
-		handleAddTag();
+		return false;
 	}
-});
+})
 
 // -----------------------------------------------------------------------------
 // --------------------------------IMAGES---------------------------------------

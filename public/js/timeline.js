@@ -5,6 +5,8 @@
 // searchbar
 let searchBar = document.querySelector('.search-bar');
 
+let submitFilter = document.querySelector('.filter-btn');
+
 // filter results container
 let filterResults = document.querySelector('.filter-cont');
 
@@ -71,3 +73,7 @@ searchBar.addEventListener('keydown',(e)=>{
         filterEntries()
     }
 });
+
+submitFilter.addEventListener('click',()=>{
+    filterEntries()
+})
