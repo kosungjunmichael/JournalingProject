@@ -392,3 +392,9 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 30px var(--grey-dark) inset !important;
   -webkit-text-fill-color: var(--white) !important;
 }
+
+
+@media screen and (max-width: 460px) {
+
+
+}
