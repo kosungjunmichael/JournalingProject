@@ -313,3 +313,17 @@
 .twitter-content p{
     color:black;
 }
+
+
+@media screen and (max-width: 460px) {
+    .hero .content {
+        padding-top: 190px;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .text-container{
+        line-height: 0.5;
+    }
+}

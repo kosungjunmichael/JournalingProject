@@ -227,3 +227,15 @@ h3, h5 ,p{
     margin: 4px 10px;
     font-family: 'Galey';
 }
+
+@media screen and (max-width: 390px) {
+    #sidebar-container{
+        min-width: 150px;
+    }
+    #timeline{
+        width: calc(100% - 150px);
+    }
+    .group{
+        
+    }
+}
