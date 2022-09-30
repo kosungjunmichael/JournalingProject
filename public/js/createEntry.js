@@ -109,7 +109,8 @@ function remove(element, tag){
 	// get index of tag in tags array
 	let index  = tags.indexOf(tag);
 	// update tags array
-	tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+	// tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    tags.splice(index,1);
 	// remove tag
 	element.parentElement.remove();
 	// update tags hidden input value
