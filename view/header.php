@@ -20,8 +20,7 @@
             </a>
         </h2>
         <ul class="navbar">
-            <li><a href="<?= BASE .
-            	"/index.php?action=toAboutUs" ?>">About us</a></li>
+            <li><a href="<?= BASE . "/index.php?action=toAboutUs" ?>">About us</a></li>
             <li><a href="#" data-target="#login" data-toggle="modal" class="btn">Login</a></li>
             <li><a href="#" data-target="#signup" data-toggle="modal" class="btn1">Signup</a></li>
         </ul>
@@ -46,6 +45,11 @@
                         alert("<?= $error_login ?>")
                     </script>
                 <?php } ?>
+
+                <div id="form-bottom">
+                    <p>Don't have an account yet?</p>
+                    <a id="sign-up-link">Sign Up</a>
+                </div>
 
                 <div class="input-container">
                     <input id="login-ue" 
@@ -93,11 +97,6 @@
                     </div>
                 </a>
             </div>
-
-            <div id="form-bottom">
-                <p>Don't have an account yet?</p>
-                <a id="sign-up-link">Sign Up</a>
-            </div>
         </div>
     </div>
 
@@ -120,6 +119,11 @@
                         alert("<?= $error_signup ?>")
                     </script>
                 <?php } ?>
+
+                <div id="form-bottom">
+                    <p>Already have an account?</p>
+                    <a id="sign-in-link">Sign In</a>
+                </div>
 
                 <div class="input-container">
                     <input id="sign-u" type="text" name="sign-u" />

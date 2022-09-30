@@ -21,20 +21,26 @@ if (!isset($_SESSION["uid"])) {
         </div>
 
         <!-- TAG -->
-        <div id="create-entry-tag">
-            <div id="create-tag-btn">
-                <i class="fa-solid fa-plus"></i>
+        <div id="create-entry-tag-container">
+            <div id="create-entry-tag">
+<!--                <div id="create-tag-btn">-->
+<!--                    <i class="fa-solid fa-plus"></i>-->
+<!--                </div>-->
+    <!--            <input type="text" id="create-tag-input" placeholder="Add a Tag">-->
+                <i class="ph-tag"></i>
+                <ul id="create-entry-tag-input-ul">
+                    <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag & Press Enter"/>
+                    <input type="text" name="tagNames" id="create-entry-tags-hidden" hidden/>
+                </ul>
             </div>
-            <input type="text" id="create-tag-input" placeholder="Add a Tag">
-            <!-- <i class='bx bx-calendar'></i> -->
-            <!--  Default date to today  -->
-            <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
-            <!-- <?php echo date("Y-m-d"); ?> -->
-            <!-- "/> -->
+            <div id="create-entry-tag-details">
+                <p id="create-entry-tag-details-p"><span id="create-entry-tag-details-tagnum"></span> tags are remaining</p>
+                <button id="tag-remove-btn" type="button">Remove All</button>
+            </div>
         </div>
-        <div id="tag-cont">
-            <input type="text" name="tagNames" class="submitted-tags-input" hidden>
-        </div>
+<!--        <div id="tag-cont">-->
+<!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
+<!--        </div>-->
 
         <!-- LOCATION -->
         <div id="create-entry-location">
@@ -54,7 +60,79 @@ if (!isset($_SESSION["uid"])) {
         </div>
 
         <!-- TEXT -->
-        <div id="create-entry-text-content">
+        <div id="create-entry-text-content" class="container">
+            <div class="options">
+            <!-- Text Format -->
+            <button id="bold" class="option-button format">
+            <i class="fa-solid fa-bold"></i>
+            </button>
+            <button id="italic" class="option-button format">
+            <i class="fa-solid fa-italic"></i>
+            </button>
+            <button id="underline" class="option-button format">
+            <i class="fa-solid fa-underline"></i>
+            </button>
+
+            <!-- List -->
+            <button id="insertOrderedList" class="option-button">
+            <div class="fa-solid fa-list-ol"></div>
+            </button>
+            <button id="insertUnorderedList" class="option-button">
+            <i class="fa-solid fa-list"></i>
+            </button>
+
+            <!-- Alignment -->
+            <button id="justifyLeft" class="option-button align">
+            <i class="fa-solid fa-align-left"></i>
+            </button>
+            <button id="justifyCenter" class="option-button align">
+            <i class="fa-solid fa-align-center"></i>
+            </button>
+            <button id="justifyRight" class="option-button align">
+            <i class="fa-solid fa-align-right"></i>
+            </button>
+            <button id="justifyFull" class="option-button align">
+            <i class="fa-solid fa-align-justify"></i>
+            </button>
+            <button id="indent" class="option-button spacing">
+            <i class="fa-solid fa-indent"></i>
+            </button>
+            <button id="outdent" class="option-button spacing">
+            <i class="fa-solid fa-outdent"></i>
+            </button>
+
+            <!-- Headings -->
+            <select id="formatBlock" class="adv-option-button">
+            <option value="H1">H1</option>
+            <option value="H2">H2</option>
+            <option value="H3">H3</option>
+            <option value="H4">H4</option>
+            <option value="H5">H5</option>
+            <option value="H6">H6</option>
+            </select>
+
+            <!-- Font -->
+            <select id="fontName" class="adv-option-button"></select>
+            <select id="fontSize" class="adv-option-button"></select>
+
+            <!-- Color -->
+            <div class="input-wrapper">
+            <input type="color" id="foreColor" class="adv-option-button" />
+            <label for="foreColor">Font Color</label>
+            </div>
+            <div class="input-wrapper">
+            <input type="color" id="backColor" class="adv-option-button" />
+            <label for="backColor">Highlight Color</label>
+            </div>
+        </div>
+        <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
+            <!-- <form action="EntryEditManager.php" method="post"> 
+            <div id="input-text" contenteditable="true"></div>
+            <textarea name="textContent" id="hidden-text" cols="100" rows="130" hidden></textarea>
+            <button id="submit">Submit</button>
+            <input id="submit" type="submit" value="Submit">
+            </form> -->
+
             <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
         </div>
 

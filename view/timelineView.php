@@ -13,10 +13,13 @@
     // print_r($_SESSION['uid']);
 ?>
 
-<div id="timeline">
+<main id="timeline">
 
-    <div class="title">Timeline</div>
-    <input type="text" name="search_bar" class="search-bar">
+    <h1 class="title">Timeline</h1>
+    <div class="filter-field">
+        <input type="text" name="search_bar" class="search-bar">
+        <button class="filter-btn">Filter</button>
+    </div>
     <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
@@ -32,7 +35,7 @@
                 <!-- <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
                 </a> -->
-                <div class="group">Monthly</div>
+                <!-- <div class="group">Monthly</div> -->
                 <?php
             }
         ?>
@@ -41,11 +44,11 @@
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
     ?>
-         <div class="entry-display">
+         <!-- <section class="entry-display"> -->
     <?php
     } else if ($view === 'monthly'){
         ?>
-         <div class="entry-display">
+         <section class="entry-display">
     <?php
     }
     ?>
@@ -103,9 +106,8 @@
                 }
             }
             ?>
-        </div>
-    </div>
-</div>
+        </section>
+</main>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

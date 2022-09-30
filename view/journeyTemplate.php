@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +7,7 @@
     <link rel="stylesheet" href="<?= BASE . "/public/css/$style.css" ?>">
 
     <!-- Page specific javascript file -->
-    <script defer src="<?= BASE . "/public/js/loginSignup.js?>" ?>"></script>
+    <script type="module" defer src="<?= BASE . "/public/js/loginSignup.js?>" ?>"></script>
 
     <script src="https://kit.fontawesome.com/ed779ab57c.js" crossorigin="anonymous"></script>
 
@@ -19,5 +16,3 @@
 </head>
 
 <body> <?= $content ?> </body>
-
-</html>
