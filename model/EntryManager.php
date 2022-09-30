@@ -95,7 +95,7 @@ class EntryManager extends Manager
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
-		$req->bindParam("inTextContent", $data->entry, PDO::PARAM_STR);
+		$req->bindParam("inTextContent", htmlspecialchars($data->entry), PDO::PARAM_STR);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
@@ -212,7 +212,7 @@ class EntryManager extends Manager
         , e.location
         , e.weather
         , e.last_edited
-        , e.date_created 
+        , e.date_created
         , DAY(e.last_edited) as day
         , MONTHNAME(e.last_edited) as month
         , YEAR(e.last_edited) as year
@@ -287,6 +287,22 @@ class EntryManager extends Manager
 			"lng" => $lng,
 		];
 	}
+
+	public function entryDisplay($userId){
+		$db = $this->dbConnect();
+		$req = $db->prepare("SELECT text_content FROM entries WHERE user_uid = :inUid");
+		$req->execute(array(
+		   'inUid' => $userId
+		));
+		if($req->rowCount() == 1){
+		   $result = $req->fetch(PDO::FETCH_ASSOC);
+		   $req->closeCursor();
+		   return htmlspecialchars_decode($result['text_content']);
+		}else{
+		echo "failed";
+		return 0;
+	 }
+	 }
 }
 
 

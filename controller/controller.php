@@ -33,6 +33,11 @@ function createNewEntry()
 	require ROOT . "/view/createEntryView.php";
 }
 
+function toCalendar()
+{
+	require ROOT . "/view/calendarView.php";
+}
+
 function toMap($u_id, $entry_group)
 {
 	$entryManager = new EntryManager();
