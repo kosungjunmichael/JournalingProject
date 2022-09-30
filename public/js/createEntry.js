@@ -123,11 +123,9 @@ let advancedOptionButton = document.querySelectorAll(".adv-option-button");
 let fontName = document.getElementById("fontName");
 let fontSizeRef = document.getElementById("fontSize");
 let writingArea = document.getElementById("text-input");
-// let linkButton = document.getElementById("createLink");
 let alignButtons = document.querySelectorAll(".align");
 let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
-// let scriptButtons = document.querySelectorAll(".script");
 let submitButton = document.getElementById("")
 
 //List of fontlist
@@ -190,17 +188,6 @@ advancedOptionButton.forEach((button) => {
   });
 });
 
-// //link
-// linkButton.addEventListener("click", () => {
-//   let userLink = prompt("Enter a URL");
-//   //if link has http then pass directly else add https
-//   if (/http/i.test(userLink)) {
-//     modifyText(linkButton.id, false, userLink);
-//   } else {
-//     userLink = "http://" + userLink;
-//     modifyText(linkButton.id, false, userLink);
-//   }
-// });
 
 //Highlight clicked button
 const highlighter = (className, needsRemoval) => {
