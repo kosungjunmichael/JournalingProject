@@ -67,28 +67,14 @@ function signUp($data, $type)
 {
 	switch ($type) {
 		case "regular":
+			// TODO: push all values at the end
 			$control = [];
-			preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"])
-				? array_push($control, true)
-				: array_push(
-					$control,
-					"Your username must include at least 4 characters."
-				);
-			preg_match(
-				"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",
-				$data["sign-e"]
-			)
-				? array_push($control, true)
-				: array_push($control, "You must use a proper email address.");
-			preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data["sign-p"])
-				? array_push($control, true)
-				: array_push(
-					$control,
-					"Your password did not meet the minimum requirements."
-				);
-			$data["sign-p"] == $data["sign-cp"]
-				? array_push($control, true)
-				: array_push($control, "Your passwords did not match.");
+			$ctrl_u = preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"]) ? true : "Your username must include at least 4 characters.";
+			$ctrl_e = preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data["sign-e"]) ? true : "You must use a proper email address.";
+			$ctrl_p = preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data["sign-p"]) ? true  : "Your password did not meet the minimum requirements.";
+			$ctrl_cp = $data["sign-p"] == $data["sign-cp"] ? true : "Your passwords did not match.";
+
+			array_push($control, $ctrl_u, $ctrl_e, $ctrl_p, $ctrl_cp);
 
 			if (count(array_unique($control)) == 1) {
 				$userManager = new UserManager();
@@ -102,6 +88,8 @@ function signUp($data, $type)
 				}
 			} else {
 				$error = [];
+				// TODO: use filter instead
+				// array_filter($control, )
 				foreach ($control as $value) {
 					// if ($value != '1') $error .= $value . '<br>';
 					if ($value != "1") {
