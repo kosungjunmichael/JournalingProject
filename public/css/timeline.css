@@ -21,6 +21,10 @@ body{
     font-family:'Galey';
 }
 
+/* --------------------------- */
+/* FILTER SEARCH */
+/* --------------------------- */
+
 .filter-field{
     display:flex;
 }
@@ -43,9 +47,17 @@ body{
     font-weight: 900;
     font-family:'Galey';
     border: none;
-    background-color: var(--bg-secondary);
+    background-color: var(--primary);
     color: var(--text-color-secondary);
     border-radius: var(--border-radius-medium);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-light);
+}
+
+.filter-btn:active {
+    background-color: var(--primary-dark);
 }
 
 .filter-cont{
@@ -58,7 +70,7 @@ body{
     align-items: center;
     border-radius: 10px;
     gap: 10px;
-    /* padding: 0 15px; */
+    padding: 30px 48px;
 }
 
 .filter-tag{
@@ -68,12 +80,12 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: var(--border-radius-button);
     gap: 10px;
     padding: 15px;
 }
 
-.switch-toggle{
+/* .switch-toggle{
     display: flex;
     flex-direction: row;
     font-size: 25px;
@@ -96,7 +108,7 @@ body{
     font-family:'Galey';
     margin: 10px;
     padding: 15px;
-}
+} */
 
 .entry-display{
     display: flex;
@@ -237,14 +249,14 @@ body{
     background-color: var(--time-tag-bg);
     color: black;
     text-align:center;
-    width: fit-content;
-    min-width: 75px;
+    width: 75px;
     margin: 0px 5px;
     padding: 5px 5px;
     border-radius: var(--border-radius-pill);
     overflow:hidden;
     text-overflow:ellipsis;
     font-size: 12px;
+    white-space: nowrap;
 }
 
 .no-tag{
@@ -259,7 +271,7 @@ body{
     font-size: 12px;
 }
 
-h3, h5 ,p{
+/* h3, h5 ,p{
     margin: 4px 10px;
     font-family: 'Galey';
-}
+} */

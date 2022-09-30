@@ -22,18 +22,15 @@ if (!isset($_SESSION["uid"])) {
 
         <!-- TAG -->
         <div id="create-entry-tag">
-            <div id="create-tag-btn">
-                <i class="fa-solid fa-plus"></i>
+            <div id="tag-creation">
+                <div id="create-tag-btn">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <input type="text" id="create-tag-input" placeholder="Add a Tag">
             </div>
-            <input type="text" id="create-tag-input" placeholder="Add a Tag">
-            <!-- <i class='bx bx-calendar'></i> -->
-            <!--  Default date to today  -->
-            <!-- <input id="create-entry-date-input" type="date" name="date" value=" -->
-            <!-- <?php echo date("Y-m-d"); ?> -->
-            <!-- "/> -->
-        </div>
-        <div id="tag-cont">
-            <input type="text" name="tagNames" class="submitted-tags-input" hidden>
+            <div id="tag-cont">
+                <input type="text" name="tagNames" class="submitted-tags-input" hidden>
+            </div>
         </div>
 
         <!-- LOCATION -->
