@@ -141,7 +141,7 @@ function newEntry($data)
 {
 	$entryManager = new EntryManager();
 	$tagManager = new TagManager();
-	if (!empty($data->title) and !empty($data->entry)) {
+	if (!empty($data->title) and !empty($data->textContent)) {
 		$entry_uid = $entryManager->createEntry($data);
 		$tagManager->submitTags($data->tags, $entry_uid);
 		if ($_FILES["imgUpload"]["error"] !== 4) {
@@ -167,7 +167,7 @@ function filterEntries($filter)
 	if ($filter === "") {
 		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
 	} else {
-		$entries = $filterManager->filterEntriesByTag($_SESSION["uid"], $filter);
+		$entries = $filterManager->filterEntries($_SESSION["uid"], $filter);
 		// echoPre($entries);
 	}
 	require ROOT . "/view/timelineFiltered.php";

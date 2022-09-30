@@ -95,7 +95,8 @@ class EntryManager extends Manager
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
-		$req->bindParam("inTextContent", htmlspecialchars($data->entry), PDO::PARAM_STR);
+        //TODO: Why do we need htmlspecialchars for a prepare query?
+		$req->bindParam("inTextContent", htmlspecialchars($data->textContent), PDO::PARAM_STR);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
