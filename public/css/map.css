@@ -3,15 +3,15 @@
 #map-view-container {
 	height: calc(100vh - 41px);
 	width: 100%;
-	padding: 20px;
+	/* padding: 20px; */
 	position: relative;
 }
 
 #map-view-map {
-	height: 100%;
-	width: 100%;
+	height: 95%;
+	width: 95%;
 	border-radius: 10px;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 }
 
 .map-view-entry-card {
@@ -51,7 +51,7 @@
 }
 
 /* SVG CLOSE X */
-.close-svg-circle {
+/* .close-svg-circle {
 	fill: var(--text-color-secondary);
 	stroke: var(--text-color-secondary);
 	transition: fill 0.3s;
@@ -60,7 +60,7 @@
 .close-svg-line {
 	stroke: var(--bg-secondary);
 	transition: stroke 0.3s;
-}
+} */
 
 .map-view-entry-close:hover > .close-svg-circle {
 	fill: var(--bg-secondary);
@@ -70,50 +70,48 @@
 	stroke: var(--text-color-secondary);
 }
 
-
-
-
 .map-view-entry-card-title {
 	color: var(--text-color-primary);
 	font-size: 20px;
 	font-weight: 500;
 	max-width: 240px;
-	/*overflow: hidden;*/
-	/*white-space: nowrap;*/
-	/* text-overflow: ellipsis; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .map-view-entry-card-textContent {
 	color: var(--text-color-secondary);
 	font-size: 13px;
 	font-weight: 400;
+	margin: 0.5rem 0;
 	text-overflow: ellipsis;
 }
 
 .map-view-entry-card-textContent > p {
-    color: var(--text-color-secondary);
+	color: var(--text-color-secondary);
 	overflow: hidden;
-	/* line-height: 2rem; */
 	max-height: 8rem;
 	-webkit-box-orient: vertical;
 	display: block;
 	display: -webkit-box;
 	overflow: hidden !important;
 	text-overflow: ellipsis;
-    -webkit-line-clamp: 4;
+	-webkit-line-clamp: 4;
 }
 
 .map-view-entry-card-bottom {
 	color: var(--text-color-primary);
 	display: flex;
 	justify-content: space-between;
+	margin: 0.5rem 0;
 	font-size: 13px;
 	font-weight: 500;
 }
 
 .map-view-entry-card-location,
 .map-view-entry-card-date {
-	width: 50%;
+	/* width: 50%; */
 }
 
 .map-view-entry-card-date {
@@ -154,32 +152,26 @@
 	background-color: var(--primary) !important;
 }
 
-
 #map-view-map div[role="dialog"] button[title="Close"] span {
 	padding: 0.6rem !important;
 	margin: 6px !important;
-	/* height: 3px !important; */
 	background-color: var(--text-color-primary) !important;
-	/* -webkit-mask-image: url("https://freesvg.org/img/cybergedeon_warning_banana_skin.png") !important; */
-	/* font-size: 30rem !important;  */
-	/* width: 2rem !important; */
-}
-
-/* .close-svg-circle {
-	fill: var(--text-color-secondary);
-	stroke: var(--text-color-secondary);
-	transition: fill 0.3s;
-}
-
-.close-svg-line {	
-	stroke: var(--bg-secondary);
-	transition: stroke 0.3s;
-} */
-
-#map-view-map div[role="dialog"] button[title="Close"]:hover {
-	/* background-color: tomato; */
 }
 
 #map-view-map div[role="dialog"] button[title="Close"] span:hover {
 	background-color: var(--text-color-secondary);
 }
+
+/* #map-view-map div[role="dialog"] button[title="Close"] span {
+	padding: 0.6rem !important;
+	margin: 6px !important;
+	height: 3px !important;
+	background-color: var(--text-color-primary) !important;
+	-webkit-mask-image: url("https://freesvg.org/img/cybergedeon_warning_banana_skin.png") !important;
+	font-size: 30rem !important; 
+	width: 2rem !important;
+}
+
+#map-view-map div[role="dialog"] button[title="Close"]:hover {
+	background-color: tomato;
+} */
