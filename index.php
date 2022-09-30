@@ -115,7 +115,7 @@ try {
             $entryContent->tags = $_REQUEST['tagNames'];
             $entryContent->location = $_REQUEST['location'];
             $entryContent->weather = $_REQUEST['weather'];
-            $entryContent->entry = $_REQUEST['textContent'];
+            $entryContent->textContent = $_REQUEST['textContent'];
             newEntry($entryContent);
             break;
 
