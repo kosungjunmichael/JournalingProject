@@ -29,6 +29,10 @@ body{
     display:flex;
 }
 
+.filter-field > i{
+    font-size: 50px;
+}
+
 .search-bar{
     padding: 15px;
     margin: 0px 15px 0px 50px;

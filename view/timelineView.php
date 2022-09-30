@@ -17,8 +17,10 @@
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
+        <i class="fa-solid fa-filter"></i>
         <input type="text" name="search_bar" class="search-bar">
         <button class="filter-btn">Filter</button>
+
     </div>
     <div class="filter-cont"></div>
     <div class="switch-toggle">
