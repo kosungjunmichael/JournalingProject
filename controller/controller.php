@@ -24,8 +24,15 @@ function toTimeline($u_id, $entry_group)
 	$entry_manager = new EntryManager();
 	$entries = $entry_manager->getEntries($u_id, $entry_group);
 	$view = $entry_group;
-	
+
 	require ROOT . "/view/timelineView.php";
+}
+
+function toAlbum($u_id)
+{
+	$entryManager = new EntryManager();
+	$res = $entryManager->getAlbum($u_id);
+	require ROOT . "/view/albumView.php";
 }
 
 function createNewEntry()
@@ -214,23 +221,15 @@ function updateLastActive($uid)
 	$userManager->updateLastActive($uid);
 }
 
-
-
-function toAlbum($uid){
-	$entryManager = new EntryManager();
-	$res = $entryManager->getAlbum();
-	require(ROOT . '/view/albumView.php');
-  }
-
-
-function echoPre($user_fetch) {
-  if (is_array($user_fetch)) {
-    echo "<pre>";
-    print_r($user_fetch);
-    echo "</pre>";
-  } else {
-    echo "<pre>";
-    echo $user_fetch;
-    echo "</pre>";
-  }
+function echoPre($user_fetch)
+{
+	if (is_array($user_fetch)) {
+		echo "<pre>";
+		print_r($user_fetch);
+		echo "</pre>";
+	} else {
+		echo "<pre>";
+		echo $user_fetch;
+		echo "</pre>";
+	}
 }
