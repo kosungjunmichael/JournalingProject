@@ -253,16 +253,20 @@ class EntryManager extends Manager
 
     public function getAlbum(){
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT x.u_id, x.title, x.date_created,
+		$req = $db->prepare("SELECT x.u_id
+									, x.title
+									, x.date_created,
         GROUP_CONCAT(y.path SEPARATOR ',') as paths
+        , GROUP_CONCAT(t.tag_name) as tags
+
         FROM ENTRIES x
-        JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
+        INNER JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
+		LEFT JOIN tag_map tm ON x.u_id = tm.entry_id
+        LEFT JOIN tags t ON t.id = tm.tag_id
         GROUP BY x.u_id ORDER BY date_created DESC LIMIT 5");
 
         $req -> execute();
         $res = $req -> fetchAll(PDO::FETCH_ASSOC);
-        // echo "EntryManager.php: getAlbum: RES", "<br>";
-        // echoPre($res);
         return $res;
     }
 
@@ -300,5 +304,7 @@ class EntryManager extends Manager
 	 }
 	 }
 }
+
+
 
 
