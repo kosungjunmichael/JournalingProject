@@ -103,7 +103,6 @@ const initMap = () => {
 		});
 
 		marker.addListener("click", () => {
-
 			// IF THERE IS AN ACTIVE INFO WINDOW, CLOSE IT
 			if (lastOpenIW !== undefined) lastOpenIW.close();
 
@@ -122,7 +121,6 @@ const initMap = () => {
 			// 	marker.setAnimation(null);
 			// }, 1);
 		});
-		
 
 		let location = new google.maps.LatLng(position.lat, position.lng);
 		bounds.extend(location);
@@ -133,8 +131,13 @@ const initMap = () => {
 	map.fitBounds(bounds);
 	map.setCenter(bounds.getCenter());
 
-	// TODO: Markers is an array of google.maps.Markers
+	// CREATES A MARKER CLUSTER IF NEEDED BASED ON CLOSELY PLACED MARKERS
 	const markerCluster = new markerClusterer.MarkerClusterer({ markers, map });
+
+	// WHEN MARKER CLUSTER IS CLICKED, CLOSE ANY ACTIVE INFO WINDOW
+	google.maps.event.addListener(markerCluster, "click", function(cluster) {
+		if (lastOpenIW !== undefined) lastOpenIW.close();
+	})
 };
 
 window.initMap = initMap;

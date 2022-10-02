@@ -99,6 +99,7 @@ function createTag(){
         </li>`;
 		// insert tag
 		ul.insertAdjacentHTML("afterbegin", liTag);
+        // ul.appendChild(liTag);
 	});
 	// count tags
 	countTags();
@@ -110,6 +111,7 @@ function remove(element, tag){
 	let index  = tags.indexOf(tag);
 	// update tags array
 	tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    // tags.splice(index, 1); // *NOTE essentially the same as the line above
 	// remove tag
 	element.parentElement.remove();
 	// update tags hidden input value
@@ -125,7 +127,7 @@ function addTag(e){
 		// handle white spacing, multiple to one
 		let tag = e.target.value.replace(/\s+/g, ' ');
 		if(tag.length > 1 && !tags.includes(tag)){
-			if(tags.length < 10){
+			if(tags.length < 5){
 				tag.split(',').forEach(tag => {
 					// add tag to tags array
 					tags.push(tag);
@@ -169,8 +171,8 @@ for (let input of inputs) {
 }
 
 select.addEventListener('keydown', (e) => {
-	if(e.key === 'Enter'){
-		e.preventDefault();
+    if(e.key === 'Enter'){
+        e.preventDefault();
 		return false;
 	}
 })

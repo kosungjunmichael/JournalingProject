@@ -38,9 +38,9 @@ if (!isset($_SESSION["uid"])) {
                 <button id="tag-remove-btn" type="button">Remove All</button>
             </div>
         </div>
-<!--        <div id="tag-cont">-->
+       <!-- <div id="tag-cont">-->
 <!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
-<!--        </div>-->
+<!--        </div> -->
 
         <!-- LOCATION -->
         <div id="create-entry-location">
@@ -116,8 +116,16 @@ if (!isset($_SESSION["uid"])) {
             </div>
             </div>
         <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
+<<<<<<< HEAD
             <div id="input-text" contenteditable="true"></div>
             <textarea type="text" id="text-content-textarea" name="textContent" hidden></textarea>
+=======
+           
+            <!-- <div id="input-text" contenteditable="true"></div>
+            <textarea name="textContent" id="hidden-text" cols="100" rows="100" hidden></textarea> -->
+
+            <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
+>>>>>>> main
         </div>
 
         <div id="entry-upload-photo">
