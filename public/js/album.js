@@ -37,7 +37,6 @@ const openModal = pathsStr => { // use type to know which input to add the data 
             
             showSlides(paths.length);
             }
-
         }
     
 
@@ -45,7 +44,6 @@ const openModal = pathsStr => { // use type to know which input to add the data 
     let arrowRight = document.createElement("a");
     arrowRight.classList.add("nav-arrow","next", "right");
     arrowRight.setAttribute("onclick", "plusSlides(1)");
-
 
     let arrowLeft = document.createElement("a");
     arrowLeft.classList.add("nav-arrow","previous", "left");
@@ -55,7 +53,6 @@ const openModal = pathsStr => { // use type to know which input to add the data 
         modal.appendChild(arrowLeft);
         modal.appendChild(arrowRight);
     }
-
 
     // MODAL
     overlay.classList.toggle("display-none");
