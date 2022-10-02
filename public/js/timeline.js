@@ -5,13 +5,25 @@
 // searchbar
 let searchBar = document.querySelector('.search-bar');
 
+// filter button
 let submitFilter = document.querySelector('.filter-btn');
 
 // filter results container
 let filterResults = document.querySelector('.filter-cont');
 
+// remove all filters
+let deleteFiltersBtn = document.querySelector('.filter-remove-all');
+
 // array of all the filter results to be added
 let addedFilters = [];
+
+// filter switches
+let filterByTags = document.querySelector('.filter-tags-switch');
+let filterByTitles = document.querySelector('.filter-titles-switch');
+let filterByEntries = document.querySelector('.filter-entries-switch');
+
+
+
 
 // entries display container
 let entriesDisplay = document.querySelector('.entry-display');
@@ -26,28 +38,20 @@ function removeFilters(){
 function addFilters(){
     for (let i=0; i<addedFilters.length; i++){
         let text = addedFilters[i];
-        let filterDisplay = document.createElement('div');
+        let filterDisplay = document.createElement('li');
 
-        let liTag = `
-        <li>${tag}
-            <svg class="create-entry-tag-close" onclick="remove(this, '${tag}')" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
-                <rect width="256" height="256" fill="none"></rect>
-                <circle class="close-svg-circle" cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="16"></circle>
-                <line class="close-svg-line" x1="160" y1="96" x2="96" y2="160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-                <line class="close-svg-line" x1="160" y1="160" x2="96" y2="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
-            </svg>
-        </li>`;
+        let destroyFilter = document.createElement('i');
+        destroyFilter.xmlns="http://www.w3.org/2000/svg"
+        destroyFilter.className = 'fa-solid fa-x';
 
-        // let destroyFilter = document.createElement('i');
-        // destroyFilter.className = 'fa-solid fa-x';
-        // destroyFilter.onclick = () => {
-        // addedFilters.splice(i,1);
-        // removeFilters();
-        // addFilters();
-        // }
-        // filterDisplay.textContent = text;
-        // filterDisplay.classList.add("filter-tag");
-        // filterDisplay.prepend(destroyFilter);
+        destroyFilter.onclick = () => {
+        addedFilters.splice(i,1);
+        removeFilters();
+        addFilters();
+        }
+        filterDisplay.textContent = text;
+        filterDisplay.classList.add("filter-tag");
+        filterDisplay.append(destroyFilter);
         
         filterResults.appendChild(filterDisplay);
     }
@@ -78,13 +82,23 @@ function filterEntries(){
     searchBar.value = "";
 }
 
-searchBar.addEventListener('keydown',(e)=>{
+searchBar.addEventListener('keyup',(e)=>{
     if (e.key === "Enter"){
         e.preventDefault();
         filterEntries()
     }
 });
 
+
+deleteFiltersBtn.addEventListener('click',()=>{
+    addedFilters = [];
+    removeFilters();
+    addFilters();
+})
+
+
 submitFilter.addEventListener('click',()=>{
     filterEntries()
 })
+
+// filter By "" switches

@@ -6,7 +6,7 @@ body{
     color: var(--text-color-primary);
 }
 
-#timeline{
+main#timeline{
     display: flex;
     flex-direction: column;
     width: calc(100% - 240px);
@@ -14,7 +14,7 @@ body{
     padding: 25px;
 }
 
-.title{
+h1.title{
     font-size: 35px;
     padding: 15px;
     font-weight: 900;
@@ -25,52 +25,134 @@ body{
 /* FILTER SEARCH */
 /* --------------------------- */
 
-.filter-field{
+div.filter-field{
     display:flex;
     align-items: center;
     margin-left: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.filter-input-field{
+div.filter-field .fa-x{
+    font-size: 7px;
+    font-weight: 500;
+    background-color: var(--white);
+    padding: 5px 6px;
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    border:1px solid var(--white);
+    transition: background-color 0.5s;
+    color: var(--primary);
+}
+
+div.filter-field .fa-x:hover{
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+div.filter-input-field{
+    display: flex;
+    align-items: center;
+}
+
+div.filter-input-control{
     display: flex;
     align-items: center;
     border-radius: var(--border-radius-medium);
     background-color: var(--bg-secondary);
     color: var(--text-color-secondary);
-    padding: 15px;
+    padding: 5px 15px;
 }
 
-.ph-funnel{
+i.ph-funnel{
     font-size: 25px;
 }
 
-.search-bar{
+input.search-bar{
+    color: var(--text-color-secondary);
     background-color: var(--bg-secondary);
-    font-size: 15px;
+    font-size: 13px;
     border: none;
+    width: 150px
 }
 
-.filter-btn{
-    margin: 0px 50px 0px 15px;
+button.filter-remove-all i{
+    font-size:20px;
+    margin-left:5px;
+}
+
+button.filter-remove-all{
+    border:none;
+    color: red;
+    background: none;
+    font-size:15px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: color 0.5s;
+    cursor: pointer;
+}
+
+button.filter-tags-switch{
     font-size: 25px;
-    padding: 20px;
+    margin: 0px 10px;
+    padding: 10px;
     font-weight: 900;
     font-family:'Galey';
     border: none;
     background-color: var(--primary);
     color: var(--text-color-secondary);
     border-radius: var(--border-radius-medium);
+    transition: background-color 0.5s
+}
+button.filter-title-switch{
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 10px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-color-secondary);
+    border-radius: var(--border-radius-medium);
+    transition: background-color 0.5s
+}
+button.filter-entries-switch{
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 10px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-color-secondary);
+    border-radius: var(--border-radius-medium);
+    transition: background-color 0.5s
 }
 
-.filter-btn:hover {
+
+button.filter-btn{
+    margin: 0px 10px;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-color-secondary);
+    border-radius: var(--border-radius-medium);
+    transition: background-color 0.5s
+}
+
+button.filter-btn:hover {
     background-color: var(--primary-light);
 }
 
-.filter-btn:active {
+button.filter-btn:active {
     background-color: var(--primary-dark);
 }
 
-.filter-cont{
+ul.filter-cont{
     background:transparent;
     width: fit-content;
     height: 35px;
@@ -84,17 +166,18 @@ body{
     margin: 0px 10px;
 }
 
-.filter-tag{
+li.filter-tag{
     background: var(--primary);
     color: var(--white);
     width: fit-content;
     height: 35px;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-radius: var(--border-radius-button);
     gap: 10px;
-    padding: 15px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 /* .switch-toggle{
@@ -122,7 +205,7 @@ body{
     padding: 15px;
 } */
 
-.entry-display{
+section.entry-display{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -134,18 +217,18 @@ body{
 
 /*          === Monthly View ===          */
 
-.month{
+div.month{
     padding: 15px 0px;
 }
 
-.month-name {
+h2.month-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
     margin: 10px;
 }
 
-.month-container{
+div.month-container{
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -180,13 +263,13 @@ body{
 
 /*          === Entries ===          */
 
-.month-container a
-,.week-container a{
+div.month-container a
+,div.week-container a{
     color: var(--text-color-primary);
     text-decoration: none;
 }
 
-.entry-container{
+div.entry-container{
     width: 420px;
     height: 200px;
     border: solid gray 1px;
@@ -224,7 +307,7 @@ body{
 
 /*      === Monthly ===      */
 
-.entry-title {
+h3.entry-title {
     font-size: 30px;
     padding: 10px 20px;
     font-family:'Galey';
@@ -233,7 +316,7 @@ body{
     text-overflow:ellipsis;
 }
 
-.entry-content{
+p.entry-content{
     margin: 6px 20px;
     line-height: 1.2rem;
     max-height: 6rem;
@@ -245,19 +328,19 @@ body{
     height: 5rem;
 }
 
-.entry-info {
+div.entry-info {
     display: flex;
     padding:5px;
     justify-content: space-between;
 }
 
-.entry-tags{
+div.entry-tags{
     margin: 0px 5px;
     font-weight:700;
     display:flex;
 }
 
-.tag{
+p.tag{
     background-color: var(--time-tag-bg);
     color: black;
     text-align:center;
@@ -271,13 +354,13 @@ body{
     white-space: nowrap;
 }
 
-.no-tag{
+p.no-tag{
     margin: 0px 5px;
     padding: 0px 5px;
     font-size: 12px;
 }
 
-.entry-date{
+p.entry-date{
     margin: 5px 15px;
     font-weight:700;
     font-size: 12px;
