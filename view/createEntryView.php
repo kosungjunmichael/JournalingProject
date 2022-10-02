@@ -38,9 +38,9 @@ if (!isset($_SESSION["uid"])) {
                 <button id="tag-remove-btn" type="button">Remove All</button>
             </div>
         </div>
-<!--        <div id="tag-cont">-->
+       <!-- <div id="tag-cont">-->
 <!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
-<!--        </div>-->
+<!--        </div> -->
 
         <!-- LOCATION -->
         <div id="create-entry-location">

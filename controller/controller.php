@@ -102,6 +102,7 @@ function signUp($data, $type)
 		default:
 			$userManager = new UserManager();
 			$check = $userManager->createUser($data, $type);
+            // echoPre($check);
 			if ($check === false) {
 				toTimeline($_SESSION["uid"], "monthly");
 			} else {
