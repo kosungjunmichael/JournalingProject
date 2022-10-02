@@ -218,11 +218,8 @@ function handleImageSelect() {
 
 image_input.addEventListener("change", handleImageSelect);
 
-
-
-
 // -----------------------------------------------------------------------------
-// --------------------------------EDIT TOOLBAR---------------------------------------
+// --------------------------------EDIT TOOLBAR---------------------------------
 // -----------------------------------------------------------------------------
 
 let optionsButtons = document.querySelectorAll(".option-button");
@@ -233,7 +230,6 @@ let writingArea = document.getElementById("text-input");
 let alignButtons = document.querySelectorAll(".align");
 let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
-let submitButton = document.getElementById("")
 
 //List of fontlist
 let fontList = [
@@ -249,11 +245,10 @@ let fontList = [
 //Initial Settings
 const initializer = () => {
   //function calls for highlighting buttons
-  //No highlights for link, unlink,lists, undo,redo since they are one time operations
+  //No highlights for lists since they are one time operations
   highlighter(alignButtons, true);
   highlighter(spacingButtons, true);
   highlighter(formatButtons, false);
-  // highlighter(scriptButtons, true);
 
   //create options for font names
   fontList.map((value) => {
@@ -295,7 +290,6 @@ advancedOptionButton.forEach((button) => {
   });
 });
 
-
 //Highlight clicked button
 const highlighter = (className, needsRemoval) => {
   className.forEach((button) => {
@@ -333,11 +327,30 @@ window.onload = initializer();
 
 let submit = document.getElementById('submit');
 let input_text = document.getElementById('input-text');
-let hidden_text = document.getElementById('hidden-text');
+let hidden_text = document.getElementById('text-content-textarea');
 
 submit.addEventListener('click', (e) => {
-  // console.log("hi");
   hidden_text.value = input_text.innerHTML;
   console.log(hidden_text.value);
-  // e.preventDefault();
 })
+
+// -----------------------------------------------------------------------------
+// --------------------------------SUBMIT---------------------------------
+// -----------------------------------------------------------------------------
+
+// Prevents the form to be refreshed if the title or entry is missing
+let title = document.getElementById('create-entry-title-input');
+let form = document.getElementById('create-entry-form');
+
+form.addEventListener('submit', e => {
+	if (title.value === '' || title.value === null ) {
+		e.preventDefault();
+		alert('Please enter a title.');
+	} else if(hidden_text.value === '' || hidden_text.value === null) {
+		e.preventDefault();
+		// alert('Please write an entry.');
+	
+	} else {
+		return true;
+	}
+});
