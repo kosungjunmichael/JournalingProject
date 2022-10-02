@@ -116,11 +116,9 @@ if (!isset($_SESSION["uid"])) {
             </div>
         </div>
         <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
-           
             <div id="input-text" contenteditable="true"></div>
-            <textarea name="textContent" id="hidden-text" cols="100" rows="100" hidden></textarea>
 
-            <!-- <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea> -->
+            <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..." hidden></textarea>
         </div>
 
         <div id="entry-upload-photo">
@@ -136,7 +134,7 @@ if (!isset($_SESSION["uid"])) {
                 </label>
             </div>
             <div id="create-entry-submit">
-                <input type="submit" />
+                <input type="submit" id="submit" />
             </div>
         </div>
     </form>

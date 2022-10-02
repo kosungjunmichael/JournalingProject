@@ -231,7 +231,6 @@ let writingArea = document.getElementById("text-input");
 let alignButtons = document.querySelectorAll(".align");
 let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
-let submitButton = document.getElementById("")
 
 //List of fontlist
 let fontList = [
@@ -247,7 +246,7 @@ let fontList = [
 //Initial Settings
 const initializer = () => {
   //function calls for highlighting buttons
-  //No highlights for link, unlink,lists, undo,redo since they are one time operations
+  //No highlights lists since they are one time operations
   highlighter(alignButtons, true);
   highlighter(spacingButtons, true);
   highlighter(formatButtons, false);
@@ -331,11 +330,11 @@ window.onload = initializer();
 
 let submit = document.getElementById('submit');
 let input_text = document.getElementById('input-text');
-let hidden_text = document.getElementById('hidden-text');
+let hidden_text = document.getElementById('text-content-textarea');
 
 submit.addEventListener('click', (e) => {
-  // console.log("hi");
+  console.log("hi");
   hidden_text.value = input_text.innerHTML;
   console.log(hidden_text.value);
-  // e.preventDefault();
+//   e.preventDefault();
 })
