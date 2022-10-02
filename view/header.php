@@ -189,7 +189,7 @@
             <!-- Google Signup -->
 
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"]; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&method=google" data-auto_prompt="false"></div>
+                <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"]; ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&method=google" data-auto_prompt="false"></div> -->
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
 

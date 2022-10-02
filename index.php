@@ -53,7 +53,7 @@ try {
 			toMap($_SESSION["uid"], "all");
 			break;
 
-		case "createEntry":
+		case "toCreateEntry":
 			createNewEntry();
 			break;
 
