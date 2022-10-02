@@ -43,7 +43,6 @@
                     <?= $entryContent["location"] ?>
                 </div>
                 <div id="entry-weather">
-                    <!-- TODO: All Fontawesome icons except sun do not show up  -->
                     <?php switch ($entryContent["weather"]) {
                         case 0: ?>
                             <i class="fa-sharp fa-solid fa-sun"></i>
@@ -54,11 +53,11 @@
                             Rainy
                         <?php break;
                         case 2: ?>
-                            <i class="fa-solid fa-clouds"></i>
+                            <i class="fa-solid fa-cloud"></i>
                             Cloudy
                         <?php break;
                         case 3: ?>
-                            <i class="fa-solid fa-cloud-snow"></i>
+                            <i class="fa-regular fa-snowflake"></i>
                             Snowy
                         <?php break;
                         default: ?>
@@ -94,7 +93,7 @@
         } ?>
     </div>
     <div id="view-entry-text-content">
-        <?= $entryContent["text_content"] ?> 
+        <?= $entryContent["text_content"] ?>
     </div>
 </article>
 
