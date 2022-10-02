@@ -59,7 +59,7 @@ if (!isset($_SESSION["uid"])) {
             </select>
         </div>
 
-        <!-- TEXT -->
+        <!-- TEXT Editor -->
         <div id="create-entry-text-content" class="txt-container">
             <div class="options">
             <!-- Text Format -->
@@ -114,11 +114,10 @@ if (!isset($_SESSION["uid"])) {
             <input type="color" id="backColor" class="adv-option-button" />
             <label for="backColor">Highlight</label>
             </div>
-        </div>
+            </div>
         <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
             <div id="input-text" contenteditable="true"></div>
-
-            <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..." hidden></textarea>
+            <textarea type="text" id="text-content-textarea" name="textContent" hidden></textarea>
         </div>
 
         <div id="entry-upload-photo">
@@ -134,7 +133,7 @@ if (!isset($_SESSION["uid"])) {
                 </label>
             </div>
             <div id="create-entry-submit">
-                <input type="submit" id="submit" />
+                <input type="submit" id="submit" value="Submit"/>
             </div>
         </div>
     </form>
