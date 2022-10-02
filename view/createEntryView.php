@@ -60,7 +60,7 @@ if (!isset($_SESSION["uid"])) {
         </div>
 
         <!-- TEXT -->
-        <div id="create-entry-text-content" class="container">
+        <div id="create-entry-text-content" class="txt-container">
             <div class="options">
             <!-- Text Format -->
             <button id="bold" class="option-button format">
@@ -101,16 +101,6 @@ if (!isset($_SESSION["uid"])) {
             <i class="fa-solid fa-outdent"></i>
             </button>
 
-            <!-- Headings -->
-            <select id="formatBlock" class="adv-option-button">
-            <option value="H1">H1</option>
-            <option value="H2">H2</option>
-            <option value="H3">H3</option>
-            <option value="H4">H4</option>
-            <option value="H5">H5</option>
-            <option value="H6">H6</option>
-            </select>
-
             <!-- Font -->
             <select id="fontName" class="adv-option-button"></select>
             <select id="fontSize" class="adv-option-button"></select>
@@ -118,20 +108,17 @@ if (!isset($_SESSION["uid"])) {
             <!-- Color -->
             <div class="input-wrapper">
             <input type="color" id="foreColor" class="adv-option-button" />
-            <label for="foreColor">Font Color</label>
+            <label for="foreColor">Color</label>
             </div>
             <div class="input-wrapper">
             <input type="color" id="backColor" class="adv-option-button" />
-            <label for="backColor">Highlight Color</label>
+            <label for="backColor">Highlight</label>
             </div>
         </div>
         <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
-            <!-- <form action="EntryEditManager.php" method="post"> 
-            <div id="input-text" contenteditable="true"></div>
-            <textarea name="textContent" id="hidden-text" cols="100" rows="130" hidden></textarea>
-            <button id="submit">Submit</button>
-            <input id="submit" type="submit" value="Submit">
-            </form> -->
+           
+            <!-- <div id="input-text" contenteditable="true"></div>
+            <textarea name="textContent" id="hidden-text" cols="100" rows="100" hidden></textarea> -->
 
             <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
         </div>
