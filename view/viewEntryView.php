@@ -93,7 +93,29 @@
         } ?>
     </div>
     <div id="view-entry-text-content">
-        <?= $entryContent["text_content"] ?>
+        <?php $defaultAllowedTags = [
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'blockquote',
+			'q',
+			'strong',
+			'em',
+			'ul',
+			'ol',
+			'li',
+			'font',
+			'style',
+			'b',
+			'i',
+			'u',
+			'div',
+			'span'
+		]; strip_tags($entryContent["text_content"], $defaultAllowedTags); ?> 
     </div>
 </article>
 
