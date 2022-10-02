@@ -102,3 +102,12 @@ submitFilter.addEventListener('click',()=>{
 })
 
 // filter By "" switches
+filterByTags.addEventListener('click',()=>{
+    filterByTags.classList.toggle("switch-active");
+})
+filterByTitles.addEventListener('click',()=>{
+    filterByTitles.classList.toggle("switch-active");
+})
+filterByEntries.addEventListener('click',()=>{
+    filterByEntries.classList.toggle("switch-active");
+})

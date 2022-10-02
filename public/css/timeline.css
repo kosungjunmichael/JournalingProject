@@ -97,37 +97,40 @@ button.filter-tags-switch{
     font-size: 25px;
     margin: 0px 10px;
     padding: 10px;
+    width: 100px;
     font-weight: 900;
     font-family:'Galey';
     border: none;
-    background-color: var(--primary);
-    color: var(--text-color-secondary);
+    background-color: var(--time-tag-bg);
+    color: var(--black);
     border-radius: var(--border-radius-medium);
-    transition: background-color 0.5s
 }
-button.filter-title-switch{
+button.filter-titles-switch{
     font-size: 25px;
     margin: 0px 10px;
     padding: 10px;
+    width: 100px;
     font-weight: 900;
     font-family:'Galey';
     border: none;
-    background-color: var(--primary);
-    color: var(--text-color-secondary);
+    background-color: var(--time-tag-bg);
+    color: var(--black);
     border-radius: var(--border-radius-medium);
-    transition: background-color 0.5s
 }
 button.filter-entries-switch{
     font-size: 25px;
     margin: 0px 10px;
     padding: 10px;
+    width: 100px;
     font-weight: 900;
     font-family:'Galey';
     border: none;
-    background-color: var(--primary);
-    color: var(--text-color-secondary);
+    background-color: var(--time-tag-bg);
+    color: var(--black);
     border-radius: var(--border-radius-medium);
-    transition: background-color 0.5s
+}
+.switch-active{
+    background-color: var(--primary) !important;
 }
 
 

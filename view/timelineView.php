@@ -27,7 +27,7 @@
             <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
         </div>
         <div class="filter-switch-cont">
-            <button class="filter-tags-switch">tags</button>
+            <button class="filter-tags-switch switch-active">tags</button>
             <button class="filter-titles-switch">title</button>
             <button class="filter-entries-switch">entries</button>
         </div>
