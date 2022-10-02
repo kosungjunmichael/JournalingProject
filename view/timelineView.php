@@ -13,11 +13,25 @@
     // print_r($_SESSION['uid']);
 ?>
 
-<div id="timeline">
+<main id="timeline">
 
     <h1 class="title">Timeline</h1>
-    <input type="text" name="search_bar" class="search-bar" placeholder="Search...">
-    <div class="filter-cont"></div>
+    <div class="filter-field">
+        <div class="filter-input-field">
+            <div class="filter-input-control">
+                <i class="ph-funnel"></i>
+                <ul class="filter-cont"></ul>
+                <input type="text" name="search_bar" class="search-bar" placeholder="Type Filter & Press Enter">
+            </div>
+            <button class="filter-btn">Filter</button>
+            <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
+        </div>
+        <div class="filter-switch-cont">
+            <button class="filter-tags-switch switch-active">tags</button>
+            <button class="filter-titles-switch">title</button>
+            <button class="filter-entries-switch">entries</button>
+        </div>
+    </div>
     <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
@@ -32,7 +46,7 @@
                 <!-- <a href="index.php?action=toggleView&view=week">
                     <div class="group">Weekly</div>
                 </a> -->
-                <div class="group">Monthly</div>
+                <!-- <div class="group">Monthly</div> -->
                 <?php
             }
         ?>
@@ -41,11 +55,11 @@
     // TODO: change the code depending on the way we're formatting the weekly & monthly
     if ($view === 'weekly'){
     ?>
-         <div class="entry-display">
+         <!-- <section class="entry-display"> -->
     <?php
     } else if ($view === 'monthly'){
         ?>
-         <div class="entry-display">
+         <section class="entry-display">
     <?php
     }
     ?>
@@ -60,7 +74,7 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <div class="month-name"><?=$month?></div>
+                            <h2 class="month-name"><?=$month?></h2>
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
@@ -103,9 +117,8 @@
                 }
             }
             ?>
-        </div>
-    </div>
-</div>
+        </section>
+</main>
 
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

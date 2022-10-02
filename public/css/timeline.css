@@ -6,17 +6,184 @@ body{
     color: var(--text-color-primary);
 }
 
-.search-bar{
-    padding: 15px;
-    margin: 0px 50px;
-    font-size: 25px;
-    background-color: var(--bg-secondary);
-    color: var(--text-color-secondary);
-    border: none;
-    border-radius: var(--border-radius-medium);
+main#timeline{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 240px);
+    overflow-y: scroll;
+    padding: 25px;
 }
 
-.switch-toggle{
+h1.title{
+    font-size: 35px;
+    padding: 15px;
+    font-weight: 900;
+    font-family:'Galey';
+}
+
+/* --------------------------- */
+/* FILTER SEARCH */
+/* --------------------------- */
+
+div.filter-field{
+    display:flex;
+    align-items: center;
+    margin-left: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+div.filter-field .fa-x{
+    font-size: 7px;
+    font-weight: 500;
+    background-color: var(--white);
+    padding: 5px 6px;
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    border:1px solid var(--white);
+    transition: background-color 0.5s;
+    color: var(--primary);
+}
+
+div.filter-field .fa-x:hover{
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+div.filter-input-field{
+    display: flex;
+    align-items: center;
+}
+
+div.filter-input-control{
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius-medium);
+    background-color: var(--bg-secondary);
+    color: var(--text-color-secondary);
+    padding: 5px 15px;
+}
+
+i.ph-funnel{
+    font-size: 25px;
+}
+
+input.search-bar{
+    color: var(--text-color-secondary);
+    background-color: var(--bg-secondary);
+    font-size: 13px;
+    border: none;
+    width: 150px
+}
+
+button.filter-remove-all i{
+    font-size:20px;
+    margin-left:5px;
+}
+
+button.filter-remove-all{
+    border:none;
+    color: red;
+    background: none;
+    font-size:15px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    transition: color 0.5s;
+    cursor: pointer;
+}
+
+button.filter-tags-switch{
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 10px;
+    width: 100px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--time-tag-bg);
+    color: var(--black);
+    border-radius: var(--border-radius-medium);
+}
+button.filter-titles-switch{
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 10px;
+    width: 100px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--time-tag-bg);
+    color: var(--black);
+    border-radius: var(--border-radius-medium);
+}
+button.filter-entries-switch{
+    font-size: 25px;
+    margin: 0px 10px;
+    padding: 10px;
+    width: 100px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--time-tag-bg);
+    color: var(--black);
+    border-radius: var(--border-radius-medium);
+}
+.switch-active{
+    background-color: var(--primary) !important;
+}
+
+
+button.filter-btn{
+    margin: 0px 10px;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 900;
+    font-family:'Galey';
+    border: none;
+    background-color: var(--primary);
+    color: var(--text-color-secondary);
+    border-radius: var(--border-radius-medium);
+    transition: background-color 0.5s
+}
+
+button.filter-btn:hover {
+    background-color: var(--primary-light);
+}
+
+button.filter-btn:active {
+    background-color: var(--primary-dark);
+}
+
+ul.filter-cont{
+    background:transparent;
+    width: fit-content;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* border-radius: 10px; */
+    gap: 10px;
+    /* padding: 30px 48px; */
+    margin: 0px 10px;
+}
+
+li.filter-tag{
+    background: var(--primary);
+    color: var(--white);
+    width: fit-content;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius-button);
+    gap: 10px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* .switch-toggle{
     display: flex;
     flex-direction: row;
     font-size: 25px;
@@ -39,20 +206,13 @@ body{
     font-family:'Galey';
     margin: 10px;
     padding: 15px;
-}
+} */
 
-#timeline{
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 240px);
-    overflow-y: scroll;
-}
-
-.entry-display{
+section.entry-display{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 /* .monthlyView{
     flex-direction: column;
@@ -60,18 +220,18 @@ body{
 
 /*          === Monthly View ===          */
 
-.month{
-    padding: 15px;
+div.month{
+    padding: 15px 0px;
 }
 
-.month-name {
+h2.month-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
     margin: 10px;
 }
 
-.month-container{
+div.month-container{
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -106,13 +266,13 @@ body{
 
 /*          === Entries ===          */
 
-.month-container a
-,.week-container a{
+div.month-container a
+,div.week-container a{
     color: var(--text-color-primary);
     text-decoration: none;
 }
 
-.entry-container{
+div.entry-container{
     width: 420px;
     height: 200px;
     border: solid gray 1px;
@@ -150,7 +310,7 @@ body{
 
 /*      === Monthly ===      */
 
-.entry-title {
+h3.entry-title {
     font-size: 30px;
     padding: 10px 20px;
     font-family:'Galey';
@@ -159,7 +319,7 @@ body{
     text-overflow:ellipsis;
 }
 
-.entry-content{
+p.entry-content{
     margin: 6px 20px;
     line-height: 1.2rem;
     max-height: 6rem;
@@ -171,45 +331,45 @@ body{
     height: 5rem;
 }
 
-.entry-info {
+div.entry-info {
     display: flex;
     padding:5px;
     justify-content: space-between;
 }
 
-.entry-tags{
+div.entry-tags{
     margin: 0px 5px;
     font-weight:700;
     display:flex;
 }
 
-.tag{
+p.tag{
     background-color: var(--time-tag-bg);
     color: black;
     text-align:center;
-    width: fit-content;
-    min-width: 75px;
+    width: 75px;
     margin: 0px 5px;
     padding: 5px 5px;
     border-radius: var(--border-radius-pill);
     overflow:hidden;
     text-overflow:ellipsis;
     font-size: 12px;
+    white-space: nowrap;
 }
 
-.no-tag{
+p.no-tag{
     margin: 0px 5px;
     padding: 0px 5px;
     font-size: 12px;
 }
 
-.entry-date{
+p.entry-date{
     margin: 5px 15px;
     font-weight:700;
     font-size: 12px;
 }
 
-h3, h5 ,p{
+/* h3, h5 ,p{
     margin: 4px 10px;
     font-family: 'Galey';
-}
+} */
