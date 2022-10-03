@@ -93,7 +93,7 @@
         } ?>
     </div>
     <div id="view-entry-text-content">
-        <?= $entryContent["text_content"] ?>
+        <?= strip_tags($entryContent["text_content"], "<p><blockquote><q><strong><em><ul><ol><li><font><style><b><i><u><div><span>") ?> 
     </div>
 </article>
 
