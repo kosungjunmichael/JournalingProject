@@ -63,41 +63,41 @@ if (!isset($_SESSION["uid"])) {
         <div id="create-entry-text-content" class="container">
             <div class="options">
             <!-- Text Format -->
-            <button id="bold" class="option-button format">
+            <button id="bold" type="button" class="option-button format">
             <i class="fa-solid fa-bold"></i>
             </button>
-            <button id="italic" class="option-button format">
+            <button id="italic" type="button" class="option-button format">
             <i class="fa-solid fa-italic"></i>
             </button>
-            <button id="underline" class="option-button format">
+            <button id="underline" type="button" class="option-button format">
             <i class="fa-solid fa-underline"></i>
             </button>
 
             <!-- List -->
-            <button id="insertOrderedList" class="option-button">
+            <button id="insertOrderedList" type="button" class="option-button">
             <div class="fa-solid fa-list-ol"></div>
             </button>
-            <button id="insertUnorderedList" class="option-button">
+            <button id="insertUnorderedList" type="button" class="option-button">
             <i class="fa-solid fa-list"></i>
             </button>
 
             <!-- Alignment -->
-            <button id="justifyLeft" class="option-button align">
+            <button id="justifyLeft" type="button" class="option-button align">
             <i class="fa-solid fa-align-left"></i>
             </button>
-            <button id="justifyCenter" class="option-button align">
+            <button id="justifyCenter" type="button" class="option-button align">
             <i class="fa-solid fa-align-center"></i>
             </button>
-            <button id="justifyRight" class="option-button align">
+            <button id="justifyRight" type="button" class="option-button align">
             <i class="fa-solid fa-align-right"></i>
             </button>
-            <button id="justifyFull" class="option-button align">
+            <button id="justifyFull" type="button" class="option-button align">
             <i class="fa-solid fa-align-justify"></i>
             </button>
-            <button id="indent" class="option-button spacing">
+            <button id="indent" type="button" class="option-button spacing">
             <i class="fa-solid fa-indent"></i>
             </button>
-            <button id="outdent" class="option-button spacing">
+            <button id="outdent" type="button" class="option-button spacing">
             <i class="fa-solid fa-outdent"></i>
             </button>
 
