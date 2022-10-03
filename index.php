@@ -41,10 +41,10 @@ try {
 			toCalendar();
 			break;
 
-        case "toCreateEntry":
-            createNewEntry();
-            break;
-            
+		case "toCreateEntry":
+			createNewEntry();
+			break;
+
 		case "toAlbum":
 			toAlbum($_SESSION["uid"]);
 			break;
@@ -57,13 +57,13 @@ try {
 			createNewEntry();
 			break;
 
-//TODO: these all call the same function, route to the separate login types through the UserManager
-// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
+		//TODO: these all call the same function, route to the separate login types through the UserManager
+		// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
 
-        // // GOOGLE SIGNUP
-        // case "googleSignUp":
-        //     signUp($_REQUEST, 'google');
-        //     break;
+		// // GOOGLE SIGNUP
+		// case "googleSignUp":
+		//     signUp($_REQUEST, 'google');
+		//     break;
 		case "toLogout":
 			toLogout();
 			break;
@@ -88,8 +88,8 @@ try {
 			break;
 
 		case "signUp":
-			// echoPre($_REQUEST);
-			signUP($_REQUEST, $_REQUEST['method']);
+			echoPre($_REQUEST);
+			// signUP($_REQUEST, $_REQUEST["method"]);
 			break;
 
 		//--------------------------------------------------
@@ -112,8 +112,21 @@ try {
 			break;
 
 		case "login":
+			// echoPre($_REQUEST);
 			login($_REQUEST, $_REQUEST["method"]);
 			break;
+
+		//--------------------------------------------------
+		//----------------Social Account--------------------
+		//--------------------------------------------------
+
+		case "googleAccount":
+			googleAccount($_REQUEST);
+			break;
+
+		case "kakaoAccount":
+			echoPre($_REQUEST);
+			// kakaoAccount($_REQUEST);
 
 		//--------------------------------------------------
 		//----------------ENTRY MANAGEMENT------------------
