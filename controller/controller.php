@@ -69,10 +69,25 @@ function signUp($data, $type)
 		case "regular":
 			// TODO: push all values at the end
 			$control = [];
-			$ctrl_u = preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"]) ? true : "Your username must include at least 4 characters.";
-			$ctrl_e = preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $data["sign-e"]) ? true : "You must use a proper email address.";
-			$ctrl_p = preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data["sign-p"]) ? true  : "Your password did not meet the minimum requirements.";
-			$ctrl_cp = $data["sign-p"] == $data["sign-cp"] ? true : "Your passwords did not match.";
+			$ctrl_u = preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"])
+				? true
+				: "Your username must include at least 4 characters.";
+			$ctrl_e = preg_match(
+				"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",
+				$data["sign-e"]
+			)
+				? true
+				: "You must use a proper email address.";
+			$ctrl_p = preg_match(
+				"/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/",
+				$data["sign-p"]
+			)
+				? true
+				: "Your password did not meet the minimum requirements.";
+			$ctrl_cp =
+				$data["sign-p"] == $data["sign-cp"]
+					? true
+					: "Your passwords did not match.";
 
 			array_push($control, $ctrl_u, $ctrl_e, $ctrl_p, $ctrl_cp);
 
@@ -102,7 +117,7 @@ function signUp($data, $type)
 		default:
 			$userManager = new UserManager();
 			$check = $userManager->createUser($data, $type);
-            // echoPre($check);
+			// echoPre($check);
 			if ($check === false) {
 				toTimeline($_SESSION["uid"], "monthly");
 			} else {
@@ -127,6 +142,26 @@ function login($data, $type)
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
 	}
+}
+
+//--------------------------------------------------
+//----------------Google Account--------------------
+//--------------------------------------------------
+
+function googleAccount($data)
+{
+	$credentials = json_decode(
+		base64_decode(
+			str_replace(
+				"_",
+				"/",
+				str_replace("-", "+", explode(".", $data["credential"])[1])
+			)
+		),
+		true
+	);
+	echoPre($data);
+	echoPre($credentials);
 }
 
 //--------------------------------------------------
