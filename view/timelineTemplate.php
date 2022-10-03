@@ -1,7 +1,7 @@
 <a href="<?= BASE . "/index.php?action=viewEntry&id=". htmlspecialchars($entry['u_id'])?>">
     <div class="entry-container">
         <h3 class="entry-title" ><?= htmlspecialchars($entry['title']) ?></h3>
-        <p class="entry-content"><?= htmlspecialchars($entry['text_content']) ?></p>
+       <p class="entry-content"><?= strip_tags($entry['text_content'], "<br>") ?></p>  <!-- htmlspecialchars($entry['text_content']) -->
         <div class="entry-info">
             <div class="entry-tags">
                 <?php
