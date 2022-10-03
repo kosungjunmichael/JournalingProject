@@ -99,6 +99,7 @@ function createTag(){
         </li>`;
 		// insert tag
 		ul.insertAdjacentHTML("afterbegin", liTag);
+        // ul.appendChild(liTag);
 	});
 	// count tags
 	countTags();
@@ -110,6 +111,7 @@ function remove(element, tag){
 	let index  = tags.indexOf(tag);
 	// update tags array
 	tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
+    // tags.splice(index, 1); // *NOTE essentially the same as the line above
 	// remove tag
 	element.parentElement.remove();
 	// update tags hidden input value
@@ -125,7 +127,7 @@ function addTag(e){
 		// handle white spacing, multiple to one
 		let tag = e.target.value.replace(/\s+/g, ' ');
 		if(tag.length > 1 && !tags.includes(tag)){
-			if(tags.length < 10){
+			if(tags.length < 5){
 				tag.split(',').forEach(tag => {
 					// add tag to tags array
 					tags.push(tag);
@@ -169,8 +171,8 @@ for (let input of inputs) {
 }
 
 select.addEventListener('keydown', (e) => {
-	if(e.key === 'Enter'){
-		e.preventDefault();
+    if(e.key === 'Enter'){
+        e.preventDefault();
 		return false;
 	}
 })
@@ -216,11 +218,8 @@ function handleImageSelect() {
 
 image_input.addEventListener("change", handleImageSelect);
 
-
-
-
 // -----------------------------------------------------------------------------
-// --------------------------------EDIT TOOLBAR---------------------------------------
+// --------------------------------EDIT TOOLBAR---------------------------------
 // -----------------------------------------------------------------------------
 
 let optionsButtons = document.querySelectorAll(".option-button");
@@ -228,12 +227,9 @@ let advancedOptionButton = document.querySelectorAll(".adv-option-button");
 let fontName = document.getElementById("fontName");
 let fontSizeRef = document.getElementById("fontSize");
 let writingArea = document.getElementById("text-input");
-// let linkButton = document.getElementById("createLink");
 let alignButtons = document.querySelectorAll(".align");
 let spacingButtons = document.querySelectorAll(".spacing");
 let formatButtons = document.querySelectorAll(".format");
-// let scriptButtons = document.querySelectorAll(".script");
-let submitButton = document.getElementById("")
 
 //List of fontlist
 let fontList = [
@@ -249,11 +245,10 @@ let fontList = [
 //Initial Settings
 const initializer = () => {
   //function calls for highlighting buttons
-  //No highlights for link, unlink,lists, undo,redo since they are one time operations
+  //No highlights for lists since they are one time operations
   highlighter(alignButtons, true);
   highlighter(spacingButtons, true);
   highlighter(formatButtons, false);
-  // highlighter(scriptButtons, true);
 
   //create options for font names
   fontList.map((value) => {
@@ -295,18 +290,6 @@ advancedOptionButton.forEach((button) => {
   });
 });
 
-// //link
-// linkButton.addEventListener("click", () => {
-//   let userLink = prompt("Enter a URL");
-//   //if link has http then pass directly else add https
-//   if (/http/i.test(userLink)) {
-//     modifyText(linkButton.id, false, userLink);
-//   } else {
-//     userLink = "http://" + userLink;
-//     modifyText(linkButton.id, false, userLink);
-//   }
-// });
-
 //Highlight clicked button
 const highlighter = (className, needsRemoval) => {
   className.forEach((button) => {
@@ -344,11 +327,30 @@ window.onload = initializer();
 
 let submit = document.getElementById('submit');
 let input_text = document.getElementById('input-text');
-let hidden_text = document.getElementById('hidden-text');
+let hidden_text = document.getElementById('text-content-textarea');
 
 submit.addEventListener('click', (e) => {
-  // console.log("hi");
   hidden_text.value = input_text.innerHTML;
   console.log(hidden_text.value);
-  // e.preventDefault();
 })
+
+// -----------------------------------------------------------------------------
+// --------------------------------SUBMIT---------------------------------
+// -----------------------------------------------------------------------------
+
+// Prevents the form to be refreshed if the title or entry is missing
+let title = document.getElementById('create-entry-title-input');
+let form = document.getElementById('create-entry-form');
+
+form.addEventListener('submit', e => {
+	if (title.value === '' || title.value === null ) {
+		e.preventDefault();
+		alert('Please enter a title.');
+	} else if(hidden_text.value === '' || hidden_text.value === null) {
+		e.preventDefault();
+		// alert('Please write an entry.');
+	
+	} else {
+		return true;
+	}
+});

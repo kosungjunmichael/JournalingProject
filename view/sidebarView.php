@@ -44,7 +44,7 @@
             </li>
         </ul>
         <a id="create-entry-btn" href="<?= BASE .
-        	"/index.php?action=createEntry" ?>">Create Entry</a>
+        	"/index.php?action=toCreateEntry" ?>">Create Entry</a>
     </div>
     <div id="sidebar-bottom">
         <a id="logout-btn" href="<?= BASE .

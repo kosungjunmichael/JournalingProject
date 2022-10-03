@@ -95,10 +95,10 @@ class EntryManager extends Manager
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
-		//TODO: Why do we need htmlspecialchars for a prepare query?
+
 		$req->bindParam(
 			"inTextContent",
-			htmlspecialchars($data->textContent),
+			$data->textContent,
 			PDO::PARAM_STR
 		);
 		$req->execute();
@@ -301,6 +301,29 @@ class EntryManager extends Manager
 	public function entryDisplay($userId)
 	{
 		$db = $this->dbConnect();
+		$defaultAllowedTags = [
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'blockquote',
+			'q',
+			'strong',
+			'em',
+			'ul',
+			'ol',
+			'li',
+			'font',
+			'style',
+			'b',
+			'i',
+			'u',
+			'div',
+			'span'
+		];
 		$req = $db->prepare(
 			"SELECT text_content FROM entries WHERE user_uid = :inUid"
 		);
@@ -310,7 +333,7 @@ class EntryManager extends Manager
 		if ($req->rowCount() == 1) {
 			$result = $req->fetch(PDO::FETCH_ASSOC);
 			$req->closeCursor();
-			return htmlspecialchars_decode($result["text_content"]);
+			return strip_tags($result["text_content"], $defaultAllowedTags);
 		} else {
 			echo "failed";
 			return 0;
