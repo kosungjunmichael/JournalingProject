@@ -384,9 +384,7 @@ p.entry-date{
     button.switch{
         margin-top: 5px;
         margin-bottom: 5px;
-
     }
-
 
 }
 
@@ -398,5 +396,13 @@ p.entry-date{
         align-items: center;
         margin: 0px 10px;
         justify-content: space-between;
+    }
+    .filter-label{
+        margin-top: 5px;
+    }
+    div.filter-switch-cont {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0px;
     }
 }

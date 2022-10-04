@@ -250,3 +250,10 @@
   from {opacity: .6}
   to {opacity: 1}
 } 
+
+
+@media screen and (max-width: 730px) {
+    #container{
+      width: 100%;
+    }
+}
