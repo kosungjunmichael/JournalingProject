@@ -69,64 +69,86 @@ try {
 			break;
 
 		//--------------------------------------------------
-		//----------------USER SIGNUP-----------------------
+		//------------------REGULAR USER--------------------
 		//--------------------------------------------------
-
-		// GOOGLE SIGNUP
-		case "googleSignUp":
-			signUp($_REQUEST, "google");
-			break;
-
-		// KAKAO SIGNUP
-		case "kakaoSignUp":
-			signUp($_REQUEST, "kakao");
-			break;
 
 		// REGULAR SIGNUP
-		case "regularSignup":
-			signUp($_REQUEST, "regular");
+		case "regularSignUp":
+			if (isset($_REQUEST)) {
+				regularSignUp($_REQUEST);
+			} else {
+				throw new Exception("Invalid sign-up attempt");
+			}
 			break;
 
+		// TODO: separate regular & kakao sign-ups
 		case "signUp":
-			echoPre($_REQUEST);
-			// signUP($_REQUEST, $_REQUEST["method"]);
+			// echoPre($_REQUEST);
+			if (isset($_REQUEST["method"])) {
+				signUP($_REQUEST, $_REQUEST["method"]);
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
 			break;
 
 		//--------------------------------------------------
-		//----------------USER LOGIN------------------------
+		//-------------------GOOGLE USER--------------------
 		//--------------------------------------------------
-
-		// GOOGLE LOGIN
-		case "googleLogin":
-			login($_REQUEST, "google");
-			break;
-
-		// KAKAO LOGIN
-		case "kakaoLogin":
-			login($_REQUEST, "kakao");
-			break;
-
-		// REGULAR LOGIN
-		case "regularLogin":
-			login($_REQUEST, "regular");
-			break;
 
 		case "login":
-			// echoPre($_REQUEST);
-			login($_REQUEST, $_REQUEST["method"]);
+			if (isset($_REQUEST["method"])) {
+				login($_REQUEST, $_REQUEST["method"]);
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
 			break;
 
-		//--------------------------------------------------
-		//----------------Social Account--------------------
-		//--------------------------------------------------
-
+		// TODO: for the time being, until there's a way to differentiate g-id_onload for each button
 		case "googleAccount":
-			googleAccount($_REQUEST);
+			// echoPre($_REQUEST);
+			if (isset($_REQUEST["credential"]) and isset($_REQUEST["g_csrf_token"])) {
+				$credentials = json_decode(
+					base64_decode(
+						str_replace(
+							"_",
+							"/",
+							str_replace("-", "+", explode(".", $_REQUEST["credential"])[1])
+						)
+					),
+					true
+				);
+				// echoPre($credentials);
+				if (
+					isset($credentials["iss"]) and
+					$credentials["iss"] == "https://accounts.google.com" and
+					$credentials["aud"] == $credentials["azp"]
+				) {
+					googleAccount($$credentials);
+				} else {
+					throw new Exception("Invalid login attempt");
+				}
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
 			break;
 
-		case "kakaoAccount":
-			echoPre($_REQUEST);
-			// kakaoAccount($_REQUEST);
+		//--------------------------------------------------
+		//-------------------KAKAO USER---------------------
+		//--------------------------------------------------
+
+		// isset($_REQUEST["id"]);
+		// isset($_REQUEST["kakao_account"]);
+		// $_REQUEST["is_email_valid"] == true
+		// $_REQUEST["is_email_verified"] == true
+		// KAKAO SIGNUP
+		case "kakaoSignUp":
+			// if (isset)
+			kakaoSignUp($_REQUEST);
+			break;
+
+		case "kakaoLogin":
+			// kakaoLogin();
+			break;
 
 		//--------------------------------------------------
 		//----------------ENTRY MANAGEMENT------------------
@@ -143,10 +165,14 @@ try {
             break;
 
 		case "toggleView":
-			if ($_GET["view"] === "week") {
-				toTimeline($_SESSION["uid"], "weekly");
-			} elseif ($_GET["view"] === "month") {
-				toTimeline($_SESSION["uid"], "monthly");
+			if (isset($_REQUEST["view"])) {
+				if ($_REQUEST["view"] === "week") {
+					toTimeline($_SESSION["uid"], "weekly");
+				} elseif ($_REQUEST["view"] === "month") {
+					toTimeline($_SESSION["uid"], "monthly");
+				}
+			} else {
+				throw new Exception("Error");
 			}
 			break;
 
@@ -165,7 +191,7 @@ try {
 			if (isset($_REQUEST["id"])) {
 				viewEntry($_REQUEST["id"]);
 			} else {
-				throw new Exception("Error, no entry ID");
+				throw new Exception("Error: no entry ID");
 			}
 			break;
 
