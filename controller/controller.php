@@ -41,7 +41,7 @@ function createNewEntry()
 }
 
 function editEntry(){
-	require ROOT . "/view/createEntryView.php"; //TODO: EDITENTRYVIEW PAGE SHOULD BE CREATED
+	require ROOT . "/view/editEntryView.php"; //TODO: EDITENTRYVIEW PAGE SHOULD BE CREATED
 }
 
 function toCalendar()

@@ -172,15 +172,16 @@ try {
 		case "editOldEntry":
 			if(isset($_REQUEST['entryId'])){
 				$entryManager = new EntryManager();
-				$entryContent = $entryManager->getEntry($_REQUEST['entryId'], $_SESSION["uid"]);
+				// $entryContent = $entryManager->getEntry($_REQUEST['entryId'], $_SESSION["uid"]);
+				// print_r($entryContent);
 			//TODO: edit entry function will be created
-			// $entryContent = (object) [];
-			// $entryContent->userUID = $_SESSION["uid"];
-			// $entryContent->title = $_REQUEST["title"];
+			$entryContent = (object) [];
+			$entryContent->userUID = $_SESSION["uid"];
+			$entryContent->title = $_REQUEST["title"];
 			// $entryContent->tags = $_REQUEST["tagNames"];
-			// $entryContent->location = $_REQUEST["location"];
-			// $entryContent->weather = $_REQUEST["weather"];
-			// $entryContent->textContent = $_REQUEST["textContent"];
+			$entryContent->location = $_REQUEST["location"];
+			$entryContent->weather = $_REQUEST["weather"];
+			$entryContent->textContent = $_REQUEST["textContent"];
 				updateEntry($entryContent, $_REQUEST['entryId']);
 			} else throw new Exception("Error, no entry ID");
 			break;

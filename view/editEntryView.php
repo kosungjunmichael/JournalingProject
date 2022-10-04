@@ -12,7 +12,7 @@ if (!isset($_SESSION["uid"])) {
 <?php include "sidebarView.php"; ?>                                 
 
 <div id="create-entry-container">
-    <form id="create-entry-form" action="<?= BASE . "/index.php?action=editOldEntry" ?>" method="post" enctype="multipart/form-data">
+    <form id="create-entry-form" action="<?= BASE . "/index.php?action=editOldEntry&entryId={$_REQUEST['id']}" ?>" method="post" enctype="multipart/form-data">
         <h2 id="create-entry-header-text">EDIT ENTRY</h2>
 
         <!-- TITLE -->
