@@ -44,6 +44,10 @@ try {
 		case "toCreateEntry":
 			createNewEntry();
 			break;
+		case "toEditEntry":
+			editEntry();
+			break;
+
 
 		case "toAlbum":
 			toAlbum($_SESSION["uid"]);
@@ -51,10 +55,6 @@ try {
 
 		case "toMap":
 			toMap($_SESSION["uid"], "all");
-			break;
-
-		case "toCreateEntry":
-			createNewEntry();
 			break;
 
 		//TODO: these all call the same function, route to the separate login types through the UserManager
@@ -167,6 +167,22 @@ try {
 			} else {
 				throw new Exception("Error, no entry ID");
 			}
+			break;
+
+		case "editOldEntry":
+			if(isset($_REQUEST['entryId'])){
+				$entryManager = new EntryManager();
+				$entryContent = $entryManager->getEntry($_REQUEST['entryId'], $_SESSION["uid"]);
+			//TODO: edit entry function will be created
+			// $entryContent = (object) [];
+			// $entryContent->userUID = $_SESSION["uid"];
+			// $entryContent->title = $_REQUEST["title"];
+			// $entryContent->tags = $_REQUEST["tagNames"];
+			// $entryContent->location = $_REQUEST["location"];
+			// $entryContent->weather = $_REQUEST["weather"];
+			// $entryContent->textContent = $_REQUEST["textContent"];
+				updateEntry($entryContent, $_REQUEST['entryId']);
+			} else throw new Exception("Error, no entry ID");
 			break;
 
 		default:
