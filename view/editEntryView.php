@@ -144,7 +144,6 @@ if (!isset($_SESSION["uid"])) {
             <label for="backColor">Highlight</label>
             </div>
             </div>
-        <!--//TODO: WHEN CLICKED DIV INNERTEXT SHOULD BE REMOVED -->
             <div id="input-text" contenteditable="true">
                 <?= strip_tags($entryContent["text_content"], "<p><blockquote><q><strong><em><ul><ol><li><font><style><b><i><u><div><span>") ?>
             </div>
