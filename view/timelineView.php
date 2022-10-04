@@ -5,22 +5,37 @@
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
 
-<?php
-    if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
-        // TODO:this should be turn into a little notification modal thing
-        echo "<p>You have been registered. Welcome!</p>";
-    }
-    // print_r($_SESSION['uid']);
-?>
-
 <main id="timeline">
+
+<header>
+    <?php
+    if (isset($alert)) {
+        // TODO:this should be turn into a little notification modal thing
+        echo "$alert";
+    }
+    ?>
+</header>
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
-        <input type="text" name="search_bar" class="search-bar">
-        <button class="filter-btn">Filter</button>
+        <div class="filter-input-field">
+            <div class="filter-input-control">
+                <i class="ph-funnel"></i>
+                <ul class="filter-cont"></ul>
+                <input type="text" name="search_bar" class="search-bar" placeholder="Type Filter & Press Enter">
+            </div>
+            <button class="filter-btn">Filter</button>
+            <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
+        </div>
+        <div class="filter-switch-cont">
+            <h2 class='filter-label'>Filter By</h2>
+            <div class="filter-switches">
+                <button class="switch tags switch-active">Tags</button>
+                <button class="switch titles">Titles</button>
+                <button class="switch entries">Entries</button>
+            </div>
+        </div>
     </div>
-    <div class="filter-cont"></div>
     <div class="switch-toggle">
         <?php 
             if ($view === "weekly") {
@@ -63,7 +78,7 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <div class="month-name"><?=$month?></div>
+                            <h3 class="month-name"><?=$month?></h3>
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){

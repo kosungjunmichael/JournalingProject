@@ -1,11 +1,12 @@
 @import url('../css/main.css');
 
 #create-entry-container {
-    display: flex;
-    color: var(--text-color-secondary);
+    /* display: flex; */
+    /* color: var(--text-color-secondary); */
     padding: 30px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 #create-entry-form {
@@ -227,11 +228,10 @@
     color: var(--text-color-primary);
     height: 400px;
     border-radius: 10px;
-    overflow: clip;
-    margin-top: 10px;
+    /* overflow: clip; */
 }
 
-#text-content-textarea {
+/* #text-content-textarea {
     background-color: var(--bg-secondary);
     color: var(--text-color-primary);
     border: none;
@@ -242,10 +242,10 @@
     resize: none;
     font-size: 13px;
     font-weight: 500;
-}
+} */
 
 #create-entry-bottom{
-    display:flex;
+    display: flex;
     justify-content: space-between;
 }
 
@@ -263,7 +263,6 @@
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
-
 
 .chosenImg {
     width:100px;
@@ -307,14 +306,77 @@
     border: 0px solid;
     font-size: 15px;
     font-weight: 800;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
+/* === edit tool css ==== */
+.txt-container {
+    background-color: var(--bg-secondary);
+    padding: 10px 20px;
+    width: 100%;
+    height: 100%;
+  }
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
 
+.option-button {
+    height: 30px;
+    width: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--primary);
+    color: var(--white);
+}
 
-/* TESTING */
+select {
+    padding: 7px;
+    border: 1px solid var(--grey-dark);
+    border-radius: 10px;
+}
 
-/* edit tool css */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
+input[type="color"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
 
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 10px;
+}
 
+input[type="color"]::-moz-color-swatch {
+    border-radius: 10px;
+}
+
+#input-text {
+    margin-top: 10px;
+    background-color: var(--white);
+    color: var(--text-color-primary);
+    border: none;
+    outline: none;
+    height: 85%;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 15px;
+    border-radius: 10px;
+}

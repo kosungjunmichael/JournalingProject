@@ -43,7 +43,6 @@
                     <?= $entryContent["location"] ?>
                 </div>
                 <div id="entry-weather">
-                    <!-- TODO: All Fontawesome icons except sun do not show up  -->
                     <?php switch ($entryContent["weather"]) {
                         case 0: ?>
                             <i class="fa-sharp fa-solid fa-sun"></i>
@@ -54,11 +53,11 @@
                             Rainy
                         <?php break;
                         case 2: ?>
-                            <i class="fa-solid fa-clouds"></i>
+                            <i class="fa-solid fa-cloud"></i>
                             Cloudy
                         <?php break;
                         case 3: ?>
-                            <i class="fa-solid fa-cloud-snow"></i>
+                            <i class="fa-regular fa-snowflake"></i>
                             Snowy
                         <?php break;
                         default: ?>
@@ -70,10 +69,16 @@
             </div>
         </div>
         <div id="view-entry-edit">
-            <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
-                <i class="ph-pen"></i>
-                Edit Entry
-            </a>
+            <div id="edit-control-btns">
+                <a href="index.php?action=deleteEntry&entryID=<?=$entryContent['u_id']?>" id="delete-btn">
+                    <i class="ph-trash"></i>
+                    Delete Entry
+                </a>
+                <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
+                    <i class="ph-pen"></i>
+                    Edit Entry
+                </a>
+            </div>
             <span id="view-entry-edited">
                 Last Edited: <?= date_format(
                                     date_create($entryContent["last_edited"]),
@@ -94,7 +99,7 @@
         } ?>
     </div>
     <div id="view-entry-text-content">
-        <?= $entryContent["text_content"] ?> 
+        <?= strip_tags($entryContent["text_content"], "<p><blockquote><q><strong><em><ul><ol><li><font><style><b><i><u><div><span>") ?> 
     </div>
 </article>
 

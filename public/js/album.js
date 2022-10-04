@@ -16,7 +16,7 @@ const openModal = pathsStr => { // use type to know which input to add the data 
         dotContainer.innerHTML = "";
         let carouselDiv = document.createElement("div");
         let image = document.createElement("img");
-        image.setAttribute("src", `./${paths[i]}`);
+        image.setAttribute("src", `./public/images/uploaded/${paths[i]}`);
         image.setAttribute("title", `Image ${i}`);
         image.classList.add("modal-image","slide");
         carouselDiv.appendChild(image);
@@ -44,7 +44,6 @@ const openModal = pathsStr => { // use type to know which input to add the data 
     arrowRight.classList.add("nav-arrow","next", "right");
     arrowRight.setAttribute("onclick", "plusSlides(1)");
 
-
     let arrowLeft = document.createElement("a");
     arrowLeft.classList.add("nav-arrow","previous", "left");
     arrowLeft.setAttribute("onclick", "plusSlides(-1)");
@@ -53,7 +52,6 @@ const openModal = pathsStr => { // use type to know which input to add the data 
         modal.appendChild(arrowLeft);
         modal.appendChild(arrowRight);
     }
-
 
     // MODAL
     overlay.classList.toggle("display-none");

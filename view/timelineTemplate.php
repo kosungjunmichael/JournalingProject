@@ -1,7 +1,7 @@
 <a href="<?= BASE . "/index.php?action=viewEntry&id=". htmlspecialchars($entry['u_id'])?>">
     <div class="entry-container">
-        <div class="entry-title" ><?= htmlspecialchars($entry['title']) ?></div>
-        <div class="entry-content"><?= htmlspecialchars($entry['text_content']) ?></div>
+        <h4 class="entry-title" ><?= htmlspecialchars($entry['title']) ?></h4>
+       <p class="entry-content"><?= strip_tags($entry['text_content'], "<br>") ?></p>
         <div class="entry-info">
             <div class="entry-tags">
                 <?php
@@ -10,20 +10,20 @@
                         if (!empty($entryTags["$i"])){
                             if ($i < 3){
                 ?>
-                                <div class="tag"><?= htmlspecialchars($entryTags["$i"]);?></div>
+                                <p class="tag"><?= htmlspecialchars($entryTags["$i"]);?></p>
                         <?php
                             } 
                         } else {
                         ?>
-                            <div class="no-tag">no tags</div>
+                            <p class="no-tag">no tags</p>
                     <?php
                         }
                     }
                     ?>
             </div>
-            <div class="entry-date"> 
+            <p class="entry-date"> 
                 <?= date_format(date_create($entry['last_edited']), 'F d, Y')?> 
-            </div>
+            </p>
         </div>
     </div>
 </a>

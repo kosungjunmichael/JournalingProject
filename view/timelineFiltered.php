@@ -12,7 +12,7 @@
               // echo "apples";
     ?>
                 <div class="month">
-                    <div class="month-name"><?=$month?></div>
+                    <h3 class="month-name"><?=$month?></h3>
                     <div class="month-container">
                         <?php
                         foreach($entries["$month"] as $entry){

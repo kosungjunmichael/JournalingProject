@@ -24,8 +24,8 @@ class EntryManager extends Manager
 
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
-		$newpath = "./public/images/uploaded/$first/$second/$filename";
-		move_uploaded_file($file["tmp_name"], $newpath);
+		$newpath = "$first/$second/$filename";
+		move_uploaded_file($file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -95,10 +95,10 @@ class EntryManager extends Manager
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
-		//TODO: Why do we need htmlspecialchars for a prepare query?
+
 		$req->bindParam(
 			"inTextContent",
-			htmlspecialchars($data->textContent),
+			$data->textContent,
 			PDO::PARAM_STR
 		);
 		$req->execute();
@@ -137,7 +137,7 @@ class EntryManager extends Manager
         FROM entries e
         LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
         LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE user_uid = :userId
+        WHERE e.user_uid = :userId AND e.is_active = 1
         GROUP BY last_edited DESC');
 		$req->execute([
 			"userId" => $userId,
@@ -228,11 +228,10 @@ class EntryManager extends Manager
         LEFT JOIN tags t ON t.id = tm.tag_id
         WHERE e.user_uid = :userId 
         AND e.u_id = :entryId 
-        AND e.is_active = :active');
+        AND e.is_active = 1');
 		$req->execute([
 			"userId" => $userId,
 			"entryId" => $entryId,
-			"active" => 1,
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -246,6 +245,18 @@ class EntryManager extends Manager
 		return $entryContent;
 		$req->closeCursor();
 	}
+
+    public function deleteEntry($entryUId, $userUID)
+    {
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?");
+        $req->bindParam(1,$entryUId,PDO::PARAM_STR);
+        $req->bindParam(2,$userUID,PDO::PARAM_STR);
+        $req->execute();
+
+        return "Entry successfully deleted";
+    }
 
 	// public function getImages($uid){
 
@@ -301,6 +312,29 @@ class EntryManager extends Manager
 	public function entryDisplay($userId)
 	{
 		$db = $this->dbConnect();
+		$defaultAllowedTags = [
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'blockquote',
+			'q',
+			'strong',
+			'em',
+			'ul',
+			'ol',
+			'li',
+			'font',
+			'style',
+			'b',
+			'i',
+			'u',
+			'div',
+			'span'
+		];
 		$req = $db->prepare(
 			"SELECT text_content FROM entries WHERE user_uid = :inUid"
 		);
@@ -310,7 +344,7 @@ class EntryManager extends Manager
 		if ($req->rowCount() == 1) {
 			$result = $req->fetch(PDO::FETCH_ASSOC);
 			$req->closeCursor();
-			return htmlspecialchars_decode($result["text_content"]);
+			return strip_tags($result["text_content"], $defaultAllowedTags);
 		} else {
 			echo "failed";
 			return 0;

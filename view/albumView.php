@@ -33,8 +33,7 @@ for ($i = 0; $i < count($res); $i++) {
 	?>
             <div id="album-container-bottom">
             
-                    <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE .
-	$path[0] ?>")';>
+                    <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE . "/public/images/uploaded/" .	$path[0] ?>")';>
                         <p id="album-title"> <?= $title ?> </p>
                         <div class="album-bottom">
 
