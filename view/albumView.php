@@ -32,17 +32,15 @@ for ($i = 0; $i < count($res); $i++) {
 	}
 	?>
             <div id="album-container-bottom">
-
-            <!-- *BUG* . being added to path when uploading images on entry -->
             
                     <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE .
 	$path[0] ?>")';>
                         <p id="album-title"> <?= $title ?> </p>
                         <div class="album-bottom">
 
-                        <?php // if(!is_null($tags[0])){ // 0 < count($tags) && !is_null($tags[0])
+                        <?php 
 
-	if (count($tags) === 1 && $tags[0] == null) { ?> 
+						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
                         <?php } else {foreach ($tags as $tag) { ?>
                                 <div class="inside-album-tags-div">
@@ -53,20 +51,20 @@ for ($i = 0; $i < count($res); $i++) {
                     </div>
                 </div> 
             </div>
-
-            <?php if ($i + 1 < count($res)) {
-            	$date_created_next = $res[$i + 1]["date_created"];
-            	$month_created_next = date("F Y", strtotime($date_created_next));
-            	if ($month_created_next !== $month_created) {
-            		echo "</div>";
-            	}
-            } else {
-            	echo "</div>";
-            }
+	<?php 
+			if ($i + 1 < count($res)) {
+				$date_created_next = $res[$i + 1]["date_created"];
+				$month_created_next = date("F Y", strtotime($date_created_next));
+				if ($month_created_next !== $month_created) {
+					echo "</div>";
+				}
+				} else {
+					echo "</div>";
+				}
 }
 ?>
 
-</section>
+	</section>
 </div>
 <div class="overlay display-none" onclick="closeModal()"></div>
 <div class="modal-container display-none">
