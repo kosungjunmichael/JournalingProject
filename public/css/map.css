@@ -1,5 +1,9 @@
 @import url("../css/main.css");
 
+body {
+	color: var(--text-color-primary);
+}
+
 #map-view-container {
 	height: calc(100vh - 41px);
 	width: 100%;
@@ -66,13 +70,19 @@
 
 .map-view-entry-card-textContent {
 	color: var(--text-color-secondary);
-	font-size: 13px;
-	font-weight: 400;
+	/* font-size: 13px;
+	font-weight: 400; */
 	margin: 0.5rem 0;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	display: block;
+	display: -webkit-box;
+	overflow: hidden !important;
 	text-overflow: ellipsis;
+	-webkit-line-clamp: 4;
 }
 
-.map-view-entry-card-textContent > p {
+/* .map-view-entry-card-textContent > p {
 	color: var(--text-color-secondary);
 	overflow: hidden;
 	max-height: 8rem;
@@ -82,7 +92,8 @@
 	overflow: hidden !important;
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 4;
-}
+	white-space: nowrap;
+} */
 
 .map-view-entry-card-bottom {
 	color: var(--text-color-primary);
