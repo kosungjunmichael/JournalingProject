@@ -23,7 +23,6 @@ h1 {
     font-size: large;
 }
 
-
 a{
     color: var(--primary);
 }
@@ -33,5 +32,68 @@ a{
         display: flex;
         justify-content: space-between;
     }
+}
 
+#about-us-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+#about-us-row{
+    display: flex;
+}
+.about-us-card{
+    background-color: white;
+    color:black;
+    float: left;
+    width: 240px;
+    min-height: 360px;
+    margin-bottom: 16px;
+    padding: 0 16px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.member-title{
+    color:grey;
+}
+.member-button{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+}
+.member-button:hover{
+    background-color: #555;
+}
+.about-us-card img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.member-img-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.about-us-description{
+    margin-top: 30px;
+}
+.member-email{
+    margin-top: 10px;
+    color:blue;
+    text-decoration: underline;
+}
+.member-describe{
+    margin-top: 10px;;
 }

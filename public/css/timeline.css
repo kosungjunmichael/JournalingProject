@@ -94,8 +94,27 @@ button.filter-remove-all{
     cursor: pointer;
 }
 
+div.filter-switch-cont{
+    display:flex;
+    flex-direction: column;
+    margin-top:-36px;
+}
+
+
+h2.filter-label{
+    font-family: 'Galey';
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+div.filter-switches{
+    display: flex;
+}
+
 button.switch{
-    font-size: 25px;
+    font-size: 20px;
     margin: 0px 10px;
     padding: 10px;
     width: 100px;
@@ -146,7 +165,7 @@ ul.filter-cont{
     /* border-radius: 10px; */
     gap: 10px;
     /* padding: 30px 48px; */
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
 
 li.filter-tag{
@@ -204,7 +223,7 @@ div.month{
     padding: 15px 0px;
 }
 
-h2.month-name {
+h3.month-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
@@ -253,7 +272,7 @@ div.month-container a
 }
 
 div.entry-container{
-    width: 420px;
+    width: 380px;
     height: 200px;
     border: solid gray 1px;
     border-radius: 10px;
@@ -290,7 +309,7 @@ div.entry-container{
 
 /*      === Monthly ===      */
 
-h3.entry-title {
+h4.entry-title {
     font-size: 30px;
     padding: 10px 20px;
     font-family:'Galey';
@@ -327,8 +346,8 @@ p.tag{
     background-color: var(--time-tag-bg);
     color: black;
     text-align:center;
-    width: 75px;
-    margin: 0px 5px;
+    width: 63px;
+    margin: 0px 4px;
     padding: 5px 5px;
     border-radius: var(--border-radius-pill);
     overflow:hidden;

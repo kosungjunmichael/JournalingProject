@@ -362,6 +362,22 @@
             </div>
         </div>
     </section>
+    <section>
+        <div id="get-inspired-container">
+            <div id="inspired-inner-container">
+                <h2 id="get-inspired">Get inspired.</h2>
+                <p>
+                    Follow us on Instagram for tips, prompts, and beautiful photography
+                     to help you <br> get the most from your journal.
+                </p>
+                <p>
+                    <a href="#">
+                        <strong>Find inspiration on our Instagram →</strong>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
 
 <?php include ROOT . "/view/footer.php"; ?>
 

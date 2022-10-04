@@ -46,34 +46,38 @@ class filterManager extends Manager
         // return array
         $filteredED = [];
 
-        //TODO: way to handle more than one filter
-        $filteredEntries = array_filter($allEntries,function($el) use ($filters, $values){
+        // echoPre($values);
+
+        $FilteredEntriesByValue = [];
         foreach($values as $value){
-
-            foreach($filters as $filter){
-                // if there's no filter keyword in the return string => array_filter removes the entry 
-                if (stripos($el["$value"],$filter) === false){
-                    return false;
-                };
-            };
-            return true;
-
+            array_push($FilteredEntriesByValue,
+                array_filter($allEntries,function($el) use ($filters, $value){
+                    foreach($filters as $filter){
+                        // if there's no filter keyword in the return string => array_filter removes the entry
+                        if (stripos($el[$value],$filter) === false){
+                            return false;
+                        };
+                    };
+                    return true;
+                })
+            );
         }
+        // Array with all entries filtered by filters and values
+        $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
 
-        });
         foreach($filteredEntries as $filteredEntry){
             $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
             if (array_key_exists($monthYearKey, $filteredED)){
                 // push the entry into the key
-                $filteredED[$monthYearKey] = $filteredEntries;
+                $filteredED[$monthYearKey][] = $filteredEntry;
             } else {
                 // create the key in the array & push the entry into the key
                 $filteredED[$monthYearKey] = [];
-                $filteredED[$monthYearKey] = $filteredEntries;
+                $filteredED[$monthYearKey][] = $filteredEntry;
             }
         }
         return $filteredED;
     }
 
-    
+
 }
