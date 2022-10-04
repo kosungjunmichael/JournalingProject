@@ -14,23 +14,7 @@ main#timeline{
     padding: 25px;
 }
 
-@media screen and (max-width: 730px) {
-    #sidebar-container{
-        height: 100%;
-        background-color: var(--bg-secondary);
-        position: absolute;
-        left: -240px;
-    }
 
-    main#timeline {
-        /* display: flex;
-        flex-direction: column; */
-        width:100%;
-        /* overflow-y: scroll;
-        padding: 25px; */
-    }
-
-}
 
 h1.title{
     font-size: 35px;
@@ -365,20 +349,35 @@ p.entry-date{
     font-size: 12px;
 }
 
-/* h3, h5 ,p{
-    margin: 4px 10px;
-    font-family: 'Galey';
+
+@media screen and (max-width: 730px) {
+    #sidebar-container{
+        height: 100%;
+        background-color: var(--bg-secondary);
+        position: absolute;
+        left: -240px;
+    }
+
+    main#timeline {
+        width:100%;
+    }
+
+    button.switch{
+        margin-top: 5px;
+        margin-bottom: 5px;
+
+    }
+
+
 }
 
-@media screen and (max-width: 390px) {
-    #sidebar-container{
-        min-width: 150px;
-    }
-    #timeline{
-        width: calc(100% - 150px);
-    }
-    .group{
-        
+
+@media screen and (max-width: 481px) {
+    div.filter-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 10px;
+        justify-content: space-between;
     }
 }
-} */
