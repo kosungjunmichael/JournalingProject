@@ -218,11 +218,52 @@ async function renderEntries() {
     for (let entry of entries) {
         for (let date of dates) {
             if (entry.date_created.slice(0,10) === date.id) {
-                const entryLink = document.createElement('a');
-                entryLink.innerText = entry.title;
-                entryLink.setAttribute('href', `index.php?action=viewEntry&id=${entry.u_id}`);
+                const weekDay = getWeekday(date.id);
+                const entryLink = document.createElement('span');
+                entryLink.classList.add('calendar-entry-link');
+                entryLink.innerText = `● ${entry.title}`;
+                // entryLink.setAttribute('href', `index.php?action=viewEntry&id=${entry.u_id}`);
+                entryLink.addEventListener('click', () => {
+                    const existing = document.querySelector('.calendar-entry-link-details');
+                    if (existing) existing.remove();
+                    const detailContainer = document.createElement('span');
+                    detailContainer.classList.add('calendar-entry-link-details');
+                    if (weekDay == 1 || weekDay == 2 || weekDay == 3) {
+                        detailContainer.classList.add('calendar-entry-link-details-left');
+                    } else {
+                        detailContainer.classList.add('calendar-entry-link-details-right');
+                    }
+                    detailContainer.innerHTML = `
+                        <svg class="calendar-entry-close" onclick="removeCard(this)" xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256">
+                            <rect width="256" height="256" fill="none"></rect>
+                            <circle class="close-svg-circle" cx="128" cy="128" r="96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="16"></circle>
+                            <line class="close-svg-line" x1="160" y1="96" x2="96" y2="160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                            <line class="close-svg-line" x1="160" y1="160" x2="96" y2="96" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line>
+                        </svg>
+                        <h2 class="calendar-entry-card-title">${entry.title}</h2>
+                        <div class="calendar-entry-card-textContent">${entry.text_content}</div>
+                        <div class="calendar-entry-card-bottom">
+                            <span class="calendar-entry-card-location">
+                                <i class="ph-map-pin"></i>
+                                ${entry.location}
+                            </span>
+                            <span class="calendar-entry-card-date">
+                                <i class='bx bx-calendar'></i>
+                                ${entry.month} ${entry.day}, ${entry.year}
+                            </span>
+                        </div>
+                        <a class="calendar-entry-card-link" href="./index.php?action=viewEntry&id=${entry.u_id}">View Entry</a>
+                    `;
+
+                    entryLink.parentElement.appendChild(detailContainer);
+                })
                 date.appendChild(entryLink);
             }
         }
     }
+}
+
+function removeCard(el) {
+    const parent = el.parentElement;
+    parent.remove();
 }
