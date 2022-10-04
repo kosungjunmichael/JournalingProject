@@ -1,6 +1,6 @@
 <a href="<?= BASE . "/index.php?action=viewEntry&id=". htmlspecialchars($entry['u_id'])?>">
     <div class="entry-container">
-        <h3 class="entry-title" ><?= htmlspecialchars($entry['title']) ?></h3>
+        <h4 class="entry-title" ><?= htmlspecialchars($entry['title']) ?></h4>
        <p class="entry-content"><?= strip_tags($entry['text_content'], "<br>") ?></p>
         <div class="entry-info">
             <div class="entry-tags">

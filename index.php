@@ -133,10 +133,14 @@ try {
 		//--------------------------------------------------
 
 		case "filterEntries":
-			if (isset($_REQUEST["filter"])) {
-				filterEntries($_REQUEST["filter"]);
+			if (isset($_REQUEST)) {
+				filterEntries($_REQUEST);
 			}
 			break;
+        
+        case "deleteEntry":
+            toDeleteEntry($_REQUEST);
+            break;
 
 		case "toggleView":
 			if ($_GET["view"] === "week") {
