@@ -319,3 +319,62 @@ input[type="color"]::-moz-color-swatch {
     border-radius: 10px;
 }
 
+
+
+
+@media screen and (max-width: 955px) {
+#input-text {
+    margin-top: 10px;
+    background-color: var(--white);
+    color: var(--text-color-primary);
+    border: none;
+    outline: none;
+    height: 75%;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+.txt-container {
+    background-color: var(--bg-secondary);
+    padding: 20px 20px;
+    width: 100%;
+
+}
+
+}
+@media screen and (max-width: 390px) {
+    #input-text {
+        margin-top: 10px;
+        background-color: var(--white);
+        color: var(--text-color-primary);
+        border: none;
+        outline: none;
+        height: 52%;
+        width: 100%;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 15px;
+        border-radius: 10px;
+        overflow-y: scroll;
+    }
+
+    .option-button {
+        height: 30px;
+        width: 35px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--primary);
+        color: var(--white);
+    }
+    #create-entry-tag-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}
