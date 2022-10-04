@@ -2,22 +2,37 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-// const convertToArray = Object.entries(data);
 const filteredData = Object.entries(data).filter(
 	([key, value]) =>
 		JSON.parse(value["lat_lng"]).lat !== "" &&
 		JSON.parse(value["lat_lng"]).lng !== ""
-);;
+);
+
+console.log(filteredData);
 
 const array = [];
 
 for (const coords of filteredData) {
 	const latLng = JSON.parse(coords[1]["lat_lng"]);
+	if (
+		array.filter((e) => e.lat === latLng.lat && e.lng === latLng.lng).length > 0
+	) {
+		latLng.lat +=
+			Math.floor(
+				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
+					Math.ceil(-10000)
+			) / 1000000;
+		latLng.lng +=
+			Math.floor(
+				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
+					Math.ceil(-10000)
+			) / 1000000;
+	}
 	array.push(latLng);
 }
+console.log(array);
 
 const initMap = () => {
-
 	// MAP CREATION
 	let map = google.maps.Map;
 	map = new google.maps.Map(document.getElementById("map-view-map"), {

@@ -40,15 +40,16 @@
 
             <!-- Sign In form -->
 
-            <form method="POST" action="<?= BASE .
-            	"/index.php?action=login&method=regular" ?>" class="signin">
+            <form method="POST" action="<?= htmlspecialchars(
+            	BASE . "/index.php?action=login&method=regular"
+            ) ?>" class="signin">
                 <span id="header-text">Login</span>
 
                 <!-- Back-end Error Notification -->
 
                 <?php if (isset($error_login)) { ?>
                     <script>
-                        alert("<?= $error_login ?>")
+                        alert("<?= htmlspecialchars($error_login) ?>")
                     </script>
                 <?php } ?>
 
@@ -61,7 +62,7 @@
                     <input id="login-ue" type="text" name="login-ue" <?php if (
                     	isset($username)
                     ) {
-                    	echo "value='" . $username . "'";
+                    	echo "value='" . htmlspecialchars($username) . "'";
                     } ?> />
                     <label for="login-ue" class="label">Username / Email</label>
                 </div>
@@ -81,7 +82,9 @@
             <!-- Google Login -->
 
             <div class="google-btn">
-                <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleAccount" data-auto_prompt="false"></div>
+                <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=googleAccount" data-auto_prompt="false"></div>
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
 
@@ -116,14 +119,17 @@
 
             <!-- Sign Up form -->
 
-            <form method="POST" action="<?= BASE ."/index.php?action=signUp&method=regular" ?>" class="signup" id="su-form">
+            <form method="POST" action="<?= htmlspecialchars(
+            	// BASE . "/index.php?action=signUp&method=regular"
+            	BASE . "/index.php?action=regularSignUp"
+            ) ?>" class="signup" id="su-form">
                 <span id="header-text">Sign Up</span>
 
                 <!-- Back-end Error Notification -->
 
                 <?php if (isset($error_signup)) { ?>
                     <script>
-                        alert("<?= $error_signup ?>")
+                        alert("<?= htmlspecialchars($error_signup) ?>")
                     </script>
                 <?php } ?>
 
@@ -192,7 +198,9 @@
             <!-- Google Signup -->
 
             <div class="google-btn">
-                <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER["CLIENT_ID"] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&method=google" data-auto_prompt="false"></div> -->
+                <!-- <div id="g_id_onload" data-client_id="<?= $_SERVER[
+                	"CLIENT_ID"
+                ] ?>" data-login_uri="http://localhost/sites/JournalingProject/index.php?action=signup&method=google" data-auto_prompt="false"></div> -->
                 <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="signup_with" data-shape="pill" data-logo_alignment="left"></div>
             </div>
 
