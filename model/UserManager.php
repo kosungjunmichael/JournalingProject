@@ -305,4 +305,13 @@ class UserManager extends Manager
 			return false;
 		}
 	}
+
+    public function getUsername($userUID){
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT username FROM users WHERE u_id = ?");
+        $req->bindParam(1,$userUID,PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetch();
+    }
 }
