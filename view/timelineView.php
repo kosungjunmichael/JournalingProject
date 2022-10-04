@@ -27,9 +27,12 @@
             <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
         </div>
         <div class="filter-switch-cont">
-            <button class="switch titles">title</button>
-            <button class="switch entries">entries</button>
-            <button class="switch tags switch-active">tags</button>
+            <h2 class='filter-label'>Filter By</h2>
+            <div class="filter-switches">
+                <button class="switch tags switch-active">Tags</button>
+                <button class="switch titles">Titles</button>
+                <button class="switch entries">Entries</button>
+            </div>
         </div>
     </div>
     <div class="switch-toggle">
@@ -74,7 +77,7 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <h2 class="month-name"><?=$month?></h2>
+                            <h3 class="month-name"><?=$month?></h3>
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
