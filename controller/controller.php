@@ -232,11 +232,7 @@ function filterEntries($data)
 	$filterManager = new FilterManager();
 	// $type = "monthly";
 	if ($data["filter"] === "") {
-        if ($data['group'] === "Monthly"){
-            $entries = $entryManager->getEntries($_SESSION["uid"], 'monthly');
-        } else if ($data['group'] === "Weekly"){
-            $entries = $entryManager->getEntries($_SESSION["uid"], 'weekly');
-        }
+            $entries = $entryManager->getEntries($_SESSION["uid"], strtolower($data['group']));
 	} else {
             $entries = $filterManager->filterEntries(
                 $_SESSION["uid"],
@@ -244,9 +240,8 @@ function filterEntries($data)
                 $data["value"],
                 $data["group"]
             );
-            // echoPre($entries);
 	}
-    $group = $data['group'];
+    $group = strtolower($data['group']);
 	require ROOT . "/view/timelineFiltered.php";
 }
 

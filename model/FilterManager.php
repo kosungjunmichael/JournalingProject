@@ -38,7 +38,7 @@ class filterManager extends Manager
         $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
 
         foreach($filteredEntries as $filteredEntry){
-            if ($group === "Monthly") {
+            if (strtolower($group) === "monthly") {
                 $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
                 if (array_key_exists($monthYearKey, $filteredED)){
                     // push the entry into the key
@@ -48,7 +48,7 @@ class filterManager extends Manager
                     $filteredED[$monthYearKey] = [];
                     $filteredED[$monthYearKey][] = $filteredEntry;
                 }
-            } else if ($group === "Weekly"){
+            } else if (strtolower($group) === "weekly"){
                 // current year
                 $thisYear = date("Y");
                 // current month

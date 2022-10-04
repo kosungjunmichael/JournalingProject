@@ -1,5 +1,5 @@
 <?php
-    if ($group === "Monthly") {
+    if ($group === "monthly") {
         // number of months from the current month to display
         $numOfMonths = 5;
         $monthsToDisplay = displayMonths($numOfMonths);
@@ -24,7 +24,7 @@
     <?php
             }
         }
-    } else if ($group === "Weekly") {
+    } else if ($group === "weekly") {
         $weeksToDisplay = displayDaysInWeek();
             foreach($weeksToDisplay as $weekDay){
                 // check if there are days in that week
