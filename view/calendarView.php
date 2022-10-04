@@ -1,11 +1,13 @@
-<?php $title = "Calendar"; ?>
-<?php $style = "calendar"; ?>
-
-<?php ob_start(); ?>
-
-<?php include "sidebarView.php"; ?>
-
-<h1 class="title">Calendar</h1>
-
+<?php $title = "Calendar";?>
+<?php $style = "calendar";?>
+<?php $script = "calendar";?>
+<?php ob_start();?>
+<?php include("sidebarView.php");?>
+    <div id="calendar-wrap">
+        <div class="page-header">
+            <h2 class="page-header-text">Calendar</h2>
+        </div>
+        <div id="calendar"></div>
+    </div>
 <?php $content = ob_get_clean(); ?>
-<?php require "template.php"; ?>
+<?php require('template.php'); ?>

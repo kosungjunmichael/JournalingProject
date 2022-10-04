@@ -69,6 +69,7 @@
             </div>
         </div>
         <div id="view-entry-edit">
+            <a href="index.php?action=deleteEntry&entryID=<?=$entryContent['u_id']?>"></a>
             <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
                 <i class="ph-pen"></i>
                 Edit Entry

@@ -17,6 +17,10 @@
         <script src="https://unpkg.com/phosphor-icons"></script>
         <!-- Font awesome icons Link -->
         <script src="https://kit.fontawesome.com/04e3b8115d.js" crossorigin="anonymous"></script>
+        <!-- DayJS -->
+        <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/weekday.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/weekOfYear.js"></script>
         <!--  global javascript file  -->
         <script defer src=" <?= BASE . "/public/js/script.js" ?> "></script>
         <!-- Page specific javascript file -->
