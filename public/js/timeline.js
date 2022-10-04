@@ -119,8 +119,15 @@ switches.forEach(eachSwitch => {
                 returnArr.push(check.innerHTML);
             }
         });
-        if (returnArr.find(el => el === "entries")){
-            returnArr.splice(returnArr.indexOf('entries'),1,"text_content");
+        if (returnArr.find(el => el === "Titles")){
+            returnArr.splice(returnArr.indexOf('Titles'),1,"title");
+        }
+        if (returnArr.find(el => el === "Entries")){
+            returnArr.splice(returnArr.indexOf('Entries'),1,"text_content");
+        }
+        if (returnArr.find(el => el === "Tags")){
+            returnArr.push(returnArr.shift());
+            returnArr.splice(returnArr.indexOf('Tags'),1,"tags");
         }
         filterValues = returnArr;
     });

@@ -247,6 +247,18 @@ class EntryManager extends Manager
 		$req->closeCursor();
 	}
 
+    // public function deleteEntry($entryUId, $userUID)
+    // {
+    //     $db = $this->dbConnect();
+
+    //     $req = $db->query("DELETE FROM entries WHERE u_id = $entryUId AND user_uid = $userUID");
+
+    //     $req->execute();
+
+        
+
+    // }
+
 	// public function getImages($uid){
 
 	//     $db = $this->dbConnect();

@@ -204,6 +204,11 @@ function filterEntries($data)
 	require ROOT . "/view/timelineFiltered.php";
 }
 
+function toDeleteEntry($data){
+    $entryManager = new EntryManager();
+    $entryManager->deleteEntry($data['entryID'], $_SESSION["uid"]);
+}
+
 function viewEntry($entryId)
 {
 	$entryManager = new EntryManager();

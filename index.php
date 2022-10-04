@@ -137,6 +137,10 @@ try {
 				filterEntries($_REQUEST);
 			}
 			break;
+        
+        case "deleteEntry":
+            toDeleteEntry($_REQUEST);
+            break;
 
 		case "toggleView":
 			if ($_GET["view"] === "week") {
