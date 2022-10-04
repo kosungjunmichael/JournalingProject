@@ -19,11 +19,29 @@ function toAboutUs()
 	require ROOT . "/view/aboutView.php";
 }
 
-function toTimeline($u_id, $entry_group)
+function toTimeline($alertText)
 {
 	$entry_manager = new EntryManager();
-	$entries = $entry_manager->getEntries($u_id, $entry_group);
-	$view = $entry_group;
+    $user_manager = new UserManager();
+	$entries = $entry_manager->getEntries($_SESSION["uid"], "monthly");
+    if (isset($alertText['alert'])){
+        switch ($alertText['alert']){
+            case "newEntry":
+                $alert = "Entry successfully created";
+            break;
+            case "deleteEntry":
+                $alert = "Entry Successfully deleted";
+                break;
+            case "login":
+                $username = $user_manager->getUsername($_SESSION['uid'])[0];
+                $alert = "Welcome back! $username";
+            break;
+            default:
+            break;
+        }
+    }
+    // if ($alertText['alert'])
+	$view = "monthly";
 
 	require ROOT . "/view/timelineView.php";
 }
@@ -171,7 +189,7 @@ function regularLogin($data)
 	$userManager = new UserManager();
 	$check = $userManager->confirmUser($data, "regular");
 	if ($check === false) {
-		toTimeline($_SESSION["uid"], "monthly");
+		header("Location: index.php?action=toTimeline&alert=login");
 	} else {
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
@@ -196,7 +214,7 @@ function newEntry($data)
 				"Error, image error status 4 - controller.php: newEntry()"
 			);
 		}
-		header("Location: index.php?action=toTimeline");
+		header("Location: index.php?action=toTimeline&alert=newEntry");
 	} else {
 		// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
 		$error = "Not a valid Entry";
@@ -222,10 +240,10 @@ function filterEntries($data)
 	require ROOT . "/view/timelineFiltered.php";
 }
 
-function toDeleteEntry($data)
-{
-	$entryManager = new EntryManager();
-	// $entryManager->deleteEntry($data['entryID'], $_SESSION["uid"]);
+function deleteEntry($data){
+    $entryManager = new EntryManager();
+    $alert = $entryManager->deleteEntry($data['entryID'], $_SESSION["uid"]);
+    header("Location: index.php?action=toTimeline&alert=deleteEntry");
 }
 
 function viewEntry($entryId)
