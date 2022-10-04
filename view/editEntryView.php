@@ -17,16 +17,23 @@ if (!isset($_SESSION["uid"])) {
 
         <!-- TITLE -->
         <div id="create-entry-title">
-            <input id="create-entry-title-input" type="text" name="title" placeholder="Entry Title" />
+            <input id="create-entry-title-input" type="text" name="title" placeholder="<?=$entryContent["title"] ?>"/>
         </div>
 
         <!-- TAG -->
         <div id="create-entry-tag-container">
             <div id="create-entry-tag">
-<!--                <div id="create-tag-btn">-->
-<!--                    <i class="fa-solid fa-plus"></i>-->
-<!--                </div>-->
-    <!--            <input type="text" id="create-tag-input" placeholder="Add a Tag">-->
+                <!-- //TODO FIX THE TAG PART -->
+                    <?php
+                    $entryTags = explode(",", $entryContent["tags"]);
+                    foreach ($entryTags as $tag) {
+                        if (!empty($tag)) { ?>
+                            <div class="tag"><?= htmlspecialchars($tag) ?></div>
+                        <?php } else { ?>
+                            <div class="no-tag">no tags</div>
+                    <?php }
+                    }
+                    ?>
                 <i class="ph-tag"></i>
                 <ul id="create-entry-tag-input-ul">
                     <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag & Press Enter"/>
@@ -45,11 +52,33 @@ if (!isset($_SESSION["uid"])) {
         <!-- LOCATION -->
         <div id="create-entry-location">
             <i class='bx bx-current-location'></i>
-            <input id="create-entry-location-input" type="text" name="location" placeholder="Location" />
+            <input id="create-entry-location-input" type="text" name="location" placeholder="<?= $entryContent["location"] ?>" />
         </div>
 
         <!-- WEATHER -->
         <div id="create-entry-weather">
+            <i><?php switch ($entryContent["weather"]) {
+                        case 0: ?>
+                            <i class="fa-sharp fa-solid fa-sun"></i>
+                            Sunny
+                        <?php break;
+                        case 1: ?>
+                            <i class="fa-solid fa-cloud-rain"></i>
+                            Rainy
+                        <?php break;
+                        case 2: ?>
+                            <i class="fa-solid fa-cloud"></i>
+                            Cloudy
+                        <?php break;
+                        case 3: ?>
+                            <i class="fa-regular fa-snowflake"></i>
+                            Snowy
+                        <?php break;
+                        default: ?>
+                            <i class="fa-solid fa-ban"></i>
+                            N/A
+                    <?php break;
+                    } ?></i>
             <select id="weather-select" name="weather">
                 <option value="">Select Weather</option>
                 <option value="0">Sunny</option>
@@ -115,8 +144,10 @@ if (!isset($_SESSION["uid"])) {
             <label for="backColor">Highlight</label>
             </div>
             </div>
-        <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
-            <div id="input-text" contenteditable="true"></div>
+        <!--//TODO: WHEN CLICKED DIV INNERTEXT SHOULD BE REMOVED -->
+            <div id="input-text" contenteditable="true">
+                <?= strip_tags($entryContent["text_content"], "<p><blockquote><q><strong><em><ul><ol><li><font><style><b><i><u><div><span>") ?>
+            </div>
             <textarea type="text" id="text-content-textarea" name="textContent" hidden></textarea>
         </div>
 

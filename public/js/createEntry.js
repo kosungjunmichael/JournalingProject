@@ -329,7 +329,7 @@ let submit = document.getElementById('submit');
 let input_text = document.getElementById('input-text');
 let hidden_text = document.getElementById('text-content-textarea');
 
-submit.addEventListener('click', (e) => {
+submit.addEventListener('click', (e) => {	
   hidden_text.value = input_text.innerHTML;
   console.log(hidden_text.value);
 })

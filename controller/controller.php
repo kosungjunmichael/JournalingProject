@@ -41,6 +41,8 @@ function createNewEntry()
 }
 
 function editEntry(){
+	$entryManager = new EntryManager();
+	$entryContent = $entryManager->getEntry($_REQUEST['id'], $_SESSION["uid"]);
 	require ROOT . "/view/editEntryView.php"; //TODO: EDITENTRYVIEW PAGE SHOULD BE CREATED
 }
 

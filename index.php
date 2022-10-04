@@ -172,9 +172,7 @@ try {
 		case "editOldEntry":
 			if(isset($_REQUEST['entryId'])){
 				$entryManager = new EntryManager();
-				// $entryContent = $entryManager->getEntry($_REQUEST['entryId'], $_SESSION["uid"]);
-				// print_r($entryContent);
-			//TODO: edit entry function will be created
+
 			$entryContent = (object) [];
 			$entryContent->userUID = $_SESSION["uid"];
 			$entryContent->title = $_REQUEST["title"];
