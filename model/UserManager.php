@@ -31,6 +31,7 @@ class UserManager extends Manager
 				$req->execute();
 				$user = $req->fetch(PDO::FETCH_ASSOC);
 
+                // return $user;
 				// $_SESSION['uid'] = $user['is_active'] === 1 ? (isset($user['u_id']) ? $user['u_id'] : null) : null;
 				if ($user["login_type"] === $type and $user["is_active"] === 1) {
 					// if correct, head to the timelineView

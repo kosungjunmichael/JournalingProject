@@ -24,8 +24,15 @@ function toTimeline($u_id, $entry_group)
 	$entry_manager = new EntryManager();
 	$entries = $entry_manager->getEntries($u_id, $entry_group);
 	$view = $entry_group;
-	
+
 	require ROOT . "/view/timelineView.php";
+}
+
+function toAlbum($u_id)
+{
+	$entryManager = new EntryManager();
+	$res = $entryManager->getAlbum($u_id);
+	require ROOT . "/view/albumView.php";
 }
 
 function createNewEntry()
@@ -60,28 +67,29 @@ function signUp($data, $type)
 {
 	switch ($type) {
 		case "regular":
+			// TODO: push all values at the end
 			$control = [];
-			preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"])
-				? array_push($control, true)
-				: array_push(
-					$control,
-					"Your username must include at least 4 characters."
-				);
-			preg_match(
+			$ctrl_u = preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"])
+				? true
+				: "Your username must include at least 4 characters.";
+			$ctrl_e = preg_match(
 				"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",
 				$data["sign-e"]
 			)
-				? array_push($control, true)
-				: array_push($control, "You must use a proper email address.");
-			preg_match("/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/", $data["sign-p"])
-				? array_push($control, true)
-				: array_push(
-					$control,
-					"Your password did not meet the minimum requirements."
-				);
-			$data["sign-p"] == $data["sign-cp"]
-				? array_push($control, true)
-				: array_push($control, "Your passwords did not match.");
+				? true
+				: "You must use a proper email address.";
+			$ctrl_p = preg_match(
+				"/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/",
+				$data["sign-p"]
+			)
+				? true
+				: "Your password did not meet the minimum requirements.";
+			$ctrl_cp =
+				$data["sign-p"] == $data["sign-cp"]
+					? true
+					: "Your passwords did not match.";
+
+			array_push($control, $ctrl_u, $ctrl_e, $ctrl_p, $ctrl_cp);
 
 			if (count(array_unique($control)) == 1) {
 				$userManager = new UserManager();
@@ -95,6 +103,8 @@ function signUp($data, $type)
 				}
 			} else {
 				$error = [];
+				// TODO: use filter instead
+				// array_filter($control, )
 				foreach ($control as $value) {
 					// if ($value != '1') $error .= $value . '<br>';
 					if ($value != "1") {
@@ -107,6 +117,7 @@ function signUp($data, $type)
 		default:
 			$userManager = new UserManager();
 			$check = $userManager->createUser($data, $type);
+			// echoPre($check);
 			if ($check === false) {
 				toTimeline($_SESSION["uid"], "monthly");
 			} else {
@@ -131,6 +142,26 @@ function login($data, $type)
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
 	}
+}
+
+//--------------------------------------------------
+//----------------Google Account--------------------
+//--------------------------------------------------
+
+function googleAccount($data)
+{
+	$credentials = json_decode(
+		base64_decode(
+			str_replace(
+				"_",
+				"/",
+				str_replace("-", "+", explode(".", $data["credential"])[1])
+			)
+		),
+		true
+	);
+	echoPre($data);
+	echoPre($credentials);
 }
 
 //--------------------------------------------------
@@ -159,15 +190,15 @@ function newEntry($data)
 	}
 }
 
-function filterEntries($filter)
+function filterEntries($data)
 {
 	$entryManager = new EntryManager();
 	$filterManager = new FilterManager();
 	// $type = "monthly";
-	if ($filter === "") {
+	if ($data['filter'] === "") {
 		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
 	} else {
-		$entries = $filterManager->filterEntries($_SESSION["uid"], $filter);
+		$entries = $filterManager->filterEntries($_SESSION["uid"], $data['filter'], $data['value']);
 		// echoPre($entries);
 	}
 	require ROOT . "/view/timelineFiltered.php";
@@ -214,23 +245,15 @@ function updateLastActive($uid)
 	$userManager->updateLastActive($uid);
 }
 
-
-
-function toAlbum($uid){
-	$entryManager = new EntryManager();
-	$res = $entryManager->getAlbum();
-	require(ROOT . '/view/albumView.php');
-  }
-
-
-function echoPre($user_fetch) {
-  if (is_array($user_fetch)) {
-    echo "<pre>";
-    print_r($user_fetch);
-    echo "</pre>";
-  } else {
-    echo "<pre>";
-    echo $user_fetch;
-    echo "</pre>";
-  }
+function echoPre($user_fetch)
+{
+	if (is_array($user_fetch)) {
+		echo "<pre>";
+		print_r($user_fetch);
+		echo "</pre>";
+	} else {
+		echo "<pre>";
+		echo $user_fetch;
+		echo "</pre>";
+	}
 }

@@ -38,9 +38,9 @@ if (!isset($_SESSION["uid"])) {
                 <button id="tag-remove-btn" type="button">Remove All</button>
             </div>
         </div>
-<!--        <div id="tag-cont">-->
+       <!-- <div id="tag-cont">-->
 <!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
-<!--        </div>-->
+<!--        </div> -->
 
         <!-- LOCATION -->
         <div id="create-entry-location">
@@ -59,57 +59,47 @@ if (!isset($_SESSION["uid"])) {
             </select>
         </div>
 
-        <!-- TEXT -->
-        <div id="create-entry-text-content" class="container">
+        <!-- TEXT Editor -->
+        <div id="create-entry-text-content" class="txt-container">
             <div class="options">
             <!-- Text Format -->
-            <button id="bold" class="option-button format">
+            <button id="bold" type="button" class="option-button format">
             <i class="fa-solid fa-bold"></i>
             </button>
-            <button id="italic" class="option-button format">
+            <button id="italic" type="button" class="option-button format">
             <i class="fa-solid fa-italic"></i>
             </button>
-            <button id="underline" class="option-button format">
+            <button id="underline" type="button" class="option-button format">
             <i class="fa-solid fa-underline"></i>
             </button>
 
             <!-- List -->
-            <button id="insertOrderedList" class="option-button">
+            <button id="insertOrderedList" type="button" class="option-button">
             <div class="fa-solid fa-list-ol"></div>
             </button>
-            <button id="insertUnorderedList" class="option-button">
+            <button id="insertUnorderedList" type="button" class="option-button">
             <i class="fa-solid fa-list"></i>
             </button>
 
             <!-- Alignment -->
-            <button id="justifyLeft" class="option-button align">
+            <button id="justifyLeft" type="button" class="option-button align">
             <i class="fa-solid fa-align-left"></i>
             </button>
-            <button id="justifyCenter" class="option-button align">
+            <button id="justifyCenter" type="button" class="option-button align">
             <i class="fa-solid fa-align-center"></i>
             </button>
-            <button id="justifyRight" class="option-button align">
+            <button id="justifyRight" type="button" class="option-button align">
             <i class="fa-solid fa-align-right"></i>
             </button>
-            <button id="justifyFull" class="option-button align">
+            <button id="justifyFull" type="button" class="option-button align">
             <i class="fa-solid fa-align-justify"></i>
             </button>
-            <button id="indent" class="option-button spacing">
+            <button id="indent" type="button" class="option-button spacing">
             <i class="fa-solid fa-indent"></i>
             </button>
-            <button id="outdent" class="option-button spacing">
+            <button id="outdent" type="button" class="option-button spacing">
             <i class="fa-solid fa-outdent"></i>
             </button>
-
-            <!-- Headings -->
-            <select id="formatBlock" class="adv-option-button">
-            <option value="H1">H1</option>
-            <option value="H2">H2</option>
-            <option value="H3">H3</option>
-            <option value="H4">H4</option>
-            <option value="H5">H5</option>
-            <option value="H6">H6</option>
-            </select>
 
             <!-- Font -->
             <select id="fontName" class="adv-option-button"></select>
@@ -118,22 +108,16 @@ if (!isset($_SESSION["uid"])) {
             <!-- Color -->
             <div class="input-wrapper">
             <input type="color" id="foreColor" class="adv-option-button" />
-            <label for="foreColor">Font Color</label>
+            <label for="foreColor">Color</label>
             </div>
             <div class="input-wrapper">
             <input type="color" id="backColor" class="adv-option-button" />
-            <label for="backColor">Highlight Color</label>
+            <label for="backColor">Highlight</label>
             </div>
-        </div>
+            </div>
         <!--//WARNING: THE ACTION PAGE SHOULD BE CHANGE -->
-            <!-- <form action="EntryEditManager.php" method="post"> 
             <div id="input-text" contenteditable="true"></div>
-            <textarea name="textContent" id="hidden-text" cols="100" rows="130" hidden></textarea>
-            <button id="submit">Submit</button>
-            <input id="submit" type="submit" value="Submit">
-            </form> -->
-
-            <textarea type="text" id="text-content-textarea" name="textContent" placeholder="Start Writing..."></textarea>
+            <textarea type="text" id="text-content-textarea" name="textContent" hidden></textarea>
         </div>
 
         <div id="entry-upload-photo">
@@ -149,7 +133,7 @@ if (!isset($_SESSION["uid"])) {
                 </label>
             </div>
             <div id="create-entry-submit">
-                <input type="submit" />
+                <input type="submit" id="submit" value="Submit"/>
             </div>
         </div>
     </form>

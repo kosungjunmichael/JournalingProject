@@ -19,8 +19,8 @@ class EntryManager extends Manager
 		$first = substr($hash, 0, 2);
 		$second = substr($hash, 2, 2);
 
-		$this->create_directory("./public/images/uploaded/$first");
-		$this->create_directory("./public/images/uploaded/$first/$second");
+		$this->create_directory(ROOT . "/public/images/uploaded/$first");
+		$this->create_directory(ROOT . "/public/images/uploaded/$first/$second");
 
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
@@ -95,8 +95,12 @@ class EntryManager extends Manager
 		$req->bindParam("inLocation", $data->location, PDO::PARAM_STR);
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
-        //TODO: Why do we need htmlspecialchars for a prepare query?
-		$req->bindParam("inTextContent", htmlspecialchars($data->textContent), PDO::PARAM_STR);
+
+		$req->bindParam(
+			"inTextContent",
+			$data->textContent,
+			PDO::PARAM_STR
+		);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
@@ -232,44 +236,49 @@ class EntryManager extends Manager
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
-        $imagesReq = $db->prepare('SELECT path FROM entry_images WHERE entry_uid = ?');
-        $imagesReq->execute(array($entryId));
-        $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
-        $entryContent['images'] = $images;
-        
-        return $entryContent;
-        $req->closeCursor();
-    }
+		$imagesReq = $db->prepare(
+			"SELECT path FROM entry_images WHERE entry_uid = ?"
+		);
+		$imagesReq->execute([$entryId]);
+		$images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
+		$entryContent["images"] = $images;
 
-    // public function getImages($uid){
+		return $entryContent;
+		$req->closeCursor();
+	}
 
-    //     $db = $this->dbConnect();
-    //     // check if UID already exists
-    //     // fetch matching unique IDs
-    //     $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id ORDER BY date_created DESC');
-    //     $query->bindParam('u_id', $uid, PDO::PARAM_STR);
-    //     $query->execute();
-    //     return $query->fetchAll();
-    // }
+	// public function getImages($uid){
 
-    public function getAlbum(){
-        $db = $this->dbConnect();
-		$req = $db->prepare("SELECT x.u_id
-									, x.title
-									, x.date_created,
-        GROUP_CONCAT(y.path SEPARATOR ',') as paths
-        , GROUP_CONCAT(t.tag_name) as tags
+	//     $db = $this->dbConnect();
+	//     // check if UID already exists
+	//     // fetch matching unique IDs
+	//     $query = $db->prepare('SELECT u_id from entries WHERE u_id = :u_id ORDER BY date_created DESC');
+	//     $query->bindParam('u_id', $uid, PDO::PARAM_STR);
+	//     $query->execute();
+	//     return $query->fetchAll();
+	// }
 
-        FROM ENTRIES x
-        INNER JOIN ENTRY_IMAGES y ON y.entry_uid = x.u_id
-		LEFT JOIN tag_map tm ON x.u_id = tm.entry_id
-        LEFT JOIN tags t ON t.id = tm.tag_id
-        GROUP BY x.u_id ORDER BY date_created DESC LIMIT 5");
+	public function getAlbum($u_id)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare('SELECT e.u_id,
+									e.title,
+									e.date_created,
+									GROUP_CONCAT(DISTINCT i.path) as paths,
+									GROUP_CONCAT(DISTINCT t.tag_name) as tags
+									FROM entries e
+									LEFT JOIN tag_map tm ON tm.entry_id = e.u_id
+									LEFT JOIN tags t ON t.id = tm.tag_id
+									INNER JOIN entry_images i ON i.entry_uid = e.u_id
+									WHERE e.user_uid = :inUserUid
+									GROUP BY e.u_id ORDER BY e.date_created DESC');
 
-        $req -> execute();
-        $res = $req -> fetchAll(PDO::FETCH_ASSOC);
-        return $res;
-    }
+		$req->execute([
+			"inUserUid" => $u_id,
+		]);
+		$res = $req->fetchAll(PDO::FETCH_ASSOC);
+		return $res;
+	}
 
 	public function createCoord($location)
 	{
@@ -289,23 +298,45 @@ class EntryManager extends Manager
 		];
 	}
 
-	public function entryDisplay($userId){
+	public function entryDisplay($userId)
+	{
 		$db = $this->dbConnect();
-		$req = $db->prepare("SELECT text_content FROM entries WHERE user_uid = :inUid");
-		$req->execute(array(
-		   'inUid' => $userId
-		));
-		if($req->rowCount() == 1){
-		   $result = $req->fetch(PDO::FETCH_ASSOC);
-		   $req->closeCursor();
-		   return htmlspecialchars_decode($result['text_content']);
-		}else{
-		echo "failed";
-		return 0;
-	 }
-	 }
+		$defaultAllowedTags = [
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'blockquote',
+			'q',
+			'strong',
+			'em',
+			'ul',
+			'ol',
+			'li',
+			'font',
+			'style',
+			'b',
+			'i',
+			'u',
+			'div',
+			'span'
+		];
+		$req = $db->prepare(
+			"SELECT text_content FROM entries WHERE user_uid = :inUid"
+		);
+		$req->execute([
+			"inUid" => $userId,
+		]);
+		if ($req->rowCount() == 1) {
+			$result = $req->fetch(PDO::FETCH_ASSOC);
+			$req->closeCursor();
+			return strip_tags($result["text_content"], $defaultAllowedTags);
+		} else {
+			echo "failed";
+			return 0;
+		}
+	}
 }
-
-
-
-
