@@ -58,28 +58,63 @@ function toLogout()
 	session_destroy();
 	header("Location: index.php");
 }
+
 //--------------------------------------------------
-//----------------KAKAO SIGNUP----------------------
+//-------------------GOOGLE USER--------------------
+//--------------------------------------------------
+
+function googleAccount($data)
+{
+	$userManager = new UserManager();
+	$check = $userManager->createGoogleUser($data);
+
+	if ($check === false) {
+		toTimeline($_SESSION["uid"], "monthly");
+	} else {
+		$error_login = $check;
+		require ROOT . "/view/journeyView.php";
+	}
+}
+
+//--------------------------------------------------
+//-----------------KAKAO USER-----------------------
 //--------------------------------------------------
 
 function kakaoSignUp($data)
 {
+	$userManager = new UserManager();
+	$check = $userManager->createKakaoUser($data);
+
+	if ($check === false) {
+		toTimeline($_SESSION["uid"], "monthly");
+	} else {
+		$error_signup = $check;
+		require ROOT . "/view/journeyView.php";
+	}
 }
 
-function kakaoValidation($data)
-{
+function kakaoLogin($data) {
+	$userManager = new UserManager();
+	$check = $userManager->confirmUser($data, "kakao");
+	if ($check === false) {
+		toTimeline($_SESSION["uid"], "monthly");
+	} else {
+		$error_login = $check;
+		require ROOT . "/view/journeyView.php";
+	}
 }
+
 //--------------------------------------------------
-//----------------REGULAR SIGNUP--------------------
+//------------------REGULAR USER--------------------
 //--------------------------------------------------
 
 function regularSignUp($data)
 {
 	// VALIDATE SIGN-UP FORM
 	$validated = regSignUpValidation($data);
+
 	if (count(array_unique($validated)) == 1) {
 		$userManager = new UserManager();
-		// $check = $userManager->createUser($data, "regular");
 		$check = $userManager->createRegUser($data);
 
 		if ($check === false) {
@@ -96,7 +131,6 @@ function regularSignUp($data)
 		require ROOT . "/view/journeyView.php";
 	}
 }
-
 
 function regSignUpValidation($data)
 {
@@ -132,116 +166,16 @@ function regSignUpValidation($data)
 	}
 }
 
-//--------------------------------------------------
-//------------------USER SIGNUP---------------------
-//--------------------------------------------------
-
-function signUp($data, $type)
-{
-	switch ($type) {
-		case "regular":
-			// TODO: push all values at the end
-			$control = [];
-			if (
-				isset($data["sign-u"]) and
-				isset($data["sign-e"]) and
-				isset($data["sign-p"]) and
-				isset($data["sign-cp"])
-			) {
-			}
-			$ctrl_u = preg_match("/^[a-zA-Z0-9]{4,}/", $data["sign-u"])
-				? true
-				: "Your username must include at least 4 characters.";
-			$ctrl_e = preg_match(
-				"/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/",
-				$data["sign-e"]
-			)
-				? true
-				: "You must use a proper email address.";
-			$ctrl_p = preg_match(
-				"/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$/",
-				$data["sign-p"]
-			)
-				? true
-				: "Your password did not meet the minimum requirements.";
-			$ctrl_cp =
-				$data["sign-p"] == $data["sign-cp"]
-					? true
-					: "Your passwords did not match.";
-
-			array_push($control, $ctrl_u, $ctrl_e, $ctrl_p, $ctrl_cp);
-
-			if (count(array_unique($control)) == 1) {
-				$userManager = new UserManager();
-				$check = $userManager->createUser($data, $type);
-
-				if ($check === false) {
-					toTimeline($_SESSION["uid"], "monthly");
-				} else {
-					$error_signup = $check;
-					require ROOT . "/view/journeyView.php";
-				}
-			} else {
-				$error = [];
-				// TODO: use filter instead
-				// array_filter($control, )
-				foreach ($control as $value) {
-					// if ($value != '1') $error .= $value . '<br>';
-					if ($value != "1") {
-						array_push($error, $value);
-					}
-				}
-				require ROOT . "/view/journeyView.php";
-			}
-			break;
-		default:
-			$userManager = new UserManager();
-			$check = $userManager->createUser($data, $type);
-			// echoPre($check);
-			if ($check === false) {
-				toTimeline($_SESSION["uid"], "monthly");
-			} else {
-				$error_signup = $check;
-				require ROOT . "/view/journeyView.php";
-			}
-			break;
-	}
-}
-
-//--------------------------------------------------
-//----------------USER LOGIN------------------------
-//--------------------------------------------------
-
-function login($data, $type)
+function regularLogin($data)
 {
 	$userManager = new UserManager();
-	$check = $userManager->confirmUser($data, $type);
+	$check = $userManager->confirmUser($data, "regular");
 	if ($check === false) {
 		toTimeline($_SESSION["uid"], "monthly");
 	} else {
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
 	}
-}
-
-//--------------------------------------------------
-//----------------SOCIAL ACCOUNTS-------------------
-//--------------------------------------------------
-
-function googleAccount($data)
-{
-	$userManager = new UserManager();
-	$check = $userManager->confirmUser($data, "google");
-	if ($check === false) {
-		toTimeline($_SESSION["uid"], "monthly");
-	} else {
-		$error_login = $check;
-		require ROOT . "/view/journeyView.php";
-	}
-}
-
-function googleValidation()
-{
 }
 
 //--------------------------------------------------
@@ -275,18 +209,23 @@ function filterEntries($data)
 	$entryManager = new EntryManager();
 	$filterManager = new FilterManager();
 	// $type = "monthly";
-	if ($data['filter'] === "") {
+	if ($data["filter"] === "") {
 		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
 	} else {
-		$entries = $filterManager->filterEntries($_SESSION["uid"], $data['filter'], $data['value']);
+		$entries = $filterManager->filterEntries(
+			$_SESSION["uid"],
+			$data["filter"],
+			$data["value"]
+		);
 		// echoPre($entries);
 	}
 	require ROOT . "/view/timelineFiltered.php";
 }
 
-function toDeleteEntry($data){
-    $entryManager = new EntryManager();
-    $entryManager->deleteEntry($data['entryID'], $_SESSION["uid"]);
+function toDeleteEntry($data)
+{
+	$entryManager = new EntryManager();
+	// $entryManager->deleteEntry($data['entryID'], $_SESSION["uid"]);
 }
 
 function viewEntry($entryId)

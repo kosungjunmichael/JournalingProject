@@ -60,48 +60,13 @@ try {
 		//TODO: these all call the same function, route to the separate login types through the UserManager
 		// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
 
-		// // GOOGLE SIGNUP
-		// case "googleSignUp":
-		//     signUp($_REQUEST, 'google');
-		//     break;
 		case "toLogout":
 			toLogout();
 			break;
 
 		//--------------------------------------------------
-		//------------------REGULAR USER--------------------
-		//--------------------------------------------------
-
-		// REGULAR SIGNUP
-		case "regularSignUp":
-			if (isset($_REQUEST)) {
-				regularSignUp($_REQUEST);
-			} else {
-				throw new Exception("Invalid sign-up attempt");
-			}
-			break;
-
-		// TODO: separate regular & kakao sign-ups
-		case "signUp":
-			// echoPre($_REQUEST);
-			if (isset($_REQUEST["method"])) {
-				signUP($_REQUEST, $_REQUEST["method"]);
-			} else {
-				throw new Exception("Invalid signup attempt");
-			}
-			break;
-
-		//--------------------------------------------------
 		//-------------------GOOGLE USER--------------------
 		//--------------------------------------------------
-
-		case "login":
-			if (isset($_REQUEST["method"])) {
-				login($_REQUEST, $_REQUEST["method"]);
-			} else {
-				throw new Exception("Invalid login attempt");
-			}
-			break;
 
 		// TODO: for the time being, until there's a way to differentiate g-id_onload for each button
 		case "googleAccount":
@@ -123,7 +88,7 @@ try {
 					$credentials["iss"] == "https://accounts.google.com" and
 					$credentials["aud"] == $credentials["azp"]
 				) {
-					googleAccount($$credentials);
+					googleAccount($credentials);
 				} else {
 					throw new Exception("Invalid login attempt");
 				}
@@ -136,18 +101,54 @@ try {
 		//-------------------KAKAO USER---------------------
 		//--------------------------------------------------
 
-		// isset($_REQUEST["id"]);
-		// isset($_REQUEST["kakao_account"]);
-		// $_REQUEST["is_email_valid"] == true
-		// $_REQUEST["is_email_verified"] == true
-		// KAKAO SIGNUP
 		case "kakaoSignUp":
-			// if (isset)
-			kakaoSignUp($_REQUEST);
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoSignUp($kakao_account);
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
 			break;
 
 		case "kakaoLogin":
-			// kakaoLogin();
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoLogin($kakao_account);
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
+			break;
+
+		//--------------------------------------------------
+		//------------------REGULAR USER--------------------
+		//--------------------------------------------------
+
+		case "regularSignUp":
+			if (isset($_REQUEST)) {
+				regularSignUp($_REQUEST);
+			} else {
+				throw new Exception("Invalid sign-up attempt");
+			}
+			break;
+
+		case "regularLogin":
+			if (isset($_REQUEST["login-ue"]) AND isset($_REQUEST["login-p"])) {
+				regularLogin($_REQUEST);
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
 			break;
 
 		//--------------------------------------------------
@@ -159,10 +160,10 @@ try {
 				filterEntries($_REQUEST);
 			}
 			break;
-        
-        case "deleteEntry":
-            toDeleteEntry($_REQUEST);
-            break;
+
+		case "deleteEntry":
+			toDeleteEntry($_REQUEST);
+			break;
 
 		case "toggleView":
 			if (isset($_REQUEST["view"])) {
