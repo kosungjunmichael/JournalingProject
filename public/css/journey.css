@@ -245,10 +245,11 @@
     margin: 0 0 1.5em;
     font-size: 17px;
 }
-/* .twitter-container a{
+
+.twitter-container p a{
     text-decoration: none;
-    color:var(--primary);
-} */
+    color: #1b95e0;
+}
 
 .tweets-container{
     display:flex;
@@ -322,4 +323,42 @@
 }
 .twitter-content p{
     color:black;
+}
+
+/* ==================== */
+/* ==================== */
+/* get inspired section */
+/* ==================== */
+/* ==================== */
+
+#get-inspired-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 200px; */
+    color:white;
+    width: 100%;
+    height:100vh;
+}
+#get-inspired{
+    font-size: 80px;
+    margin-bottom: 2rem;
+    clear: both;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 0.5em;
+}
+#inspired-inner-container p{
+    margin: 0 0 1.5em;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-size: 20px;
+}
+#inspired-inner-container a{
+    color:var(--primary);
+    margin-top: 100px;
 }
