@@ -32,13 +32,13 @@ class filterManager extends Manager
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function filterEntries($userUID, $filters){
+    public function filterEntries($userUID, $filters, $values){
         
         // Array of Filters
         $filters = explode(',',$filters);
-
-        // Filter variable
-        $selector = "tags";
+        
+        // Array of Filter Values to filter entries by
+        $values = explode(',',$values);
 
         // All Entries
         $allEntries = $this->getAllEntries($userUID);
@@ -47,15 +47,18 @@ class filterManager extends Manager
         $filteredED = [];
 
         //TODO: way to handle more than one filter
-        $filteredEntries = array_filter($allEntries,function($el) use ($filters, $selector){
-            
+        $filteredEntries = array_filter($allEntries,function($el) use ($filters, $values){
+        foreach($values as $value){
+
             foreach($filters as $filter){
                 // if there's no filter keyword in the return string => array_filter removes the entry 
-                if (stripos($el["$selector"],$filter) === false){
+                if (stripos($el["$value"],$filter) === false){
                     return false;
                 };
             };
             return true;
+
+        }
 
         });
         foreach($filteredEntries as $filteredEntry){

@@ -133,8 +133,8 @@ try {
 		//--------------------------------------------------
 
 		case "filterEntries":
-			if (isset($_REQUEST["filter"])) {
-				filterEntries($_REQUEST["filter"]);
+			if (isset($_REQUEST)) {
+				filterEntries($_REQUEST);
 			}
 			break;
 
