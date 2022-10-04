@@ -58,6 +58,12 @@ function createNewEntry()
 	require ROOT . "/view/createEntryView.php";
 }
 
+function editEntry(){
+	$entryManager = new EntryManager();
+	$entryContent = $entryManager->getEntry($_REQUEST['id'], $_SESSION["uid"]);
+	require ROOT . "/view/editEntryView.php"; //TODO: EDITENTRYVIEW PAGE SHOULD BE CREATED
+}
+
 function toCalendar()
 {
 	require ROOT . "/view/calendarView.php";
@@ -252,7 +258,29 @@ function viewEntry($entryId)
 	$entryContent = $entryManager->getEntry($entryId, $_SESSION["uid"]);
 	require ROOT . "/view/viewEntryView.php";
 }
+function updateEntry($data, $entryId)
+{
+	$entryManager = new EntryManager();
+	// $tagManager = new TagManager();
+	if (!empty($data->title) and !empty($data->textContent)) {
+		$entry_uid = $entryManager->updateOldEntry($data, $entryId);
+		// $tagManager->submitTags($data->tags, $entry_uid);
+		// if ($_FILES["imgUpload"]["error"] !== 4) {
+		// 	$checkImgs = $entryManager->uploadImages($entry_uid);
+		// } elseif (count($_FILES) > 1 and $_FILES["imgUpload"]["error"] === 4) {
+		// 	throw new Exception(
+		// 		"Error, image error status 4 - controller.php: newEntry()"
+		// 	);
+		// }
+		header("Location: index.php?action=toTimeline");
+	} else {
+		// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
+		$error = "Not a valid Entry";
+		require ROOT . "/view/editEntryView.php";
+	}
+	
 
+}
 //--------------------------------------------------
 //----------------UTILITY FUNCTIONS-----------------
 //--------------------------------------------------
