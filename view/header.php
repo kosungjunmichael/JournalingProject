@@ -41,7 +41,7 @@
             <!-- Sign In form -->
 
             <form method="POST" action="<?= htmlspecialchars(
-            	BASE . "/index.php?action=login&method=regular"
+            	BASE . "/index.php?action=regularLogin"
             ) ?>" class="signin">
                 <span id="header-text">Login</span>
 
