@@ -24,7 +24,7 @@ class EntryManager extends Manager
 
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
-		$newpath = "./public/images/uploaded/$first/$second/$filename";
+		$newpath = "/public/images/uploaded/$first/$second/$filename";
 		move_uploaded_file($file["tmp_name"], $newpath);
 
 		$db = $this->dbConnect();

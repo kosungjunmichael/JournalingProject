@@ -88,8 +88,8 @@ try {
 			break;
 
 		case "signUp":
-			echoPre($_REQUEST);
-			// signUP($_REQUEST, $_REQUEST["method"]);
+			// echoPre($_REQUEST);
+			signUP($_REQUEST, $_REQUEST["method"]);
 			break;
 
 		//--------------------------------------------------

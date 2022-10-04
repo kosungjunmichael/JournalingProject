@@ -273,14 +273,17 @@ body{
 @media screen and (max-width: 730px) {
     #sidebar-container{
         height: 100%;
-        min-width:240px;
         background-color: var(--bg-secondary);
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         position: absolute;
         left: -240px;
+    }
+
+    main#timeline {
+        /* display: flex;
+        flex-direction: column; */
+        width:100%;
+        /* overflow-y: scroll;
+        padding: 25px; */
     }
 
 }
