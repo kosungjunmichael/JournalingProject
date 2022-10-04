@@ -143,8 +143,8 @@ class EntryManager extends Manager
 			"userId" => $userId,
 		]);
 		if ($entryGroup === "all") {
-            // return $entryContents = $this->getEnt("allEntries", $userId);
-			return $req->fetchAll(PDO::FETCH_ASSOC);
+            return $this->getEnt("allEntries", $userId);
+			// return $req->fetchAll(PDO::FETCH_ASSOC);
 		} else {
 			// empty array to store the return content
 			$entriesDisplay = [];
