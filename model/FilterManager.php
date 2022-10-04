@@ -24,7 +24,7 @@ class filterManager extends Manager
                             FROM entries e
                             LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
                             LEFT JOIN tags t ON t.id = tm.tag_id
-                            WHERE user_uid = :uid
+                            WHERE e.user_uid = :uid AND e.is_active = 1
                             GROUP BY last_edited DESC
                             ');
         $req->bindParam('uid',$userUID,PDO::PARAM_STR);

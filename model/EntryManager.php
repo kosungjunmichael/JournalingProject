@@ -24,8 +24,8 @@ class EntryManager extends Manager
 
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
-		$newpath = "./public/images/uploaded/$first/$second/$filename";
-		move_uploaded_file($file["tmp_name"], $newpath);
+		$newpath = "$first/$second/$filename";
+		move_uploaded_file($file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -183,7 +183,7 @@ class EntryManager extends Manager
         FROM entries e
         LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
         LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE user_uid = :userId
+        WHERE e.user_uid = :userId AND e.is_active = 1
         GROUP BY last_edited DESC');
 		$req->execute([
 			"userId" => $userId,
@@ -274,11 +274,10 @@ class EntryManager extends Manager
         LEFT JOIN tags t ON t.id = tm.tag_id
         WHERE e.user_uid = :userId 
         AND e.u_id = :entryId 
-        AND e.is_active = :active');
+        AND e.is_active = 1');
 		$req->execute([
 			"userId" => $userId,
 			"entryId" => $entryId,
-			"active" => 1,
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -293,17 +292,17 @@ class EntryManager extends Manager
 		$req->closeCursor();
 	}
 
-    // public function deleteEntry($entryUId, $userUID)
-    // {
-    //     $db = $this->dbConnect();
+    public function deleteEntry($entryUId, $userUID)
+    {
+        $db = $this->dbConnect();
 
-    //     $req = $db->query("DELETE FROM entries WHERE u_id = $entryUId AND user_uid = $userUID");
+        $req = $db->prepare("UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?");
+        $req->bindParam(1,$entryUId,PDO::PARAM_STR);
+        $req->bindParam(2,$userUID,PDO::PARAM_STR);
+        $req->execute();
 
-    //     $req->execute();
-
-        
-
-    // }
+        return "Entry successfully deleted";
+    }
 
 	// public function getImages($uid){
 

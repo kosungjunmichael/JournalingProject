@@ -64,7 +64,33 @@
     align-items: flex-end;
 }
 
-#view-entry-edit > #edit-btn {
+#edit-control-btns{
+    display:flex;
+}
+
+#edit-control-btns > #delete-btn {
+    padding: 4px 10px;
+    background-color: #ba0000;
+    border-radius: 15px;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+}
+
+#edit-control-btns > #delete-btn:hover {
+    background-color: #d32b2b;
+}
+
+#edit-control-btns > #delete-btn:active {
+    background-color: #ff5353;
+}
+
+#edit-control-btns > #edit-btn {
     padding: 4px 10px;
     background-color: #9673f5;
     border-radius: 15px;
@@ -77,15 +103,15 @@
     transition: background-color 0.3s;
 }
 
-#view-entry-edit > #edit-btn:hover {
+#edit-control-btns > #edit-btn:hover {
     background-color: var(--primary-light);
 }
 
-#view-entry-edit > #edit-btn:active {
+#edit-control-btns > #edit-btn:active {
     background-color: var(--primary-dark);
 }
 
-#view-entry-edit > #view-entry-edited {
+#edit-control-btns > #view-entry-edited {
     color: var(--text-color-secondary);
     font-size: 14px;
     font-weight: 500;
