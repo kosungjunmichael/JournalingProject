@@ -14,6 +14,14 @@ main#timeline{
     padding: 25px;
 }
 
+header{
+    width: calc(100% - 240px);
+    font-size: 25px;
+    font-weight: 500;
+    font-family:'raleway';
+    text-align:center;
+}
+
 h1.title{
     font-size: 35px;
     padding: 15px;

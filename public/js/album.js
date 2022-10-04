@@ -16,7 +16,7 @@ const openModal = pathsStr => { // use type to know which input to add the data 
         dotContainer.innerHTML ="";
         let carouselDiv = document.createElement("div");
         let image = document.createElement("img");
-        image.setAttribute("src", `./${paths[i]}`);
+        image.setAttribute("src", `./public/images/uploaded/${paths[i]}`);
         image.setAttribute("title", `Image ${i}`);
         image.classList.add("modal-image","slide");
         carouselDiv.appendChild(image);

@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_SESSION["uid"], "monthly");
+			toTimeline($_REQUEST);
 			break;
 
 		case "toCalendar":
@@ -139,7 +139,7 @@ try {
 			break;
         
         case "deleteEntry":
-            toDeleteEntry($_REQUEST);
+            deleteEntry($_REQUEST);
             break;
 
 		case "toggleView":
