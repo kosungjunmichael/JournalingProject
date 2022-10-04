@@ -5,7 +5,7 @@ require_once('Manager.php');
 class filterManager extends Manager 
 {
 
-    public function filterEntries($userUID, $filters, $values){
+    public function filterEntries($userUID, $filters, $values, $group){
         
         // Array of Filters
         $filters = explode(',',$filters);
@@ -38,18 +38,43 @@ class filterManager extends Manager
         $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
 
         foreach($filteredEntries as $filteredEntry){
-            $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
-            if (array_key_exists($monthYearKey, $filteredED)){
-                // push the entry into the key
-                $filteredED[$monthYearKey][] = $filteredEntry;
-            } else {
-                // create the key in the array & push the entry into the key
-                $filteredED[$monthYearKey] = [];
-                $filteredED[$monthYearKey][] = $filteredEntry;
+            if ($group === "Monthly") {
+                $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
+                if (array_key_exists($monthYearKey, $filteredED)){
+                    // push the entry into the key
+                    $filteredED[$monthYearKey][] = $filteredEntry;
+                } else {
+                    // create the key in the array & push the entry into the key
+                    $filteredED[$monthYearKey] = [];
+                    $filteredED[$monthYearKey][] = $filteredEntry;
+                }
+            } else if ($group === "Weekly"){
+                // current year
+                $thisYear = date("Y");
+                // current month
+                $thisMonth = date("F");
+                // current week number for the year
+                $thisWeek = date("W");
+
+                // for current year & month & weeknumber
+                if (
+                    $filteredEntry["year"] == $thisYear AND
+                    $filteredEntry["month"] == $thisMonth AND
+                    $filteredEntry["week"] == $thisWeek
+                ) {
+                    // check if the keyname exists in the $filteredED
+                    if (array_key_exists($filteredEntry["dayname"], $filteredED)) {
+                        // push the entryContent into the key
+                        $filteredED[$filteredEntry["dayname"]][]= $filteredEntry;
+                    } else {
+                        // create the array in the key & push the filteredEntry into the key
+                        $filteredED[$filteredEntry["dayname"]] = [];
+                        $filteredED[$filteredEntry["dayname"]][] = $filteredEntry;
+                    }
+                }
             }
         }
         return $filteredED;
     }
-
 
 }

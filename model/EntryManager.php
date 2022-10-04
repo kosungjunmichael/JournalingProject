@@ -119,29 +119,7 @@ class EntryManager extends Manager
 		$thisMonth = date("F");
 		// current week number for the year
 		$thisWeek = date("W");
-		$req = $db->prepare('SELECT
-                            e.u_id
-                            , e.title
-                            , e.location
-							, e.lat_lng
-                            , e.text_content
-                            , e.date_created
-                            , e.last_edited
-                            , DAYNAME(e.last_edited) as dayname
-                            , DAY(e.last_edited) as day
-                            , WEEK(e.last_edited) as week
-                            , MONTHNAME(e.last_edited) as month
-                            , YEAR(e.last_edited) as year
-                            , GROUP_CONCAT(t.tag_name) as tags
-                            -- add GROUP_CONCAT function here. give it an alias like "as tags" 
-        FROM entries e
-        LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
-        LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE e.user_uid = :userId AND e.is_active = 1
-        GROUP BY last_edited DESC');
-		$req->execute([
-			"userId" => $userId,
-		]);
+		
 		if ($entryGroup === "all") {
             return $this->getEnt("allEntries", $userId);
 			// return $req->fetchAll(PDO::FETCH_ASSOC);
@@ -150,7 +128,6 @@ class EntryManager extends Manager
 			$entriesDisplay = [];
             $entryContents = $this->getEnt("allEntries", $userId);
             foreach($entryContents as $entryContent){
-            
 				// if Monthly
 				if ($entryGroup === "monthly") {
 					$monthYearKey = $entryContent["month"] . " " . $entryContent["year"];
@@ -163,8 +140,7 @@ class EntryManager extends Manager
 						$entriesDisplay[$monthYearKey] = [];
 						$entriesDisplay[$monthYearKey][] = $entryContent;
 					}
-					//					}
-				} elseif ($entryGroup === "weekly") {
+				} else if ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (
 						$entryContent["year"] == $thisYear and
@@ -191,7 +167,6 @@ class EntryManager extends Manager
 			}
 			return $entriesDisplay;
 		}
-		$req->closeCursor();
 	}
 
 	public function getEntry($entryId, $userId)
@@ -246,7 +221,7 @@ class EntryManager extends Manager
 									LEFT JOIN tag_map tm ON tm.entry_id = e.u_id
 									LEFT JOIN tags t ON t.id = tm.tag_id
 									INNER JOIN entry_images i ON i.entry_uid = e.u_id
-									WHERE e.user_uid = :inUserUid
+									WHERE e.user_uid = :inUserUid AND e.is_active = 1
 									GROUP BY e.u_id ORDER BY e.date_created DESC');
 
 		$req->execute([

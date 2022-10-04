@@ -17,6 +17,8 @@ let deleteFiltersBtn = document.querySelector('.filter-remove-all');
 // array of all the filter results to be added
 let addedFilters = [];
 
+let timeSwitch = document.querySelectorAll('.display-tag');
+
 //                  filter switches
 let switches = document.querySelectorAll('.switch');
 
@@ -52,10 +54,18 @@ function addFilters(){
         
         filterResults.appendChild(filterDisplay);
     }
-    value = Object.values(filterValues).join(',');
+    // filters
     filtersString = addedFilters.join(',');
+    // filterValues
+    value = Object.values(filterValues).join(',');
+    // Monthly/ Weekly
+    timeSwitch.forEach(element => {
+        if (element.classList.contains('switch-active')){
+            group = element.textContent;
+        }
+    });
     let xhr = new XMLHttpRequest();
-    xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}&value=${value}`)
+    xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}&value=${value}&group=${group}`)
     xhr.addEventListener('readystatechange',()=>{
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
             // console.log(xhr.responseText);
@@ -99,7 +109,7 @@ submitFilter.addEventListener('click',()=>{
     filterEntries()
 })
 
-// filter By "" switches
+// FILTER SWITCH VALUES
 switches.forEach(eachSwitch => {
     eachSwitch.addEventListener('click',(e)=>{
         checkArr = [];

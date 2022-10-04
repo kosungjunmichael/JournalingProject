@@ -103,7 +103,7 @@ button.filter-remove-all{
 div.filter-switch-cont{
     display:flex;
     flex-direction: column;
-    margin-top:-36px;
+    margin-top:-75px;
 }
 
 
@@ -188,30 +188,32 @@ li.filter-tag{
     font-weight: 500;
 }
 
-/* .switch-toggle{
+/* Toggle between monthly and weekly */
+
+.display-toggle{
     display: flex;
     flex-direction: row;
-    font-size: 25px;
-    padding: 20px;
+    font-size: 20px;
     font-weight: 900;
     font-family:'Galey';
-    width: calc(100% - 240px);
     justify-content: center;
     border-radius:var(--border-radius);
 }
 
-.switch-toggle a{
+.display-toggle a{
     width: fit-content;
 }
 
-.group{
-    background-color: var(--primary);
+.display-tag{
+    background-color: var(--time-tag-bg);
     color: var(--text-color-primary);
     border-radius:var(--border-radius-medium);
     font-family:'Galey';
     margin: 10px;
-    padding: 15px;
-} */
+    text-align:center;
+    width: 100px;
+    padding: 10px;
+}
 
 section.entry-display{
     display: flex;
@@ -219,24 +221,21 @@ section.entry-display{
     flex-direction: column;
     /* margin-left: 15px; */
 }
-/* .monthlyView{
-    flex-direction: column;
-} */
 
 /*          === Monthly View ===          */
 
-div.month{
+div.group{
     padding: 15px 0px;
 }
 
-h3.month-name {
+h3.group-name {
     font-family: 'Galey';
     font-weight: 700;
     font-size: 30px;
     margin: 10px;
 }
 
-div.month-container{
+div.group-container{
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -271,7 +270,7 @@ div.month-container{
 
 /*          === Entries ===          */
 
-div.month-container a
+div.group-container a
 ,div.week-container a{
     color: var(--text-color-primary);
     text-decoration: none;

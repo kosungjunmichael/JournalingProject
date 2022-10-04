@@ -42,6 +42,7 @@ class Manager
                     "userId" => $userUID
                 ]);
                 return $req->fetchAll(PDO::FETCH_ASSOC);
+                $req->closeCursor();
             break;
             case "singleEntry":
                 $req = $db->prepare('SELECT e.title
@@ -67,6 +68,7 @@ class Manager
                     "entryId" => $entryUID,
                 ]);
                 return $req->fetch(PDO::FETCH_ASSOC);
+                $req->closeCursor();
             break;
             default:
             break;

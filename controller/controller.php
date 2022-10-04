@@ -19,11 +19,10 @@ function toAboutUs()
 	require ROOT . "/view/aboutView.php";
 }
 
-function toTimeline($alertText)
+function toTimeline($alertText,$entryGroup)
 {
 	$entry_manager = new EntryManager();
     $user_manager = new UserManager();
-	$entries = $entry_manager->getEntries($_SESSION["uid"], "monthly");
     if (isset($alertText['alert'])){
         switch ($alertText['alert']){
             case "newEntry":
@@ -40,8 +39,13 @@ function toTimeline($alertText)
             break;
         }
     }
-    // if ($alertText['alert'])
-	$view = "monthly";
+    if ($entryGroup === "monthly"){
+        $entries = $entry_manager->getEntries($_SESSION["uid"], "monthly");
+        // echoPre($entries);
+    } else if ($entryGroup === "weekly"){
+        $entries = $entry_manager->getEntries($_SESSION["uid"], "weekly");
+    }
+	$view = $entryGroup;
 
 	require ROOT . "/view/timelineView.php";
 }
@@ -228,15 +232,21 @@ function filterEntries($data)
 	$filterManager = new FilterManager();
 	// $type = "monthly";
 	if ($data["filter"] === "") {
-		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
+        if ($data['group'] === "Monthly"){
+            $entries = $entryManager->getEntries($_SESSION["uid"], 'monthly');
+        } else if ($data['group'] === "Weekly"){
+            $entries = $entryManager->getEntries($_SESSION["uid"], 'weekly');
+        }
 	} else {
-		$entries = $filterManager->filterEntries(
-			$_SESSION["uid"],
-			$data["filter"],
-			$data["value"]
-		);
-		// echoPre($entries);
+            $entries = $filterManager->filterEntries(
+                $_SESSION["uid"],
+                $data["filter"],
+                $data["value"],
+                $data["group"]
+            );
+            // echoPre($entries);
 	}
+    $group = $data['group'];
 	require ROOT . "/view/timelineFiltered.php";
 }
 
