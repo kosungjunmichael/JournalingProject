@@ -69,10 +69,16 @@
             </div>
         </div>
         <div id="view-entry-edit">
-            <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
-                <i class="ph-pen"></i>
-                Edit Entry
-            </a>
+            <div id="edit-control-btns">
+                <a href="index.php?action=deleteEntry&entryID=<?=$entryContent['u_id']?>" id="delete-btn">
+                    <i class="ph-trash"></i>
+                    Delete Entry
+                </a>
+                <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
+                    <i class="ph-pen"></i>
+                    Edit Entry
+                </a>
+            </div>
             <span id="view-entry-edited">
                 Last Edited: <?= date_format(
                                     date_create($entryContent["last_edited"]),

@@ -5,15 +5,16 @@
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
 
-<?php
-    if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
-        // TODO:this should be turn into a little notification modal thing
-        echo "<p>You have been registered. Welcome!</p>";
-    }
-    // print_r($_SESSION['uid']);
-?>
-
 <main id="timeline">
+
+<header>
+    <?php
+    if (isset($alert)) {
+        // TODO:this should be turn into a little notification modal thing
+        echo "$alert";
+    }
+    ?>
+</header>
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
@@ -27,9 +28,12 @@
             <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
         </div>
         <div class="filter-switch-cont">
-            <button class="switch titles">title</button>
-            <button class="switch entries">entries</button>
-            <button class="switch tags switch-active">tags</button>
+            <h2 class='filter-label'>Filter By</h2>
+            <div class="filter-switches">
+                <button class="switch tags switch-active">Tags</button>
+                <button class="switch titles">Titles</button>
+                <button class="switch entries">Entries</button>
+            </div>
         </div>
     </div>
     <div class="switch-toggle">
@@ -74,7 +78,7 @@
                     if (array_key_exists($month, $entries)){
             ?>
                         <div class="month">
-                            <h2 class="month-name"><?=$month?></h2>
+                            <h3 class="month-name"><?=$month?></h3>
                             <div class="month-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){

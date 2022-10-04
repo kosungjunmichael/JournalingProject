@@ -34,7 +34,7 @@ const themeChangeListener = () => {
         localStorage.setItem("dear_diary_theme", "light");
         document.body.setAttribute("data-theme", "light");
     }
-};
+}
 
 themeInput.addEventListener("change", themeChangeListener);
 hamInput.addEventListener("change", themeChangeListener);

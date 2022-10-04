@@ -22,29 +22,8 @@ class UserManager extends Manager
 				: $data;
 
 		switch ($type) {
-			case "google":
-			case "kakao":
-				$req = $db->prepare(
-					"SELECT u_id, login_type, is_active FROM users WHERE email = ?"
-				);
-				$req->bindParam(1, $credentials["email"], PDO::PARAM_STR);
-				$req->execute();
-				$user = $req->fetch(PDO::FETCH_ASSOC);
-
-                // return $user;
-				// $_SESSION['uid'] = $user['is_active'] === 1 ? (isset($user['u_id']) ? $user['u_id'] : null) : null;
-				if ($user["login_type"] === $type and $user["is_active"] === 1) {
-					// if correct, head to the timelineView
-					if (isset($user["u_id"])) {
-						$_SESSION["uid"] = $user["u_id"];
-					}
-					return false;
-				} else {
-					return "Login Failed. Please try again.";
-				}
-				break;
-			default:
-				// retrieve the user
+			case "regular":
+				// CHECK TO SEE IF CREDENTIALS MATCH A USER IN DB
 				$req = $db->prepare(
 					"SELECT u_id, username, email, password, is_active FROM users WHERE ? IN(username, email)"
 				);
@@ -52,9 +31,7 @@ class UserManager extends Manager
 				$req->execute();
 				$user = $req->fetch(PDO::FETCH_ASSOC);
 
-				// echo "USER:", $user;
-
-				// catch login errors
+				// IF NOT, NOTIFY USER LOGIN FAILED
 				if (
 					!$user or
 					$data["login-ue"] !== $user["username"] and
@@ -69,8 +46,28 @@ class UserManager extends Manager
 					$_SESSION["uid"] = $user["u_id"];
 				}
 
-				// if correct, head to the timelineView
+				// IF YES, PROCEED TO USER TIMELINE
 				return false;
+				break;
+			default:
+				$req = $db->prepare(
+					"SELECT u_id, login_type, is_active FROM users WHERE email = :inEmail"
+				);
+				$req->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
+				$req->execute();
+				$user = $req->fetch(PDO::FETCH_ASSOC);
+
+				// $_SESSION['uid'] = $user['is_active'] === 1 ? (isset($user['u_id']) ? $user['u_id'] : null) : null;
+				if ($user["login_type"] === $type and $user["is_active"] === 1) {
+					// IF YES, PROCEED TO USER TIMELINE
+					if (isset($user["u_id"])) {
+						$_SESSION["uid"] = $user["u_id"];
+					}
+					return false;
+					// IF NOT, NOTIFY USER LOGIN FAILED
+				} else {
+					return "Login Failed. Please try again.";
+				}
 				break;
 		}
 	}
@@ -94,14 +91,13 @@ class UserManager extends Manager
 		);
 
 		switch ($type) {
-			case "google":
-			case "kakao":
-				$query->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
-				$query->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
-				break;
-			default:
+			case "regular":
 				$query->bindParam("inUsername", $credentials["sign-u"], PDO::PARAM_STR);
 				$query->bindParam("inEmail", $credentials["sign-e"], PDO::PARAM_STR);
+				break;
+			default:
+				$query->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
+				$query->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
 				break;
 		}
 
@@ -145,49 +141,11 @@ class UserManager extends Manager
 					true
 				)
 				: $data;
+
 		$existingUser = $this->checkUserExist($credentials, $type);
+
 		switch ($type) {
-			case "google":
-			case "kakao":
-				if ($existingUser and $existingUser["login_type"] == $type) {
-					return $this->confirmUser($credentials, $type);
-				} elseif ($existingUser and $existingUser["login_type"] != $type) {
-					$username = "";
-					$email = "";
-					foreach ($existingUser as $value) {
-						$username =
-							$value["username"] == $existingUser["sign-u"]
-								? $value["username"]
-								: null;
-						$email =
-							$value["email"] == $existingUser["sign-e"]
-								? $value["email"]
-								: null;
-					}
-					if ($username and $email) {
-						return "Username and email already exist. Please try different ones.";
-					} elseif ($username and !$email) {
-						return "Username already exists. Please try a different one.";
-					} else {
-						return "Email already exists. Please try a different one.";
-					}
-				} else {
-					$req = $db->prepare(
-						"INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)"
-					);
-					$req->bindParam("inUID", $uid, PDO::PARAM_STR);
-					$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
-					$req->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
-					$req->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
-					$req->execute();
-
-					// CREATE SESSION VARIABLE FOR USER UID
-					$_SESSION["uid"] = $uid;
-
-					return false;
-				}
-				break;
-			default:
+			case "regular":
 				if ($existingUser) {
 					$username = "";
 					$email = "";
@@ -226,6 +184,134 @@ class UserManager extends Manager
 					return false;
 				}
 				break;
+			default:
+				if ($existingUser and $existingUser["login_type"] == $type) {
+					return $this->confirmUser($credentials, $type);
+				} elseif ($existingUser and $existingUser["login_type"] != $type) {
+					// TODO: create error message function
+					return $this->signUpErrors($credentials, $existingUser);
+					$username = "";
+					$email = "";
+					foreach ($existingUser as $value) {
+						$username =
+							$value["username"] == $existingUser["sign-u"]
+								? $value["username"]
+								: null;
+						$email =
+							$value["email"] == $existingUser["sign-e"]
+								? $value["email"]
+								: null;
+					}
+
+					if ($username and $email) {
+						return "Username and email already exist. Please try different ones.";
+					} elseif ($username and !$email) {
+						return "Username already exists. Please try a different one.";
+					} else {
+						return "Email already exists. Please try a different one.";
+					}
+				} else {
+					$req = $db->prepare(
+						"INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)"
+					);
+					$req->bindParam("inUID", $uid, PDO::PARAM_STR);
+					$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
+					$req->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
+					$req->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
+					$req->execute();
+
+					// CREATE SESSION VARIABLE FOR USER UID
+					$_SESSION["uid"] = $uid;
+
+					return false;
+				}
+				break;
 		}
 	}
+
+	protected function signUpErrors($credentials, $existingUser)
+	{
+		$username = "";
+		$email = "";
+		foreach ($existingUser as $value) {
+			if ($value["username"] == $credentials["sign-u"]) {
+				$username = $value["username"];
+			}
+			if ($value["email"] == $credentials["sign-e"]) {
+				$email = $value["email"];
+			}
+		}
+		if ($username and $email) {
+			return "Username and email already exist. Please try different ones.";
+		} elseif ($username and !$email) {
+			return "Username already exists. Please try a different one.";
+		} else {
+			return "Email already exists. Please try a different one.";
+		}
+	}
+
+	public function createRegUser($credentials)
+	{
+		$db = $this->dbConnect();
+
+		// CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
+		// IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
+		// IF NO, RETAIN UID AND CONTINUE WITH CODE
+		do {
+			$uid = $this->uidCreate();
+			$existingUID = $this->checkUniqueIDExist($uid);
+		} while (count($existingUID) > 0);
+
+		$existingUser = $this->checkUserExist($credentials, "regular");
+
+		if ($existingUser) {
+			
+			$errors = [];
+			foreach ($existingUser as $value) {
+				array_push(
+					$errors,
+					$value["username"] == $credentials["sign-u"]
+						? $value["username"]
+						: null,
+					$value["email"] == $credentials["sign-e"] ? $value["email"] : null
+				);
+			}
+
+			if ($errors[0] and $errors[1]) {
+				return "Username and email already exist. Please try different ones.";
+			} elseif ($errors[0] and !$errors[1]) {
+				return "Username already exists. Please try a different one.";
+			} else {
+				return "Email already exists. Please try a different one.";
+			}
+
+		} else {
+			$hashpass = password_hash($credentials["sign-p"], PASSWORD_DEFAULT);
+
+			// CREATE NEW USER IN DB
+			$req = $db->prepare(
+				"INSERT INTO users (u_id, login_type, username, email, password) VALUES (:inUID, :inLoginType, :inUsername, :inEmail, :inPassword)"
+			);
+			$req->bindParam("inUID", $uid, PDO::PARAM_STR);
+			$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
+			$req->bindParam("inUsername", $credentials["sign-u"], PDO::PARAM_STR);
+			$req->bindParam("inEmail", $credentials["sign-e"], PDO::PARAM_STR);
+			$req->bindParam("inPassword", $hashpass, PDO::PARAM_STR);
+			$req->execute();
+
+			// CREATE SESSION VARIABLE FOR USER UID
+			$_SESSION["uid"] = $uid;
+
+			return false;
+		}
+	}
+
+    public function getUsername($userUID){
+        $db = $this->dbConnect();
+
+        $req = $db->prepare("SELECT username FROM users WHERE u_id = ?");
+        $req->bindParam(1,$userUID,PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetch();
+    }
 }
