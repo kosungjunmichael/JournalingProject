@@ -11,8 +11,9 @@ nav{
     position: fixed;
 }
 
-#logo-container{
+.logo-container{
     display: flex;
+    flex-direction: column;
     gap:20px;
 }
 #logo-title{
@@ -49,22 +50,6 @@ nav a:hover{
 input:focus, textarea:focus, select:focus {
     outline: none;
   }
-
-#logo-container{
-    display: flex;
-    gap:20px;
-}
-#logo-title{
-    margin-top: 5px;
-}
-
-.logo{
-    color: white;
-    font-size: 30px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
 
 /* LOG in  */
 #header-text {
