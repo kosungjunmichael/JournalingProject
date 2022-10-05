@@ -3,13 +3,18 @@
 @import url('../css/header.css');
 
 body {
-    display: flex;
-    justify-content: center;
     background-color: var(--grey);
     color: var(--white);
     overflow-x: hidden; 
     overflow-y: auto;
     display: flow-root;
+}
+
+.landing-box{
+    margin-top: 200px;
+    text-align: center;
+    width:900px;
+    margin-left: 250px;
 }
 
 #basicInfo {
@@ -31,7 +36,14 @@ a{
 span{
     color: var(--primary);
 }
-
+.about{
+    line-height: 1.5;
+    font-size: larger;
+}
+.team{
+    line-height: 1.5;
+    font-size: large;
+}
 #about-us-container{
     display: flex;
     flex-direction: column;
@@ -69,14 +81,14 @@ span{
     text-align: center;
     cursor: pointer;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .member-button:hover{
     background-color: #555;
 }
 .about-us-card img{
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 .member-img-container{
@@ -88,15 +100,78 @@ span{
     margin-top: 30px;
 }
 .member-email{
-    margin-top: 10px;
     color:blue;
     text-decoration: underline;
+}
+.mike-email{
+    font-size: smaller;
 }
 .member-describe{
     margin-top: 10px;;
 }
+.about-us-bottom{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap:30px;
+    font-size: 1.5625rem;
+}
+
+
+#join-us{
+    display: flex;
+}
 
 #join-community{
-    margin-top: 60px;
+    width: 900px;
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 80px 0 0 0;
 }
+#join-container{
+    width:50%;
+    padding: 25px 50px;
+    margin: 10px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgb(0 0 0 / 80%);
+    cursor: default;
+    transition: all 100ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border: 1px solid #363636;
+    background-color: #242424;
+    color:white;
+}
+.discord-icon i{
+    font-size: 70px;
+    color:#bababa;
+}
+.join-title span{
+    color:white;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.join-description{
+    margin-top: 30px;
+    line-height: 24px;
+    font-size:15px;
+    flex-grow: 1;
+}
+.join-description p{
+    /* text-decoration: underline; */
+    margin-bottom: 10px;
+}
+.join-description p a{
+    text-decoration: underline;
+}
+.join-description p a span{
+    text-decoration: none;
+    color: #bababa;
+}
+
+.products{
+    margin-top: 30px;
+    line-height: 1.5;
+    font-size: larger;
 }
