@@ -230,13 +230,13 @@
             <div class="smart-card">
                 <div class="smart-card-row">
                     <div class="smart-card-container smart-first">
-                        <div class="smart-card-title smart-text">
+                        <div class="smart-card-title">
                             Weather
                         </div>
                         <div class="smart-card-text">
                             <div class="smart-card-icon">
                                 <div class="smart-display">
-                                    23°C <i class='bx bxs-sun'></i>
+                                    <p> 23°C</p> <i class='bx bxs-sun'></i>
                                 </div>
                             </div>
                             <p class="smart-text">Automatically input weather conditions into your entries. Simply
@@ -246,7 +246,7 @@
                         </div>
                     </div>
                     <div class="smart-card-container map-bg">
-                        <div class="smart-card-title smart-text">
+                        <div class="smart-card-title">
                             Map
                         </div>
                         <div class="smart-card-text">
@@ -263,7 +263,7 @@
                 <hr>
                 <div class="smart-card-row">
                     <div class="smart-card-container smart-first">
-                        <div class="smart-card-title smart-text">
+                        <div class="smart-card-title">
                             Calendar
                         </div>
                         <div class="smart-card-text">
@@ -275,7 +275,7 @@
                         </div>
                     </div>
                     <div class="smart-card-container">
-                        <div class="smart-card-title smart-text">
+                        <div class="smart-card-title">
                             Album
                         </div>
                         <div class="smart-card-text">
