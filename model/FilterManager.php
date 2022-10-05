@@ -5,72 +5,76 @@ require_once('Manager.php');
 class filterManager extends Manager 
 {
 
-    protected function getAllEntries($userUID)
-    {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare('SELECT e.u_id
-                            , e.title
-                            , e.text_content
-                            , e.last_edited
-                            , DAYNAME(e.last_edited) as dayname
-                            , WEEK(e.last_edited) as week
-                            , DAY(e.last_edited) as day
-                            , MONTHNAME(e.last_edited) as month
-                            , YEAR(e.last_edited) as year
-                            , e.date_created
-                            , e.location
-                            , GROUP_CONCAT(t.tag_name) as tags
-                            FROM entries e
-                            LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
-                            LEFT JOIN tags t ON t.id = tm.tag_id
-                            WHERE user_uid = :uid
-                            GROUP BY last_edited DESC
-                            ');
-        $req->bindParam('uid',$userUID,PDO::PARAM_STR);
-        $req->execute();
-        return $req->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function filterEntries($userUID, $filters){
+    public function filterEntries($userUID, $filters, $values, $group){
         
         // Array of Filters
         $filters = explode(',',$filters);
-
-        // Filter variable
-        $selector = "tags";
-
+        
+        // Array of Filter Values to filter entries by
+        $values = explode(',',$values);
         // All Entries
-        $allEntries = $this->getAllEntries($userUID);
+        $allEntries = $this->getEnt("allEntries", $userUID);
 
         // return array
         $filteredED = [];
 
-        //TODO: way to handle more than one filter
-        $filteredEntries = array_filter($allEntries,function($el) use ($filters, $selector){
-            
-            foreach($filters as $filter){
-                // if there's no filter keyword in the return string => array_filter removes the entry 
-                if (stripos($el["$selector"],$filter) === false){
-                    return false;
-                };
-            };
-            return true;
+        // echoPre($values);
 
-        });
+        $FilteredEntriesByValue = [];
+        foreach($values as $value){
+            array_push($FilteredEntriesByValue,
+                array_filter($allEntries,function($el) use ($filters, $value){
+                    foreach($filters as $filter){
+                        // if there's no filter keyword in the return string => array_filter removes the entry
+                        if (stripos($el[$value],$filter) === false){
+                            return false;
+                        };
+                    };
+                    return true;
+                })
+            );
+        }
+        // Array with all entries filtered by filters and values
+        $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
+
         foreach($filteredEntries as $filteredEntry){
-            $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
-            if (array_key_exists($monthYearKey, $filteredED)){
-                // push the entry into the key
-                $filteredED[$monthYearKey] = $filteredEntries;
-            } else {
-                // create the key in the array & push the entry into the key
-                $filteredED[$monthYearKey] = [];
-                $filteredED[$monthYearKey] = $filteredEntries;
+            if (strtolower($group) === "monthly") {
+                $monthYearKey = $filteredEntry['month'] . " " . $filteredEntry['year'];
+                if (array_key_exists($monthYearKey, $filteredED)){
+                    // push the entry into the key
+                    $filteredED[$monthYearKey][] = $filteredEntry;
+                } else {
+                    // create the key in the array & push the entry into the key
+                    $filteredED[$monthYearKey] = [];
+                    $filteredED[$monthYearKey][] = $filteredEntry;
+                }
+            } else if (strtolower($group) === "weekly"){
+                // current year
+                $thisYear = date("Y");
+                // current month
+                $thisMonth = date("F");
+                // current week number for the year
+                $thisWeek = date("W");
+
+                // for current year & month & weeknumber
+                if (
+                    $filteredEntry["year"] == $thisYear AND
+                    $filteredEntry["month"] == $thisMonth AND
+                    $filteredEntry["week"] == $thisWeek
+                ) {
+                    // check if the keyname exists in the $filteredED
+                    if (array_key_exists($filteredEntry["dayname"], $filteredED)) {
+                        // push the entryContent into the key
+                        $filteredED[$filteredEntry["dayname"]][]= $filteredEntry;
+                    } else {
+                        // create the array in the key & push the filteredEntry into the key
+                        $filteredED[$filteredEntry["dayname"]] = [];
+                        $filteredED[$filteredEntry["dayname"]][] = $filteredEntry;
+                    }
+                }
             }
         }
         return $filteredED;
     }
 
-    
 }

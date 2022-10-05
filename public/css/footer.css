@@ -3,7 +3,6 @@ footer {
     text-align: center;
 }
 
-
 .col {
     display: flex;
     justify-content: center;
@@ -14,6 +13,15 @@ footer i {
     color: var(--white);
     font-size: 25px;
     margin-top: 20px;
+    -webkit-transition: opacity .6s ease-in-out;
+    -moz-transition: opacity .6s ease-in-out;
+    -ms-transition: opacity .6s ease-in-out;
+    -o-transition: opacity .6s ease-in-out;
+    transition: opacity .6s ease-in-out;
+    opacity: 1;
+}
+footer i:hover{
+    opacity:0.5;
 }
 
 .footer-main {
@@ -77,4 +85,21 @@ footer a {
 .sub-menu-item a {
     color:#bababa;
     font-size:15px;
+    /* position: relative; */
+}
+
+/* .sub-menu-item a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+    transform: scaleX(0);
+} */
+.sub-menu-item a:hover{
+    color:var(--primary);
 }

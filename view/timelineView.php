@@ -5,15 +5,16 @@
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
 
-<?php
-    if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
-        // TODO:this should be turn into a little notification modal thing
-        echo "<p>You have been registered. Welcome!</p>";
-    }
-    // print_r($_SESSION['uid']);
-?>
-
 <main id="timeline">
+
+<header>
+    <?php
+    if (isset($alert)) {
+        // TODO:this should be turn into a little notification modal thing
+        echo "$alert";
+    }
+    ?>
+</header>
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
@@ -27,55 +28,48 @@
             <button class=filter-remove-all>Remove All<i class="ph-trash"></i></button>
         </div>
         <div class="filter-switch-cont">
-            <button class="filter-tags-switch switch-active">tags</button>
-            <button class="filter-titles-switch">title</button>
-            <button class="filter-entries-switch">entries</button>
+            <h2 class='filter-label'>Filter By</h2>
+            <div class="filter-switches">
+                <button class="switch tags switch-active">Tags</button>
+                <button class="switch titles">Titles</button>
+                <button class="switch entries">Entries</button>
+            </div>
+            <div class="display-toggle">
+                <?php
+                    if ($view === "weekly") {
+                        ?>
+                        <div class="display-tag switch-active">Weekly</div>
+                        <a href="index.php?action=toggleView&view=month">
+                            <div class="display-tag">Monthly</div>
+                        </a>
+                        <?php
+                    } else if ($view === "monthly") {
+                        ?>
+                        <a href="index.php?action=toggleView&view=week">
+                            <div class="display-tag">Weekly</div>
+                        </a>
+                        <div class="display-tag switch-active">Monthly</div>
+                        <?php
+                    }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="switch-toggle">
-        <?php 
-            if ($view === "weekly") {
-                ?>
-                <div class="group">Weekly</div>
-                <a href="index.php?action=toggleView&view=month">
-                    <div class="group">Monthly</div>
-                </a>
-                <?php
-            } else if ($view === "monthly") {
-                ?>
-                <!-- <a href="index.php?action=toggleView&view=week">
-                    <div class="group">Weekly</div>
-                </a> -->
-                <!-- <div class="group">Monthly</div> -->
-                <?php
-            }
-        ?>
-    </div>
-    <?php
-    // TODO: change the code depending on the way we're formatting the weekly & monthly
-    if ($view === 'weekly'){
-    ?>
-         <!-- <section class="entry-display"> -->
-    <?php
-    } else if ($view === 'monthly'){
-        ?>
-         <section class="entry-display">
-    <?php
-    }
-    ?>
+    <div class="entry-display">
+
             <?php
             if ($entries AND $view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;
                 $monthsToDisplay = displayMonths($numOfMonths);
-                // september, august, 
+                // september, august,
                 foreach($monthsToDisplay as $month){
                     // check if there are entries from that month
                     if (array_key_exists($month, $entries)){
             ?>
-                        <div class="month">
-                            <h2 class="month-name"><?=$month?></h2>
-                            <div class="month-container">
+                        <div class="group">
+                            <h3 class="group-name"><?=$month?></h3>
+                            <div class="group-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
                                     include "timelineTemplate.php";
@@ -92,11 +86,9 @@
                     // check if there are days in that week
                     if (array_key_exists($weekDay, $entries)){
             ?>
-                        <div class="week">
-                            <div class="week-name">
-                                <?=$weekDay?>
-                            </div>
-                            <div class="week-container">
+                        <div class="group">
+                            <h3 class="group-name"><?=$weekDay?></h3>
+                            <div class="group-container">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
                                     include "timelineTemplate.php";
@@ -107,11 +99,9 @@
             <?php
                     } else {
             ?>
-                        <div class="week">
-                            <div class="week-name">
-                                <!-- <?=$weekDay?> -->
-                            </div>
-                        </div>
+                        <!-- <div class="group"> -->
+                            <!-- <h3 class="group-name"><?=$weekDay?></h3> -->
+                        <!-- </div> -->
             <?php
                     }
                 }

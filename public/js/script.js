@@ -1,7 +1,8 @@
 // theme toggle event listener
-let themeToggle = document.querySelector("#theme-toggle-pill");
-let themeInner = document.querySelector("#theme-toggle-inner");
+let themeToggle = document.querySelector(".theme-toggle-pill");
+let themeInner = document.querySelector(".theme-toggle-inner");
 let themeInput = document.querySelector("#theme-toggle-input");
+let hamInput = document.querySelector("#ham-toggle-input");
 
 // get and set theme
 const theme = localStorage.getItem("dear_diary_theme");
@@ -19,6 +20,7 @@ if (theme === null) {
     }
 }
 
+
 const themeChangeListener = () => {
     // move (translate) theme-toggle-inner
     themeInner.classList.toggle("toggle-to-right");
@@ -32,6 +34,7 @@ const themeChangeListener = () => {
         localStorage.setItem("dear_diary_theme", "light");
         document.body.setAttribute("data-theme", "light");
     }
-};
+}
 
 themeInput.addEventListener("change", themeChangeListener);
+hamInput.addEventListener("change", themeChangeListener);

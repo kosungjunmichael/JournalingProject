@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_SESSION["uid"], "monthly");
+			toTimeline($_REQUEST,"monthly");
 			break;
 
 		case "toCalendar":
@@ -44,6 +44,10 @@ try {
 		case "toCreateEntry":
 			createNewEntry();
 			break;
+		case "toEditEntry":
+			editEntry();
+			break;
+
 
 		case "toAlbum":
 			toAlbum($_SESSION["uid"]);
@@ -53,96 +57,123 @@ try {
 			toMap($_SESSION["uid"], "all");
 			break;
 
-		case "toCreateEntry":
-			createNewEntry();
-			break;
-
 		//TODO: these all call the same function, route to the separate login types through the UserManager
 		// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
 
-		// // GOOGLE SIGNUP
-		// case "googleSignUp":
-		//     signUp($_REQUEST, 'google');
-		//     break;
 		case "toLogout":
 			toLogout();
 			break;
 
 		//--------------------------------------------------
-		//----------------USER SIGNUP-----------------------
+		//-------------------GOOGLE USER--------------------
 		//--------------------------------------------------
 
-		// GOOGLE SIGNUP
-		case "googleSignUp":
-			signUp($_REQUEST, "google");
-			break;
-
-		// KAKAO SIGNUP
-		case "kakaoSignUp":
-			signUp($_REQUEST, "kakao");
-			break;
-
-		// REGULAR SIGNUP
-		case "regularSignup":
-			signUp($_REQUEST, "regular");
-			break;
-
-		case "signUp":
-			echoPre($_REQUEST);
-			// signUP($_REQUEST, $_REQUEST["method"]);
-			break;
-
-		//--------------------------------------------------
-		//----------------USER LOGIN------------------------
-		//--------------------------------------------------
-
-		// GOOGLE LOGIN
-		case "googleLogin":
-			login($_REQUEST, "google");
-			break;
-
-		// KAKAO LOGIN
-		case "kakaoLogin":
-			login($_REQUEST, "kakao");
-			break;
-
-		// REGULAR LOGIN
-		case "regularLogin":
-			login($_REQUEST, "regular");
-			break;
-
-		case "login":
-			// echoPre($_REQUEST);
-			login($_REQUEST, $_REQUEST["method"]);
-			break;
-
-		//--------------------------------------------------
-		//----------------Social Account--------------------
-		//--------------------------------------------------
-
+		// TODO: for the time being, until there's a way to differentiate g-id_onload for each button
 		case "googleAccount":
-			googleAccount($_REQUEST);
+			// echoPre($_REQUEST);
+			if (isset($_REQUEST["credential"]) and isset($_REQUEST["g_csrf_token"])) {
+				$credentials = json_decode(
+					base64_decode(
+						str_replace(
+							"_",
+							"/",
+							str_replace("-", "+", explode(".", $_REQUEST["credential"])[1])
+						)
+					),
+					true
+				);
+				// echoPre($credentials);
+				if (
+					isset($credentials["iss"]) and
+					$credentials["iss"] == "https://accounts.google.com" and
+					$credentials["aud"] == $credentials["azp"]
+				) {
+					googleAccount($credentials, "google");
+				} else {
+					throw new Exception("Invalid login attempt");
+				}
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
 			break;
 
-		case "kakaoAccount":
-			echoPre($_REQUEST);
-			// kakaoAccount($_REQUEST);
+		//--------------------------------------------------
+		//-------------------KAKAO USER---------------------
+		//--------------------------------------------------
+
+		case "kakaoSignUp":
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoSignUp($kakao_account, "kakao");
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
+			break;
+
+		case "kakaoLogin":
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoLogin($kakao_account, "kakao");
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
+			break;
+
+		//--------------------------------------------------
+		//------------------REGULAR USER--------------------
+		//--------------------------------------------------
+
+		case "regularSignUp":
+			if (isset($_REQUEST)) {
+				regularSignUp($_REQUEST, "regular");
+			} else {
+				throw new Exception("Invalid sign-up attempt");
+			}
+			break;
+
+		case "regularLogin":
+			if (isset($_REQUEST["login-ue"]) AND isset($_REQUEST["login-p"])) {
+				regularLogin($_REQUEST, "regular");
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
+			break;
 
 		//--------------------------------------------------
 		//----------------ENTRY MANAGEMENT------------------
 		//--------------------------------------------------
 
 		case "filterEntries":
-			if (isset($_REQUEST["filter"])) {
-				filterEntries($_REQUEST["filter"]);
+			if (isset($_REQUEST)) {
+				filterEntries($_REQUEST);
 			}
 			break;
+        
+        case "deleteEntry":
+            deleteEntry($_REQUEST);
+            break;
 
 		case "toggleView":
-			if ($_GET["view"] === "week") {
-				toTimeline($_SESSION["uid"], "weekly");
-			} elseif ($_GET["view"] === "month") {
-				toTimeline($_SESSION["uid"], "monthly");
+			if (isset($_REQUEST["view"])) {
+				if ($_REQUEST["view"] === "week") {
+					toTimeline($_SESSION["uid"], "weekly");
+				} elseif ($_REQUEST["view"] === "month") {
+					toTimeline($_SESSION["uid"], "monthly");
+				}
+			} else {
+				throw new Exception("Error");
 			}
 			break;
 
@@ -161,8 +192,23 @@ try {
 			if (isset($_REQUEST["id"])) {
 				viewEntry($_REQUEST["id"]);
 			} else {
-				throw new Exception("Error, no entry ID");
+				throw new Exception("Error: no entry ID");
 			}
+			break;
+
+		case "editOldEntry":
+			if(isset($_REQUEST['entryId'])){
+				$entryManager = new EntryManager();
+
+			$entryContent = (object) [];
+			$entryContent->userUID = $_SESSION["uid"];
+			$entryContent->title = $_REQUEST["title"];
+			// $entryContent->tags = $_REQUEST["tagNames"];
+			$entryContent->location = $_REQUEST["location"];
+			$entryContent->weather = $_REQUEST["weather"];
+			$entryContent->textContent = $_REQUEST["textContent"];
+				updateEntry($entryContent, $_REQUEST['entryId']);
+			} else throw new Exception("Error, no entry ID");
 			break;
 
 		default:

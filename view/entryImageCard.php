@@ -1,3 +1,3 @@
 <div class="img-container">
-    <img src="<?= BASE . $img_source?>"/>
+    <img src="<?= BASE ."/public/images/uploaded/". $img_source?>"/>
 </div>

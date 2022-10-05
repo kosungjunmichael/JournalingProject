@@ -2,22 +2,35 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-// const convertToArray = Object.entries(data);
 const filteredData = Object.entries(data).filter(
+
 	([key, value]) =>
 		JSON.parse(value["lat_lng"]).lat !== "" &&
 		JSON.parse(value["lat_lng"]).lng !== ""
-);;
+);
 
 const array = [];
 
 for (const coords of filteredData) {
 	const latLng = JSON.parse(coords[1]["lat_lng"]);
+	if (
+		array.filter((e) => e.lat === latLng.lat && e.lng === latLng.lng).length > 0
+	) {
+		latLng.lat +=
+			Math.floor(
+				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
+					Math.ceil(-10000)
+			) / 1000000;
+		latLng.lng +=
+			Math.floor(
+				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
+					Math.ceil(-10000)
+			) / 1000000;
+	}
 	array.push(latLng);
 }
 
 const initMap = () => {
-
 	// MAP CREATION
 	let map = google.maps.Map;
 	map = new google.maps.Map(document.getElementById("map-view-map"), {
@@ -108,3 +121,29 @@ const initMap = () => {
 };
 
 window.initMap = initMap;
+
+// // ESCAPING HTML TAGS
+// function escapeHTML(text) {
+// 	let map = {
+// 		"&": "&amp;",
+// 		"<": "&lt;",
+// 		">": "&gt;",
+// 		'"': "&quot;",
+// 		"'": "&#039;",
+// 	};
+
+// 	return text.replace(/[&<>"']/g, function (m) {
+// 		return map[m];
+// 	});
+// }
+
+// // REMOVING HTML TAGS
+// function removeTags(str) {
+// 	if (str === null || str === "") return false;
+// 	else str = str.toString();
+
+// 	// Regular expression to identify HTML tags in
+// 	// the input string. Replacing the identified
+// 	// HTML tag with a null string.
+// 	return str.replace(/(<([^>]+)>)/gi, "");
+// }

@@ -17,13 +17,12 @@ let deleteFiltersBtn = document.querySelector('.filter-remove-all');
 // array of all the filter results to be added
 let addedFilters = [];
 
-// filter switches
-let filterByTags = document.querySelector('.filter-tags-switch');
-let filterByTitles = document.querySelector('.filter-titles-switch');
-let filterByEntries = document.querySelector('.filter-entries-switch');
+let timeSwitch = document.querySelectorAll('.display-tag');
 
+//                  filter switches
+let switches = document.querySelectorAll('.switch');
 
-
+var filterValues = ['tags'];
 
 // entries display container
 let entriesDisplay = document.querySelector('.entry-display');
@@ -55,9 +54,18 @@ function addFilters(){
         
         filterResults.appendChild(filterDisplay);
     }
+    // filters
     filtersString = addedFilters.join(',');
+    // filterValues
+    value = Object.values(filterValues).join(',');
+    // Monthly/ Weekly
+    timeSwitch.forEach(element => {
+        if (element.classList.contains('switch-active')){
+            group = element.textContent;
+        }
+    });
     let xhr = new XMLHttpRequest();
-    xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}`)
+    xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}&value=${value}&group=${group}`)
     xhr.addEventListener('readystatechange',()=>{
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
             // console.log(xhr.responseText);
@@ -73,7 +81,7 @@ function addFilters(){
 
 function filterEntries(){
     let val = searchBar.value;
-    // console.log(addedFilters);
+    
     if (val !== "" && !val.includes(",") && !addedFilters.includes(val)){
         addedFilters.push(searchBar.value);
         removeFilters();
@@ -85,7 +93,7 @@ function filterEntries(){
 searchBar.addEventListener('keyup',(e)=>{
     if (e.key === "Enter"){
         e.preventDefault();
-        filterEntries()
+        filterEntries(filterValues)
     }
 });
 
@@ -101,13 +109,36 @@ submitFilter.addEventListener('click',()=>{
     filterEntries()
 })
 
-// filter By "" switches
-filterByTags.addEventListener('click',()=>{
-    filterByTags.classList.toggle("switch-active");
-})
-filterByTitles.addEventListener('click',()=>{
-    filterByTitles.classList.toggle("switch-active");
-})
-filterByEntries.addEventListener('click',()=>{
-    filterByEntries.classList.toggle("switch-active");
-})
+// FILTER SWITCH VALUES
+switches.forEach(eachSwitch => {
+    eachSwitch.addEventListener('click',(e)=>{
+        checkArr = [];
+        switches.forEach(test => {
+            if (e.target !== test && test['className'].includes('switch-active')){
+                checkArr.push(0);
+            }
+        });
+        
+        if (checkArr.some((el) => el === 0)){
+            e.target.classList.toggle("switch-active");
+        }
+
+        returnArr = [];
+        switches.forEach(check => {
+            if (check['className'].includes('switch-active')){
+                returnArr.push(check.innerHTML);
+            }
+        });
+        if (returnArr.find(el => el === "Titles")){
+            returnArr.splice(returnArr.indexOf('Titles'),1,"title");
+        }
+        if (returnArr.find(el => el === "Entries")){
+            returnArr.splice(returnArr.indexOf('Entries'),1,"text_content");
+        }
+        if (returnArr.find(el => el === "Tags")){
+            returnArr.push(returnArr.shift());
+            returnArr.splice(returnArr.indexOf('Tags'),1,"tags");
+        }
+        filterValues = returnArr;
+    });
+});

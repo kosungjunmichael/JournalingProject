@@ -2,15 +2,14 @@ const loginWithKakao = () => {
 	Kakao.Auth.login({
 		success: function (authObj) {
 			Kakao.Auth.setAccessToken(authObj.access_token);
-			// console.log(Kakao.Auth.setAccessToken(authObj.access_token));
 			getInfo("login");
-			// window.location.href = `http://localhost/sites/JournalingProject/index.php/?action=login&method=kakao&username=${response.kakao_account.email}&email=${response.kakao_account.email}`;
 		},
 		fail: function (err) {
+			// window.location = `http://localhost/sites/JournalingProject/index.php/?action=&kakaoError${err}`;
 			console.log(err);
 		},
 	});
-}
+};
 
 const signUpWithKakao = () => {
 	Kakao.Auth.login({
@@ -19,23 +18,33 @@ const signUpWithKakao = () => {
 			getInfo("signup");
 		},
 		fail: function (err) {
+			// window.location = `http://localhost/sites/JournalingProject/index.php/?action=&kakaoError${err}`;
 			console.log(err);
 		},
 	});
-}
+};
 
 const getInfo = (type) => {
 	Kakao.API.request({
 		url: "/v2/user/me",
 		success: function (res) {
-			console.log(res);
-			// window.location =
-			// 	type == "login"
-			// 		? `http://localhost/sites/JournalingProject/index.php/?action=login&method=kakao&username=${res.kakao_account.email}&email=${res.kakao_account.email}`
-			// 		: `http://localhost/sites/JournalingProject/index.php/?action=signup&method=kakao&username=${res.kakao_account.email}&email=${res.kakao_account.email}`;
+			let form = document.createElement("form");
+			form.action =
+				type == "login"
+					? "http://localhost/sites/JournalingProject/index.php/?action=kakaoLogin"
+					: "http://localhost/sites/JournalingProject/index.php/?action=kakaoSignUp";
+
+			form.method = "POST";
+			let input = document.createElement("input");
+			input.type = "text";
+			input.name = "data";
+			input.value = `${JSON.stringify(res)}`;
+			form.appendChild(input);
+			document.body.appendChild(form);
+			form.submit();
 		},
 		fail: function (error) {
 			alert(JSON.stringify(error));
 		},
 	});
-}
+};
