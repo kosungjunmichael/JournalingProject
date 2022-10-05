@@ -335,6 +335,9 @@ p.entry-date{
     font-weight:700;
     font-size: 12px;
 }
+
+
+
 @media screen and (max-width: 1042px) {
     div.filter-field {
         display: flex;
@@ -453,5 +456,15 @@ p.entry-date{
         background-color: var(--bg-secondary);
         border: none;
     }
-
+    button.filter-remove-all {
+        border: none;
+        color: red;
+        background: none;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        margin-left: 2px;
+        transition: color 0.5s;
+        cursor: pointer;
+    }
 }
