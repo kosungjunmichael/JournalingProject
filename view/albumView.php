@@ -40,7 +40,17 @@ for ($i = 0; $i < count($res); $i++) {
                         <?php 
 						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
-                        <?php } else {
+                        <?php } 
+							else (count($tags) === 1 && $tags[0] !== null){
+								for ($l = 0; $l < 1; $l++) { 
+								?>
+								<div class="inside-album-tags-div">
+									<p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
+								</div>
+								<?php }}
+						
+						
+						else {
 							// foreach ($tags as $tag) { 
 							for ($l = 0; $l < 2; $l++) { 
 							?>
