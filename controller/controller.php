@@ -40,7 +40,6 @@ function toTimeline($alertText)
             break;
         }
     }
-    // if ($alertText['alert'])
 	$view = "monthly";
 
 	require ROOT . "/view/timelineView.php";
@@ -73,7 +72,6 @@ function toMap($u_id, $entry_group)
 {
 	$entryManager = new EntryManager();
 	$entries = $entryManager->getEntries($u_id, $entry_group);
-	// echoPre($entries);
 	require ROOT . "/view/mapView.php";
 }
 
@@ -90,10 +88,11 @@ function toLogout()
 function googleAccount($data)
 {
 	$userManager = new UserManager();
-	$check = $userManager->createGoogleUser($data);
+	$check = $userManager->createGoogleUser($data, "google");
 
 	if ($check === false) {
-		toTimeline($_SESSION["uid"], "monthly");
+		// toTimeline($_SESSION["uid"], "monthly");
+		header("Location: index.php?action=toTimeline&alert=login");
 	} else {
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
@@ -121,7 +120,8 @@ function kakaoLogin($data) {
 	$userManager = new UserManager();
 	$check = $userManager->confirmUser($data, "kakao");
 	if ($check === false) {
-		toTimeline($_SESSION["uid"], "monthly");
+		// toTimeline($_SESSION["uid"], "monthly");
+		header("Location: index.php?action=toTimeline&alert=login");
 	} else {
 		$error_login = $check;
 		require ROOT . "/view/journeyView.php";
