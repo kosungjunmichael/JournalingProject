@@ -24,7 +24,7 @@
     </div>
     <br>
     <div class="team">
-        <h1>Our Team</h1>
+        <h1>Our <span>Team</span></h1>
         <br>
         <p>
             The Dear Diary Team is a talented group of engineers and specialists, working remotely from 
@@ -138,19 +138,42 @@
     </div>
     <br>
     <div class="products">
-        <h1>Dear Diary Products</h1>
+        <h1><span>Dear Diary</span> Products</h1>
         <br>
-        <h4>PC</h4>
+        <h4><span>PC<span></h4>
         <p>
             This award-winning app is packed with powerful features, including a map view, quick entry 
             menu bar, and timeline filters. Learn more.
         </p>
         <br>
-        <h4>Phone and Ipad</h4>
+        <h4><span>Phone and Ipad<span></h4>
         <p>
             Journal on-the-go using your iOS devices. Never lose the context of “when, where, and what”
             with automatic date, time, location, weather, and motion activity metadata.
         </p>
+    </div>
+    <div id="join-community">
+        <h1>Join our <span>community</span></h1>
+        <br>
+        <div id="join-container">
+            <div class="join-title">
+                <div class="discord-icon">
+                    <i class='bx bxl-discord-alt'></i>
+                </div>
+                <span>Dear Diary Discord chat</span>
+            </div>
+            <div class="join-description">
+                <p>Get help, ask quick questions, and get to<br> know other Obsidian users and their setup!</p>
+                <p class="mod-iframe">
+                    <iframe></iframe>
+                </p>
+                <div class="discord-button-container">
+                    <a href="https://discord.gg/F9YNrePq" target="_blank">
+                        <button class="mod-cta">Join</button>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

@@ -9,18 +9,21 @@ nav{
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#logo-container{
+.logonav-container{
     display: flex;
-    gap:20px;
+    flex-direction: row;
+    gap: 20px;
 }
 #logo-title{
     margin-top: 5px;
 }
 
 .logo{
-    color: white;
+    color: var(--white);
     font-size: 30px;
     text-decoration: none;
     font-weight: 800;
@@ -49,22 +52,6 @@ nav a:hover{
 input:focus, textarea:focus, select:focus {
     outline: none;
   }
-
-#logo-container{
-    display: flex;
-    gap:20px;
-}
-#logo-title{
-    margin-top: 5px;
-}
-
-.logo{
-    color: white;
-    font-size: 30px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
 
 /* LOG in  */
 #header-text {
@@ -391,4 +378,10 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 30px var(--grey-dark) inset !important;
   -webkit-text-fill-color: var(--white) !important;
+}
+
+
+@media screen and (max-width: 460px) {
+
+
 }
