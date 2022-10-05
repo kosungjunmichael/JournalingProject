@@ -114,18 +114,20 @@ class EntryManager extends Manager
 		$db = $this->dbConnect();
 		if(isset($data)&& !empty($data)){
 			//////////UPDATE THE IMAGE
-			if($data->file){
-				$hash = hash_file("md5", $data->file["tmp_name"]);
+			if($_FILES['imgUpload']){
+				$hash = hash_file("md5", $_FILES['imgUpload']["tmp_name"]);
 				$first = substr($hash, 0, 2);
 				$second = substr($hash, 2, 2);
 
 				$this->create_directory(ROOT . "/public/images/uploaded/$first");
 				$this->create_directory(ROOT . "/public/images/uploaded/$first/$second");
 
-				$type = explode("/", $data->file["type"])[1];
+				$type = explode("/", $_FILES['imgUpload']["type"])[1];
 				$filename = substr($hash, 4) . "." . $type;
 				$newpath = "$first/$second/$filename";
-				move_uploaded_file($data->file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
+				// echoPre($newpath);
+				move_uploaded_file($_FILES['imgUpload']["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
+				
 				$req = $db->prepare(
 					"UPDATE entry_images SET path = :inPath WHERE entry_uid = :entryId ORDER BY id DESC LIMIT 1)");
 				$req->bindParam("inPath", $newpath, PDO::PARAM_STR);
@@ -159,8 +161,7 @@ class EntryManager extends Manager
 				, e.lat_lng = :inLatLong
 				, e.weather =:inWeather
 				, e.last_edited = NOW()
-				, tm.tag_id = (SELECT id from tags WHERE tag_name = :inTag)
-			
+				, tm.tag_id = (SELECT id from tags WHERE tag_name = :inTag)			
 				WHERE e.user_uid = :userId
 				AND  e.u_id = :entryId  
 				AND e.is_active = 1 
@@ -175,7 +176,6 @@ class EntryManager extends Manager
 				"inLatLong" => $lat_lng,
 				"inWeather" =>$data->weather,
 				"inTag" => $data->tags,
-				// "inPath" =>$imgPath,
 				"userId" => $data->userUID,
 				"entryId" => $entryId
 			) );

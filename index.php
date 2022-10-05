@@ -211,7 +211,7 @@ try {
 			$entryContent->location = $_REQUEST["location"];
 			$entryContent->weather = $_REQUEST["weather"];
 			$entryContent->textContent = $_REQUEST["textContent"];
-			$entryContent->file = $_REQUEST["imgUpload"];
+			// $entryContent->file = $_REQUEST["imgUpload1"];
 				updateEntry($entryContent, $_REQUEST['entryId']);
 			} else throw new Exception("Error, no entry ID");
 			break;
