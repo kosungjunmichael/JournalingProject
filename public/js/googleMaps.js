@@ -2,7 +2,6 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-// console.log(data);
 
 const filteredData = Object.entries(data).filter(
 	([key, value]) =>

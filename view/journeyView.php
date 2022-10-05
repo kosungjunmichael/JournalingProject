@@ -50,7 +50,8 @@
     
     <section>
         <div class="landing-box">
-            <h2 class="journey-h2">
+            <!-- I have not idea how to make it move in media query spent 3 hours to make it move -->
+            <h2 class="journey-h2"> 
             Meet Dear Diary,<br>
             Your Self-Care Journal
             </h2>
@@ -161,7 +162,7 @@
             </p>
             <p>
                 Our community welcomes anyone who uses Dear Diary or is interested
-                 in Dear Diary, no matter your language, country, or field. Come join us!
+                in Dear Diary, no matter your language, country, or field. Come join us!
             </p>
             <div class="subfeature-boxes"> 
                 <div class="subfeature">

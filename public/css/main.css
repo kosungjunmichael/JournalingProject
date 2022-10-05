@@ -374,3 +374,21 @@ body{
     font-family:'Galey';
     text-transform: capitalize;
 }
+
+@media screen and (max-width: 730px) {
+    #sidebar-container{
+        height: 100%;
+        background-color: var(--bg-secondary);
+        position: absolute;
+        left: -240px;
+    }
+
+    main#timeline {
+        /* display: flex;
+        flex-direction: column; */
+        width:100%;
+        /* overflow-y: scroll;
+        padding: 25px; */
+    }
+
+}

@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 require_once "./model/EntryManager.php";
 require_once "./model/UserManager.php";
