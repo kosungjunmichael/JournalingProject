@@ -2,7 +2,7 @@
     <nav>
         <h2>
             <a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">
-                <div class="logo-container">
+                <div class="logonav-container">
                     <svg class="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff" />
                         <path d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" stroke="#9673F5" stroke-width="2" />

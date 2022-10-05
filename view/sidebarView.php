@@ -2,8 +2,8 @@
      <!-- Normal menu in web view -->
     <div id="sidebar-container">
         <div id="sidebar-top">
-            <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
-                <div class="logo-container">
+            <div class="logo-container">
+                <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
                     <svg class="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
                         <path d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" stroke="#9673F5" stroke-width="2"/>
@@ -14,11 +14,11 @@
                         <line x1="0.707107" y1="33.2929" x2="6.70711" y2="39.2929" stroke="#9673F5" stroke-width="2"/>
                         <line x1="0.707107" y1="32.2929" x2="6.70711" y2="38.2929" stroke="#9673F5" stroke-width="2"/>
                     </svg>
-                    <div id="logo-title">
-                        Dear Diary
-                    </div>
-                </div>
-            </a>
+                </a>
+                <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
+                    <div class="logo-title">Dear Diary</div>
+                </a>
+            </div>
             <ul class="sidebar-navlinks">
                 <li>
                     <a class="sidebar-link" href="./index.php?action=toTimeline">
@@ -70,8 +70,8 @@
         <span class="hamburger-line"></span>
 
         <div id="hamburger-menu">
-            <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
-                <div class="logo-container">
+            <div class="logo-container">
+                <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
                     <svg class="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff"/>
                         <path d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" stroke="#9673F5" stroke-width="2"/>
@@ -82,11 +82,11 @@
                         <line x1="0.707107" y1="33.2929" x2="6.70711" y2="39.2929" stroke="#9673F5" stroke-width="2"/>
                         <line x1="0.707107" y1="32.2929" x2="6.70711" y2="38.2929" stroke="#9673F5" stroke-width="2"/>
                     </svg>
-                    <div class="logo-title">
-                        Dear Diary
-                    </div>
+                </a>
+                <a href="<?= BASE . "/index.php?action=toTimeline" ?>">
+                    <div class="logo-title">Dear Diary</div>
+                </a>
                 </div>
-            </a>
 
             <ul class="sidebar-navlinks">
                 <li>

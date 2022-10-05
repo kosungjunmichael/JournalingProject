@@ -32,6 +32,7 @@ body[data-theme='light'] {
     --time-tag-bg: var(--grey-mid-light);
     --button-color: rgba(0,0,0,0.4);
     --album-color: rgba(200, 200, 200, 1);
+    --calendar-entry-link-details: var(--grey-mid-light);
 }
 
 body[data-theme='dark'] {
@@ -46,7 +47,7 @@ body[data-theme='dark'] {
     --time-tag-bg: var(--grey-superlight);
     --button-color: rgba(255,255,255,0.2);
     --album-color: rgba(0, 0, 0, 1);
-
+    --calendar-entry-link-details: var(--grey);
 }
 
 @font-face {
@@ -101,8 +102,8 @@ body{
 
 .logo-container {
     width: 100%;
-    color: var(--white);
     display: flex;
+    flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -293,8 +294,8 @@ body{
 		z-index: 100;
 		transform-origin: 4px 0px;
 
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-			background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
 	#sidebar-hamburger span:first-child {
@@ -373,4 +374,20 @@ body{
     font-weight: 900;
     font-family:'Galey';
     text-transform: capitalize;
+}
+
+}
+
+@media screen and (max-width: 730px) {
+    #sidebar-container{
+        height: 100%;
+        background-color: var(--bg-secondary);
+        position: absolute;
+        left: -240px;
+    }
+
+    main#timeline {
+        width:100%;
+    }
+
 }

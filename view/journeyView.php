@@ -50,7 +50,8 @@
     
     <section>
         <div class="landing-box">
-            <h2 class="journey-h2">
+            <!-- I have not idea how to make it move in media query spent 3 hours to make it move -->
+            <h2 class="journey-h2"> 
             Meet Dear Diary,<br>
             Your Self-Care Journal
             </h2>
@@ -161,7 +162,7 @@
             </p>
             <p>
                 Our community welcomes anyone who uses Dear Diary or is interested
-                 in Dear Diary, no matter your language, country, or field. Come join us!
+                in Dear Diary, no matter your language, country, or field. Come join us!
             </p>
             <div class="subfeature-boxes"> 
                 <div class="subfeature">
@@ -211,6 +212,80 @@
                         <p>
                             " Enjoy reading and working on your notes anytime, anywhere. "
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div id="smart-container">
+            <div id="smart-container-title">
+                <h3>The Smartest Self-Care Journal Ever</h3>
+                <p>Self-care doesn’t have to be hard. Make your wellbeing easy and convenient to commit to<br> by allowing
+                    your daily self-care habits to be done wherever and wherever you want, 
+                    as you<br> go about your day. Make full use of the smart features in Journey to make journaling
+                    an<br> effortless habit.</p>
+            </div>
+            <div class="smart-card">
+                <div class="smart-card-row">
+                    <div class="smart-card-container smart-first">
+                        <div class="smart-card-title">
+                            Weather
+                        </div>
+                        <div class="smart-card-text">
+                            <div class="smart-card-icon">
+                                <div class="smart-display">
+                                    <p> 23°C</p> <i class='bx bxs-sun'></i>
+                                </div>
+                            </div>
+                            <p class="smart-text">Automatically input weather conditions into your entries. Simply
+                             key in your location
+                                 to pull out the information you need. This feature
+                                  also works for backdated entries.</p>
+                        </div>
+                    </div>
+                    <div class="smart-card-container map-bg">
+                        <div class="smart-card-title">
+                            Map
+                        </div>
+                        <div class="smart-card-text">
+                            <div class="smart-overline">
+                                <i class='bx bx-been-here'></i>
+                                <span>gangnam, seoul, south korea</span>
+                            </div>
+                            <p class="smart-text">Use Google maps to accurately tag your location in your entries. 
+                                Let yourself plan your future travels with ease by planning the details in your entries
+                                 and tagging them in relevant places.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="smart-card-row">
+                    <div class="smart-card-container smart-first">
+                        <div class="smart-card-title">
+                            Calendar
+                        </div>
+                        <div class="smart-card-text">
+                            <div class="smart-card-icon smart-icon-2">
+                                <i class='bx bx-calendar' ></i>
+                            </div>
+                            <p class="smart-text">Maecenas commodo mauris at hendrerit condimentum. Nullam dapibus felis leo,
+                                 in sagittis mi auctor at. Vestibulum fringilla commodo mattis. Nunc ultricies ac enim sed scelerisque.</p>
+                        </div>
+                    </div>
+                    <div class="smart-card-container">
+                        <div class="smart-card-title">
+                            Album
+                        </div>
+                        <div class="smart-card-text">
+                            <div class="smart-card-icon smart-icon-2">
+                                <i class='bx bx-photo-album' ></i>
+                            </div>
+                            <p class="smart-text">Fusce eu erat ut turpis fringilla lacinia lobortis quis elit. Ut sagittis tortor ut
+                                 velit pulvinar lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                                  inceptos himenaeos. Suspendisse vitae finibus quam, eget aliquam eros.</p>
+                        </div>
                     </div>
                 </div>
             </div>

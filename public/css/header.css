@@ -9,19 +9,21 @@ nav{
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.logo-container{
+.logonav-container{
     display: flex;
-    flex-direction: column;
-    gap:20px;
+    flex-direction: row;
+    gap: 20px;
 }
 #logo-title{
     margin-top: 5px;
 }
 
 .logo{
-    color: white;
+    color: var(--white);
     font-size: 30px;
     text-decoration: none;
     font-weight: 800;
@@ -376,4 +378,42 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 30px var(--grey-dark) inset !important;
   -webkit-text-fill-color: var(--white) !important;
+}
+
+
+@media screen and (max-width: 390px) {
+    nav{
+        background-color: rgba(22,22,22,0.7);
+        color: var(--grey-superlight);
+        width: 390px;
+        padding:35px 0px ;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        backdrop-filter: blur(5px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .navbar{
+        margin-left: 140px;
+    }
+    nav ul li {
+        list-style-type: none;
+        display: inline-block;
+        padding: 6px 0px;
+    }
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        letter-spacing: 1px;
+        padding: 2px 15px;
+        width: 200px;
+    }
+    .logo-img {
+        width: 58px;
+        height: 55px;
+    }
+
+
 }

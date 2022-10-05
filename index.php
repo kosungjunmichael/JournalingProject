@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_REQUEST);
+			toTimeline($_REQUEST,"monthly");
 			break;
 
 		case "toCalendar":
@@ -88,7 +88,7 @@ try {
 					$credentials["iss"] == "https://accounts.google.com" and
 					$credentials["aud"] == $credentials["azp"]
 				) {
-					googleAccount($credentials);
+					googleAccount($credentials, "google");
 				} else {
 					throw new Exception("Invalid login attempt");
 				}
@@ -110,7 +110,7 @@ try {
 				isset($kakao_account["is_email_valid"]) == 1 and
 				isset($kakao_account["is_email_verified"]) == 1
 			) {
-				kakaoSignUp($kakao_account);
+				kakaoSignUp($kakao_account, "kakao");
 			} else {
 				throw new Exception("Invalid signup attempt");
 			}
@@ -125,7 +125,7 @@ try {
 				isset($kakao_account["is_email_valid"]) == 1 and
 				isset($kakao_account["is_email_verified"]) == 1
 			) {
-				kakaoLogin($kakao_account);
+				kakaoLogin($kakao_account, "kakao");
 			} else {
 				throw new Exception("Invalid signup attempt");
 			}
@@ -137,7 +137,7 @@ try {
 
 		case "regularSignUp":
 			if (isset($_REQUEST)) {
-				regularSignUp($_REQUEST);
+				regularSignUp($_REQUEST, "regular");
 			} else {
 				throw new Exception("Invalid sign-up attempt");
 			}
@@ -145,7 +145,7 @@ try {
 
 		case "regularLogin":
 			if (isset($_REQUEST["login-ue"]) AND isset($_REQUEST["login-p"])) {
-				regularLogin($_REQUEST);
+				regularLogin($_REQUEST, "regular");
 			} else {
 				throw new Exception("Invalid login attempt");
 			}
@@ -178,14 +178,18 @@ try {
 			break;
 
 		case "addNewEntry":
-			$entryContent = (object) [];
-			$entryContent->userUID = $_SESSION["uid"];
-			$entryContent->title = $_REQUEST["title"];
-			$entryContent->tags = $_REQUEST["tagNames"];
-			$entryContent->location = $_REQUEST["location"];
-			$entryContent->weather = $_REQUEST["weather"];
-			$entryContent->textContent = $_REQUEST["textContent"];
-			newEntry($entryContent);
+			if (isset($_REQUEST)) {
+				// echoPre($_REQUEST);
+				// echoPre($_FILES);
+				$entryContent = (object) [];
+				$entryContent->userUID = $_SESSION["uid"];
+				$entryContent->title = $_REQUEST["title"];
+				$entryContent->tags = $_REQUEST["tagNames"];
+				$entryContent->location = $_REQUEST["location"];
+				$entryContent->weather = $_REQUEST["weather"];
+				$entryContent->textContent = $_REQUEST["textContent"];
+				newEntry($entryContent);
+			}
 			break;
 
 		case "viewEntry":
