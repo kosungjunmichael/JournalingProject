@@ -25,7 +25,10 @@ class EntryManager extends Manager
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
 		$newpath = "$first/$second/$filename";
-		move_uploaded_file($file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
+		move_uploaded_file(
+			$file["tmp_name"],
+			"./public/images/uploaded/$first/$second/$filename"
+		);
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -96,11 +99,7 @@ class EntryManager extends Manager
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
 
-		$req->bindParam(
-			"inTextContent",
-			$data->textContent,
-			PDO::PARAM_STR
-		);
+		$req->bindParam("inTextContent", $data->textContent, PDO::PARAM_STR);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
@@ -113,7 +112,7 @@ class EntryManager extends Manager
 	public function updateOldEntry($data, $entryId)
 	{
 		$db = $this->dbConnect();
-		if(isset($data)&& !empty($data)){
+		if (isset($data) && !empty($data)) {
 			$lat_lng = json_encode($this->createCoord($data->location));
 			$req = $db->prepare('UPDATE entries e SET e.title = :inTitle
 			, e.text_content = :inText_content
@@ -124,15 +123,15 @@ class EntryManager extends Manager
 			WHERE e.user_uid = :userId 
 			AND e.u_id = :entryId 
 			AND e.is_active = 1');
-			$req->execute(array(
-				"inTitle" =>$data->title,
-				"inText_content" =>$data->textContent,
+			$req->execute([
+				"inTitle" => $data->title,
+				"inText_content" => $data->textContent,
 				"inLocation" => $data->location,
 				"inLatLong" => $lat_lng,
-				"inWeather" =>$data->weather,
+				"inWeather" => $data->weather,
 				"userId" => $data->userUID,
 				"entryId" => $entryId,
-			));
+			]);
 
 			//TODO: IMG AND TAG UPDATE
 			// $imagesReq = $db->prepare(
@@ -143,14 +142,14 @@ class EntryManager extends Manager
 			// 	"entryId"=>$data->entryId]);
 			// $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
 			// $entryContent["images"] = $images;
-			if($req->rowCount() == 1){ 
+			if ($req->rowCount() == 1) {
 				echo "<script>alert('Your entry has been updated successfully');</script>";
 				$req->closeCursor();
 				return $data->userUID;
 			}
-		}else{
-				echo "<script>alert('Missing information. Entry update process is aborting...')</script>"; 
-				return $data->entryId;
+		} else {
+			echo "<script>alert('Missing information. Entry update process is aborting...')</script>";
+			return $data->entryId;
 		}
 	}
 
@@ -232,17 +231,19 @@ class EntryManager extends Manager
 		$imagesReq->closeCursor();
 	}
 
-    public function deleteEntry($entryUId, $userUID)
-    {
-        $db = $this->dbConnect();
+	public function deleteEntry($entryUId, $userUID)
+	{
+		$db = $this->dbConnect();
 
-        $req = $db->prepare("UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?");
-        $req->bindParam(1,$entryUId,PDO::PARAM_STR);
-        $req->bindParam(2,$userUID,PDO::PARAM_STR);
-        $req->execute();
+		$req = $db->prepare(
+			"UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?"
+		);
+		$req->bindParam(1, $entryUId, PDO::PARAM_STR);
+		$req->bindParam(2, $userUID, PDO::PARAM_STR);
+		$req->execute();
 
-        return "Entry successfully deleted";
-    }
+		return "Entry successfully deleted";
+	}
 
 	// public function getImages($uid){
 
@@ -299,27 +300,27 @@ class EntryManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$defaultAllowedTags = [
-			'p',
-			'h1',
-			'h2',
-			'h3',
-			'h4',
-			'h5',
-			'h6',
-			'blockquote',
-			'q',
-			'strong',
-			'em',
-			'ul',
-			'ol',
-			'li',
-			'font',
-			'style',
-			'b',
-			'i',
-			'u',
-			'div',
-			'span'
+			"p",
+			"h1",
+			"h2",
+			"h3",
+			"h4",
+			"h5",
+			"h6",
+			"blockquote",
+			"q",
+			"strong",
+			"em",
+			"ul",
+			"ol",
+			"li",
+			"font",
+			"style",
+			"b",
+			"i",
+			"u",
+			"div",
+			"span",
 		];
 		$req = $db->prepare(
 			"SELECT text_content FROM entries WHERE user_uid = :inUid"
