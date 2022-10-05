@@ -47,10 +47,10 @@
                             <a href="#">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: JamesKim917@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/eskimojamz">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -65,13 +65,13 @@
                         <p class="member-title">Software Engineer</p>
                         <p class="member-describe">Hello World! This is Insu! What's good!</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/insu-kwon-8a1b531b7/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: insukwon0426@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/InsuKwon">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -86,13 +86,13 @@
                         <p class="member-title">Software Engineer</p>
                         <p class="member-describe">has no scill for taking a descent photo</p>
                         <div class="about-us-bottom">
-                            <a href="#">
-                                <i class='bx bxl-linkedin-square'></i>
+                            <a href="https://www.researchgate.net/profile/Sumeyya-Ilkin">
+                                <i class="fa-brands fa-researchgate"></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: sumeyyailkin@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/sude89">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -107,13 +107,13 @@
                         <p class="member-title">Software Engineer</p>
                         <p class="member-describe">Doing my best not to slouch for the picture</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/vorleak/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: longvorleak@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/longvorleak">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -130,13 +130,13 @@
                         <p class="member-title">Software Engineer</p>
                         <p class="member-describe">Thinking about absolutely nothing</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/mendez-mike/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: mikemendez12328@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/mike-mendez">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -154,10 +154,10 @@
                             <a href="#">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: mike.ko96@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/kosungjunmichael">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -172,13 +172,13 @@
                         <p class="member-title">CEO</p>
                         <p class="member-describe">Hello, I am CEO of Dear Diary</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/sam-kim-5873a5235/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: Samkim0822@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/uizyks">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
@@ -193,13 +193,13 @@
                         <p class="member-title">Software Engineer</p>
                         <p class="member-describe">Position:absolute is all I do!</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/do-din-kim-140b8221b/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
-                            <a href="#">
+                            <a href="mailto: akim384@gmail.com">
                                 <i class='bx bx-envelope' ></i>
                             </a>
-                            <a href="#">
+                            <a href="https://github.com/KimDoDin">
                                 <i class='bx bxl-github' ></i>
                             </a>
                         </div>
