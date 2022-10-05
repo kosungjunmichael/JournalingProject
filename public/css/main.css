@@ -87,7 +87,7 @@ body{
 }
 
 /* --------------------------- */
-/* SIDEBAR */
+/* ---------SIDEBAR------------*/
 /* --------------------------- */
 #sidebar-container{
     height: 100%;
@@ -99,16 +99,16 @@ body{
     justify-content: space-between;
 }
 
-#sidebar-container #logo-container{
+.logo-container {
     width: 100%;
-    color: var(--white);
     display: flex;
+    flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
 }
 
-#logo-container > #logo-img {
+.logo-img {
     width: 24px;
 }
 
@@ -116,42 +116,29 @@ body{
     fill: var(--bg-secondary);
 }
 
-#logo-container > #logo-title {
+.logo-title {
     font-size: 24px;
     font-weight: 700;
     font-family: Galey;
-    padding-top: 4px;;
+    padding-top: 4px;
     color: var(--sidebar-logo-title);
 }
 
-#sidebar-container #btn{
-    position:absolute;
-    color: var(--white);
-    left: 90%;
-    top:10px;
-    font-size: 20px;
-    height: 50px;
-    width:50px;
-    text-align: center;
-    line-height: 50px;
-    transform:translateX(-50%);
-}
-
-#sidebar-container  #sidebar-navlinks{
+.sidebar-navlinks {
     margin: 50px 0;
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-#sidebar-container  #sidebar-navlinks > li{
+.sidebar-navlinks > li {
     width: 100%;
     list-style: none;
     font-size: 18px;
     font-weight: 500;
 }
 
-#sidebar-container  #sidebar-navlinks > li > .sidebar-link {
+.sidebar-link {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -160,7 +147,7 @@ body{
     transition: color 0.25s;
 }
 
-#sidebar-container #sidebar-navlinks > li > .sidebar-link:hover {
+.sidebar-link:hover {
     color: var(--primary);
 }
 
@@ -203,19 +190,19 @@ body{
     background-color: var(--primary-dark);
 }
 
-#sidebar-bottom {
+.sidebar-bottom {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#theme-toggle {
+.theme-toggle {
     display: flex;
     align-items: center;
 }
 
-#theme-toggle i {
+.theme-toggle i {
     color: var(--primary);
 }
 
@@ -224,7 +211,7 @@ body{
     width: 0;
 }
 
-#theme-toggle-pill {
+.theme-toggle-pill {
     width: 84px;
     height: 40px;
     background-color: var(--theme-toggle-pill);
@@ -236,7 +223,7 @@ body{
     cursor: pointer;
 }
 
-#theme-toggle-pill > #theme-toggle-inner {
+.theme-toggle-inner, .ham-toggle-inner  {
     width: 24px;
     height: 24px;
     border-radius: 50px;
@@ -251,6 +238,124 @@ body{
 .toggle-to-right {
     transform: translateX(43px);
 }
+
+/* --------------------------- */
+/* ------SIDEBAR MOBILE--------*/
+/* --------------------------- */
+
+#sidebar-hamburger {
+	display: none;
+}
+
+@media screen and (max-width: 650px) {
+	/* Hamburger menu */
+	#sidebar-container {
+		display: none;
+	}
+
+	#sidebar-hamburger {
+		display: block;
+		position: absolute;
+		top: 50px;
+		right: 50px;
+		z-index: 1;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+
+	#sidebar-hamburger a {
+		text-decoration: none;
+		transition: color 0.3s ease;
+	}
+
+	#sidebar-hamburger input {
+		display: block;
+		width: 40px;
+		height: 32px;
+		position: absolute;
+		top: -7px;
+		left: -5px;
+		cursor: pointer;
+		opacity: 0; /* hide this */
+		z-index: 2; /* and place it over the hamburger */
+		-webkit-touch-callout: none;
+	}
+
+	/* Just a quick hamburger */
+	.hamburger-line {
+		display: block;
+		width: 33px;
+		height: 4px;
+		margin-bottom: 5px;
+		position: relative;
+		background: var(--text-color-secondary);
+		border-radius: 3px;
+		z-index: 100;
+		transform-origin: 4px 0px;
+
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+	}
+
+	#sidebar-hamburger span:first-child {
+		transform-origin: 0% 0%;
+	}
+
+	#sidebar-hamburger span:nth-last-child(2) {
+		transform-origin: 0% 100%;
+	}
+
+	/* Transform all the slices of hamburger into a crossmark */
+	#sidebar-hamburger input:checked ~ .hamburger-line {
+		opacity: 1;
+		transform: rotate(45deg) translate(-2px, -1px);
+		background:  var(--text-color-secondary);
+	}
+
+	/* But let's hide the middle one */
+	#sidebar-hamburger input:checked ~ span:nth-last-child(3) {
+		opacity: 0;
+		transform: rotate(0deg) scale(0.2, 0.2);
+	}
+
+	/* the last one should go the other direction */
+	#sidebar-hamburger input:checked ~ span:nth-last-child(2) {
+		transform: rotate(-45deg) translate(0, -1px);
+	}
+
+	/* Make this absolute positioned at the top left of the screen */
+	#hamburger-menu {
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		margin: -77px 0 0 0;
+		padding: 50px 50px 20px 50px;
+		right: -50px;
+		background: var(--bg-secondary);
+		list-style-type: none;
+		-webkit-font-smoothing: antialiased;
+		/* to stop flickering of text in safari */
+
+		transform-origin: 0% 0%;
+		transform: translate(100%, 0);
+
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+	}
+
+  .sidebar-navlinks {
+        list-style: none;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+	/* Slide it in from the right */
+	#sidebar-hamburger input:checked ~ div {
+		transform: none;
+	}
 
 /* --------------------------- */
 /* --------------------------- */
@@ -268,4 +373,18 @@ body{
     font-weight: 900;
     font-family:'Galey';
     text-transform: capitalize;
+}
+
+@media screen and (max-width: 730px) {
+    #sidebar-container{
+        height: 100%;
+        background-color: var(--bg-secondary);
+        position: absolute;
+        left: -240px;
+    }
+
+    main#timeline {
+        width:100%;
+    }
+
 }

@@ -74,7 +74,7 @@
                     <i class="ph-trash"></i>
                     Delete Entry
                 </a>
-                <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
+                <a href="index.php?action=toEditEntry&id=<?=$entryContent['u_id']?>"edit-btn">
                     <i class="ph-pen"></i>
                     Edit Entry
                 </a>

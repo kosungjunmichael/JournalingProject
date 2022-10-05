@@ -1,5 +1,5 @@
 <?php
-    // if ($entries) {
+    if ($group === "monthly") {
         // number of months from the current month to display
         $numOfMonths = 5;
         $monthsToDisplay = displayMonths($numOfMonths);
@@ -11,9 +11,9 @@
             if (array_key_exists($month, $entries)){
               // echo "apples";
     ?>
-                <div class="month">
-                    <h3 class="month-name"><?=$month?></h3>
-                    <div class="month-container">
+                <div class="group">
+                    <h3 class="group-name"><?=$month?></h3>
+                    <div class="group-container">
                         <?php
                         foreach($entries["$month"] as $entry){
                             include "timelineTemplate.php";
@@ -24,5 +24,31 @@
     <?php
             }
         }
-    // }
+    } else if ($group === "weekly") {
+        $weeksToDisplay = displayDaysInWeek();
+            foreach($weeksToDisplay as $weekDay){
+                // check if there are days in that week
+                if (array_key_exists($weekDay, $entries)){
     ?>
+                    <div class="group">
+                        <h3 class="group-name"><?=$weekDay?></h3>
+                        <div class="group-container">
+                            <?php
+                            foreach($entries["$weekDay"] as $entry){
+                                include "timelineTemplate.php";
+                            }
+                            ?>
+                        </div>
+                    </div>
+    <?php
+                } else {
+    ?>
+                    <!-- <div class="group"> -->
+                        <!-- <h3 class="group-name"><?=$weekDay?></h3> -->
+                    <!-- </div> -->
+    <?php
+            }
+        }
+    }
+    ?>
+    
