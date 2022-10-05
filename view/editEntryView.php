@@ -41,10 +41,10 @@ if (!isset($_SESSION["uid"])) {
                 </ul>
             </div>
             <!-- NOTE: Not implemeted yet -->
-            <!-- <div id="create-entry-tag-details">
+            <div id="create-entry-tag-details"style="color:white;">
                 <p id="create-entry-tag-details-p"><span id="create-entry-tag-details-tagnum"></span> tags are remaining</p>
-                <button id="tag-remove-btn" type="button">Remove All</button>
-            </div> -->
+                <button id="tag-remove-btn" type="button"style="color:white;">Remove All</button>
+            </div>
         </div>
        <!-- <div id="tag-cont">-->
 <!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
