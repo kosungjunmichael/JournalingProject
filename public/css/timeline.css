@@ -36,8 +36,9 @@ h1.title{
 div.filter-field{
     display:flex;
     align-items: center;
-    margin: 0px 10px;
+    margin: 0px 10px -55px 10px;
     justify-content: space-between;
+    z-index: 1;
 }
 
 div.filter-field .fa-x{
@@ -60,6 +61,7 @@ div.filter-field .fa-x:hover{
 div.filter-input-field{
     display: flex;
     align-items: center;
+    margin-top:-75px;
 }
 
 div.filter-input-control{
@@ -103,7 +105,7 @@ button.filter-remove-all{
 div.filter-switch-cont{
     display:flex;
     flex-direction: column;
-    margin-top:-75px;
+    margin-top:-55px;
 }
 
 
@@ -112,7 +114,7 @@ h2.filter-label{
     font-weight: 700;
     font-size: 20px;
     margin-left: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 div.filter-switches{
@@ -121,19 +123,20 @@ div.filter-switches{
 
 button.switch{
     font-size: 20px;
-    margin: 0px 10px;
+    margin: 0px 7px;
     padding: 10px;
-    width: 100px;
+    width: 80px;
     font-weight: 900;
     font-family:'Galey';
     border: none;
-    background-color: var(--time-tag-bg);
-    color: var(--black);
+    background-color: var(--bg-secondary);
+    color: var(--text-color-primary);;
     border-radius: var(--border-radius-medium);
     cursor: pointer;
 }
 
 .switch-active{
+    color: var(--white) !important;
     background-color: var(--primary) !important;
 }
 
@@ -146,7 +149,7 @@ button.filter-btn{
     font-family:'Galey';
     border: none;
     background-color: var(--primary);
-    color: var(--text-color-secondary);
+    color: var(--white);
     border-radius: var(--border-radius-medium);
     cursor: pointer;
     transition: background-color 0.5s
@@ -190,14 +193,26 @@ li.filter-tag{
 
 /* Toggle between monthly and weekly */
 
-.display-toggle{
+div.display-toggle{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: 20px;
     font-weight: 900;
     font-family:'Galey';
     justify-content: center;
+    margin-top:15px;
     border-radius:var(--border-radius);
+}
+
+h2.group-label{
+    font-family: 'Galey';
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+div.display-cont{
+    display:flex;
 }
 
 .display-toggle a{
@@ -205,13 +220,13 @@ li.filter-tag{
 }
 
 .display-tag{
-    background-color: var(--time-tag-bg);
+    background-color: var(--bg-secondary);
     color: var(--text-color-primary);
     border-radius:var(--border-radius-medium);
     font-family:'Galey';
-    margin: 10px;
+    margin: 5px 8px;
     text-align:center;
-    width: 100px;
+    width: 90px;
     padding: 10px;
 }
 
@@ -219,7 +234,6 @@ section.entry-display{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    /* margin-left: 15px; */
 }
 
 /*          === Monthly View ===          */

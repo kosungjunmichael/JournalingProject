@@ -369,7 +369,7 @@ input[type="color"]::-moz-color-swatch {
 
 #input-text {
     margin-top: 10px;
-    background-color: var(--white);
+    background-color: var(--entry-text-field);
     color: var(--text-color-primary);
     border: none;
     outline: none;

@@ -1,5 +1,6 @@
 <?php $title = "Entry Title"; ?>
 <?php $style = "viewEntry"; ?>
+<?php $script = "viewEntry"; ?>
 
 <?php
 //echo "<pre>"
@@ -16,7 +17,7 @@
     <div id="view-entry-top">
         <div id="view-entry-details">
             <h1 id="entry-title">
-                <?= $entryContent["title"] ?>
+                <?= htmlspecialchars($entryContent["title"]) ?>
             </h1>
             <div id="details-row">
                 <div id="entry-tags">
@@ -40,7 +41,7 @@
                 </div>
                 <div id="entry-location">
                     <i class="ph-map-pin"></i>
-                    <?= $entryContent["location"] ?>
+                    <?= htmlspecialchars($entryContent["location"]) ?>
                 </div>
                 <div id="entry-weather">
                     <?php switch ($entryContent["weather"]) {
@@ -70,11 +71,12 @@
         </div>
         <div id="view-entry-edit">
             <div id="edit-control-btns">
-                <a href="index.php?action=deleteEntry&entryID=<?=$entryContent['u_id']?>" id="delete-btn">
+                <div class="entryID"><?=$entryContent['u_id']?></div>
+                <a href="#" id="delete-btn">
                     <i class="ph-trash"></i>
                     Delete Entry
                 </a>
-                <a href="createEntryView.php?action=edit&id=12345" id="edit-btn">
+                <a href="index.php?action=editEntry&entryID=<?=$entryContent['u_id']?>" id="edit-btn">
                     <i class="ph-pen"></i>
                     Edit Entry
                 </a>

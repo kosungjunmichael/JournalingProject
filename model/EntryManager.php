@@ -73,7 +73,7 @@ class EntryManager extends Manager
 		$lat_lng = json_encode($this->createCoord($data->location));
 
 		// Inserting the entry into the 'entries' table
-		$req = $db->prepare('INSERT INTO entries                                
+		$req = $db->prepare('INSERT INTO entries
                                 (u_id
                                 , user_uid
 								, title
@@ -122,10 +122,10 @@ class EntryManager extends Manager
 		
 		if ($entryGroup === "all") {
             return $this->getEnt("allEntries", $userId);
-			// return $req->fetchAll(PDO::FETCH_ASSOC);
 		} else {
 			// empty array to store the return content
 			$entriesDisplay = [];
+            // All Entries
             $entryContents = $this->getEnt("allEntries", $userId);
             foreach($entryContents as $entryContent){
 				// if Monthly
@@ -173,6 +173,7 @@ class EntryManager extends Manager
 	{
 		$db = $this->dbConnect();
 		
+        // Single Entry
         $entryContent = $this->getEnt("singleEntry", $userId, $entryId);
 
 		$imagesReq = $db->prepare(

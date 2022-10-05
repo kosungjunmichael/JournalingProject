@@ -12,6 +12,7 @@ class filterManager extends Manager
         
         // Array of Filter Values to filter entries by
         $values = explode(',',$values);
+        
         // All Entries
         $allEntries = $this->getEnt("allEntries", $userUID);
 

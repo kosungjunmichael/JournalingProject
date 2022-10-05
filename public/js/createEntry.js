@@ -185,6 +185,7 @@ const img_container = document.querySelector("#entry-upload-photo");
 const image_input = document.querySelector("#imgUpload");
 const image_label = document.querySelector(".entry-photo");
 let img_count = 0;
+let countUp = 0;
 
 function handleImageSelect() {
 	const reader = new FileReader();
@@ -195,9 +196,11 @@ function handleImageSelect() {
 		if (img_count <= 5) {
 			const img = document.createElement("div");
 			img_container.appendChild(img);
-			img.className = "chosenImg";
 			img.style.backgroundImage = `url(${uploaded_image})`;
-			const new_name = "imgUpload" + img_count;
+			const old_name = countUp === 0 ? "imgUpload" : "imgUpload" + countUp;
+			countUp++;
+			const new_name = "imgUpload" + countUp;
+			img.className = `chosenImg ${new_name}`;
 			const clone_input = image_input.cloneNode(true);
 			clone_input.value = "";
 			clone_input.id = new_name;
@@ -207,6 +210,17 @@ function handleImageSelect() {
 			image_label.onclick = function () {
 				document.getElementById(new_name).click();
 			};
+			let remove = document.createElement("i");
+			remove.className = "fa-solid fa-x";
+			remove.onclick = () => {
+				document.getElementById(old_name).remove();
+				document.querySelector(`.${new_name}`).remove();
+				img_count--;
+				if (img_count < 5) {
+					image_label.style.display = "block";
+				}
+			}
+			img.appendChild(remove);
 		}
 
 		if (img_count === 5) {
@@ -329,7 +343,7 @@ let submit = document.getElementById('submit');
 let input_text = document.getElementById('input-text');
 let hidden_text = document.getElementById('text-content-textarea');
 
-submit.addEventListener('click', (e) => {
+submit.addEventListener('click', (e) => {	
   hidden_text.value = input_text.innerHTML;
   console.log(hidden_text.value);
 })

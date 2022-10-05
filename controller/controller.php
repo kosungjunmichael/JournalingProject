@@ -255,7 +255,7 @@ function viewEntry($entryId)
 {
 	$entryManager = new EntryManager();
 	$entryContent = $entryManager->getEntry($entryId, $_SESSION["uid"]);
-	require ROOT . "/view/viewEntryView.php";
+	require ROOT . "/view/entryView.php";
 }
 
 //--------------------------------------------------

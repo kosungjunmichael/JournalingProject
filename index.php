@@ -185,7 +185,8 @@ try {
 			$entryContent->location = $_REQUEST["location"];
 			$entryContent->weather = $_REQUEST["weather"];
 			$entryContent->textContent = $_REQUEST["textContent"];
-			newEntry($entryContent);
+            echoPre($_FILES);
+			// newEntry($entryContent);
 			break;
 
 		case "viewEntry":
