@@ -2,9 +2,8 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-// console.log(data);
-
 const filteredData = Object.entries(data).filter(
+
 	([key, value]) =>
 		JSON.parse(value["lat_lng"]).lat !== "" &&
 		JSON.parse(value["lat_lng"]).lng !== ""
@@ -52,9 +51,7 @@ const initMap = () => {
 				filteredData[array.indexOf(position)][1]["title"]
 			}</h2>` +
 			`<div class="map-view-entry-card-textContent"><p>${
-				// filteredData[array.indexOf(position)][1]["text_content"]
-				removeTags(filteredData[array.indexOf(position)][1]["text_content"])
-				// escapeHTML(filteredData[array.indexOf(position)][1]["text_content"])
+				filteredData[array.indexOf(position)][1]["text_content"]
 			}</p></div>` +
 			`<div class="map-view-entry-card-bottom">` +
 			`<span class="map-view-entry-card-location">` +
@@ -125,28 +122,28 @@ const initMap = () => {
 
 window.initMap = initMap;
 
-// ESCAPING HTML TAGS
-function escapeHTML(text) {
-	let map = {
-		"&": "&amp;",
-		"<": "&lt;",
-		">": "&gt;",
-		'"': "&quot;",
-		"'": "&#039;",
-	};
+// // ESCAPING HTML TAGS
+// function escapeHTML(text) {
+// 	let map = {
+// 		"&": "&amp;",
+// 		"<": "&lt;",
+// 		">": "&gt;",
+// 		'"': "&quot;",
+// 		"'": "&#039;",
+// 	};
 
-	return text.replace(/[&<>"']/g, function (m) {
-		return map[m];
-	});
-}
+// 	return text.replace(/[&<>"']/g, function (m) {
+// 		return map[m];
+// 	});
+// }
 
-// REMOVING HTML TAGS
-function removeTags(str) {
-	if (str === null || str === "") return false;
-	else str = str.toString();
+// // REMOVING HTML TAGS
+// function removeTags(str) {
+// 	if (str === null || str === "") return false;
+// 	else str = str.toString();
 
-	// Regular expression to identify HTML tags in
-	// the input string. Replacing the identified
-	// HTML tag with a null string.
-	return str.replace(/(<([^>]+)>)/gi, "");
-}
+// 	// Regular expression to identify HTML tags in
+// 	// the input string. Replacing the identified
+// 	// HTML tag with a null string.
+// 	return str.replace(/(<([^>]+)>)/gi, "");
+// }

@@ -14,6 +14,7 @@ body {
 	height: 95%;
 	width: 95%;
 	border-radius: 10px;
+	margin-left: 30px;
 }
 
 .map-view-entry-card {
@@ -152,4 +153,25 @@ body {
 
 #map-view-map div[role="dialog"] button[title="Close"] span:hover {
 	background-color: var(--text-color-secondary);
+}
+
+
+@media screen and (max-width: 780px) {
+	#map-view-map{
+		margin-right: 30px;
+		margin-left: 17px;
+
+	}
+}
+
+@media screen and (max-width: 700px) {
+	#map-view-map{
+		margin: 0px 15px;
+	}
+}
+
+@media screen and (max-width: 390px) {
+	#map-view-map{
+		margin-left: 10px;
+	}
 }

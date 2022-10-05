@@ -34,52 +34,42 @@
                 <button class="switch titles">Titles</button>
                 <button class="switch entries">Entries</button>
             </div>
+            <div class="display-toggle">
+                <?php
+                    if ($view === "weekly") {
+                        ?>
+                        <div class="display-tag switch-active">Weekly</div>
+                        <a href="index.php?action=toggleView&view=month">
+                            <div class="display-tag">Monthly</div>
+                        </a>
+                        <?php
+                    } else if ($view === "monthly") {
+                        ?>
+                        <a href="index.php?action=toggleView&view=week">
+                            <div class="display-tag">Weekly</div>
+                        </a>
+                        <div class="display-tag switch-active">Monthly</div>
+                        <?php
+                    }
+                ?>
+            </div>
         </div>
     </div>
-    <div class="switch-toggle">
-        <?php 
-            if ($view === "weekly") {
-                ?>
-                <div class="group">Weekly</div>
-                <a href="index.php?action=toggleView&view=month">
-                    <div class="group">Monthly</div>
-                </a>
-                <?php
-            } else if ($view === "monthly") {
-                ?>
-                <!-- <a href="index.php?action=toggleView&view=week">
-                    <div class="group">Weekly</div>
-                </a> -->
-                <!-- <div class="group">Monthly</div> -->
-                <?php
-            }
-        ?>
-    </div>
-    <?php
-    // TODO: change the code depending on the way we're formatting the weekly & monthly
-    if ($view === 'weekly'){
-    ?>
-         <!-- <section class="entry-display"> -->
-    <?php
-    } else if ($view === 'monthly'){
-        ?>
-         <section class="entry-display">
-    <?php
-    }
-    ?>
+    <div class="entry-display">
+
             <?php
             if ($entries AND $view === "monthly") {
                 // number of months from the current month to display
                 $numOfMonths = 5;
                 $monthsToDisplay = displayMonths($numOfMonths);
-                // september, august, 
+                // september, august,
                 foreach($monthsToDisplay as $month){
                     // check if there are entries from that month
                     if (array_key_exists($month, $entries)){
             ?>
-                        <div class="month">
-                            <h3 class="month-name"><?=$month?></h3>
-                            <div class="month-container">
+                        <div class="group">
+                            <h3 class="group-name"><?=$month?></h3>
+                            <div class="group-container">
                                 <?php
                                 foreach($entries["$month"] as $entry){
                                     include "timelineTemplate.php";
@@ -96,11 +86,9 @@
                     // check if there are days in that week
                     if (array_key_exists($weekDay, $entries)){
             ?>
-                        <div class="week">
-                            <div class="week-name">
-                                <?=$weekDay?>
-                            </div>
-                            <div class="week-container">
+                        <div class="group">
+                            <h3 class="group-name"><?=$weekDay?></h3>
+                            <div class="group-container">
                                 <?php
                                 foreach($entries["$weekDay"] as $entry){
                                     include "timelineTemplate.php";
@@ -111,11 +99,9 @@
             <?php
                     } else {
             ?>
-                        <div class="week">
-                            <div class="week-name">
-                                <!-- <?=$weekDay?> -->
-                            </div>
-                        </div>
+                        <!-- <div class="group"> -->
+                            <!-- <h3 class="group-name"><?=$weekDay?></h3> -->
+                        <!-- </div> -->
             <?php
                     }
                 }

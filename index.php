@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_REQUEST);
+			toTimeline($_REQUEST,"monthly");
 			break;
 
 		case "toCalendar":
@@ -178,6 +178,8 @@ try {
 			break;
 
 		case "addNewEntry":
+			// echoPre($_REQUEST);
+			// echoPre($_FILES);
 			$entryContent = (object) [];
 			$entryContent->userUID = $_SESSION["uid"];
 			$entryContent->title = $_REQUEST["title"];

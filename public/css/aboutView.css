@@ -28,6 +28,11 @@ a{
     color: var(--primary);
 }
 
+@media screen and (max-width: 460px) {
+    nav{
+        display: flex;
+        justify-content: space-between;
+    }
 span{
     color: var(--primary);
 }
