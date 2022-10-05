@@ -209,27 +209,41 @@
 
  function newEntry($data)
  {
- 	// echo "<pre>";
- 	// print_r($data);
- 	// echo "</pre>";
- 	// echoPre($_FILES);
  	$entryManager = new EntryManager();
  	$tagManager = new TagManager();
  	if (!empty($data->title) and !empty($data->textContent)) {
  		$entry_uid = $entryManager->createEntry($data);
  		$tagManager->submitTags($data->tags, $entry_uid);
- 		if ($_FILES["imgUpload"]["error"] !== 4) {
- 			$checkImgs = $entryManager->uploadImages($entry_uid);
- 		} elseif (count($_FILES) > 1 and $_FILES["imgUpload"]["error"] === 4) {
- 			throw new Exception(
- 				"Error, image error status 4 - controller.php: newEntry()"
- 			);
+ 		if (!empty($_FILES)) {
+ 			foreach ($_FILES as $images) {
+ 				if ($images["error"] === UPLOAD_ERR_OK) {
+ 					if (getimagesize($images["tmp_name"])) {
+ 						if (
+ 							mime_content_type($images["tmp_name"]) == "image/jpg" or
+ 							mime_content_type($images["tmp_name"]) == "image/jpeg" or
+ 							mime_content_type($images["tmp_name"]) == "image/png"
+ 						) {
+ 							if ($images["size"] <= 5e6) {
+ 								$checkImgs = $entryManager->uploadImages($entry_uid);
+ 							} else {
+ 								throw new Exception("Error: image size is greater than 5MB");
+ 							}
+ 						} else {
+ 							throw new Exception(
+ 								"Error: image is not of an approved type (.jpg, .jpeg, .png)"
+ 							);
+ 						}
+ 					} else {
+ 						throw new Exception("Error: file uploaded is not an image");
+ 					}
+ 				}
+ 			}
+ 			header("Location: index.php?action=toTimeline&alert=newEntry");
+ 		} else {
+ 			// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
+ 			$error = "Not a valid Entry";
+ 			require ROOT . "/view/createEntryView.php";
  		}
- 		header("Location: index.php?action=toTimeline&alert=newEntry");
- 	} else {
- 		// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
- 		$error = "Not a valid Entry";
- 		require ROOT . "/view/createEntryView.php";
  	}
  }
 
@@ -241,11 +255,11 @@
  	if ($data["filter"] === "") {
  		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
  	} else {
- 		$entries = $filterManager->filterEntries(
- 			$_SESSION["uid"],
- 			$data["filter"],
- 			$data["value"]
- 		);
+ 		// $entries = $filterManager->filterEntries(
+ 		// 	$_SESSION["uid"],
+ 		// 	$data["filter"],
+ 		// 	$data["value"]
+ 		// );
  		// echoPre($entries);
  	}
  	require ROOT . "/view/timelineFiltered.php";
@@ -331,3 +345,4 @@
  		echo "</pre>";
  	}
  }
+
