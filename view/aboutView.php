@@ -12,11 +12,11 @@
         </h1>
         <br>
         <p>
-            Dear Diary is a journaling app for the iPhone, iPad and Mac. From once-in-a-lifetime events 
+            <a href="#"><strong>Dear Diary</strong></a> is a journaling app for the iPhone, iPad and Mac. From once-in-a-lifetime events 
             to everyday moments, Dear Diary’s elegant interface makes journaling your life a simple 
             pleasure. <br>
             <br>
-            Dear Diary launched on the iOS and Mac App Stores in 2022 to fill a need: record and store 
+            <a href="#"><strong>Dear Diary</strong></a> launched on the iOS and Mac App Stores in 2022 to fill a need: record and store 
             the important memories, photos, and details of life. The response to Dear Diary has been 
             overwhelming: Over ten million downloads, Editor’s Choice, App of the Year, Apple Design 
             Award, and, most of all, a solid 4.8-star rating from our fantastic users.
@@ -37,100 +37,172 @@
             <div id="about-us-row">
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/james.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">James</h2>
                         <p class="member-title">CTO</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">james@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">My dog ate my lunch. hahaha</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/insu.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">Insu</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">insu@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">Hello World! This is Insu! What's good!</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/sude.png" alt="member_img" class="member_img">
                     </div>
                     <div class="about-us-description">
                         <h2 class="member-name">Sude</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">sude@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">has no scill for taking a descent photo</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                    <img src="./public/images/static/vorleak.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">Vorleak</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">vorleak@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">Doing my best not to slouch for the picture</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div id="about-us-row">
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/mike.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
-                        <h2 class="member-name">Michael</h2>
+                        <h2 class="member-name">Mike</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">michael@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">Thinking about absolutely nothing</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/sungjun.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">Sungjun</h2>
-                        <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">sungjun@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-title">God Emperor Engineer</p>
+                        <p class="member-describe">I'm trying to punch the person above me</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/sam.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">Sam</h2>
-                        <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">sam@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-title">CEO</p>
+                        <p class="member-describe">Hello, I am CEO of Dear Diary</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="about-us-card">
                     <div class="member-img-container">
-                        <img src="https://i.pravatar.cc/40?img=<?= rand(1,70) ?>" alt="member_img" class="member_img">
+                        <img src="./public/images/static/alex.png" alt="member_img" class="member_img">
                     </div>                    
                     <div class="about-us-description">
                         <h2 class="member-name">Alex</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Some text that describes me lorem ipsum ipsum lorem.</p>
-                        <p class="member-email">alex@example.com</p>
-                        <p><button class="member-button">Contact</button></p>
+                        <p class="member-describe">Position:absolute is all I do!</p>
+                        <div class="about-us-bottom">
+                            <a href="#">
+                                <i class='bx bxl-linkedin-square'></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bx-envelope' ></i>
+                            </a>
+                            <a href="#">
+                                <i class='bx bxl-github' ></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,22 +227,49 @@
     <div id="join-community">
         <h1>Join our <span>community</span></h1>
         <br>
-        <div id="join-container">
-            <div class="join-title">
-                <div class="discord-icon">
-                    <i class='bx bxl-discord-alt'></i>
+        <div id="join-us">
+            <div id="join-container">
+                <div class="join-title">
+                    <span>Official events & resources</span>
                 </div>
-                <span>Dear Diary Discord chat</span>
+                <div class="join-description">
+                    <p>
+                        <a href="#">Gems of the Year annual awards 2022</a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary October 2022</a>
+                    </p>
+                    <p>
+                        <a href="#">Online plugin directory</a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary Quiz (April Fools 22')</a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary Ultra Cloud Host (April Fools 23')</a>
+                    </p>
+                </div>
             </div>
-            <div class="join-description">
-                <p>Get help, ask quick questions, and get to<br> know other Obsidian users and their setup!</p>
-                <p class="mod-iframe">
-                    <iframe></iframe>
-                </p>
-                <div class="discord-button-container">
-                    <a href="https://discord.gg/F9YNrePq" target="_blank">
-                        <button class="mod-cta">Join</button>
-                    </a>
+            <div id="join-container">
+                <div class="join-title">
+                    <span>Community events & resources</span>
+                </div>
+                <div class="join-description">
+                    <p>
+                        <a href="#">Dear Diary Hub</a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary Community Talks</a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary Roundup <span>by Matt Targett</span></a>
+                    </p>
+                    <p>
+                        <a href="#">Plugin Developer Docs <span>by Dan Burn</span></a>
+                    </p>
+                    <p>
+                        <a href="#">Dear Diary Plugin Stats <span>by Chris Wood</span></a>
+                    </p>
                 </div>
             </div>
         </div>
