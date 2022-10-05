@@ -207,10 +207,11 @@ try {
 			$entryContent = (object) [];
 			$entryContent->userUID = $_SESSION["uid"];
 			$entryContent->title = $_REQUEST["title"];
-			// $entryContent->tags = $_REQUEST["tagNames"];
+			$entryContent->tags = $_REQUEST["entryTag"];
 			$entryContent->location = $_REQUEST["location"];
 			$entryContent->weather = $_REQUEST["weather"];
 			$entryContent->textContent = $_REQUEST["textContent"];
+			// $entryContent->file = $_REQUEST["imgUpload1"];
 				updateEntry($entryContent, $_REQUEST['entryId']);
 			} else throw new Exception("Error, no entry ID");
 			break;
