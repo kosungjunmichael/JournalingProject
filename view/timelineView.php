@@ -5,15 +5,16 @@
 <?php ob_start();?>
 <?php include("sidebarView.php");?>
 
-<?php
-    if (isset($_REQUEST['type']) && $_REQUEST['type'] === 'registered') {
-        // TODO:this should be turn into a little notification modal thing
-        echo "<p>You have been registered. Welcome!</p>";
-    }
-    // print_r($_SESSION['uid']);
-?>
-
 <main id="timeline">
+
+<header>
+    <?php
+    if (isset($alert)) {
+        // TODO:this should be turn into a little notification modal thing
+        echo "$alert";
+    }
+    ?>
+</header>
 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">

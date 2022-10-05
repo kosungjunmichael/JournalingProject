@@ -12,10 +12,6 @@ body {
     display: flow-root;
 }
 
-h1 {
-    color: var(--primary);
-}
-
 #basicInfo {
     width: 100%;
     width: 700px;
@@ -32,6 +28,8 @@ a{
         display: flex;
         justify-content: space-between;
     }
+span{
+    color: var(--primary);
 }
 
 #about-us-container{
@@ -96,4 +94,9 @@ a{
 }
 .member-describe{
     margin-top: 10px;;
+}
+
+#join-community{
+    margin-top: 60px;
+}
 }

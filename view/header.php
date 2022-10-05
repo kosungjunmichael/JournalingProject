@@ -2,8 +2,8 @@
     <nav>
         <h2>
             <a href="<?= BASE . "/index.php?action=toLanding" ?>" class="logo">
-                <div id="logo-container">
-                    <svg id="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="logo-container">
+                    <svg class="logo-img" width="33" height="40" viewBox="0 0 33 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path class="logo-svg-box" d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" fill="#fff" />
                         <path d="M7 7H32V37C32 38.1046 31.1046 39 30 39H7V7Z" stroke="#9673F5" stroke-width="2" />
                         <rect class="logo-svg-box" x="4" y="4" width="25" height="32" fill="#fff" />
@@ -13,7 +13,7 @@
                         <line x1="0.707107" y1="33.2929" x2="6.70711" y2="39.2929" stroke="#9673F5" stroke-width="2" />
                         <line x1="0.707107" y1="32.2929" x2="6.70711" y2="38.2929" stroke="#9673F5" stroke-width="2" />
                     </svg>
-                    <div id="logo-title">
+                    <div class="logo-title">
                         Dear Diary
                     </div>
                 </div>
@@ -41,7 +41,7 @@
             <!-- Sign In form -->
 
             <form method="POST" action="<?= htmlspecialchars(
-            	BASE . "/index.php?action=login&method=regular"
+            	BASE . "/index.php?action=regularLogin"
             ) ?>" class="signin">
                 <span id="header-text">Login</span>
 

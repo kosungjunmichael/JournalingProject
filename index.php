@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_SESSION["uid"], "monthly");
+			toTimeline($_REQUEST);
 			break;
 
 		case "toCalendar":
@@ -44,6 +44,10 @@ try {
 		case "toCreateEntry":
 			createNewEntry();
 			break;
+		case "toEditEntry":
+			editEntry();
+			break;
+
 
 		case "toAlbum":
 			toAlbum($_SESSION["uid"]);
@@ -53,55 +57,16 @@ try {
 			toMap($_SESSION["uid"], "all");
 			break;
 
-		case "toCreateEntry":
-			createNewEntry();
-			break;
-
 		//TODO: these all call the same function, route to the separate login types through the UserManager
 		// $_REQUEST uses both get and post values so you only need to use the specific get parameter ex. $_REQUEST['TYPE']
 
-		// // GOOGLE SIGNUP
-		// case "googleSignUp":
-		//     signUp($_REQUEST, 'google');
-		//     break;
 		case "toLogout":
 			toLogout();
 			break;
 
 		//--------------------------------------------------
-		//------------------REGULAR USER--------------------
-		//--------------------------------------------------
-
-		// REGULAR SIGNUP
-		case "regularSignUp":
-			if (isset($_REQUEST)) {
-				regularSignUp($_REQUEST);
-			} else {
-				throw new Exception("Invalid sign-up attempt");
-			}
-			break;
-
-		// TODO: separate regular & kakao sign-ups
-		case "signUp":
-			// echoPre($_REQUEST);
-			if (isset($_REQUEST["method"])) {
-				signUP($_REQUEST, $_REQUEST["method"]);
-			} else {
-				throw new Exception("Invalid signup attempt");
-			}
-			break;
-
-		//--------------------------------------------------
 		//-------------------GOOGLE USER--------------------
 		//--------------------------------------------------
-
-		case "login":
-			if (isset($_REQUEST["method"])) {
-				login($_REQUEST, $_REQUEST["method"]);
-			} else {
-				throw new Exception("Invalid login attempt");
-			}
-			break;
 
 		// TODO: for the time being, until there's a way to differentiate g-id_onload for each button
 		case "googleAccount":
@@ -123,7 +88,7 @@ try {
 					$credentials["iss"] == "https://accounts.google.com" and
 					$credentials["aud"] == $credentials["azp"]
 				) {
-					googleAccount($$credentials);
+					googleAccount($credentials, "google");
 				} else {
 					throw new Exception("Invalid login attempt");
 				}
@@ -136,18 +101,54 @@ try {
 		//-------------------KAKAO USER---------------------
 		//--------------------------------------------------
 
-		// isset($_REQUEST["id"]);
-		// isset($_REQUEST["kakao_account"]);
-		// $_REQUEST["is_email_valid"] == true
-		// $_REQUEST["is_email_verified"] == true
-		// KAKAO SIGNUP
 		case "kakaoSignUp":
-			// if (isset)
-			kakaoSignUp($_REQUEST);
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoSignUp($kakao_account, "kakao");
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
 			break;
 
 		case "kakaoLogin":
-			// kakaoLogin();
+			$data = (array) json_decode($_REQUEST["data"]);
+			$kakao_account = (array) $data["kakao_account"];
+			if (
+				isset($data["id"]) and
+				isset($data["kakao_account"]) and
+				isset($kakao_account["is_email_valid"]) == 1 and
+				isset($kakao_account["is_email_verified"]) == 1
+			) {
+				kakaoLogin($kakao_account, "kakao");
+			} else {
+				throw new Exception("Invalid signup attempt");
+			}
+			break;
+
+		//--------------------------------------------------
+		//------------------REGULAR USER--------------------
+		//--------------------------------------------------
+
+		case "regularSignUp":
+			if (isset($_REQUEST)) {
+				regularSignUp($_REQUEST, "regular");
+			} else {
+				throw new Exception("Invalid sign-up attempt");
+			}
+			break;
+
+		case "regularLogin":
+			if (isset($_REQUEST["login-ue"]) AND isset($_REQUEST["login-p"])) {
+				regularLogin($_REQUEST, "regular");
+			} else {
+				throw new Exception("Invalid login attempt");
+			}
 			break;
 
 		//--------------------------------------------------
@@ -161,7 +162,7 @@ try {
 			break;
         
         case "deleteEntry":
-            toDeleteEntry($_REQUEST);
+            deleteEntry($_REQUEST);
             break;
 
 		case "toggleView":
@@ -193,6 +194,21 @@ try {
 			} else {
 				throw new Exception("Error: no entry ID");
 			}
+			break;
+
+		case "editOldEntry":
+			if(isset($_REQUEST['entryId'])){
+				$entryManager = new EntryManager();
+
+			$entryContent = (object) [];
+			$entryContent->userUID = $_SESSION["uid"];
+			$entryContent->title = $_REQUEST["title"];
+			// $entryContent->tags = $_REQUEST["tagNames"];
+			$entryContent->location = $_REQUEST["location"];
+			$entryContent->weather = $_REQUEST["weather"];
+			$entryContent->textContent = $_REQUEST["textContent"];
+				updateEntry($entryContent, $_REQUEST['entryId']);
+			} else throw new Exception("Error, no entry ID");
 			break;
 
 		default:

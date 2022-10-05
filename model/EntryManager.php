@@ -24,8 +24,8 @@ class EntryManager extends Manager
 
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
-		$newpath = "/public/images/uploaded/$first/$second/$filename";
-		move_uploaded_file($file["tmp_name"], $newpath);
+		$newpath = "$first/$second/$filename";
+		move_uploaded_file($file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -109,6 +109,52 @@ class EntryManager extends Manager
 		// Direct the user to the timeline
 		return $entry_id->u_id;
 	}
+	/////////////////////////////////
+	public function updateOldEntry($data, $entryId)
+	{
+		$db = $this->dbConnect();
+		if(isset($data)&& !empty($data)){
+			$lat_lng = json_encode($this->createCoord($data->location));
+			$req = $db->prepare('UPDATE entries e SET e.title = :inTitle
+			, e.text_content = :inText_content
+			, e.location =:inLocation
+			, e.lat_lng = :inLatLong
+			, e.weather = :inWeather
+			, e.last_edited = NOW()
+			WHERE e.user_uid = :userId 
+			AND e.u_id = :entryId 
+			AND e.is_active = 1');
+			$req->execute(array(
+				"inTitle" =>$data->title,
+				"inText_content" =>$data->textContent,
+				"inLocation" => $data->location,
+				"inLatLong" => $lat_lng,
+				"inWeather" =>$data->weather,
+				"userId" => $data->userUID,
+				"entryId" => $entryId,
+			));
+
+			//TODO: IMG AND TAG UPDATE
+			// $imagesReq = $db->prepare(
+			// 	"UPDATE entry_images SET path= :inPath WHERE entry_uid = :entryId"
+			// );
+			// $imagesReq->execute([
+			// 	"inPath" => $data->pathinfo,
+			// 	"entryId"=>$data->entryId]);
+			// $images = $imagesReq->fetchAll(PDO::FETCH_ASSOC);
+			// $entryContent["images"] = $images;
+			if($req->rowCount() == 1){ 
+				echo "<script>alert('Your entry has been updated successfully');</script>";
+				$req->closeCursor();
+				return $data->userUID;
+			}
+		}else{
+				echo "<script>alert('Missing information. Entry update process is aborting...')</script>"; 
+				return $data->entryId;
+		}
+	}
+
+	////////////////////////////////
 
 	public function getEntries($userId, $entryGroup)
 	{
@@ -137,7 +183,7 @@ class EntryManager extends Manager
         FROM entries e
         LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
         LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE user_uid = :userId
+        WHERE e.user_uid = :userId AND e.is_active = 1
         GROUP BY last_edited DESC');
 		$req->execute([
 			"userId" => $userId,
@@ -228,11 +274,10 @@ class EntryManager extends Manager
         LEFT JOIN tags t ON t.id = tm.tag_id
         WHERE e.user_uid = :userId 
         AND e.u_id = :entryId 
-        AND e.is_active = :active');
+        AND e.is_active = 1');
 		$req->execute([
 			"userId" => $userId,
 			"entryId" => $entryId,
-			"active" => 1,
 		]);
 		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -247,17 +292,17 @@ class EntryManager extends Manager
 		$req->closeCursor();
 	}
 
-    // public function deleteEntry($entryUId, $userUID)
-    // {
-    //     $db = $this->dbConnect();
+    public function deleteEntry($entryUId, $userUID)
+    {
+        $db = $this->dbConnect();
 
-    //     $req = $db->query("DELETE FROM entries WHERE u_id = $entryUId AND user_uid = $userUID");
+        $req = $db->prepare("UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?");
+        $req->bindParam(1,$entryUId,PDO::PARAM_STR);
+        $req->bindParam(2,$userUID,PDO::PARAM_STR);
+        $req->execute();
 
-    //     $req->execute();
-
-        
-
-    // }
+        return "Entry successfully deleted";
+    }
 
 	// public function getImages($uid){
 

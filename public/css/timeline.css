@@ -12,6 +12,15 @@ main#timeline{
     width: calc(100% - 240px);
     overflow-y: scroll;
     padding: 25px;
+    width:100%;
+}
+
+header{
+    width: calc(100% - 240px);
+    font-size: 25px;
+    font-weight: 500;
+    font-family:'raleway';
+    text-align:center;
 }
 
 
