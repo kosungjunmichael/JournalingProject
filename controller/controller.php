@@ -85,10 +85,10 @@ function toLogout()
 //-------------------GOOGLE USER--------------------
 //--------------------------------------------------
 
-function googleAccount($data)
+function googleAccount($data, $type)
 {
 	$userManager = new UserManager();
-	$check = $userManager->createGoogleUser($data, "google");
+	$check = $userManager->createGoogleUser($data, $type);
 
 	if ($check === false) {
 		// toTimeline($_SESSION["uid"], "monthly");
@@ -103,10 +103,10 @@ function googleAccount($data)
 //-----------------KAKAO USER-----------------------
 //--------------------------------------------------
 
-function kakaoSignUp($data)
+function kakaoSignUp($data, $type)
 {
 	$userManager = new UserManager();
-	$check = $userManager->createKakaoUser($data);
+	$check = $userManager->createKakaoUser($data, $type);
 
 	if ($check === false) {
 		toTimeline($_SESSION["uid"], "monthly");
@@ -116,9 +116,9 @@ function kakaoSignUp($data)
 	}
 }
 
-function kakaoLogin($data) {
+function kakaoLogin($data, $type) {
 	$userManager = new UserManager();
-	$check = $userManager->confirmUser($data, "kakao");
+	$check = $userManager->confirmUser($data, $type);
 	if ($check === false) {
 		// toTimeline($_SESSION["uid"], "monthly");
 		header("Location: index.php?action=toTimeline&alert=login");
@@ -132,14 +132,14 @@ function kakaoLogin($data) {
 //------------------REGULAR USER--------------------
 //--------------------------------------------------
 
-function regularSignUp($data)
+function regularSignUp($data, $type)
 {
 	// VALIDATE SIGN-UP FORM
 	$validated = regSignUpValidation($data);
 
 	if (count(array_unique($validated)) == 1) {
 		$userManager = new UserManager();
-		$check = $userManager->createRegUser($data);
+		$check = $userManager->createRegUser($data, $type);
 
 		if ($check === false) {
 			toTimeline($_SESSION["uid"], "monthly");
@@ -190,10 +190,10 @@ function regSignUpValidation($data)
 	}
 }
 
-function regularLogin($data)
+function regularLogin($data, $type)
 {
 	$userManager = new UserManager();
-	$check = $userManager->confirmUser($data, "regular");
+	$check = $userManager->confirmUser($data, $type);
 	if ($check === false) {
 		header("Location: index.php?action=toTimeline&alert=login");
 	} else {

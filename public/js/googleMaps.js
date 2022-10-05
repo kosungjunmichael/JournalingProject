@@ -10,8 +10,6 @@ const filteredData = Object.entries(data).filter(
 		JSON.parse(value["lat_lng"]).lng !== ""
 );
 
-// console.log(filteredData);
-
 const array = [];
 
 for (const coords of filteredData) {
@@ -32,7 +30,6 @@ for (const coords of filteredData) {
 	}
 	array.push(latLng);
 }
-// console.log(array);
 
 const initMap = () => {
 	// MAP CREATION
@@ -128,6 +125,7 @@ const initMap = () => {
 
 window.initMap = initMap;
 
+// ESCAPING HTML TAGS
 function escapeHTML(text) {
 	let map = {
 		"&": "&amp;",
@@ -142,6 +140,7 @@ function escapeHTML(text) {
 	});
 }
 
+// REMOVING HTML TAGS
 function removeTags(str) {
 	if (str === null || str === "") return false;
 	else str = str.toString();
