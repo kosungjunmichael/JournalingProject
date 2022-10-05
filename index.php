@@ -34,7 +34,7 @@ try {
 			break;
 
 		case "toTimeline":
-			toTimeline($_REQUEST);
+			toTimeline($_REQUEST,"monthly");
 			break;
 
 		case "toCalendar":
