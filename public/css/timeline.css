@@ -15,7 +15,7 @@ main#timeline{
     width:100%;
 }
 
-header{
+header.alertBar{
 
     font-size: 25px;
     font-weight: 500;

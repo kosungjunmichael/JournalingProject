@@ -7,7 +7,7 @@
 
 <main id="timeline">
 
-<header>
+<header class="alertBar">
     <?php
     if (isset($alert)) {
         // TODO:this should be turn into a little notification modal thing
