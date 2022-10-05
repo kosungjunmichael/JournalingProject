@@ -2,8 +2,8 @@
 // ---------------Google Maps---------------
 // -----------------------------------------
 
-
 const filteredData = Object.entries(data).filter(
+
 	([key, value]) =>
 		JSON.parse(value["lat_lng"]).lat !== "" &&
 		JSON.parse(value["lat_lng"]).lng !== ""

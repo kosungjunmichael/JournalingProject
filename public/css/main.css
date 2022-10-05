@@ -101,8 +101,8 @@ body{
 
 .logo-container {
     width: 100%;
-    color: var(--white);
     display: flex;
+    flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -293,8 +293,8 @@ body{
 		z-index: 100;
 		transform-origin: 4px 0px;
 
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-			background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
 	#sidebar-hamburger span:first-child {
@@ -384,11 +384,7 @@ body{
     }
 
     main#timeline {
-        /* display: flex;
-        flex-direction: column; */
         width:100%;
-        /* overflow-y: scroll;
-        padding: 25px; */
     }
 
 }

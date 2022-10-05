@@ -164,54 +164,17 @@ class EntryManager extends Manager
 		$thisMonth = date("F");
 		// current week number for the year
 		$thisWeek = date("W");
-		$req = $db->prepare('SELECT
-                            e.u_id
-                            , e.title
-                            , e.location
-							, e.lat_lng
-                            , e.text_content
-                            , e.date_created
-                            , e.last_edited
-                            , DAYNAME(e.last_edited) as dayname
-                            , DAY(e.last_edited) as day
-                            , WEEK(e.last_edited) as week
-                            , MONTHNAME(e.last_edited) as month
-                            , YEAR(e.last_edited) as year
-                            , GROUP_CONCAT(t.tag_name) as tags
-                            -- add GROUP_CONCAT function here. give it an alias like "as tags" 
-        FROM entries e
-        LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
-        LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE e.user_uid = :userId AND e.is_active = 1
-        GROUP BY last_edited DESC');
-		$req->execute([
-			"userId" => $userId,
-		]);
+		
 		if ($entryGroup === "all") {
-			return $req->fetchAll(PDO::FETCH_ASSOC);
+            return $this->getEnt("allEntries", $userId);
+			// return $req->fetchAll(PDO::FETCH_ASSOC);
 		} else {
 			// empty array to store the return content
 			$entriesDisplay = [];
-			while ($entryContent = $req->fetch(PDO::FETCH_ASSOC)) {
+            $entryContents = $this->getEnt("allEntries", $userId);
+            foreach($entryContents as $entryContent){
 				// if Monthly
 				if ($entryGroup === "monthly") {
-					// for current year
-					//					if ($entryContent["year"] == $thisYear) {
-					// check if the keyname exists in the $entriesDisplay
-					//						if (array_key_exists($entryContent["month"], $entriesDisplay)) {
-					//							// push the entryContent into the key
-					//							array_push(
-					//								$entriesDisplay[$entryContent["month"]],
-					//								$entryContent
-					//							);
-					//						} else {
-					//							// create the array in the key & push the entryContent into the key
-					//							$entriesDisplay[$entryContent["month"]] = [];
-					//							array_push(
-					//								$entriesDisplay[$entryContent["month"]],
-					//								$entryContent
-					//							);
-					//						}
 					$monthYearKey = $entryContent["month"] . " " . $entryContent["year"];
 					// check if the keyname exists in the $entriesDisplay
 					if (array_key_exists($monthYearKey, $entriesDisplay)) {
@@ -222,8 +185,7 @@ class EntryManager extends Manager
 						$entriesDisplay[$monthYearKey] = [];
 						$entriesDisplay[$monthYearKey][] = $entryContent;
 					}
-					//					}
-				} elseif ($entryGroup === "weekly") {
+				} else if ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (
 						$entryContent["year"] == $thisYear and
@@ -250,35 +212,13 @@ class EntryManager extends Manager
 			}
 			return $entriesDisplay;
 		}
-		$req->closeCursor();
 	}
 
 	public function getEntry($entryId, $userId)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT e.title
-        , e.u_id
-        , e.text_content
-        , e.location
-        , e.weather
-        , e.last_edited
-        , e.date_created
-        , DAY(e.last_edited) as day
-        , MONTHNAME(e.last_edited) as month
-        , YEAR(e.last_edited) as year
-        , TIME_FORMAT(e.last_edited, "%h:%i %p") as time
-        , GROUP_CONCAT(t.tag_name) as tags
-        FROM entries e
-        LEFT JOIN tag_map tm ON e.u_id = tm.entry_id
-        LEFT JOIN tags t ON t.id = tm.tag_id
-        WHERE e.user_uid = :userId 
-        AND e.u_id = :entryId 
-        AND e.is_active = 1');
-		$req->execute([
-			"userId" => $userId,
-			"entryId" => $entryId,
-		]);
-		$entryContent = $req->fetch(PDO::FETCH_ASSOC);
+		
+        $entryContent = $this->getEnt("singleEntry", $userId, $entryId);
 
 		$imagesReq = $db->prepare(
 			"SELECT path FROM entry_images WHERE entry_uid = ?"
@@ -288,7 +228,7 @@ class EntryManager extends Manager
 		$entryContent["images"] = $images;
 
 		return $entryContent;
-		$req->closeCursor();
+		$imagesReq->closeCursor();
 	}
 
 	public function deleteEntry($entryUId, $userUID)
@@ -328,7 +268,7 @@ class EntryManager extends Manager
 									LEFT JOIN tag_map tm ON tm.entry_id = e.u_id
 									LEFT JOIN tags t ON t.id = tm.tag_id
 									INNER JOIN entry_images i ON i.entry_uid = e.u_id
-									WHERE e.user_uid = :inUserUid
+									WHERE e.user_uid = :inUserUid AND e.is_active = 1
 									GROUP BY e.u_id ORDER BY e.date_created DESC');
 
 		$req->execute([
