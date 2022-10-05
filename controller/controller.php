@@ -241,11 +241,11 @@
  	if ($data["filter"] === "") {
  		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
  	} else {
- 		$entries = $filterManager->filterEntries(
- 			$_SESSION["uid"],
- 			$data["filter"],
- 			$data["value"]
- 		);
+ 		// $entries = $filterManager->filterEntries(
+ 		// 	$_SESSION["uid"],
+ 		// 	$data["filter"],
+ 		// 	$data["value"]
+ 		// );
  		// echoPre($entries);
  	}
  	require ROOT . "/view/timelineFiltered.php";

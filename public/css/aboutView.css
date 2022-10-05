@@ -176,3 +176,51 @@ span{
     line-height: 1.5;
     font-size: larger;
 }
+
+
+
+
+@media screen and (max-width: 390px) {
+    .landing-box {
+        text-align: center;
+        width: 386px;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    .about {
+        line-height: 1.5;
+        font-size: larger;
+        margin-top: 160px;
+    }
+    #about-us-row {
+        display: flex;
+        flex-direction: column;
+    }
+    #join-community {
+        width: 390px;
+        max-width: 90vw;
+        margin: 0; 
+        padding: 0;
+        margin-left: -18px;
+    }
+    #join-container {
+        width: 50%;
+        padding: 25px 50px;
+        margin: 0px;
+        border-radius: 10px;
+        box-shadow: 0 1px 1px 1px rgb(0 0 0 / 80%);
+        cursor: default;
+        transition: all 100ms ease-in-out;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        flex-grow: 1;
+        border: 1px solid #363636;
+        background-color: #242424;
+        color: white;
+    }
+    #join-us {
+        display: flex;
+        width: 386px;
+    }
+} 
