@@ -8,6 +8,7 @@
 for ($i = 0; $i < count($entries); $i++) {
 	$breaks = array("<br />", "<br>", "<br/>");
 	$entries[$i]["text_content"] = str_ireplace($breaks, "\n", $entries[$i]["text_content"]);
+	// TODO: add br to strip_tags function
 	$entries[$i]["text_content"] = nl2br(strip_tags($entries[$i]["text_content"]));
 }
 // echoPre($entries);
