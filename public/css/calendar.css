@@ -362,3 +362,49 @@ li {
 .calendar-entry-card-link:active {
     color: var(--primary-dark);
 }
+
+/*MOBILE*/
+
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+#calendar-mobile-details-container {
+    position: fixed;
+    padding: 20px 30px 0 30px;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    background: #dbdbdbb8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.calendar-mobile-details {
+    background-color: var(--bg-primary);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    animation: slideUp 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calendar-mobile-date-has-entries {
+    background-color: #f7f3ff;
+}
