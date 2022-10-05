@@ -36,14 +36,15 @@ if (!isset($_SESSION["uid"])) {
                     ?>
                 <i class="ph-tag"></i>
                 <ul id="create-entry-tag-input-ul">
-                    <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag & Press Enter"/>
+                    <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag"/>
                     <input type="text" name="tagNames" id="create-entry-tags-hidden" hidden/>
                 </ul>
             </div>
-            <div id="create-entry-tag-details">
+            <!-- NOTE: Not implemeted yet -->
+            <!-- <div id="create-entry-tag-details">
                 <p id="create-entry-tag-details-p"><span id="create-entry-tag-details-tagnum"></span> tags are remaining</p>
                 <button id="tag-remove-btn" type="button">Remove All</button>
-            </div>
+            </div> -->
         </div>
        <!-- <div id="tag-cont">-->
 <!--            <input type="text" name="tagNames" class="submitted-tags-input" hidden>-->
