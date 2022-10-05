@@ -27,7 +27,7 @@ li {
 #calendar-wrap {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 30px 0;
     width: 100%;
     height: 100%;
 }
@@ -353,6 +353,7 @@ li {
     font-size: 15px;
     text-align: right;
     transition: color 0.3s;
+    align-self: flex-end;
 }
 
 .calendar-entry-card-link:hover {
@@ -381,17 +382,21 @@ li {
     top: 0;
     background: #dbdbdbb8;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    transition: background 0.3s;
+    transition: background 1s;
 }
 
 .calendar-mobile-details {
+    display: flex;
+    flex-direction: column;
     background-color: var(--bg-primary);
     padding: 10px;
     border-radius: 10px;
     width: 100%;
-    animation: slideUp 0.3s;
+    animation: slideUp 0.5s;
 }
 
 @keyframes slideUp {
@@ -407,4 +412,5 @@ li {
 
 .calendar-mobile-date-has-entries {
     background-color: #f7f3ff;
+    border: 1px solid var(--primary-light);
 }

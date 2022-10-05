@@ -295,6 +295,7 @@ async function renderEntries() {
                     const mobileDetails = document.createElement('div');
                     mobileDetails.classList.add('calendar-mobile-details', 'hidden');
                     const tempTextContent = document.createElement('div');
+                    tempTextContent.innerHTML = entry.text_content;
                     mobileDetails.innerHTML = `
                             <h2 class="calendar-entry-card-title">${entry.title}</h2>
                             <div class="calendar-entry-card-textContent">${tempTextContent.innerText}</div>
