@@ -101,8 +101,8 @@ body{
 
 .logo-container {
     width: 100%;
-    color: var(--white);
     display: flex;
+    flex-direction: row;
     gap: 10px;
     align-items: center;
     justify-content: center;
