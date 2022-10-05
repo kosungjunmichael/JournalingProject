@@ -1,15 +1,13 @@
 // -----------------------------------------
 // ---------------Google Maps---------------
 // -----------------------------------------
-console.log(data);
+
 const filteredData = Object.entries(data).filter(
 
 	([key, value]) =>
 		JSON.parse(value["lat_lng"]).lat !== "" &&
 		JSON.parse(value["lat_lng"]).lng !== ""
 );
-
-console.log(filteredData);
 
 const array = [];
 
@@ -31,7 +29,6 @@ for (const coords of filteredData) {
 	}
 	array.push(latLng);
 }
-console.log(array);
 
 const initMap = () => {
 	// MAP CREATION
@@ -124,3 +121,29 @@ const initMap = () => {
 };
 
 window.initMap = initMap;
+
+// // ESCAPING HTML TAGS
+// function escapeHTML(text) {
+// 	let map = {
+// 		"&": "&amp;",
+// 		"<": "&lt;",
+// 		">": "&gt;",
+// 		'"': "&quot;",
+// 		"'": "&#039;",
+// 	};
+
+// 	return text.replace(/[&<>"']/g, function (m) {
+// 		return map[m];
+// 	});
+// }
+
+// // REMOVING HTML TAGS
+// function removeTags(str) {
+// 	if (str === null || str === "") return false;
+// 	else str = str.toString();
+
+// 	// Regular expression to identify HTML tags in
+// 	// the input string. Replacing the identified
+// 	// HTML tag with a null string.
+// 	return str.replace(/(<([^>]+)>)/gi, "");
+// }

@@ -2,37 +2,36 @@
 @import url('../css/footer.css');
 @import url('../css/header.css');
 
-.container{
+.container {
     overflow-y: scroll;
     width: 100%;
     background-color: var(--grey);
 }
 
-.hero{
+.hero-section-container{
     height: 100vh;
-    width: 100%;
+    margin: 0 auto;
+    max-width: 1500px;
     background-color: var(--grey);
 }
 
-.hero .content{
-    display:flex;
+.section-container{
+    height: fit-content;
+    margin: 0 auto;
+    max-width: 1500px;
+    background-color: var(--grey);
+}
+
+#landing-title{
+    display: flex;
     flex-direction: column;
     width:100%;
     justify-content: center;
     align-items: center;
-    color: #bababa;
+    color: var(--white);
     text-align: center;
     padding-top: 150px;
-}
-
-.content h2{
-    color: var(--white);
-    font-size: 70px;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 2px;
-    line-height: 60px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .journey-span {
@@ -40,24 +39,19 @@
     font-weight: 700;
 }
 
-.content p{
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 40px;
-} 
-
-.comment-container {
+.content-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     color: var(--white);
+    margin: 0 50px;
 }
 
 .text-container {
-    margin: 20px auto;
+    margin: 20px 0;
     font-size: 20px;
     line-height: 1.5;
-    width: 500px;
+    width: 550px;
 }
 
 .text-person{
@@ -72,34 +66,31 @@
 
 
 /* ---------- */
-/* Second page */
+/* Second section: Meet Dear Diary */
 /* ---------- */
 
 .feature-container {
-    padding: 100px;
     line-height: 1.5;
-    font-size: 16px;
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.feature-content{
     font-size: 20px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;   
+    justify-content: center;
+
 }
 
-.feature-container h3{
-    font-size: 30px;
+.split-feature-container{
+    height: 350px;
+    width: 550px;
     text-align: center;
 }
 
+.list-item{
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
 .list-item-avatar img{
     height: 30px;
     min-width: 30px;
@@ -107,40 +98,12 @@
     border-radius: 50%;
 }
 
-.feature-text-container{
-    display: flex;
-}
-.jr-text-container{
-    height: 350px;
-    width: 50%;
-}
-.jr-feature-container{
-    width: 50%;
-    height:3 50px;
-}
 
-.jr-feature-container{
-    width: 650px;
-    margin-left: 115px;
-}
-
-.list-item{
-    display: flex;
-    gap:20px;
-    margin-top: 20px;
-}
-
-
-/* -------- */
+/* ======== */
+/* ======== */
 /* 3rd page */
-/* -------- */
-
-/* =============== */
-
-.close {
-    color: var(--white);
-    transform: scale(1.2);
-}
+/* ======== */
+/* ======== */
 
 .username, .password,
 .note-container{
@@ -160,16 +123,17 @@
     color: var(--white);
     font-size: 40px;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .note-container p{
     margin-top: 40px;
-    width:65%;
-    font-size: 22px;
+    width:80%;
+    font-size: 20px;
     line-height: 34px;
     color: var(--white);
     text-align: left;
-}
+} 
 .note-container p b{
     color:var(--primary);
 }
@@ -220,6 +184,106 @@
 }
 
 
+/* ================= */
+/* ================= */
+/* self care section */
+/* ================= */
+/* ================= */
+
+#smart-container{
+    max-width: 800px;
+    margin: auto;
+    margin-top: 65px;
+    padding: 12px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+#smart-container-title{
+    color:white;
+    text-align: center;
+}
+#smart-container-title p{
+    margin-top: 15px;
+    line-height: 1.5;
+}
+.smart-card{
+    margin-top: 15px;
+    background-color: white;
+    color:rgba(0,0,0,.87);
+    border-radius: 24px;
+    border-color: white;
+    padding: 8px;
+    line-height: 1.5;
+}
+.smart-card-row{
+    display: flex;
+    width:100%;
+}
+.smart-card-container{
+    padding: 12px;
+    width:50%;
+}
+.smart-first{
+    border-right: 1px solid rgb(224, 224, 224);
+}
+.smart-card-title{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: .0125em;
+    line-height: 2rem;
+    word-break: break-all;
+}
+.smart-text{
+    padding:16px;
+}
+.smart-card-icon{
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    line-height: 1.375rem;
+    letter-spacing: .0071428571em;
+    font-size:50px;
+    font-weight: 400;
+}
+.smart-display i{
+    /* margin-bottom: 20px; */
+    color:orange;
+}
+.smart-icon-2{
+    margin-top: 0px;
+    color: var(--primary);
+}
+.smart-display{
+    display: flex;
+    gap:20px;
+    color:rgba(0,0,0,.6);
+}
+.smart-icon i{
+    margin-left: 20px;
+}
+
+.map-bg{
+    /* background-image: url("./public/images/static/smart_map_background.png"); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.smart-overline{
+    text-align: center;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .1666666667em;
+    line-height: 2rem;
+    text-transform: uppercase;
+    font-family: "Gotham Rounded SSm A","Gotham Rounded SSm B",Roboto,"Microsoft Yahei",sans-serif;
+}
+
 /* ============= */
 /* ============= */
 /* tweet section */
@@ -231,6 +295,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 65px;
 }
 .twitter-container h2, .twitter-container p{
     color: var(--white);
@@ -325,6 +390,19 @@
     color:black;
 }
 
+
+@media screen and (max-width: 460px) {
+    .section-container .content {
+        padding-top: 190px;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+    .text-container{
+        line-height: 0.5;
+    }
+}
 /* ==================== */
 /* ==================== */
 /* get inspired section */
@@ -361,4 +439,110 @@
 #inspired-inner-container a{
     color:var(--primary);
     margin-top: 100px;
+}
+
+@media screen and (max-width: 390px) {
+    .text-container{
+        line-height: 1.3;
+    }
+    .journey-h2 {
+        color: var(--white);
+        font-size: 40px;
+        text-align: center;
+        line-height: 1;
+<<<<<<< HEAD
+        text-transform: capitalize;
+=======
+        margin-top: 300px;
+>>>>>>> main
+    }
+    .landing-box {
+        margin-top: 213px;
+    }
+    .feature-content {
+        font-size: 20px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--white);
+    }
+    .feature-text-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 13px;
+    }
+    .jr-feature-container {
+        width: 386px;
+        margin-left: 0px;
+        margin-top: 229px;
+    }
+    .jr-text-container {
+        height: 350px;
+        width: 100%;
+    }
+
+    .tweets-container {
+        display: flex;
+        flex-direction: wrap;
+        gap: 1em;
+        flex-direction: column;
+    }
+    .twitter-block {
+        background-color: var(--white);
+        color: black;
+        padding: 10px 20px;
+        /* margin: 10px 50px; */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        min-height: 228px;
+        max-width: 387px;
+    }
+    .smart-text{
+        display: none;
+    }
+    .smart-display i {
+        margin-top: 2px;
+        margin-left: -3px;
+        margin-bottom: 5px;
+        /* display: block; */
+        color: orange;
+    }
+    .smart-display > p{
+        margin-left: 27px;
+        display: none;
+        color: rgba(0,0,0,.6);
+    }
+    #get-inspired-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -200px;
+        color: white;
+        width: 100%;
+        height: 100vh;
+        margin-bottom: -185px;
+    }
+    .jr-text-container {
+        height: 350px;
+        width: 50%;
+        margin-left: 21px;
+    }
+    
+}
+
+@media screen and (max-width: 999px) {
+    .journey-h2 {
+        color: var(--white);
+        font-size: 40px;
+        text-align: center;
+        margin-top: 327px;
+    }
+    .note-container {
+        margin-top: -288px;
+    }
 }

@@ -74,13 +74,13 @@ class UserManager extends Manager
 		$query = $db->prepare(
 			"SELECT login_type, username, email FROM users WHERE username = :inUsername OR email = :inEmail"
 		);
-		
+
 		switch ($type) {
-			case 'google':
+			case "google":
 				$query->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
 				$query->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
 				break;
-			case 'kakao':
+			case "kakao":
 				$query->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
 				$query->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
 				break;
@@ -140,7 +140,7 @@ class UserManager extends Manager
 		}
 	}
 
-	public function createRegUser($credentials)
+	public function createRegUser($credentials, $type)
 	{
 		$db = $this->dbConnect();
 
@@ -177,7 +177,7 @@ class UserManager extends Manager
 		}
 	}
 
-	public function createKakaoUser($credentials)
+	public function createKakaoUser($credentials, $type)
 	{
 		$db = $this->dbConnect();
 
@@ -197,7 +197,7 @@ class UserManager extends Manager
 				"INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)"
 			);
 			$req->bindParam("inUID", $uid, PDO::PARAM_STR);
-			$req->bindParam("inLoginType", "kakao", PDO::PARAM_STR);
+			$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
 			$req->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
 			$req->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
 			$req->execute();
@@ -209,7 +209,7 @@ class UserManager extends Manager
 		}
 	}
 
-	public function createGoogleUser($credentials)
+	public function createGoogleUser($credentials, $type)
 	{
 		$db = $this->dbConnect();
 
@@ -221,18 +221,18 @@ class UserManager extends Manager
 			$existingUID = $this->checkUniqueIDExist($uid);
 		} while (count($existingUID) > 0);
 
-		$existingUser = $this->checkUserExist($credentials, "google");
+		$existingUser = $this->checkUserExist($credentials, $type);
 		// echoPre($existingUser);
-		if ($existingUser AND $existingUser[0]["login_type"] === "google") {
-			return $this->confirmUser($credentials, "google");
-		} else if ($existingUser) {
-			return $this->signUpErrors($credentials, $existingUser, "google");
+		if ($existingUser and $existingUser[0]["login_type"] === $type) {
+			return $this->confirmUser($credentials, $type);
+		} elseif ($existingUser) {
+			return $this->signUpErrors($credentials, $existingUser, $type);
 		} else {
 			$req = $db->prepare(
 				"INSERT INTO users (u_id, login_type, username, email) VALUES (:inUID, :inLoginType, :inUsername, :inEmail)"
 			);
 			$req->bindParam("inUID", $uid, PDO::PARAM_STR);
-			$req->bindParam("inLoginType", "google", PDO::PARAM_STR);
+			$req->bindParam("inLoginType", $type, PDO::PARAM_STR);
 			$req->bindParam("inUsername", $credentials["email"], PDO::PARAM_STR);
 			$req->bindParam("inEmail", $credentials["email"], PDO::PARAM_STR);
 			$req->execute();
@@ -243,13 +243,14 @@ class UserManager extends Manager
 			return false;
 		}
 	}
-  
-    public function getUsername($userUID){
-        $db = $this->dbConnect();
 
-        $req = $db->prepare("SELECT username FROM users WHERE u_id = ?");
-        $req->bindParam(1,$userUID,PDO::PARAM_STR);
-        $req->execute();
-        return $req->fetch();
-    }
+	public function getUsername($userUID)
+	{
+		$db = $this->dbConnect();
+
+		$req = $db->prepare("SELECT username FROM users WHERE u_id = ?");
+		$req->bindParam(1, $userUID, PDO::PARAM_STR);
+		$req->execute();
+		return $req->fetch();
+	}
 }

@@ -8,6 +8,7 @@
             <h2 class="page-header-text">Calendar</h2>
         </div>
         <div id="calendar"></div>
+        <div id="calendar-mobile-details-container" class="hidden"></div>
     </div>
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>

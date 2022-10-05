@@ -3,8 +3,6 @@
 @import url('../css/header.css');
 
 body {
-    display: flex;
-    justify-content: center;
     background-color: var(--grey);
     color: var(--white);
     overflow-x: hidden; 
@@ -12,8 +10,11 @@ body {
     display: flow-root;
 }
 
-h1 {
-    color: var(--primary);
+.landing-box{
+    margin-top: 200px;
+    text-align: center;
+    width:900px;
+    margin-left: 250px;
 }
 
 #basicInfo {
@@ -27,6 +28,23 @@ a{
     color: var(--primary);
 }
 
+@media screen and (max-width: 460px) {
+    nav{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+span{
+    color: var(--primary);
+}
+.about{
+    line-height: 1.5;
+    font-size: larger;
+}
+.team{
+    line-height: 1.5;
+    font-size: large;
+}
 #about-us-container{
     display: flex;
     flex-direction: column;
@@ -64,14 +82,14 @@ a{
     text-align: center;
     cursor: pointer;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .member-button:hover{
     background-color: #555;
 }
 .about-us-card img{
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 .member-img-container{
@@ -83,10 +101,126 @@ a{
     margin-top: 30px;
 }
 .member-email{
-    margin-top: 10px;
     color:blue;
     text-decoration: underline;
+}
+.mike-email{
+    font-size: smaller;
 }
 .member-describe{
     margin-top: 10px;;
 }
+.about-us-bottom{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap:30px;
+    font-size: 1.5625rem;
+}
+
+
+#join-us{
+    display: flex;
+}
+
+#join-community{
+    width: 900px;
+    max-width: 90vw;
+    margin: 0 auto;
+    padding: 80px 0 0 0;
+}
+#join-container{
+    width:50%;
+    padding: 25px 50px;
+    margin: 10px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px 1px rgb(0 0 0 / 80%);
+    cursor: default;
+    transition: all 100ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border: 1px solid #363636;
+    background-color: #242424;
+    color:white;
+}
+.discord-icon i{
+    font-size: 70px;
+    color:#bababa;
+}
+.join-title span{
+    color:white;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.join-description{
+    margin-top: 30px;
+    line-height: 24px;
+    font-size:15px;
+    flex-grow: 1;
+}
+.join-description p{
+    /* text-decoration: underline; */
+    margin-bottom: 10px;
+}
+.join-description p a{
+    text-decoration: underline;
+}
+.join-description p a span{
+    text-decoration: none;
+    color: #bababa;
+}
+
+.products{
+    margin-top: 30px;
+    line-height: 1.5;
+    font-size: larger;
+}
+
+
+
+
+@media screen and (max-width: 390px) {
+    .landing-box {
+        text-align: center;
+        width: 386px;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    .about {
+        line-height: 1.5;
+        font-size: larger;
+        margin-top: 160px;
+    }
+    #about-us-row {
+        display: flex;
+        flex-direction: column;
+    }
+    #join-community {
+        width: 390px;
+        max-width: 90vw;
+        margin: 0; 
+        padding: 0;
+        margin-left: -18px;
+    }
+    #join-container {
+        width: 50%;
+        padding: 25px 50px;
+        margin: 0px;
+        border-radius: 10px;
+        box-shadow: 0 1px 1px 1px rgb(0 0 0 / 80%);
+        cursor: default;
+        transition: all 100ms ease-in-out;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        flex-grow: 1;
+        border: 1px solid #363636;
+        background-color: #242424;
+        color: white;
+    }
+    #join-us {
+        display: flex;
+        width: 386px;
+    }
+} 

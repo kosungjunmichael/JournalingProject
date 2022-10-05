@@ -25,7 +25,10 @@ class EntryManager extends Manager
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
 		$newpath = "$first/$second/$filename";
-		move_uploaded_file($file["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
+		move_uploaded_file(
+			$file["tmp_name"],
+			"./public/images/uploaded/$first/$second/$filename"
+		);
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -33,7 +36,7 @@ class EntryManager extends Manager
 		);
 		$req->bindParam("entry_id", $entry_id, PDO::PARAM_STR);
 		$req->bindParam("path", $newpath, PDO::PARAM_STR);
-		$req->execute();
+		$req->execute(); 
 	}
 
 	public function uploadImages($entry_id)
@@ -96,11 +99,7 @@ class EntryManager extends Manager
 		$req->bindParam("inLatLong", $lat_lng, PDO::PARAM_STR);
 		$req->bindParam("inWeather", $data->weather, PDO::PARAM_INT);
 
-		$req->bindParam(
-			"inTextContent",
-			$data->textContent,
-			PDO::PARAM_STR
-		);
+		$req->bindParam("inTextContent", $data->textContent, PDO::PARAM_STR);
 		$req->execute();
 
 		$req2 = $db->query("SELECT u_id FROM entries ORDER BY id DESC LIMIT 1");
@@ -109,6 +108,90 @@ class EntryManager extends Manager
 		// Direct the user to the timeline
 		return $entry_id->u_id;
 	}
+	/////////////////////////////////
+	public function updateOldEntry($data, $entryId)
+	{
+		$db = $this->dbConnect();
+		if(isset($data)&& !empty($data)){
+			//////////UPDATE THE IMAGE
+			if($_FILES['imgUpload']){
+				$hash = hash_file("md5", $_FILES['imgUpload']["tmp_name"]);
+				$first = substr($hash, 0, 2);
+				$second = substr($hash, 2, 2);
+
+				$this->create_directory(ROOT . "/public/images/uploaded/$first");
+				$this->create_directory(ROOT . "/public/images/uploaded/$first/$second");
+
+				$type = explode("/", $_FILES['imgUpload']["type"])[1];
+				$filename = substr($hash, 4) . "." . $type;
+				$newpath = "$first/$second/$filename";
+				// echoPre($newpath);
+				move_uploaded_file($_FILES['imgUpload']["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
+				
+				$req = $db->prepare(
+					"UPDATE entry_images SET path = :inPath WHERE entry_uid = :entryId ORDER BY id DESC LIMIT 1)");
+				$req->bindParam("inPath", $newpath, PDO::PARAM_STR);
+				$req->bindParam("path", $entryId, PDO::PARAM_STR);
+				$req->execute();
+			}
+			//////////////END OF IMG UPDATE
+
+			$lat_lng = json_encode($this->createCoord($data->location));
+			// $req = $db->prepare('UPDATE entries e SET e.title = :inTitle
+			// , e.text_content = :inText_content
+			// , e.location =:inLocation
+			// , e.lat_lng = :inLatLong
+			// , e.weather = :inWeather
+			// , e.last_edited = NOW()
+			// WHERE e.user_uid = :userId 
+			// AND e.u_id = :entryId 
+			// AND e.is_active = 1');
+
+			///CONTROLLING THE TAG EXISTENCE
+			$query = $db->prepare('SELECT id from tags WHERE tag_name = ?');
+			$query->execute([$data->tags]);
+			if($query->rowCount()==0){
+				$query = $db->prepare('INSERT INTO tags (tag_name) VALUES (?)');
+				$query->execute([$data->tags]);
+			}
+
+			$req = $db->prepare('UPDATE entries e, tag_map tm, entry_images i SET e.title= :inTitle
+				, e.text_content = :inText_content
+				, e.location =:inLocation
+				, e.lat_lng = :inLatLong
+				, e.weather =:inWeather
+				, e.last_edited = NOW()
+				, tm.tag_id = (SELECT id from tags WHERE tag_name = :inTag)			
+				WHERE e.user_uid = :userId
+				AND  e.u_id = :entryId  
+				AND e.is_active = 1 
+				AND tm.entry_id = e.u_id 
+				AND i.entry_uid=e.u_id');
+
+
+			$req->execute(array(
+				"inTitle" =>$data->title,
+				"inText_content" =>$data->textContent,
+				"inLocation" => $data->location,
+				"inLatLong" => $lat_lng,
+				"inWeather" =>$data->weather,
+				"inTag" => $data->tags,
+				"userId" => $data->userUID,
+				"entryId" => $entryId
+			) );
+
+			if($req->rowCount() == 1){ 
+				echo "<script>alert('Your entry has been updated successfully');</script>";
+				$req->closeCursor();
+				return $data->userUID;
+			}
+		} else {
+			echo "<script>alert('Missing information. Entry update process is aborting...')</script>";
+			return $data->entryId;
+		}
+	}
+
+	////////////////////////////////
 
 	public function getEntries($userId, $entryGroup)
 	{
@@ -187,17 +270,19 @@ class EntryManager extends Manager
 		$imagesReq->closeCursor();
 	}
 
-    public function deleteEntry($entryUId, $userUID)
-    {
-        $db = $this->dbConnect();
+	public function deleteEntry($entryUId, $userUID)
+	{
+		$db = $this->dbConnect();
 
-        $req = $db->prepare("UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?");
-        $req->bindParam(1,$entryUId,PDO::PARAM_STR);
-        $req->bindParam(2,$userUID,PDO::PARAM_STR);
-        $req->execute();
+		$req = $db->prepare(
+			"UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?"
+		);
+		$req->bindParam(1, $entryUId, PDO::PARAM_STR);
+		$req->bindParam(2, $userUID, PDO::PARAM_STR);
+		$req->execute();
 
-        return "Entry successfully deleted";
-    }
+		return "Entry successfully deleted";
+	}
 
 	// public function getImages($uid){
 
@@ -254,27 +339,27 @@ class EntryManager extends Manager
 	{
 		$db = $this->dbConnect();
 		$defaultAllowedTags = [
-			'p',
-			'h1',
-			'h2',
-			'h3',
-			'h4',
-			'h5',
-			'h6',
-			'blockquote',
-			'q',
-			'strong',
-			'em',
-			'ul',
-			'ol',
-			'li',
-			'font',
-			'style',
-			'b',
-			'i',
-			'u',
-			'div',
-			'span'
+			"p",
+			"h1",
+			"h2",
+			"h3",
+			"h4",
+			"h5",
+			"h6",
+			"blockquote",
+			"q",
+			"strong",
+			"em",
+			"ul",
+			"ol",
+			"li",
+			"font",
+			"style",
+			"b",
+			"i",
+			"u",
+			"div",
+			"span",
 		];
 		$req = $db->prepare(
 			"SELECT text_content FROM entries WHERE user_uid = :inUid"

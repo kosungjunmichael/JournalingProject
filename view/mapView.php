@@ -1,7 +1,12 @@
 <?php $title = "Map View"; ?>
 <?php $style = "map"; ?>
+
 <?php // $script = "map"; ?>
+
 <?php
+for ($i = 0; $i < count($entries); $i++) {
+	$entries[$i]["text_content"] = strip_tags($entries[$i]["text_content"], '<br>');
+}
 $data = json_encode($entries);
 $script = "googleMaps";
 ?>

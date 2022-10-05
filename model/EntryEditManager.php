@@ -27,6 +27,29 @@ class EntryEditManager extends Manager{
 
    public function entryDisplay($response){
       $db = $this->dbConnect();
+      $defaultAllowedTags = [
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'blockquote',
+			'q',
+			'strong',
+			'em',
+			'ul',
+			'ol',
+			'li',
+			'font',
+			'style',
+			'b',
+			'i',
+			'u',
+			'div',
+			'span'
+		];
       $req = $db->prepare("SELECT text_content FROM entries WHERE user_uid = :inUid");
       $req->execute(array(
          'inUid' => $response['uid']
@@ -34,7 +57,7 @@ class EntryEditManager extends Manager{
       if($req->rowCount() == 1){
          $result = $req->fetch(PDO::FETCH_ASSOC);
          $req->closeCursor();
-         return htmlspecialchars_decode($result['text_content']);
+         return strip_tags($result["text_content"], $defaultAllowedTags);
       }else{
       echo "failed";
       return 0;

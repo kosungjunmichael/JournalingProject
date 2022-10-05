@@ -35,6 +35,8 @@
   flex-wrap: wrap;
   gap: 20px;
   margin-bottom: 30px;
+  margin-left: -19px;
+
 }
 
 .month-container-header{
@@ -55,7 +57,7 @@
     background-position: center center;
     background-size:cover;
     -webkit-border-radius: 20px;
-    box-shadow: var(--album-color) 20px 20px 150px inset;
+    box-shadow: var(--album-color) 0px -80px 150px inset;
 
 
 }
@@ -90,33 +92,42 @@
 
 .album-bottom{
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    max-width: 100%;
     width: auto;
     height: auto;
     margin-top: 10px;
     gap: 10px;
+    /* overflow: hidden; */
+
 }
 
-
+.tags-container{
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+}
 
 .inside-album-tags{
-    background-color: rgba(255,255,255,0.6);
-    padding: 5px 10px 5px 10px;
-    max-width: 100px;
+    background-color: var(--time-tag-bg);
+    padding: 5px 5px;
+    max-width: 63px;
     height: auto;
-    border-radius: 10px;
-    font-size: 0.9em;
-    color: var(--text-color-primary);
+    border-radius: var(--border-radius-pill);
+    font-size: 12px;
+    color: black;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 700;
     
 }
 
 .inside-album-dates{
   color: var(--text-color-primary);
-  font-size: 0.9em;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 
@@ -253,3 +264,10 @@
   from {opacity: .6}
   to {opacity: 1}
 } 
+
+
+@media screen and (max-width: 730px) {
+    #container{
+      width: 100%;
+    }
+}
