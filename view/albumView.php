@@ -19,7 +19,7 @@ for ($i = 0; $i < count($res); $i++) {
 	$month_created = date("F Y", strtotime($date_created));
 	$path_raw = $res[$i]["paths"];
 	$path = explode(",", $path_raw);
-	$newDate = date("F j Y", strtotime($date_created));
+	$newDate = date("F j, Y", strtotime($date_created));
 	$month_name = date("F", strtotime($date_created));
 	$title = $res[$i]["title"];
 
@@ -34,18 +34,32 @@ for ($i = 0; $i < count($res); $i++) {
             <div id="album-container-bottom">
             
                     <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE . "/public/images/uploaded/" .	$path[0] ?>")';>
-                        <p id="album-title"> <?= $title ?> </p>
+                        <p id="album-title"> <?= htmlspecialchars($title) ?> </p>
                         <div class="album-bottom">
-
+<div class="tags-container">
                         <?php 
-
 						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
-                        <?php } else {foreach ($tags as $tag) { ?>
+                        <?php } 
+							else (count($tags) === 1 && $tags[0] !== null){
+								for ($l = 0; $l < 1; $l++) { 
+								?>
+								<div class="inside-album-tags-div">
+									<p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
+								</div>
+								<?php }}
+						
+						
+						else {
+							// foreach ($tags as $tag) { 
+							for ($l = 0; $l < 2; $l++) { 
+							?>
                                 <div class="inside-album-tags-div">
-                                    <p class="inside-album-tags"><?= $tag ?></p>
+                                    <p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
                                 </div>
-                                <?php }} ?>
+                                <?php }
+							} ?>
+							</div>
                         <p class="inside-album-dates"><?= $newDate ?></p>
                     </div>
                 </div> 

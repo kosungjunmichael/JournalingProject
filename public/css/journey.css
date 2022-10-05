@@ -252,7 +252,7 @@
     font-weight: 400;
 }
 .smart-display i{
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     color:orange;
 }
 .smart-icon-2{
@@ -260,6 +260,8 @@
     color: var(--primary);
 }
 .smart-display{
+    display: flex;
+    gap:20px;
     color:rgba(0,0,0,.6);
 }
 .smart-icon i{
@@ -448,7 +450,11 @@
         font-size: 40px;
         text-align: center;
         line-height: 1;
+<<<<<<< HEAD
         text-transform: capitalize;
+=======
+        margin-top: 300px;
+>>>>>>> main
     }
     .landing-box {
         margin-top: 213px;
@@ -472,6 +478,7 @@
     .jr-feature-container {
         width: 386px;
         margin-left: 0px;
+        margin-top: 229px;
     }
     .jr-text-container {
         height: 350px;
@@ -526,4 +533,16 @@
         margin-left: 21px;
     }
     
+}
+
+@media screen and (max-width: 999px) {
+    .journey-h2 {
+        color: var(--white);
+        font-size: 40px;
+        text-align: center;
+        margin-top: 327px;
+    }
+    .note-container {
+        margin-top: -288px;
+    }
 }

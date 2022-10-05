@@ -178,16 +178,18 @@ try {
 			break;
 
 		case "addNewEntry":
-			// echoPre($_REQUEST);
-			// echoPre($_FILES);
-			$entryContent = (object) [];
-			$entryContent->userUID = $_SESSION["uid"];
-			$entryContent->title = $_REQUEST["title"];
-			$entryContent->tags = $_REQUEST["tagNames"];
-			$entryContent->location = $_REQUEST["location"];
-			$entryContent->weather = $_REQUEST["weather"];
-			$entryContent->textContent = $_REQUEST["textContent"];
-			newEntry($entryContent);
+			if (isset($_REQUEST)) {
+				// echoPre($_REQUEST);
+				// echoPre($_FILES);
+				$entryContent = (object) [];
+				$entryContent->userUID = $_SESSION["uid"];
+				$entryContent->title = $_REQUEST["title"];
+				$entryContent->tags = $_REQUEST["tagNames"];
+				$entryContent->location = $_REQUEST["location"];
+				$entryContent->weather = $_REQUEST["weather"];
+				$entryContent->textContent = $_REQUEST["textContent"];
+				newEntry($entryContent);
+			}
 			break;
 
 		case "viewEntry":
