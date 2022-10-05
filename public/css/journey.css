@@ -295,7 +295,7 @@
     font-weight: 400;
 }
 .smart-display i{
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     color:orange;
 }
 .smart-icon-2{
@@ -303,6 +303,8 @@
     color: var(--primary);
 }
 .smart-display{
+    display: flex;
+    gap:20px;
     color:rgba(0,0,0,.6);
 }
 .smart-icon i{
