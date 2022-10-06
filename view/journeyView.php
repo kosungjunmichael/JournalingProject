@@ -2,7 +2,6 @@
 <?php $style = "journey"; ?>
 
 <?php ob_start(); ?>
-
 <?php include ROOT . "/view/header.php"; ?>
 
 <div class="container">
