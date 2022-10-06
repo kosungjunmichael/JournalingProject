@@ -34,6 +34,10 @@
                 $username = $user_manager->getUsername($_SESSION['uid'])[0];
                 $alert = "Welcome back! $username";
             break;
+            case "signup":
+                $username = $user_manager->getUsername($_SESSION['uid'])[0];
+                $alert = "Welcome! $username";
+            break;
             default:
             break;
         }
@@ -114,7 +118,7 @@
  	$check = $userManager->createKakaoUser($data, $type);
 
  	if ($check === false) {
- 		toTimeline($_SESSION["uid"], "monthly");
+        header("Location: index.php?action=toTimeline&alert=signup");
  	} else {
  		$error_signup = $check;
  		require ROOT . "/view/journeyView.php";
@@ -148,7 +152,7 @@
  		$check = $userManager->createRegUser($data, $type);
 
  		if ($check === false) {
- 			toTimeline($_SESSION["uid"], "monthly");
+            header("Location: index.php?action=toTimeline&alert=signup");
  		} else {
  			// echoPre($check);
  			$error_signup = $check;
