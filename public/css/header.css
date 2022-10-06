@@ -226,9 +226,8 @@ form {
 }
 #sign-in-link:hover, #sign-up-link:hover {
     color:var(--primary);
-    text-decoration: underline;
+    cursor: pointer;
 }
-
 
 /* === Sign up/Log in validation */
 
