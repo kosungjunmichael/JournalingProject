@@ -39,6 +39,11 @@
     font-weight: 700;
 }
 
+.journey-sub {
+    margin: 30px auto;
+    font-size: 1.3rem;
+}
+
 .content-container {
     display: flex;
     flex-wrap: wrap;
