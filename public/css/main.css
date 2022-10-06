@@ -269,6 +269,7 @@ body{
 	#sidebar-hamburger a {
 		text-decoration: none;
 		transition: color 0.3s ease;
+        z-index: 5;
 	}
 
 	#sidebar-hamburger input {
