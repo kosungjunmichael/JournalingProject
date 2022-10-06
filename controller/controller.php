@@ -230,29 +230,29 @@
  				// echoPre($images);
  				// echoPre(is_file($images["tmp_name"]));
  			}
- 		// 	foreach ($_FILES as $images) {
- 		// 		if ($images["error"] === UPLOAD_ERR_OK) {
- 		// 			if (getimagesize($images["tmp_name"])) {
- 		// 				if (
- 		// 					mime_content_type($images["tmp_name"]) == "image/jpg" or
- 		// 					mime_content_type($images["tmp_name"]) == "image/jpeg" or
- 		// 					mime_content_type($images["tmp_name"]) == "image/png"
- 		// 				) {
- 		// 					if ($images["size"] <= 5e6) {
- 		// 						$checkImgs = $entryManager->uploadImages($entry_uid);
- 		// 					} else {
- 		// 						throw new Exception("Error: image size is greater than 5MB");
- 		// 					}
- 		// 				} else {
- 		// 					throw new Exception(
- 		// 						"Error: image is not of an approved type (.jpg, .jpeg, .png)"
- 		// 					);
- 		// 				}
- 		// 			} else {
- 		// 				throw new Exception("Error: file uploaded is not an image");
- 		// 			}
- 		// 		}
- 		// 	}
+ 			foreach ($_FILES as $images) {
+ 				if ($images["error"] === UPLOAD_ERR_OK) {
+ 					if (getimagesize($images["tmp_name"])) {
+ 						if (
+ 							mime_content_type($images["tmp_name"]) == "image/jpg" OR
+ 							mime_content_type($images["tmp_name"]) == "image/jpeg" OR
+ 							mime_content_type($images["tmp_name"]) == "image/png"
+ 						) {
+ 							if ($images["size"] <= 5e6) {
+ 								$checkImgs = $entryManager->uploadImages($entry_uid);
+ 							} else {
+ 								throw new Exception("Error: image size is greater than 5MB");
+ 							}
+ 						} else {
+ 							throw new Exception(
+ 								"Error: image is not of an approved type (.jpg, .jpeg, .png)"
+ 							);
+ 						}
+ 					} else {
+ 						throw new Exception("Error: file uploaded is not an image");
+ 					}
+ 				}
+ 			}
  		}
  		header("Location: index.php?action=toTimeline&alert=newEntry");
  	} else {
