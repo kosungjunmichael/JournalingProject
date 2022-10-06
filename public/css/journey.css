@@ -536,13 +536,37 @@
 }
 
 @media screen and (max-width: 999px) {
+
+
     .journey-h2 {
         color: var(--white);
         font-size: 40px;
         text-align: center;
-        margin-top: 327px;
+        margin-top: 250px;
+        
     }
-    .note-container {
-        margin-top: -288px;
+
+
+
+}
+
+@media screen and (max-width: 1131px){
+    .tweets-container{
+        justify-content: center;
+        padding-bottom: 20px;
     }
+}
+
+@media screen and (max-width: 768px){
+
+    #smart-container-title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.empty-div{
+    width: 100%;
+    height:50px;
 }
