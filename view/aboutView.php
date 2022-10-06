@@ -1,5 +1,4 @@
 <?php $title = "About Us"; ?>
-
 <?php $style = "aboutView"; ?>
 
 <?php ob_start(); ?>
@@ -284,12 +283,12 @@
 
 </div>
 
-<?php include(ROOT . "/view/footer.php"); ?>
+<?php include ROOT . "/view/footer.php"; ?>
 
 <?php $content = ob_get_clean(); ?>
-<?php
-// require("journeyTemplate.php"); 
-?>
+
+<!-- <?php //require "journeyTemplate.php"; ?> -->
+
 <?php
 require("template.php");
 ?>
