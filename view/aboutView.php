@@ -44,7 +44,7 @@
                         <p class="member-title">CTO</p>
                         <p class="member-describe">My dog ate my lunch. hahaha</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/james-kim-776a8019a/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
                             <a href="mailto: JamesKim917@gmail.com">
@@ -151,7 +151,7 @@
                         <p class="member-title">God Emperor Engineer</p>
                         <p class="member-describe">I'm trying to punch the person above me</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/sung-jun-michael-ko-1a515b23b/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
                             <a href="mailto: mike.ko96@gmail.com">
