@@ -254,22 +254,22 @@
 
  function filterEntries($data)
  {
- 	$entryManager = new EntryManager();
- 	$filterManager = new FilterManager();
- 	// $type = "monthly";
- 	if ($data["filter"] === "") {
- 		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
- 	} else {
- 		$entries = $filterManager->filterEntries(
- 			$_SESSION["uid"],
- 			$data["filter"],
- 			$data["value"],
-            $data['group']
- 		);
- 		// echoPre($entries);
- 	}
- 	require ROOT . "/view/timelineFiltered.php";
- }
+    $entryManager = new EntryManager();
+    $filterManager = new FilterManager();
+    // $type = "monthly";
+    if ($data["filter"] === "") {
+            $entries = $entryManager->getEntries($_SESSION["uid"], strtolower($data['group']));
+    } else {
+            $entries = $filterManager->filterEntries(
+                $_SESSION["uid"],
+                $data["filter"],
+                $data["value"],
+                $data["group"]
+            );
+    }
+    $group = strtolower($data['group']);
+    require ROOT . "/view/timelineFiltered.php";
+}
 
  function deleteEntry($data)
  {
