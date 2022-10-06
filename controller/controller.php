@@ -224,35 +224,40 @@
  		$entry_uid = $entryManager->createEntry($data);
  		$tagManager->submitTags($data->tags, $entry_uid);
  		if (!empty($_FILES)) {
+ 			// echoPre($_FILES);
  			foreach ($_FILES as $images) {
- 				if ($images["error"] === UPLOAD_ERR_OK) {
- 					if (getimagesize($images["tmp_name"])) {
- 						if (
- 							mime_content_type($images["tmp_name"]) == "image/jpg" or
- 							mime_content_type($images["tmp_name"]) == "image/jpeg" or
- 							mime_content_type($images["tmp_name"]) == "image/png"
- 						) {
- 							if ($images["size"] <= 5e6) {
- 								$checkImgs = $entryManager->uploadImages($entry_uid);
- 							} else {
- 								throw new Exception("Error: image size is greater than 5MB");
- 							}
- 						} else {
- 							throw new Exception(
- 								"Error: image is not of an approved type (.jpg, .jpeg, .png)"
- 							);
- 						}
- 					} else {
- 						throw new Exception("Error: file uploaded is not an image");
- 					}
- 				}
+ 				$checkImgs = $entryManager->uploadImages($entry_uid);
+ 				// echoPre($images);
+ 				// echoPre(is_file($images["tmp_name"]));
  			}
- 			header("Location: index.php?action=toTimeline&alert=newEntry");
- 		} else {
- 			// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
- 			$error = "Not a valid Entry";
- 			require ROOT . "/view/createEntryView.php";
+ 		// 	foreach ($_FILES as $images) {
+ 		// 		if ($images["error"] === UPLOAD_ERR_OK) {
+ 		// 			if (getimagesize($images["tmp_name"])) {
+ 		// 				if (
+ 		// 					mime_content_type($images["tmp_name"]) == "image/jpg" or
+ 		// 					mime_content_type($images["tmp_name"]) == "image/jpeg" or
+ 		// 					mime_content_type($images["tmp_name"]) == "image/png"
+ 		// 				) {
+ 		// 					if ($images["size"] <= 5e6) {
+ 		// 						$checkImgs = $entryManager->uploadImages($entry_uid);
+ 		// 					} else {
+ 		// 						throw new Exception("Error: image size is greater than 5MB");
+ 		// 					}
+ 		// 				} else {
+ 		// 					throw new Exception(
+ 		// 						"Error: image is not of an approved type (.jpg, .jpeg, .png)"
+ 		// 					);
+ 		// 				}
+ 		// 			} else {
+ 		// 				throw new Exception("Error: file uploaded is not an image");
+ 		// 			}
+ 		// 		}
+ 		// 	}
  		}
+ 		header("Location: index.php?action=toTimeline&alert=newEntry");
+ 	} else {
+ 		$error = "Not a valid Entry";
+ 		require ROOT . "/view/createEntryView.php";
  	}
  }
 
