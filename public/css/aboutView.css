@@ -118,9 +118,9 @@ span{
     font-size: 1.5625rem;
 }
 
-
 #join-us{
     display: flex;
+    flex-wrap: wrap;
 }
 
 #join-community{
@@ -142,7 +142,7 @@ span{
     flex-grow: 1;
     border: 1px solid #363636;
     background-color: #242424;
-    color:white;
+    color:var(--white);
 }
 .discord-icon i{
     font-size: 70px;
@@ -221,6 +221,8 @@ span{
     }
     #join-us {
         display: flex;
-        width: 386px;
+        flex-direction: column;
+        justify-content: center;
+        /* width: 386px; */
     }
 } 
