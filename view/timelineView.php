@@ -15,7 +15,7 @@
     }
     ?>
 </header>
-
+ 
     <h1 class="title">Timeline</h1>
     <div class="filter-field">
         <div class="filter-input-field">
