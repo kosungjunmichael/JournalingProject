@@ -132,7 +132,7 @@
                     <div class="about-us-description">
                         <h2 class="member-name">Mike</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Thinking about absolutely nothing</p>
+                        <p class="member-describe">Habitual Daydreamer</p>
                         <div class="about-us-bottom">
                             <a href="https://www.linkedin.com/in/mendez-mike/">
                                 <i class='bx bxl-linkedin-square'></i>
@@ -286,9 +286,7 @@
 <?php include ROOT . "/view/footer.php"; ?>
 
 <?php $content = ob_get_clean(); ?>
-
-<!-- <?php //require "journeyTemplate.php"; ?> -->
-
 <?php
-require("template.php");
+// require("journeyTemplate.php");
 ?>
+<?php require "template.php"; ?>
