@@ -417,6 +417,8 @@
                 </div>
             </div>
         </div>
+        <div class="empty-div">
+        </div>
     </section>
 
 <?php include ROOT . "/view/footer.php"; ?>

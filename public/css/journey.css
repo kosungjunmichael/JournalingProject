@@ -546,3 +546,8 @@
         margin-top: -288px;
     }
 }
+
+.empty-div{
+    width: 100%;
+    height:50px;
+}
