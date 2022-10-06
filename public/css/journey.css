@@ -402,11 +402,12 @@
     .text-container{
         line-height: 0.5;
     }
+    .smart-text{
+        display: none;
+    }
 }
 /* ==================== */
-/* ==================== */
 /* get inspired section */
-/* ==================== */
 /* ==================== */
 
 #get-inspired-container{
@@ -485,7 +486,7 @@
 
     .tweets-container {
         display: flex;
-        flex-direction: wrap;
+        flex-wrap: wrap;
         gap: 1em;
         flex-direction: column;
     }
