@@ -393,7 +393,7 @@
 
 @media screen and (max-width: 460px) {
     .section-container .content {
-        padding-top: 190px;
+        padding-top: 90px;
     }
     header{
         display: flex;
@@ -452,7 +452,8 @@
         text-align: center;
         line-height: 1;
         text-transform: capitalize;
-        margin-top: 300px;
+        margin-top: 55px;
+        margin-bottom: 0px;
     }
     .landing-box {
         margin-top: 213px;
@@ -487,7 +488,7 @@
     .tweets-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 1em;
+        gap: 0em;
         flex-direction: column;
     }
     .twitter-block {
@@ -499,6 +500,7 @@
         border-radius: 8px;
         min-height: 228px;
         max-width: 387px;
+        margin-bottom: 10px;
     }
     .smart-text{
         display: none;
@@ -532,16 +534,57 @@
         margin-left: 21px;
     }
     
+    .content-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        color: var(--white);
+        margin: 0 6px;
+        width: 386px;
+    }
+
+    .split-feature-container {
+        height: 350px;
+        width: 386px;
+        text-align: center;
+    }
+    .subfeature {
+        padding: 25px 50px;
+        margin: 10px 20px 40px 20px;
+        border-radius: 10px;
+        background-color: #242424;
+        box-shadow: 0 1px 1px 1px rgb(0 0 0 / 50%);
+        border: 1px solid #363636;
+        cursor: default;
+        color: #bababa;
+        transition: all 100ms ease-in-out;
+        width: 390px;
+    }
+    .tweet-column {
+        display: flex;
+        flex-direction: column;
+        gap: 0em;
+    }
+    #smart-container {
+        max-width: 800px;
+        margin: auto;
+        margin-top: 10px;
+        padding: 12px;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
-@media screen and (max-width: 999px) {
+/* @media screen and (max-width: 1000px) {
     .journey-h2 {
         color: var(--white);
         font-size: 40px;
         text-align: center;
-        margin-top: 327px;
+        margin-top: 178px;
     }
     .note-container {
         margin-top: -288px;
     }
-}
+} */
