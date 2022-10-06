@@ -39,6 +39,11 @@
     font-weight: 700;
 }
 
+.journey-sub {
+    margin: 30px auto;
+    font-size: 1.3rem;
+}
+
 .content-container {
     display: flex;
     flex-wrap: wrap;
@@ -318,23 +323,22 @@
 
 .tweets-container{
     display:flex;
-    flex-direction: wrap;
+    flex-wrap: wrap;
     gap:2em;
 }
 .twitter-block{
     background-color: var(--white);
     color:black;
     padding: 10px 20px;
-    /* margin: 10px 50px; */
+    margin: 10px auto;
     border: 1px solid #ccc;
     border-radius: 8px;
     min-height: 228px;
-    /* max-width: 800px; */
+    width: 550px;
 }
 .tweet-column{
     display: flex;
     flex-direction: column;
-    gap: 2em;
 }
 
 .author-name {
@@ -441,7 +445,7 @@
     margin-top: 100px;
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 500px) {
     .text-container{
         line-height: 1.3;
     }
@@ -483,10 +487,9 @@
     }
 
     .tweets-container {
-        display: flex;
-        flex-direction: wrap;
         gap: 1em;
-        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
     }
     .twitter-block {
         background-color: var(--white);
@@ -533,13 +536,37 @@
 }
 
 @media screen and (max-width: 999px) {
+
+
     .journey-h2 {
         color: var(--white);
         font-size: 40px;
         text-align: center;
-        margin-top: 327px;
+        margin-top: 250px;
+        
     }
-    .note-container {
-        margin-top: -288px;
+
+
+
+}
+
+@media screen and (max-width: 1131px){
+    .tweets-container{
+        justify-content: center;
+        padding-bottom: 20px;
     }
+}
+
+@media screen and (max-width: 768px){
+
+    #smart-container-title{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.empty-div{
+    width: 100%;
+    height:50px;
 }

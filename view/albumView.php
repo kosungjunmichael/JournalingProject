@@ -40,13 +40,27 @@ for ($i = 0; $i < count($res); $i++) {
                         ) ?> </p>
                         <div class="album-bottom">
 <div class="tags-container">
-                        <?php if (count($tags) === 1 && $tags[0] == null) { ?> 
+<?php 
+						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
-                        <?php } else {for ($l = 0; $l < 3; $l++) { ?>
+                        <?php } 
+							else if (count($tags) === 1 && $tags[0] !== null){
+								for ($l = 0; $l < 1; $l++) { 
+								?>
 								<div class="inside-album-tags-div">
 									<p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
 								</div>
-						<?php }} ?>
+								<?php }}
+						
+						else {
+							// foreach ($tags as $tag) { 
+							for ($l = 0; $l < 2; $l++) { 
+							?>
+                                <div class="inside-album-tags-div">
+                                    <p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
+                                </div>
+                                <?php }
+							} ?>
 							</div>
                         <p class="inside-album-dates"><?= $newDate ?></p>
                     </div>

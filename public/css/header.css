@@ -226,9 +226,8 @@ form {
 }
 #sign-in-link:hover, #sign-up-link:hover {
     color:var(--primary);
-    text-decoration: underline;
+    cursor: pointer;
 }
-
 
 /* === Sign up/Log in validation */
 
@@ -362,6 +361,10 @@ color: forestgreen;
 .input-container .svg-container.eye {
     margin: 5px;
     padding: 5px;
+  }
+
+.svg-container.eye:hover {
+    cursor: pointer;
   }
 
   /* === Autofill === */
