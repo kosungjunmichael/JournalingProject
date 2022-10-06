@@ -274,6 +274,10 @@ class EntryManager extends Manager
 	{
 		$db = $this->dbConnect();
 
+        // if (isset($userUID)){
+        //     return "weird bug";
+        // }
+
 		$req = $db->prepare(
 			"UPDATE entries SET is_active = 0 WHERE u_id = ? AND user_uid = ?"
 		);

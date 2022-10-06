@@ -278,8 +278,10 @@
  function deleteEntry($data)
  {
  	$entryManager = new EntryManager();
+    echoPre($data);
  	$alert = $entryManager->deleteEntry($data["entryID"], $_SESSION["uid"]);
- 	header("Location: index.php?action=toTimeline&alert=deleteEntry");
+    echoPre($alert);
+ 	// header("Location: index.php?action=toTimeline&alert=deleteEntry");
  }
 
  function viewEntry($entryId)
