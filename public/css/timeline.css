@@ -366,6 +366,7 @@ p.tag{
     color: black;
     text-align:center;
     width: 63px;
+    height: 25px;
     margin: 0px 4px;
     padding: 5px 5px;
     border-radius: var(--border-radius-pill);
@@ -390,10 +391,13 @@ p.entry-date{
 
 
 @media screen and (max-width: 1042px) {
+    h1.title{
+        margin-bottom:100px;
+    }
     div.filter-field {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         margin: 0px 10px;
         justify-content: space-between;
     }
@@ -414,6 +418,11 @@ p.entry-date{
         background-color: var(--bg-secondary);
         border: none;
     }
+    p.tag{
+        width:35px;
+        height:25px;
+    }
+
 }
 
 @media screen and (max-width: 763px) {
@@ -426,6 +435,8 @@ p.entry-date{
 
     main#timeline {
         width:100%;
+        display:flex;
+        flex-direction: column;
     }
 
     button.switch{
@@ -444,11 +455,15 @@ p.entry-date{
     div.filter-field {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         margin: 0px 10px;
         justify-content: space-between;
+        z-index:0;
     }
-
+    p.tag{
+        width: 63px;
+        height:25px;
+    }
 }
 
 
@@ -456,9 +471,10 @@ p.entry-date{
     div.filter-field {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         margin: 0px 10px;
         justify-content: space-between;
+        z-index:0;
     }
     .filter-label{
         margin-top: 5px;
@@ -481,13 +497,13 @@ p.entry-date{
 }
 
 @media screen and (max-width: 390px) {
-
     div.filter-field {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         margin: 0px 10px;
         justify-content: space-between;
+        z-index:0;
     }
     .filter-label{
         margin-top: 5px;

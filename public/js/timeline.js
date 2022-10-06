@@ -83,7 +83,7 @@ function addFilters(){
 function filterEntries(){
     let val = searchBar.value;
     
-    if (val !== "" && !val.includes(",") && !addedFilters.includes(val)){
+    if (val !== "" && !val.includes(",") && !addedFilters.includes(val) && searchBar.value.length > 1){
         addedFilters.push(searchBar.value);
         removeFilters();
         addFilters();
