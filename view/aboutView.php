@@ -3,7 +3,7 @@
 <?php $style = "aboutView"; ?>
 
 <?php ob_start(); ?>
-<?php include(ROOT . "/view/header.php"); ?>
+<?php include ROOT . "/view/header.php"; ?>
 
 <div class="landing-box">
     <div class="about">
@@ -128,7 +128,7 @@
                     <div class="about-us-description">
                         <h2 class="member-name">Mike</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Thinking about absolutely nothing</p>
+                        <p class="member-describe">Habitual Daydreamer</p>
                         <div class="about-us-bottom">
                             <a href="https://www.linkedin.com/in/mendez-mike/">
                                 <i class='bx bxl-linkedin-square'></i>
@@ -151,7 +151,7 @@
                         <p class="member-title">God Emperor Engineer</p>
                         <p class="member-describe">I'm trying to punch the person above me</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/sung-jun-michael-ko-1a515b23b/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
                             <a href="mailto: mike.ko96@gmail.com">
@@ -277,12 +277,10 @@
 
 </div>
 
-<?php include(ROOT . "/view/footer.php"); ?>
+<?php include ROOT . "/view/footer.php"; ?>
 
 <?php $content = ob_get_clean(); ?>
 <?php
-// require("journeyTemplate.php"); 
+// require("journeyTemplate.php");
 ?>
-<?php
-require("template.php");
-?>
+<?php require "template.php"; ?>
