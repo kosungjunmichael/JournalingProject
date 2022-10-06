@@ -17,6 +17,7 @@ let deleteFiltersBtn = document.querySelector('.filter-remove-all');
 // array of all the filter results to be added
 let addedFilters = [];
 
+// monthly and weekly switch
 let timeSwitch = document.querySelectorAll('.display-tag');
 
 //                  filter switches
@@ -68,9 +69,9 @@ function addFilters(){
     xhr.open('GET',`http://localhost/sites/JournalingProject/index.php?action=filterEntries&filter=${filtersString}&value=${value}&group=${group}`)
     xhr.addEventListener('readystatechange',()=>{
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
-            // console.log(xhr.responseText);
+            console.log(xhr.responseText);
             // console.log(entriesDisplay);
-            entriesDisplay.innerHTML = xhr.responseText;
+            // entriesDisplay.innerHTML = xhr.responseText;
         } else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status !== 200){
             console.log(`there's an error code: ${xhr.status} text: ${xhr.statusText}`);
         }
