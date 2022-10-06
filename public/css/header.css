@@ -363,6 +363,10 @@ color: forestgreen;
     padding: 5px;
   }
 
+.svg-container.eye:hover {
+    cursor: pointer;
+  }
+
   /* === Autofill === */
 
   /* Autofill */
