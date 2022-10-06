@@ -32,6 +32,7 @@ body[data-theme='light'] {
     --time-tag-bg: var(--grey-mid-light);
     --button-color: rgba(0,0,0,0.4);
     --album-color: rgba(200, 200, 200, 1);
+    --entry-text-field: var(--white);
     --calendar-entry-link-details: var(--grey-mid-light);
 }
 
@@ -47,6 +48,7 @@ body[data-theme='dark'] {
     --time-tag-bg: var(--grey-superlight);
     --button-color: rgba(255,255,255,0.2);
     --album-color: rgba(0, 0, 0, 1);
+    --entry-text-field: var(--grey-dark);
     --calendar-entry-link-details: var(--grey);
 }
 
@@ -267,6 +269,7 @@ body{
 	#sidebar-hamburger a {
 		text-decoration: none;
 		transition: color 0.3s ease;
+        z-index: 5;
 	}
 
 	#sidebar-hamburger input {
@@ -294,8 +297,8 @@ body{
 		z-index: 100;
 		transform-origin: 4px 0px;
 
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
-        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); 
+        background: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
 	#sidebar-hamburger span:first-child {

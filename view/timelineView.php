@@ -7,7 +7,7 @@
 
 <main id="timeline">
 
-<header>
+<header class="alertBar">
     <?php
     if (isset($alert)) {
         // TODO:this should be turn into a little notification modal thing
@@ -35,7 +35,9 @@
                 <button class="switch entries">Entries</button>
             </div>
             <div class="display-toggle">
-                <?php
+        <h2 class='group-label'>Group By</h2>
+        <div class="display-cont">
+            <?php
                     if ($view === "weekly") {
                         ?>
                         <div class="display-tag switch-active">Weekly</div>
@@ -53,6 +55,7 @@
                     }
                 ?>
             </div>
+        </div>
         </div>
     </div>
     <div class="entry-display">

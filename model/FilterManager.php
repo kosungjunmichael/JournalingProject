@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 require_once('Manager.php');
 
@@ -12,6 +12,7 @@ class filterManager extends Manager
         
         // Array of Filter Values to filter entries by
         $values = explode(',',$values);
+        
         // All Entries
         $allEntries = $this->getEnt("allEntries", $userUID);
 
@@ -35,7 +36,24 @@ class filterManager extends Manager
             );
         }
         // Array with all entries filtered by filters and values
+        // $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
         $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
+        // TODO: filter duplicate entries
+        // $checkArr = [];
+        // foreach($filteredEntries as $rawEntry){
+        //     array_push($checkArr,$rawEntry['u_id']);
+        // }
+            
+        
+        //     foreach($checkArr as $check){
+        //         if (count($check)>1){
+        //             array_splice($filteredEntries,array_search($check,$checkArr),1);
+        //         }
+        //     }
+
+
+        // echoPre($filteredEntries);
+
 
         foreach($filteredEntries as $filteredEntry){
             if (strtolower($group) === "monthly") {
