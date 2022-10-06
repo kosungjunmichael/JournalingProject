@@ -131,4 +131,5 @@
             </div>
         </div>
     </div>
+    <div id="blurry"></div>
 </header>
