@@ -515,11 +515,12 @@
     .jr-feature-container {
         width: 386px;
         margin-left: 0px;
-        margin-top: 229px;
+        margin-top: -11px;
     }
     .jr-text-container {
         height: 350px;
-        width: 100%;
+        width: 88%;
+        margin-left: 1px;
     }
 
     .tweets-container {
