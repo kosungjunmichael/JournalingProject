@@ -41,7 +41,7 @@ for ($i = 0; $i < count($res); $i++) {
 						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
                         <?php } 
-							else (count($tags) === 1 && $tags[0] !== null){
+							else if (count($tags) === 1 && $tags[0] !== null){
 								for ($l = 0; $l < 1; $l++) { 
 								?>
 								<div class="inside-album-tags-div">
