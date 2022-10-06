@@ -17,6 +17,7 @@ let deleteFiltersBtn = document.querySelector('.filter-remove-all');
 // array of all the filter results to be added
 let addedFilters = [];
 
+// monthly and weekly switch
 let timeSwitch = document.querySelectorAll('.display-tag');
 
 //                  filter switches
