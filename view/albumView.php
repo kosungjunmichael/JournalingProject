@@ -22,7 +22,6 @@ for ($i = 0; $i < count($res); $i++) {
 	$newDate = date("F j, Y", strtotime($date_created));
 	$month_name = date("F", strtotime($date_created));
 	$title = $res[$i]["title"];
-
 	$tagStr = $res[$i]["tags"];
 	$tags = explode(",", $tagStr); // if the month_created is NOT in the array, add it and display it
 	if (!in_array($month_created, $month_arr)) {
@@ -33,11 +32,15 @@ for ($i = 0; $i < count($res); $i++) {
 	?>
             <div id="album-container-bottom">
             
-                    <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE . "/public/images/uploaded/" .	$path[0] ?>")';>
-                        <p id="album-title"> <?= htmlspecialchars($title) ?> </p>
+                    <div class="album" onclick="openModal('<?= $path_raw ?>')" style='background-image: url("<?= BASE .
+	"/public/images/uploaded/" .
+	$path[0] ?>")';>
+                        <p id="album-title"> <?= htmlspecialchars(
+                        	$title
+                        ) ?> </p>
                         <div class="album-bottom">
 <div class="tags-container">
-                        <?php 
+<?php 
 						if (count($tags) === 1 && $tags[0] == null) { ?> 
                             <p class="inside-album-tags">No tag</p>
                         <?php } 
@@ -48,7 +51,6 @@ for ($i = 0; $i < count($res); $i++) {
 									<p class="inside-album-tags"><?= htmlspecialchars($tags[$l]) ?></p>
 								</div>
 								<?php }}
-						
 						
 						else {
 							// foreach ($tags as $tag) { 
@@ -64,16 +66,15 @@ for ($i = 0; $i < count($res); $i++) {
                     </div>
                 </div> 
             </div>
-	<?php 
-			if ($i + 1 < count($res)) {
-				$date_created_next = $res[$i + 1]["date_created"];
-				$month_created_next = date("F Y", strtotime($date_created_next));
-				if ($month_created_next !== $month_created) {
-					echo "</div>";
-				}
-				} else {
-					echo "</div>";
-				}
+	<?php if ($i + 1 < count($res)) {
+ 	$date_created_next = $res[$i + 1]["date_created"];
+ 	$month_created_next = date("F Y", strtotime($date_created_next));
+ 	if ($month_created_next !== $month_created) {
+ 		echo "</div>";
+ 	}
+ } else {
+ 	echo "</div>";
+ }
 }
 ?>
 
