@@ -5,7 +5,7 @@
 <?php include("sidebarView.php");?>
     <div id="calendar-wrap">
         <div class="page-header">
-            <h2 class="page-header-text">Calendar</h2>
+            <h1 class="title">Calendar</h1>
         </div>
         <div id="calendar"></div>
         <div id="calendar-mobile-details-container" class="hidden"></div>

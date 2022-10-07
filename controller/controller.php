@@ -18,31 +18,40 @@
  	require ROOT . "/view/aboutView.php";
  }
 
- function toTimeline($alertText)
- {
- 	$entry_manager = new EntryManager();
- 	$user_manager = new UserManager();
- 	$entries = $entry_manager->getEntries($_SESSION["uid"], "monthly");
- 	if (isset($alertText["alert"])) {
- 		switch ($alertText["alert"]) {
- 			case "newEntry":
- 				$alert = "Entry successfully created";
- 				break;
- 			case "deleteEntry":
- 				$alert = "Entry Successfully deleted";
- 				break;
- 			case "login":
- 				$username = $user_manager->getUsername($_SESSION["uid"])[0];
- 				$alert = "Welcome back! $username";
- 				break;
- 			default:
- 				break;
- 		}
- 	}
- 	$view = "monthly";
+ function toTimeline($alertText,$entryGroup)
+{
+    $entry_manager = new EntryManager();
+    $user_manager = new UserManager();
+    if (isset($alertText['alert'])){
+        switch ($alertText['alert']){
+            case "newEntry":
+                $alert = "Entry successfully created";
+            break;
+            case "deleteEntry":
+                $alert = "Entry Successfully deleted";
+                break;
+            case "login":
+                $username = $user_manager->getUsername($_SESSION['uid'])[0];
+                $alert = "Welcome back! $username";
+            break;
+            case "signup":
+                $username = $user_manager->getUsername($_SESSION['uid'])[0];
+                $alert = "Welcome! $username";
+            break;
+            default:
+            break;
+        }
+    }
+    if ($entryGroup === "monthly"){
+        $entries = $entry_manager->getEntries($_SESSION["uid"], "monthly");
+        // echoPre($entries);
+    } else if ($entryGroup === "weekly"){
+        $entries = $entry_manager->getEntries($_SESSION["uid"], "weekly");
+    }
+    $view = $entryGroup;
 
- 	require ROOT . "/view/timelineView.php";
- }
+    require ROOT . "/view/timelineView.php";
+}
 
  function toAlbum($u_id)
  {
@@ -109,7 +118,7 @@
  	$check = $userManager->createKakaoUser($data, $type);
 
  	if ($check === false) {
- 		toTimeline($_SESSION["uid"], "monthly");
+        header("Location: index.php?action=toTimeline&alert=signup");
  	} else {
  		$error_signup = $check;
  		require ROOT . "/view/journeyView.php";
@@ -143,7 +152,7 @@
  		$check = $userManager->createRegUser($data, $type);
 
  		if ($check === false) {
- 			toTimeline($_SESSION["uid"], "monthly");
+            header("Location: index.php?action=toTimeline&alert=signup");
  		} else {
  			// echoPre($check);
  			$error_signup = $check;
@@ -215,55 +224,61 @@
  		$entry_uid = $entryManager->createEntry($data);
  		$tagManager->submitTags($data->tags, $entry_uid);
  		if (!empty($_FILES)) {
+ 			// echoPre($_FILES);
  			foreach ($_FILES as $images) {
- 				if ($images["error"] === UPLOAD_ERR_OK) {
- 					if (getimagesize($images["tmp_name"])) {
- 						if (
- 							mime_content_type($images["tmp_name"]) == "image/jpg" or
- 							mime_content_type($images["tmp_name"]) == "image/jpeg" or
- 							mime_content_type($images["tmp_name"]) == "image/png"
- 						) {
- 							if ($images["size"] <= 5e6) {
- 								$checkImgs = $entryManager->uploadImages($entry_uid);
- 							} else {
- 								throw new Exception("Error: image size is greater than 5MB");
- 							}
- 						} else {
- 							throw new Exception(
- 								"Error: image is not of an approved type (.jpg, .jpeg, .png)"
- 							);
- 						}
- 					} else {
- 						throw new Exception("Error: file uploaded is not an image");
- 					}
- 				}
+ 				$checkImgs = $entryManager->uploadImages($entry_uid);
+ 				// echoPre($images);
+ 				// echoPre(is_file($images["tmp_name"]));
  			}
- 			header("Location: index.php?action=toTimeline&alert=newEntry");
- 		} else {
- 			// throw new Exception('Error, entry ID not returned - controller.php: newEntry()');
- 			$error = "Not a valid Entry";
- 			require ROOT . "/view/createEntryView.php";
+ 		// 	foreach ($_FILES as $images) {
+ 		// 		if ($images["error"] === UPLOAD_ERR_OK) {
+ 		// 			if (getimagesize($images["tmp_name"])) {
+ 		// 				if (
+ 		// 					mime_content_type($images["tmp_name"]) == "image/jpg" or
+ 		// 					mime_content_type($images["tmp_name"]) == "image/jpeg" or
+ 		// 					mime_content_type($images["tmp_name"]) == "image/png"
+ 		// 				) {
+ 		// 					if ($images["size"] <= 5e6) {
+ 		// 						$checkImgs = $entryManager->uploadImages($entry_uid);
+ 		// 					} else {
+ 		// 						throw new Exception("Error: image size is greater than 5MB");
+ 		// 					}
+ 		// 				} else {
+ 		// 					throw new Exception(
+ 		// 						"Error: image is not of an approved type (.jpg, .jpeg, .png)"
+ 		// 					);
+ 		// 				}
+ 		// 			} else {
+ 		// 				throw new Exception("Error: file uploaded is not an image");
+ 		// 			}
+ 		// 		}
+ 		// 	}
  		}
+ 		header("Location: index.php?action=toTimeline&alert=newEntry");
+ 	} else {
+ 		$error = "Not a valid Entry";
+ 		require ROOT . "/view/createEntryView.php";
  	}
  }
 
  function filterEntries($data)
  {
- 	$entryManager = new EntryManager();
- 	$filterManager = new FilterManager();
- 	// $type = "monthly";
- 	if ($data["filter"] === "") {
- 		$entries = $entryManager->getEntries($_SESSION["uid"], "monthly");
- 	} else {
- 		// $entries = $filterManager->filterEntries(
- 		// 	$_SESSION["uid"],
- 		// 	$data["filter"],
- 		// 	$data["value"]
- 		// );
- 		// echoPre($entries);
- 	}
- 	require ROOT . "/view/timelineFiltered.php";
- }
+    $entryManager = new EntryManager();
+    $filterManager = new FilterManager();
+    // $type = "monthly";
+    if ($data["filter"] === "") {
+            $entries = $entryManager->getEntries($_SESSION["uid"], strtolower($data['group']));
+    } else {
+            $entries = $filterManager->filterEntries(
+                $_SESSION["uid"],
+                $data["filter"],
+                $data["value"],
+                $data["group"]
+            );
+    }
+    $group = strtolower($data['group']);
+    require ROOT . "/view/timelineFiltered.php";
+}
 
  function deleteEntry($data)
  {
@@ -276,7 +291,7 @@
  {
  	$entryManager = new EntryManager();
  	$entryContent = $entryManager->getEntry($entryId, $_SESSION["uid"]);
- 	require ROOT . "/view/viewEntryView.php";
+ 	require ROOT . "/view/entryView.php";
  }
  function updateEntry($data, $entryId)
  {

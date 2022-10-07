@@ -32,6 +32,7 @@ body[data-theme='light'] {
     --time-tag-bg: var(--grey-mid-light);
     --button-color: rgba(0,0,0,0.4);
     --album-color: rgba(200, 200, 200, 1);
+    --entry-text-field: var(--white);
     --calendar-entry-link-details: var(--grey-mid-light);
 }
 
@@ -47,6 +48,7 @@ body[data-theme='dark'] {
     --time-tag-bg: var(--grey-superlight);
     --button-color: rgba(255,255,255,0.2);
     --album-color: rgba(0, 0, 0, 1);
+    --entry-text-field: var(--grey-dark);
     --calendar-entry-link-details: var(--grey);
 }
 
@@ -113,7 +115,7 @@ body{
     width: 24px;
 }
 
-.logo-svg-box {
+gbox {
     fill: var(--bg-secondary);
 }
 
@@ -248,18 +250,22 @@ body{
 	display: none;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
 	/* Hamburger menu */
 	#sidebar-container {
 		display: none;
 	}
 
+    body {
+        overflow-x: hidden;
+    }
+    
 	#sidebar-hamburger {
 		display: block;
 		position: absolute;
-		top: 50px;
-		right: 50px;
-		z-index: 1;
+		top: 30px;
+		right: 30px;
+		z-index: 30;
 		-webkit-user-select: none;
 		user-select: none;
 	}
@@ -267,6 +273,7 @@ body{
 	#sidebar-hamburger a {
 		text-decoration: none;
 		transition: color 0.3s ease;
+        z-index: 5;
 	}
 
 	#sidebar-hamburger input {
@@ -294,8 +301,8 @@ body{
 		z-index: 100;
 		transform-origin: 4px 0px;
 
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
-        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1); 
+        background: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 	}
 
 	#sidebar-hamburger span:first-child {
@@ -331,7 +338,7 @@ body{
 		height: 100vh;
 		margin: -77px 0 0 0;
 		padding: 50px 50px 20px 50px;
-		right: -50px;
+		right: -30px;
 		background: var(--bg-secondary);
 		list-style-type: none;
 		-webkit-font-smoothing: antialiased;
@@ -357,7 +364,33 @@ body{
 	#sidebar-hamburger input:checked ~ div {
 		transform: none;
 	}
+}
 
+@media screen and (max-width: 600px) {
+	/* Hamburger menu */
+	#hamburger-menu {
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+		margin: -70px 0 0 0;
+		padding: 50px 50px 20px 50px;
+		right: -35px;
+		background: var(--bg-secondary);
+		list-style-type: none;
+		-webkit-font-smoothing: antialiased;
+		/* to stop flickering of text in safari */
+
+		transform-origin: 0% 0%;
+		transform: translate(100%, 0);
+
+		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+	}
+}
+    
 /* --------------------------- */
 /* --------------------------- */
 
@@ -375,19 +408,5 @@ body{
     font-family:'Galey';
     text-transform: capitalize;
 }
-
-}
-
-@media screen and (max-width: 730px) {
-    #sidebar-container{
-        height: 100%;
-        background-color: var(--bg-secondary);
-        position: absolute;
-        left: -240px;
-    }
-
-    main#timeline {
-        width:100%;
-    }
 
 }

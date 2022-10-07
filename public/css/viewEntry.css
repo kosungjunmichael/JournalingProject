@@ -64,6 +64,10 @@
     align-items: flex-end;
 }
 
+.entryID{
+    display:none;
+}
+
 #edit-control-btns{
     display:flex;
 }

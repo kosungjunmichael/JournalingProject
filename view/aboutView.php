@@ -1,38 +1,42 @@
 <?php $title = "About Us"; ?>
-
 <?php $style = "aboutView"; ?>
 
 <?php ob_start(); ?>
-<?php include(ROOT . "/view/header.php"); ?>
+<?php include ROOT . "/view/header.php"; ?>
 
 <div class="landing-box">
-    <div class="about">
-        <h1>
-            About
-        </h1>
-        <br>
-        <p>
-            <a href="#"><strong>Dear Diary</strong></a> is a journaling app for the iPhone, iPad and Mac. From once-in-a-lifetime events
-            to everyday moments, Dear Diary’s elegant interface makes journaling your life a simple
-            pleasure. <br>
+    <div class="about-container">
+        <div class="about">
+            <h1>
+                About
+            </h1>
             <br>
-            <a href="#"><strong>Dear Diary</strong></a> launched on the iOS and Mac App Stores in 2022 to fill a need: record and store
-            the important memories, photos, and details of life. The response to Dear Diary has been
-            overwhelming: Over ten million downloads, Editor’s Choice, App of the Year, Apple Design
-            Award, and, most of all, a solid 4.8-star rating from our fantastic users.
-        </p>
+            <p>
+                <a href="#"><strong>Dear Diary</strong></a> is a journaling app for the iPhone, iPad and Mac. From once-in-a-lifetime events
+                to everyday moments, Dear Diary’s elegant interface makes journaling your life a simple
+                pleasure. <br>
+                <br>
+                <a href="#"><strong>Dear Diary</strong></a> launched on the iOS and Mac App Stores in 2022 to fill a need: record and store
+                the important memories, photos, and details of life. The response to Dear Diary has been
+                overwhelming: Over ten million downloads, Editor’s Choice, App of the Year, Apple Design
+                Award, and, most of all, a solid 4.8-star rating from our fantastic users.
+            </p>
+        </div>
     </div>
     <br>
     <div class="team">
-        <h1>Our <span>Team</span></h1>
-        <br>
-        <p>
-            The Dear Diary Team is a talented group of engineers and specialists, working remotely from
-            across the world. <br>
-            <br>
-            Feel free to <a href="#">contact</a> us.
-        </p>
-
+        <div class="team-text-container">
+            <div class="team-text">
+                <h1>Our <span>Team</span></h1>
+                <br>
+                <p>
+                    The Dear Diary Team is a talented group of engineers and specialists, working remotely from
+                    across the world. <br>
+                    <br>
+                    Feel free to <a href="#">contact</a> us.
+                </p>
+            </div>
+        </div>
         <div id="about-us-container">
             <div id="about-us-row">
                 <div class="about-us-card">
@@ -128,7 +132,7 @@
                     <div class="about-us-description">
                         <h2 class="member-name">Mike</h2>
                         <p class="member-title">Software Engineer</p>
-                        <p class="member-describe">Thinking about absolutely nothing</p>
+                        <p class="member-describe">Habitual Daydreamer</p>
                         <div class="about-us-bottom">
                             <a href="https://www.linkedin.com/in/mendez-mike/">
                                 <i class='bx bxl-linkedin-square'></i>
@@ -151,7 +155,7 @@
                         <p class="member-title">God Emperor Engineer</p>
                         <p class="member-describe">I'm trying to punch the person above me</p>
                         <div class="about-us-bottom">
-                            <a href="#">
+                            <a href="https://www.linkedin.com/in/sung-jun-michael-ko-1a515b23b/">
                                 <i class='bx bxl-linkedin-square'></i>
                             </a>
                             <a href="mailto: mike.ko96@gmail.com">
@@ -210,19 +214,21 @@
     </div>
     <br>
     <div class="products">
-        <h1><span>Dear Diary</span> Products</h1>
-        <br>
-        <h4><span>PC<span></h4>
-        <p>
-            This award-winning app is packed with powerful features, including a map view, quick entry
-            menu bar, and timeline filters. Learn more.
-        </p>
-        <br>
-        <h4><span>Phone and Ipad<span></h4>
-        <p>
-            Journal on-the-go using your iOS devices. Never lose the context of “when, where, and what”
-            with automatic date, time, location, weather, and motion activity metadata.
-        </p>
+        <div class="products-text-container">
+            <h1><span>Dear Diary</span> Products</h1>
+            <br>
+            <h4><span>PC<span></h4>
+            <p>
+                This award-winning app is packed with powerful features, including a map view, quick entry
+                menu bar, and timeline filters. Learn more.
+            </p>
+            <br>
+            <h4><span>Phone and Ipad<span></h4>
+            <p>
+                Journal on-the-go using your iOS devices. Never lose the context of “when, where, and what”
+                with automatic date, time, location, weather, and motion activity metadata.
+            </p>
+        </div>
     </div>
     <div id="join-community">
         <h1>Join our <span>community</span></h1>
@@ -277,12 +283,10 @@
 
 </div>
 
-<?php include(ROOT . "/view/footer.php"); ?>
+<?php include ROOT . "/view/footer.php"; ?>
 
 <?php $content = ob_get_clean(); ?>
 <?php
-// require("journeyTemplate.php"); 
+// require("journeyTemplate.php");
 ?>
-<?php
-require("template.php");
-?>
+<?php require "template.php"; ?>

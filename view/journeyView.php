@@ -2,7 +2,6 @@
 <?php $style = "journey"; ?>
 
 <?php ob_start(); ?>
-
 <?php include ROOT . "/view/header.php"; ?>
 
 <div class="container">
@@ -12,7 +11,7 @@
             <h1 class="journey-h1">
                 Dear Diary. <br><span class="journey-span">Your journal for life</span>.
             </h1>
-            <p>The <span class="journey-span">#1</span> app for <span class="journey-span">journaling</span>.</p>
+            <p class="journey-sub">The <span class="journey-span">#1</span> app for <span class="journey-span">journaling</span>.</p>
         </div>
 
         <div class="content-container">
@@ -416,6 +415,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="empty-div">
         </div>
     </section>
 
