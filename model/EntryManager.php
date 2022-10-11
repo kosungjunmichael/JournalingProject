@@ -33,14 +33,14 @@ class EntryManager extends Manager
 		);
 		$req->bindParam("entry_id", $entry_id, PDO::PARAM_STR);
 		$req->bindParam("path", $newpath, PDO::PARAM_STR);
-		$req->execute(); 
+		$req->execute();
 	}
 
 	public function uploadImages($entry_id)
 	{
 		foreach ($_FILES as $file) {
 			if ($file["error"] === 0) {
-				// return $_FILES;
+				// echoPre($file);
 				$this->uploadImage($file, $entry_id);
 			}
 		}
@@ -51,8 +51,8 @@ class EntryManager extends Manager
 		$db = $this->dbConnect();
 		// check if UID already exists
 		// fetch matching unique IDs
-		$query = $db->prepare('SELECT u_id 
-                                FROM entries 
+		$query = $db->prepare('SELECT u_id
+                                FROM entries
                                 WHERE u_id = :u_id');
 		$query->bindParam("u_id", $uid, PDO::PARAM_STR);
 		$query->execute();
@@ -70,7 +70,9 @@ class EntryManager extends Manager
 		} while (count($existingUID) > 0);
 
 		// Getting lat/long for entry location
-		$lat_lng = json_encode($this->createCoord($data->location));
+        $lat_lng = ($data->location === '')
+        ? '{"lat":"","lng":""}'
+        : json_encode($this->createCoord($data->location));
 
 		// Inserting the entry into the 'entries' table
 		$req = $db->prepare('INSERT INTO entries
@@ -133,7 +135,12 @@ class EntryManager extends Manager
 			}
 			//////////////END OF IMG UPDATE
 
-			$lat_lng = json_encode($this->createCoord($data->location));
+            if ($data->location === ""){
+                $data->location = '{"lat":"","lng":""}';
+            } else {
+                $lat_lng = json_encode($this->createCoord($data->location));
+            }
+
 			// $req = $db->prepare('UPDATE entries e SET e.title = :inTitle
 			// , e.text_content = :inText_content
 			// , e.location =:inLocation
@@ -318,18 +325,20 @@ class EntryManager extends Manager
 	{
 		$location = urlencode($location);
 		$url = "https://maps.googleapis.com/maps/api/geocode/json?address={$location}&key={$_SERVER["GMAP_API_KEY"]}";
-		$resp = json_decode(file_get_contents($url), true);
-		$lat = isset($resp["results"][0]["geometry"]["location"]["lat"])
-			? $resp["results"][0]["geometry"]["location"]["lat"]
-			: "";
-		$lng = isset($resp["results"][0]["geometry"]["location"]["lng"])
-			? $resp["results"][0]["geometry"]["location"]["lng"]
-			: "";
-
-		return [
-			"lat" => $lat,
-			"lng" => $lng,
-		];
+        if(file_get_contents($url)){
+            $resp = json_decode(file_get_contents($url), true);
+            $lat = isset($resp["results"][0]["geometry"]["location"]["lat"])
+                ? $resp["results"][0]["geometry"]["location"]["lat"]
+                : "";
+            $lng = isset($resp["results"][0]["geometry"]["location"]["lng"])
+                ? $resp["results"][0]["geometry"]["location"]["lng"]
+                : "";
+    
+            return [
+                "lat" => $lat,
+                "lng" => $lng,
+            ];
+        };
 	}
 
 	public function entryDisplay($userId)

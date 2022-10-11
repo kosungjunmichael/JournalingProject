@@ -25,6 +25,7 @@ li {
 }
 
 #calendar-wrap {
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     padding: 30px 0;

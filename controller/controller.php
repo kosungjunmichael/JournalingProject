@@ -225,21 +225,24 @@
  		$tagManager->submitTags($data->tags, $entry_uid);
  		if (!empty($_FILES)) {
  			// echoPre($_FILES);
+ 			// foreach ($_FILES as $images) {
+ 			// 	$checkImgs = $entryManager->uploadImages($entry_uid);
+ 			// 	// echoPre($images);
+ 			// 	// echoPre(is_file($images["tmp_name"]));
+ 			// }
+            // array_pop($_FILES);
  			foreach ($_FILES as $images) {
- 				$checkImgs = $entryManager->uploadImages($entry_uid);
- 				// echoPre($images);
- 				// echoPre(is_file($images["tmp_name"]));
- 			}
- 			foreach ($_FILES as $images) {
- 				if ($images["error"] === UPLOAD_ERR_OK) {
- 					if (getimagesize($images["tmp_name"])) {
- 						if (
- 							mime_content_type($images["tmp_name"]) == "image/jpg" OR
+                // echoPre($_FILES);
+                //  echoPre($images);
+                 if ($images["error"] === UPLOAD_ERR_OK) {
+                    if (getimagesize($images["tmp_name"])) {
+                         if (
+                             mime_content_type($images["tmp_name"]) == "image/jpg" OR
  							mime_content_type($images["tmp_name"]) == "image/jpeg" OR
  							mime_content_type($images["tmp_name"]) == "image/png"
- 						) {
- 							if ($images["size"] <= 5e6) {
- 								$checkImgs = $entryManager->uploadImages($entry_uid);
+                             ) {
+                                 if ($images["size"] <= 5e6) {
+                                    $checkImgs = $entryManager->uploadImages($entry_uid);
  							} else {
  								throw new Exception("Error: image size is greater than 5MB");
  							}

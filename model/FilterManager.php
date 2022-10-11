@@ -39,20 +39,20 @@ class filterManager extends Manager
         // $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
         $filteredEntries = array_merge_recursive(...$FilteredEntriesByValue);
         // TODO: filter duplicate entries
-        // $checkArr = [];
-        // foreach($filteredEntries as $rawEntry){
-        //     array_push($checkArr,$rawEntry['u_id']);
-        // }
+        $checkArr = [];
+        foreach($filteredEntries as $rawEntry){
+            array_push($checkArr,$rawEntry['u_id']);
+        }
             
         
-        //     foreach($checkArr as $check){
-        //         if (count($check)>1){
-        //             array_splice($filteredEntries,array_search($check,$checkArr),1);
-        //         }
-        //     }
+            foreach($checkArr as $check){
+                if (count($check)>1){
+                    array_splice($filteredEntries,array_search($check,$checkArr),1);
+                }
+            }
 
 
-        // echoPre($filteredEntries);
+        echoPre($filteredEntries);
 
 
         foreach($filteredEntries as $filteredEntry){
