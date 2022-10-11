@@ -20,12 +20,12 @@ for (const coords of filteredData) {
 			Math.floor(
 				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
 					Math.ceil(-10000)
-			) / 1000000;
+			) / 100000000;
 		latLng.lng +=
 			Math.floor(
 				Math.random() * (Math.floor(10000) - Math.ceil(-10000) + 1) +
 					Math.ceil(-10000)
-			) / 1000000;
+			) / 100000000;
 	}
 	array.push(latLng);
 }

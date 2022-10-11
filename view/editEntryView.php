@@ -17,7 +17,7 @@ if (!isset($_SESSION["uid"])) {
 
         <!-- TITLE -->
         <div id="create-entry-title">
-            <input id="create-entry-title-input" type="text" name="title" placeholder="<?=$entryContent["title"] ?>"/>
+            <input id="create-entry-title-input" type="text" name="title" value="<?=$entryContent["title"] ?>"/>
         </div>
 
         <!-- TAG -->
@@ -53,7 +53,7 @@ if (!isset($_SESSION["uid"])) {
         <!-- LOCATION -->
         <div id="create-entry-location">
             <i class='bx bx-current-location'></i>
-            <input id="create-entry-location-input" type="text" name="location" placeholder="<?= $entryContent["location"] ?>" />
+            <input id="create-entry-location-input" type="text" name="location" value="<?= $entryContent["location"] ?>" />
         </div>
 
         <!-- WEATHER -->
