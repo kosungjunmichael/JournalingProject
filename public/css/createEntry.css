@@ -2,6 +2,7 @@
 body{
     overflow-y: scroll;
 }
+
 #create-entry-container {
     padding: 30px;
     width: 100%;
@@ -40,6 +41,7 @@ body{
 
 #create-entry-tag{
     background-color: var(--bg-secondary);
+    color: var(--text-color-primary);
     width: fit-content;
     display: flex;
     border-radius: 10px;
@@ -123,6 +125,7 @@ body{
 
 #create-entry-tag-details-p {
     font-size: 11px;
+    color: var(--text-color-primary);
 }
 
 #tag-remove-btn {
@@ -158,6 +161,7 @@ body{
 
 #create-entry-weather{
     background-color: var(--bg-secondary);
+    color: var(--text-color-primary);
     width: fit-content;
     height: 35px;
     display: flex;
@@ -221,8 +225,8 @@ body{
 }
 
 .entry-photo:hover {
-    background-color: var(--file-upload-hover-bg);
-    color: var(--file-upload-hover-text);
+    background-color: var(--primary-light);
+    color: var(--white);
 }
 
 .entry-photo label {
@@ -233,6 +237,7 @@ body{
     justify-content: center;
     padding-bottom: 10px;
     cursor: pointer;
+    color: var(--text-color-primary);
 }
 
 #create-entry-submit input{
@@ -317,48 +322,39 @@ input[type="color"]::-moz-color-swatch {
     font-weight: 500;
     padding: 15px;
     border-radius: 10px;
-}
-
-
-
-
-@media screen and (max-width: 955px) {
-#input-text {
-    margin-top: 10px;
-    background-color: var(--white);
-    color: var(--text-color-primary);
-    border: none;
-    outline: none;
-    height: 75%;
-    width: 100%;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 15px;
-    border-radius: 10px;
     overflow-y: scroll;
 }
-.txt-container {
-    background-color: var(--bg-secondary);
-    padding: 20px 20px;
-    width: 100%;
 
+#submit{
+    cursor: pointer;
 }
 
+#submit:hover{
+    cursor: pointer;
+    background-color: var(--primary-light);
+    color: var(--white);
+}
+
+@media screen and (max-width: 1200px) {
+    #input-text {
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    #input-text {
+        height: 65%;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    #input-text {
+        height: 60%;
+    }
 }
 @media screen and (max-width: 390px) {
     #input-text {
-        margin-top: 10px;
-        background-color: var(--white);
-        color: var(--text-color-primary);
-        border: none;
-        outline: none;
         height: 52%;
-        width: 100%;
-        font-size: 13px;
-        font-weight: 500;
-        padding: 15px;
-        border-radius: 10px;
-        overflow-y: scroll;
     }
 
     .option-button {

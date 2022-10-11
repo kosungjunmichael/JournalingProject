@@ -89,6 +89,10 @@ body{
     color: var(--grey);
 }
 
+::placeholder {
+    color: var(--text-color-primary);
+}
+
 /* --------------------------- */
 /* ---------SIDEBAR------------*/
 /* --------------------------- */
@@ -407,6 +411,5 @@ gbox {
     font-weight: 900;
     font-family:'Galey';
     text-transform: capitalize;
-}
-
+    color: var(--text-color-primary);
 }
