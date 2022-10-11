@@ -53,7 +53,7 @@ if (!isset($_SESSION["uid"])) {
         <!-- LOCATION -->
         <div id="create-entry-location">
             <i class='bx bx-current-location'></i>
-            <input id="create-entry-location-input" type="text" name="location" placeholder="<?= $entryContent["location"] ?>" />
+            <input id="create-entry-location-input" type="text" name="location" value="<?= $entryContent["location"] ?>" />
         </div>
 
         <!-- WEATHER -->
