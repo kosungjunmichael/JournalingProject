@@ -13,7 +13,7 @@ class EntryManager extends Manager
 		}
 	}
 
-	private function uploadImage($file, $entry_id)
+	public function uploadImage($file, $entry_id)
 	{
 		$hash = hash_file("md5", $file["tmp_name"]);
 		$first = substr($hash, 0, 2);
@@ -36,43 +36,41 @@ class EntryManager extends Manager
 		$req->execute();
 	}
 
-	public function uploadImages($entry_id)
-	{
-		foreach ($_FILES as $file) {
-			if ($file["error"] === 0) {
-				// echoPre($file);
-				$this->uploadImage($file, $entry_id);
-			}
-		}
-	}
-
-	protected function checkUniqueIDExist($uid)
-	{
-		$db = $this->dbConnect();
-		// check if UID already exists
-		// fetch matching unique IDs
-		$query = $db->prepare('SELECT u_id
-                                FROM entries
-                                WHERE u_id = :u_id');
-		$query->bindParam("u_id", $uid, PDO::PARAM_STR);
-		$query->execute();
-		return $query->fetchAll();
-	}
+	// protected function checkUniqueIDExist($uid)
+	// {
+	// 	$db = $this->dbConnect();
+	// 	// check if UID already exists
+	// 	// fetch matching unique IDs
+	// 	$query = $db->prepare('SELECT u_id
+    //                             FROM entries
+    //                             WHERE u_id = :u_id');
+	// 	$query->bindParam("u_id", $uid, PDO::PARAM_STR);
+	// 	$query->execute();
+	// 	return $query->fetchAll();
+	// }
 
 	public function createEntry($data)
 	{
 		$db = $this->dbConnect();
 
+        // Get all unique ID's for entries
+        $allUIDs = $this->checkUniqueIDExist("entries");
+
+        // echoPre($allUIDs);
 		// create unique ID, check if it's actually unique
-		do {
-			$uid = $this->uidCreate();
-			$existingUID = $this->checkUniqueIDExist($uid);
-		} while (count($existingUID) > 0);
+        foreach($allUIDs as $existingUID){
+            do {
+                $uid = $this->uidCreate();
+                // $existingUID = $this->checkUniqueIDExist($uid);
+            } while ($uid === $existingUID);
+        }
+        // echoPre($uid);
 
 		// Getting lat/long for entry location
-        $lat_lng = ($data->location === '')
-        ? '{"lat":"","lng":""}'
-        : json_encode($this->createCoord($data->location));
+		$lat_lng =
+			$data->location === ""
+				? '{"lat":"","lng":""}'
+				: json_encode($this->createCoord($data->location));
 
 		// Inserting the entry into the 'entries' table
 		$req = $db->prepare('INSERT INTO entries
@@ -111,24 +109,30 @@ class EntryManager extends Manager
 	public function updateOldEntry($data, $entryId)
 	{
 		$db = $this->dbConnect();
-		if(isset($data)&& !empty($data)){
+		if (isset($data) && !empty($data)) {
 			//////////UPDATE THE IMAGE
-			if($_FILES['imgUpload']){
-				$hash = hash_file("md5", $_FILES['imgUpload']["tmp_name"]);
+			if ($_FILES["imgUpload"]) {
+				$hash = hash_file("md5", $_FILES["imgUpload"]["tmp_name"]);
 				$first = substr($hash, 0, 2);
 				$second = substr($hash, 2, 2);
 
 				$this->create_directory(ROOT . "/public/images/uploaded/$first");
-				$this->create_directory(ROOT . "/public/images/uploaded/$first/$second");
+				$this->create_directory(
+					ROOT . "/public/images/uploaded/$first/$second"
+				);
 
-				$type = explode("/", $_FILES['imgUpload']["type"])[1];
+				$type = explode("/", $_FILES["imgUpload"]["type"])[1];
 				$filename = substr($hash, 4) . "." . $type;
 				$newpath = "$first/$second/$filename";
 				// echoPre($newpath);
-				move_uploaded_file($_FILES['imgUpload']["tmp_name"], "./public/images/uploaded/$first/$second/$filename");
-				
+				move_uploaded_file(
+					$_FILES["imgUpload"]["tmp_name"],
+					"./public/images/uploaded/$first/$second/$filename"
+				);
+
 				$req = $db->prepare(
-					"UPDATE entry_images SET path = :inPath WHERE entry_uid = :entryId ORDER BY id DESC LIMIT 1)");
+					"UPDATE entry_images SET path = :inPath WHERE entry_uid = :entryId ORDER BY id DESC LIMIT 1)"
+				);
 				$req->bindParam("inPath", $newpath, PDO::PARAM_STR);
 				$req->bindParam("path", $entryId, PDO::PARAM_STR);
 				$req->execute();
@@ -147,15 +151,15 @@ class EntryManager extends Manager
 			// , e.lat_lng = :inLatLong
 			// , e.weather = :inWeather
 			// , e.last_edited = NOW()
-			// WHERE e.user_uid = :userId 
-			// AND e.u_id = :entryId 
+			// WHERE e.user_uid = :userId
+			// AND e.u_id = :entryId
 			// AND e.is_active = 1');
 
 			///CONTROLLING THE TAG EXISTENCE
-			$query = $db->prepare('SELECT id from tags WHERE tag_name = ?');
+			$query = $db->prepare("SELECT id from tags WHERE tag_name = ?");
 			$query->execute([$data->tags]);
-			if($query->rowCount()==0){
-				$query = $db->prepare('INSERT INTO tags (tag_name) VALUES (?)');
+			if ($query->rowCount() == 0) {
+				$query = $db->prepare("INSERT INTO tags (tag_name) VALUES (?)");
 				$query->execute([$data->tags]);
 			}
 
@@ -172,19 +176,18 @@ class EntryManager extends Manager
 				AND tm.entry_id = e.u_id 
 				AND i.entry_uid=e.u_id');
 
-
-			$req->execute(array(
-				"inTitle" =>$data->title,
-				"inText_content" =>$data->textContent,
+			$req->execute([
+				"inTitle" => $data->title,
+				"inText_content" => $data->textContent,
 				"inLocation" => $data->location,
 				"inLatLong" => $lat_lng,
-				"inWeather" =>$data->weather,
+				"inWeather" => $data->weather,
 				"inTag" => $data->tags,
 				"userId" => $data->userUID,
-				"entryId" => $entryId
-			) );
+				"entryId" => $entryId,
+			]);
 
-			if($req->rowCount() == 1){ 
+			if ($req->rowCount() == 1) {
 				echo "<script>alert('Your entry has been updated successfully');</script>";
 				$req->closeCursor();
 				return $data->userUID;
@@ -206,15 +209,15 @@ class EntryManager extends Manager
 		$thisMonth = date("F");
 		// current week number for the year
 		$thisWeek = date("W");
-		
+
 		if ($entryGroup === "all") {
-            return $this->getEnt("allEntries", $userId);
+			return $this->getEnt("allEntries", $userId);
 		} else {
 			// empty array to store the return content
 			$entriesDisplay = [];
-            // All Entries
-            $entryContents = $this->getEnt("allEntries", $userId);
-            foreach($entryContents as $entryContent){
+			// All Entries
+			$entryContents = $this->getEnt("allEntries", $userId);
+			foreach ($entryContents as $entryContent) {
 				// if Monthly
 				if ($entryGroup === "monthly") {
 					$monthYearKey = $entryContent["month"] . " " . $entryContent["year"];
@@ -227,7 +230,7 @@ class EntryManager extends Manager
 						$entriesDisplay[$monthYearKey] = [];
 						$entriesDisplay[$monthYearKey][] = $entryContent;
 					}
-				} else if ($entryGroup === "weekly") {
+				} elseif ($entryGroup === "weekly") {
 					// for current year & month & weeknumber
 					if (
 						$entryContent["year"] == $thisYear and
@@ -259,9 +262,9 @@ class EntryManager extends Manager
 	public function getEntry($entryId, $userId)
 	{
 		$db = $this->dbConnect();
-		
-        // Single Entry
-        $entryContent = $this->getEnt("singleEntry", $userId, $entryId);
+
+		// Single Entry
+		$entryContent = $this->getEnt("singleEntry", $userId, $entryId);
 
 		$imagesReq = $db->prepare(
 			"SELECT path FROM entry_images WHERE entry_uid = ?"

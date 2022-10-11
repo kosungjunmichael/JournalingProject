@@ -76,6 +76,26 @@ class Manager
 
     }
 
+    protected function checkUniqueIDExist($type)
+    {
+        switch ($type){
+            case "entries":
+                $db = $this->dbConnect();
+        
+                $req = $db->query('SELECT ALL u_id FROM entries WHERE is_active = 1');
+                return $req->fetchAll(PDO::FETCH_ASSOC);
+                break;
+            case "users":
+                $db = $this->dbConnect();
+        
+                $req = $db->query('SELECT ALL u_id FROM users WHERE is_active = 1');
+                return $req->fetchAll(PDO::FETCH_ASSOC);
+            break;
+            default:
+            break;
+        }
+    }
+
 	protected function uidCreate()
 	{
 		if (!function_exists("crypto_rand_secure")) {

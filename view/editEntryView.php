@@ -17,7 +17,7 @@ if (!isset($_SESSION["uid"])) {
 
         <!-- TITLE -->
         <div id="create-entry-title">
-            <input id="create-entry-title-input" type="text" name="title" placeholder="<?=$entryContent["title"] ?>"/>
+            <input id="create-entry-title-input" type="text" name="title" value="<?=$entryContent["title"] ?>"/>
         </div>
 
         <!-- TAG -->
@@ -36,7 +36,7 @@ if (!isset($_SESSION["uid"])) {
                     ?>
                 <i class="ph-tag"></i>
                 <ul id="create-entry-tag-input-ul">
-                    <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag"/>
+                    <input type="text" name="entryTag" id="create-entry-tag-input" placeholder="Type Tag..."/>
                     <input type="text" name="tagNames" id="create-entry-tags-hidden" hidden/>
                 </ul>
             </div>
@@ -53,7 +53,7 @@ if (!isset($_SESSION["uid"])) {
         <!-- LOCATION -->
         <div id="create-entry-location">
             <i class='bx bx-current-location'></i>
-            <input id="create-entry-location-input" type="text" name="location" placeholder="<?= $entryContent["location"] ?>" />
+            <input id="create-entry-location-input" type="text" name="location" value="<?= $entryContent["location"] ?>" />
         </div>
 
         <!-- WEATHER -->
@@ -81,7 +81,7 @@ if (!isset($_SESSION["uid"])) {
                     <?php break;
                     } ?></i>
             <select id="weather-select" name="weather">
-                <option value="">Select Weather</option>
+                <option value="">Change Weather</option>
                 <option value="0">Sunny</option>
                 <option value="1">Rainy</option>
                 <option value="2">Cloudy</option>

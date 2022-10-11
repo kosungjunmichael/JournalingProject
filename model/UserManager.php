@@ -94,16 +94,16 @@ class UserManager extends Manager
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	protected function checkUniqueIDExist($uid)
-	{
-		$db = $this->dbConnect();
-		// check if UID already exists
-		// fetch matching unique IDs
-		$query = $db->prepare("SELECT u_id from users WHERE u_id = :inUID");
-		$query->bindParam("inUID", $uid, PDO::PARAM_STR);
-		$query->execute();
-		return $query->fetchAll();
-	}
+	// protected function checkUniqueIDExist($uid)
+	// {
+	// 	$db = $this->dbConnect();
+	// 	// check if UID already exists
+	// 	// fetch matching unique IDs
+	// 	$query = $db->prepare("SELECT u_id from users WHERE u_id = :inUID");
+	// 	$query->bindParam("inUID", $uid, PDO::PARAM_STR);
+	// 	$query->execute();
+	// 	return $query->fetchAll();
+	// }
 
 	protected function signUpErrors($credentials, $existingUser, $type)
 	{
@@ -147,10 +147,14 @@ class UserManager extends Manager
 		// CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
 		// IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
 		// IF NO, RETAIN UID AND CONTINUE WITH CODE
-		do {
-			$uid = $this->uidCreate();
-			$existingUID = $this->checkUniqueIDExist($uid);
-		} while (count($existingUID) > 0);
+        $userUIDs = $this->checkUniqueIDExist('users');
+
+        foreach($userUIDs as $existingUID){
+            do {
+                $uid = $this->uidCreate();
+                // $existingUID = $this->checkUniqueIDExist($uid);
+            } while ($existingUID === $uid);
+        }
 
 		$existingUser = $this->checkUserExist($credentials, "regular");
 
@@ -184,10 +188,14 @@ class UserManager extends Manager
 		// CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
 		// IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
 		// IF NO, RETAIN UID AND CONTINUE WITH CODE
-		do {
-			$uid = $this->uidCreate();
-			$existingUID = $this->checkUniqueIDExist($uid);
-		} while (count($existingUID) > 0);
+		$userUIDs = $this->checkUniqueIDExist('users');
+
+        foreach($userUIDs as $existingUID){
+            do {
+                $uid = $this->uidCreate();
+                // $existingUID = $this->checkUniqueIDExist($uid);
+            } while ($existingUID === $uid);
+        }
 
 		$existingUser = $this->checkUserExist($credentials, "kakao");
 		if ($existingUser) {
@@ -216,10 +224,14 @@ class UserManager extends Manager
 		// CREATES A UNIQUE ID AND CHECKS TO SEE IF ID ALREADY EXISTS
 		// IF YES, CREATE ANOTHER ONE AND CHECK AGAIN
 		// IF NO, RETAIN UID AND CONTINUE WITH CODE
-		do {
-			$uid = $this->uidCreate();
-			$existingUID = $this->checkUniqueIDExist($uid);
-		} while (count($existingUID) > 0);
+		$userUIDs = $this->checkUniqueIDExist('users');
+
+        foreach($userUIDs as $existingUID){
+            do {
+                $uid = $this->uidCreate();
+                // $existingUID = $this->checkUniqueIDExist($uid);
+            } while ($existingUID === $uid);
+        }
 
 		$existingUser = $this->checkUserExist($credentials, $type);
 		// echoPre($existingUser);
