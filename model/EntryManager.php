@@ -25,10 +25,7 @@ class EntryManager extends Manager
 		$type = explode("/", $file["type"])[1];
 		$filename = substr($hash, 4) . "." . $type;
 		$newpath = "$first/$second/$filename";
-		move_uploaded_file(
-			$file["tmp_name"],
-			"./public/images/uploaded/$first/$second/$filename"
-		);
+		move_uploaded_file($file["tmp_name"],"./public/images/uploaded/$first/$second/$filename");
 
 		$db = $this->dbConnect();
 		$req = $db->prepare(
@@ -39,28 +36,35 @@ class EntryManager extends Manager
 		$req->execute();
 	}
 
-	protected function checkUniqueIDExist($uid)
-	{
-		$db = $this->dbConnect();
-		// check if UID already exists
-		// fetch matching unique IDs
-		$query = $db->prepare('SELECT u_id 
-                                FROM entries 
-                                WHERE u_id = :u_id');
-		$query->bindParam("u_id", $uid, PDO::PARAM_STR);
-		$query->execute();
-		return $query->fetchAll();
-	}
+	// protected function checkUniqueIDExist($uid)
+	// {
+	// 	$db = $this->dbConnect();
+	// 	// check if UID already exists
+	// 	// fetch matching unique IDs
+	// 	$query = $db->prepare('SELECT u_id
+    //                             FROM entries
+    //                             WHERE u_id = :u_id');
+	// 	$query->bindParam("u_id", $uid, PDO::PARAM_STR);
+	// 	$query->execute();
+	// 	return $query->fetchAll();
+	// }
 
 	public function createEntry($data)
 	{
 		$db = $this->dbConnect();
 
+        // Get all unique ID's for entries
+        $allUIDs = $this->checkUniqueIDExist("entries");
+
+        // echoPre($allUIDs);
 		// create unique ID, check if it's actually unique
-		do {
-			$uid = $this->uidCreate();
-			$existingUID = $this->checkUniqueIDExist($uid);
-		} while (count($existingUID) > 0);
+        foreach($allUIDs as $existingUID){
+            do {
+                $uid = $this->uidCreate();
+                // $existingUID = $this->checkUniqueIDExist($uid);
+            } while ($uid === $existingUID);
+        }
+        // echoPre($uid);
 
 		// Getting lat/long for entry location
 		$lat_lng =
@@ -135,7 +139,12 @@ class EntryManager extends Manager
 			}
 			//////////////END OF IMG UPDATE
 
-			$lat_lng = json_encode($this->createCoord($data->location));
+            if ($data->location === ""){
+                $data->location = '{"lat":"","lng":""}';
+            } else {
+                $lat_lng = json_encode($this->createCoord($data->location));
+            }
+
 			// $req = $db->prepare('UPDATE entries e SET e.title = :inTitle
 			// , e.text_content = :inText_content
 			// , e.location =:inLocation
@@ -319,18 +328,20 @@ class EntryManager extends Manager
 	{
 		$location = urlencode($location);
 		$url = "https://maps.googleapis.com/maps/api/geocode/json?address={$location}&key={$_SERVER["GMAP_API_KEY"]}";
-		$resp = json_decode(file_get_contents($url), true);
-		$lat = isset($resp["results"][0]["geometry"]["location"]["lat"])
-			? $resp["results"][0]["geometry"]["location"]["lat"]
-			: "";
-		$lng = isset($resp["results"][0]["geometry"]["location"]["lng"])
-			? $resp["results"][0]["geometry"]["location"]["lng"]
-			: "";
-
-		return [
-			"lat" => $lat,
-			"lng" => $lng,
-		];
+        if(file_get_contents($url)){
+            $resp = json_decode(file_get_contents($url), true);
+            $lat = isset($resp["results"][0]["geometry"]["location"]["lat"])
+                ? $resp["results"][0]["geometry"]["location"]["lat"]
+                : "";
+            $lng = isset($resp["results"][0]["geometry"]["location"]["lng"])
+                ? $resp["results"][0]["geometry"]["location"]["lng"]
+                : "";
+    
+            return [
+                "lat" => $lat,
+                "lng" => $lng,
+            ];
+        };
 	}
 
 	public function entryDisplay($userId)
