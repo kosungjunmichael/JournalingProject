@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="text-container">
-                <p>"Dear Diary looks good, works great, and most importantly,<br> 
+                <p>"Dear Diary looks good, works great, and most importantly,<br>
                     I own and control my data."</p>
                 <div class="text-person">
                     <p>CTO of Doist</p>
@@ -43,20 +43,19 @@
             </div>
         </div>
     </section>
-    
+
     <section class="section-container">
         <!-- <div class="landing-box"> -->
         <div class="content">
             <!-- I have not idea how to make it move in media query spent 3 hours to make it move -->
             <h2 class="journey-h2"> Meet Dear Diary,<br>
-            Your Self-Care Journal</h2>
+                Your Self-Care Journal</h2>
             <div class="content-container">
                 <div class='feature-container'>
                     <div class="split-feature-container">
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/playstore_icon.png" 
-                                alt="playstore icon">
+                                <img src="./public/images/static/playstore_icon.png" alt="playstore icon">
                             </div>
                             <div class="list-item-content">
                                 <p>
@@ -66,8 +65,7 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/apple_icon.png" 
-                                    alt="apple icon">
+                                <img src="./public/images/static/apple_icon.png" alt="apple icon">
                             </div>
                             <div class="list-item-content">
                                 <p>
@@ -77,17 +75,15 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/trophy_icon.png" 
-                                    alt="trophy icon">
-                            </div> 
+                                <img src="./public/images/static/trophy_icon.png" alt="trophy icon">
+                            </div>
                             <div class="list-item-content">
                                 <p>Best of 2021 Apps</p>
                             </div>
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/android_icon.png" 
-                                    alt="android icon">
+                                <img src="./public/images/static/android_icon.png" alt="android icon">
                             </div>
                             <div class="list-item-content">
                                 <p>Excellence Award 2020</p>
@@ -95,26 +91,24 @@
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/ios_icon.png" 
-                                    alt="ios icon">
-                            </div> 
+                                <img src="./public/images/static/ios_icon.png" alt="ios icon">
+                            </div>
                             <div class="list-item-content">
                                 <p>iOS App Store Best New Update</p>
                             </div>
                         </div>
                         <div class="list-item">
                             <div class="list-item-avatar">
-                                <img src="./public/images/static/feature_icon.png" 
-                                    alt="feature icon">
+                                <img src="./public/images/static/feature_icon.png" alt="feature icon">
                             </div>
                             <div class="list-item-content">
                                 <p>Featured on Vogue, The New York</p>
                             </div>
                         </div>
-                    </div>   
+                    </div>
                     <div class="split-feature-container">
                         <p>
-                            Join millions of Dear Diary users and create a healthier, 
+                            Join millions of Dear Diary users and create a healthier,
                             happier mind. A sanctuary for your mind and soul, Dear Diary
                             will help increase your positive energy, be more grateful
                             and a calmer mind by building healthy thinkings through
@@ -122,10 +116,10 @@
                         </p>
                         <br>
                         <p>
-                        We're more than just a journal, or a diary; 
-                        we're your own motivational coach and happiness
-                        trainer. Let's embark on a fabulous journey
-                        of self-improvement today.
+                            We're more than just a journal, or a diary;
+                            we're your own motivational coach and happiness
+                            trainer. Let's embark on a fabulous journey
+                            of self-improvement today.
                         </p>
                     </div>
                 </div>
@@ -140,7 +134,7 @@
         <div class="note-container">
             <p>
                 In our age when cloud services can <span>shut down,
-                get bought,</span> or <span>change privacy policy</span> any day,
+                    get bought,</span> or <span>change privacy policy</span> any day,
                 the last thing you want is proprietary format
                 and data lock-in.
             </p>
@@ -153,7 +147,7 @@
                 Our community welcomes anyone who uses Dear Diary or is interested
                 in Dear Diary, no matter your language, country, or field. Come join us!
             </p>
-            <div class="subfeature-boxes"> 
+            <div class="subfeature-boxes">
                 <div class="subfeature">
                     <div class="subfeature-title">
                         <i class='bx bxs-book-open'></i>
@@ -171,7 +165,7 @@
                 </div>
                 <div class="subfeature">
                     <div class="subfeature-title">
-                        <i class='bx bxs-edit' ></i>
+                        <i class='bx bxs-edit'></i>
                         <span>Create together</span>
                     </div>
                     <div class="subfeature-description">
@@ -184,14 +178,14 @@
                 </div>
                 <div class="subfeature">
                     <div class="subfeature-title">
-                        <i class='bx bxs-bus-school' ></i>
+                        <i class='bx bxs-bus-school'></i>
                         <span>
                             Always available
                         </span>
                     </div>
                     <div class="subfeature-description">
                         <p>
-                            "No internet? No problem. Obsidian works completely offline, 
+                            "No internet? No problem. Obsidian works completely offline,
                             internet or service issues will never be your problem."
                         </p>
                         <p>
@@ -208,7 +202,7 @@
             <div id="smart-container-title">
                 <h2 class="journey-h2">The Smartest Self-Care Journal Ever</h2>
                 <p>Self-care doesn’t have to be hard. Make your wellbeing easy and convenient to commit to<br> by allowing
-                    your daily self-care habits to be done wherever and wherever you want, 
+                    your daily self-care habits to be done wherever and wherever you want,
                     as you<br> go about your day. Make full use of the smart features in Journey to make journaling
                     an<br> effortless habit.</p>
             </div>
@@ -219,15 +213,13 @@
                             Weather
                         </div>
                         <div class="smart-card-text">
-                            <div class="smart-card-icon">
-                                <div class="smart-display">
-                                    <p> 23°C</p> <i class='bx bxs-sun'></i>
-                                </div>
+                            <div class="smart-card-icon smart-icon-2">
+                                <i class="fa-solid fa-cloud-sun"></i>
                             </div>
                             <p class="smart-text">Automatically input weather conditions into your entries. Simply
-                             key in your location
-                                 to pull out the information you need. This feature
-                                  also works for backdated entries.</p>
+                                key in your location
+                                to pull out the information you need. This feature
+                                also works for backdated entries.</p>
                         </div>
                     </div>
                     <div class="smart-card-container map-bg">
@@ -235,13 +227,12 @@
                             Map
                         </div>
                         <div class="smart-card-text">
-                            <div class="smart-overline">
-                                <i class='bx bx-been-here'></i>
-                                <span>gangnam, seoul, south korea</span>
+                            <div class="smart-card-icon smart-icon-2">
+                                <i class="fa-solid fa-map-location-dot"></i>
                             </div>
-                            <p class="smart-text">Use Google maps to accurately tag your location in your entries. 
+                            <p class="smart-text">Use Google maps to accurately tag your location in your entries.
                                 Let yourself plan your future travels with ease by planning the details in your entries
-                                 and tagging them in relevant places.</p>
+                                and tagging them in relevant places.</p>
                         </div>
                     </div>
                 </div>
@@ -253,10 +244,10 @@
                         </div>
                         <div class="smart-card-text">
                             <div class="smart-card-icon smart-icon-2">
-                                <i class='bx bx-calendar' ></i>
+                                <i class='bx bx-calendar'></i>
                             </div>
                             <p class="smart-text">Maecenas commodo mauris at hendrerit condimentum. Nullam dapibus felis leo,
-                                 in sagittis mi auctor at. Vestibulum fringilla commodo mattis. Nunc ultricies ac enim sed scelerisque.</p>
+                                in sagittis mi auctor at. Vestibulum fringilla commodo mattis. Nunc ultricies ac enim sed scelerisque.</p>
                         </div>
                     </div>
                     <div class="smart-card-container">
@@ -265,11 +256,11 @@
                         </div>
                         <div class="smart-card-text">
                             <div class="smart-card-icon smart-icon-2">
-                                <i class='bx bx-photo-album' ></i>
+                                <i class='bx bx-photo-album'></i>
                             </div>
                             <p class="smart-text">Fusce eu erat ut turpis fringilla lacinia lobortis quis elit. Ut sagittis tortor ut
-                                 velit pulvinar lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                                  inceptos himenaeos. Suspendisse vitae finibus quam, eget aliquam eros.</p>
+                                velit pulvinar lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                                inceptos himenaeos. Suspendisse vitae finibus quam, eget aliquam eros.</p>
                         </div>
                     </div>
                 </div>
@@ -292,8 +283,8 @@
                                 <div class="twitter-profile">
                                     <a href="#" class="author-avatar">
                                         <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                            1,
-                                            70
+                                        	1,
+                                        	70
                                         ) ?>" alt="user_image" class="user_image">
                                     </a>
                                 </div>
@@ -345,8 +336,8 @@
                                     @deardiaryapp
                                 </a>
                                 New to Journaling! Would love some ideas for<br> what topics and templates
-                                 you all have created, what tags do<br> you all find useful? Just looking
-                                  for ideas to build my journal!<br> Thanks
+                                you all have created, what tags do<br> you all find useful? Just looking
+                                for ideas to build my journal!<br> Thanks
                             </p>
                         </div>
                     </div>
@@ -358,8 +349,8 @@
                                 <div href="#" class="twitter-profile">
                                     <a class="author-avatar">
                                         <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                            1,
-                                            70
+                                        	1,
+                                        	70
                                         ) ?>" alt="user_image" class="user_image">
                                     </a>
                                 </div>
@@ -389,8 +380,8 @@
                                 <div class="twitter-profile">
                                     <a href="#" class="author-avatar">
                                         <img src="https://i.pravatar.cc/40?img=<?= rand(
-                                            1,
-                                            70
+                                        	1,
+                                        	70
                                         ) ?>" alt="user_image" class="user_image">
                                     </a>
                                 </div>
@@ -420,13 +411,12 @@
         </div>
     </section>
 
-<?php include ROOT . "/view/footer.php"; ?>
+    <?php include ROOT . "/view/footer.php"; ?>
 
-<?php $content = ob_get_clean(); ?>
+    <?php $content = ob_get_clean(); ?>
 
-<!-- <?php //require "journeyTemplate.php"; ?> -->
+    <!-- <?php
+//require "journeyTemplate.php";
+?> -->
 
-<?php
-require("template.php");
-?>
-
+    <?php require "template.php"; ?>
